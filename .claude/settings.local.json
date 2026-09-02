@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node *)",
+      "WebSearch",
+      "WebFetch(domain:ai.google.dev)",
+      "WebFetch(domain:blog.laozhang.ai)",
+      "Bash(cat /c/Users/elada/.claude/plugins/cache/claude-plugins-official/*/1.0.0/skills/yuval/*.md)",
+      "Bash(xargs grep *)"
+    ]
+  }
+}
