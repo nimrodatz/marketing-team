@@ -1,10 +1,54 @@
-# OS / editor
+# ─── סודות: אסור שיעלו ל-GitHub ────────────────────────────
+# משתני סביבה
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# מפתחות, תעודות, אישורים
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa
+id_ed25519
+*.crt
+*.cer
+
+# קבצי אישורים נפוצים של שירותים
+credentials
+credentials.json
+service-account*.json
+gha-creds-*.json
+.netrc
+.npmrc
+.pypirc
+secrets.json
+secrets.yaml
+secrets.yml
+*.secret
+*secrets*.env
+
+# ספריות סודות
+.secrets/
+secrets/
+
+# ─── תלויות ובנייה ─────────────────────────────────────────
+node_modules/
+dist/
+build/
+.venv/
+venv/
+__pycache__/
+*.pyc
+npm-debug.log*
+yarn-error.log*
+
+# ─── מערכת הפעלה ועורכים ───────────────────────────────────
 .DS_Store
 Thumbs.db
 desktop.ini
-
-# Node
-node_modules/
-npm-debug.log*
-.env
-.env.local
+.idea/
+*.swp
