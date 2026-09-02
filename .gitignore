@@ -52,3 +52,9 @@ Thumbs.db
 desktop.ini
 .idea/
 *.swp
+
+# ─── אובסידיאן ─────────────────────────────────────────────
+# state של החלון, משתנה בכל פתיחה — שאר הקונפיג כן נשמר בגיט
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.trash/
