@@ -4,4 +4,5 @@ Voice, tone, visual language and UI primitives. The reference any content or des
 
 ## Topics
 
-- (none yet)
+- [[icp-construction]] — ה-ICP של הקבלן ואיש השטח: הגדרה התנהגותית, שלושה תת-סגמנטים, מוקדי השבר, טריגרי קנייה, התנגדויות ומיפוי מסלול `02` לכאב
+- [[voice-and-tone]] — קול המותג ורשימת המילים האסורות: משפטי דוגמה מהאתר, אורך משפט, גובה עיניים, ז'רגון בנייה, עובדות נעולות
