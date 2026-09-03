@@ -59,3 +59,16 @@ desktop.ini
 .obsidian/workspace-mobile.json
 .obsidian/graph.json
 .trash/
+
+# ─── שטח העבודה הפרטי של הקריאייטיב ────────────────────────
+# creative/ הוא scratch space ולא תוצר (ראה CLAUDE.md).
+# תמונות ניסוי שם הן בינאריות, כבדות, ולא נדחסות בין גרסאות —
+# הפרומפט שיצר אותן כן נשמר, וגם התוצרים המאושרים ב-output/creatives/.
+creative/*.png
+creative/*.jpg
+creative/*.jpeg
+creative/*.webp
+creative/reference/*.png
+creative/reference/*.jpg
+creative/reference/*.jpeg
+creative/reference/*.webp

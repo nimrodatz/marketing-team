@@ -14,7 +14,7 @@ tags:
 ## Open Questions
 
 - Whether the repo needs a branch-per-feature habit or whether committing straight to `main` stays adequate. Single developer, no CI, no collaborators — `main` is fine for now, and the answer changes the day a second person or an automated check enters.
-- Whether the generated PNGs under `output/creatives/` belong in git at all is unsettled. They are binary, regenerable, and each regeneration costs money — arguments pull both ways.
+- ~~Whether the generated PNGs under `output/creatives/` belong in git at all~~ — **resolved 2026-09-03. They stay.** The scratch images under `creative/` are the ones that leave; see the session entry below.
 - No CI and no tests. `scripts/` now holds two PowerShell scripts (`verify-site-facts.ps1`, `gen-image.ps1`) and both are verified by hand; the repo has no package manifest and, given that Node is not even installed on the working machine, probably should not grow one.
 
 ## Session Log
@@ -84,3 +84,10 @@ tags:
 - **Decisions:** **הערכה נכתבת על ידי המנכ"ל בשלב 4 ולא על ידי סוכן** — היא **שכבת הצגה מעל תוצרים שכבר עברו את שער הבקרה**, ואינה מכניסה ולו מילה חדשה: כל שורה בה מועתקת מקבצי `output/marketing/` המאושרים. ניסוח שאין לו מקור שם חוזר דרך הצינור. הכלל הזה הוא מה שמונע מהערכה להפוך לדלת אחורית שעוקפת את הבקרה. **התמונה מוזכרת בהפניה יחסית** (`../creatives/…png`) בדיוק כמו כלל ההלבשה — כדי שהריפו יחזיק עותק אחד של התמונה והקובץ יישאר קטן (13KB במקום 2.2MB). **הטמעת base64 מתבצעת רק בעותק זמני בזמן פרסום ולעולם לא נכנסת ל-git.**
 - **Notes / Caveats:** הצורך התגלה בדיעבד: בריצה הראשונה שייצרה ערכה כזו היא נכתבה לתיקייה זמנית של המערכת **כי לא היה לה מקום מוגדר**, ונימרוד שאל איפה היא נשמרה. **ההכרעה הזו הייתה צריכה לעלות לפניו לפני הכתיבה ולא אחריה** — הפער היה במבנה, וברירת המחדל השקטה הסתירה אותו. `output/kits/` **אינה תחליף** ל-`output/marketing/` ול-`output/creatives/`, שנשארים תוצרי הרשומה.
 - **Related:** [[peer-intro-groups-run-1]], [[agent-ceo-orchestration]], [[peer-intro-groups]], [[marketing-engine-prd]]
+
+### 2026-09-03 — הוכרע: תמונות בגיט לפי מעמד, לא לפי פורמט [shipped]
+
+- **What was done:** נסגרה שאלה פתוחה שהייתה תלויה מ-2 בספטמבר. המדידה שהניעה את ההכרעה: **שתי תמונות היו 3.9MB מתוך 4.4MB של היסטוריית הגיט** — 88% מהמשקל בשניים מתוך 57 קבצים. `.gitignore` הורחב בסעיף חדש שמחריג קבצי תמונה תחת `creative/` ו-`creative/reference/`, והתמונה `creative/2026-09-03-icp-evening-desk-01.png` הוצאה ממעקב ב-`git rm --cached` — **הקובץ נשאר על הדיסק**, בדיוק כפי שנעשה ל-`graph.json`. `output/creatives/` נשאר במעקב במלואו.
+- **Decisions:** **הקו נמתח לפי מעמד ולא לפי פורמט.** הטיעון המקובל — "לא שומרים בגיט מה שניתן לייצר מחדש" — **אינו תקף כאן**, כי `gpt-image-2` אינו דטרמיניסטי: אותו פרומפט יחזיר תמונה אחרת, וכל ניסיון עולה כסף. לכן PNG מאושר **אינו תוצר build אלא נכס מקור שבמקרה הוא בינארי**, ומקומו בגיט. לעומתו `creative/` מוגדר ב-`CLAUDE.md` כשטח עבודה פרטי ש**לעולם אינו תוצר**, ותמונה שיושבת בו היא ניסוי — היא לא נכס, ולכן היא לא נכנסת להיסטוריה. **הפרומפטים תחת `creative/` נשארים במעקב** ומהווים את רשומת השחזור. נשקל ונדחה **Git LFS**: הוא הפתרון הנכון טכנית, ותקורת התשתית שלו אינה מוצדקת למפתח יחיד בלי CI.
+- **Notes / Caveats:** ההחרגה ב-`creative/reference/` נוסחה **לפי סיומות תמונה ולא כתיקייה שלמה**, כדי שחומר טקסטואלי שייכתב שם בעתיד לא ייעלם בשקט. `.gitkeep` של שתי התיקיות נשאר במעקב וההחרגה אינה נוגעת בו. **ההחרגה אינה מנקה היסטוריה** — 2.2MB של התמונה שהוצאה ממעקב נשארים בקומיטים הקודמים; ניקוי אמיתי היה דורש שכתוב היסטוריה, שנשקל ונדחה כלא מוצדק. הריפו יושב בתוך OneDrive, ולכן לתמונות שאינן בגיט יש גיבוי מסונכרן — **אבל OneDrive מגבה קובץ ולא מקשר אותו לריצה שבה נוצר**, וזה בדיוק הנימוק לשמור את המאושרות בגיט.
+- **Related:** [[peer-intro-groups-run-1]], [[agent-creative]], [[agent-ceo-orchestration]], [[marketing-engine-prd]]
