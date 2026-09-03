@@ -76,7 +76,14 @@ brief (vault/Content Briefs/)
              write the run summary to vault/Publishing Log/, update the Session Log
 ```
 
-Both agent files are `[planned]` and do not exist yet — the pipeline is not runnable until stage 1 builds them.
+**Stage 1 is built.** `.claude/agents/copywriter.md` exists and is runnable; its full spec lives in
+`vault/Meeting Notes/agent-copywriter.md`. Delegate to it whenever the request is about **קופי, זוויות,
+הוקים, טקסט שיווקי, פנייה,** or "שלב 1" — do not write marketing copy yourself in the main session.
+It reads `site-copy.md` → `icp-construction.md` → `voice-and-tone.md` in that order, has no network
+access, drafts under `copywriter/drafts/`, and saves the approved deliverable to
+`output/marketing/<YYYY-MM-DD>-copy-<topic>.md`.
+
+`.claude/agents/campaigner.md` is still `[planned]` and does not exist — stage 2 is not runnable yet.
 
 The full specification lives in `vault/Meeting Notes/agent-ceo-orchestration.md`.
 When in doubt, that note wins over this summary.
@@ -119,12 +126,13 @@ Every folder has an `_index.md` listing its topics. Intra-vault references use `
 
 ```
 .claude/skills/      the three Obsidian skills
-.claude/agents/      custom subagents — planned: copywriter, campaigner (neither written yet)
+.claude/agents/      custom subagents — copywriter (built); campaigner (planned, not written)
 .claude/commands/    custom slash commands (empty)
 vault/               the Obsidian knowledge base — long-term memory
 references/          source material, research inputs
 references/writing/  extracted source copy — site-copy.md is the tone/pricing source of truth
 scripts/             automation and tooling
+copywriter/drafts/   the copywriter's private scratch space — drafts only, never a deliverable
 output/              generated deliverables
 output/marketing/    pipeline output: copy angles, outbound-kit.md
 output/creatives/    planned pipeline output: visual assets and clean PNGs
@@ -141,3 +149,5 @@ output/creatives/    planned pipeline output: visual assets and clean PNGs
 - Output is split by kind: `output/creatives/` holds **media files only** (images, clean text-free PNGs,
   visual assets). Marketing **text** deliverables — copy angles, hooks, `outbound-kit.md` — stay under
   `output/marketing/`. Never mix the two.
+- `output/marketing/` holds **approved deliverables only** — it is the pipeline contract the campaigner
+  reads from. Work-in-progress copy lives in `copywriter/drafts/` and never ships from there.
