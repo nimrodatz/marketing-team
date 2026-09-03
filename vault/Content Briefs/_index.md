@@ -4,4 +4,4 @@ Editorial briefs and campaign specs: audience, angle, channel, deliverables and 
 
 ## Topics
 
-- (none yet)
+- [[outbound-construction-turnkey]] — פנייה ישירה לקבלנים בוואטסאפ ובטלפון: קהל, מסלול 02, ה-Ask וקריטריוני ההצלחה

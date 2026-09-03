@@ -4,4 +4,4 @@ Publish runs and their outcomes: what went out, where, when, how it performed, a
 
 ## Topics
 
-- (none yet)
+- [[outbound-construction-run-1]] — הריצה הראשונה מקצה לקצה: תוצאות שער הבקרה, שלוש ההכרעות, וחריגת הסוכן הלא-רשום

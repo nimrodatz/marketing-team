@@ -64,6 +64,11 @@ file structure under `output/`, routine vault updates.
 2. Any action that costs money.
 3. The end of every pipeline stage, before moving to the next.
 
+**Mandatory pre-step, before every pipeline run:** `pwsh -File scripts/verify-site-facts.ps1`.
+It pulls the live site and checks that prices, track names, the wa.me link and the four cases
+still match `site-copy.md`. Drift → **stop**, show the gap, and only update the copy file after
+the user approves. The CEO is the single update point; agents never reach the network.
+
 **Linear pipeline** — one agent at a time, each consumes the previous one's output, no skipping:
 
 ```
@@ -83,7 +88,18 @@ It reads `site-copy.md` → `icp-construction.md` → `voice-and-tone.md` in tha
 access, drafts under `copywriter/drafts/`, and saves the approved deliverable to
 `output/marketing/<YYYY-MM-DD>-copy-<topic>.md`.
 
-`.claude/agents/campaigner.md` is still `[planned]` and does not exist — stage 2 is not runnable yet.
+**Stage 2 is built.** `.claude/agents/campaigner.md` exists and is runnable; its full spec lives in
+`vault/Meeting Notes/agent-campaigner.md`. Delegate to it for **Outbound, ערכת שטח, פתיח וואטסאפ,
+תסריט שיחה, מענה להתנגדויות, פולואפ,** or "שלב 2". It reads the approved copy file first, then
+`site-copy.md` → `icp-construction.md` → `voice-and-tone.md`, has no network access, and writes
+exactly one file: `output/marketing/outbound-kit.md`.
+
+Two channel rules settled on 2026-09-03, both binding on every agent that writes outbound copy:
+
+1. **Second person is singular in outbound** (WhatsApp, phone) and **plural in copy addressed to an
+   audience** (site, landing page, ad). `voice-and-tone.md` §7 holds the rule.
+2. **The Ask is a short 15-minute call**, no cost and no commitment — phone or WhatsApp by default,
+   Zoom only as an option. Never "20 minutes", never "אפיון צוואר הבקבוק" (consultant-speak).
 
 The full specification lives in `vault/Meeting Notes/agent-ceo-orchestration.md`.
 When in doubt, that note wins over this summary.
@@ -126,7 +142,7 @@ Every folder has an `_index.md` listing its topics. Intra-vault references use `
 
 ```
 .claude/skills/      the three Obsidian skills
-.claude/agents/      custom subagents — copywriter (built); campaigner (planned, not written)
+.claude/agents/      custom subagents — copywriter and campaigner, both built and runnable
 .claude/commands/    custom slash commands (empty)
 vault/               the Obsidian knowledge base — long-term memory
 references/          source material, research inputs
