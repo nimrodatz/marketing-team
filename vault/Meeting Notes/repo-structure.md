@@ -9,11 +9,11 @@ tags:
 
 ## Overview
 
-`marketing team` is the AI Content OS working repo. As of 2026-09-03 it is no longer a skeleton: three agents, four skills, two agent scratch spaces (`copywriter/drafts/`, `creative/`), executable tooling in `scripts/`, and real deliverables under `output/marketing/` and `output/creatives/`. Its defining property is that **the Obsidian vault root is the repo root**, not `vault/`. `.obsidian/` therefore sits at the top level, and Obsidian sees every file in the project, with `vault/` appearing as one folder among several in the file explorer. Four content folders (`vault/`, `references/`, `scripts/`, `output/`) split the work by lifecycle stage: knowledge in, source material in, automation, deliverables out. `.claude/` holds the Claude Code configuration. Git remote is `nimrodatz/marketing-team`, branch `main`.
+`marketing team` is the AI Content OS working repo. Git conventions: commit per self-contained unit of work, push once at the end of a session, tag the versions worth returning to. As of 2026-09-03 it is no longer a skeleton: three agents, four skills, two agent scratch spaces (`copywriter/drafts/`, `creative/`), executable tooling in `scripts/`, and real deliverables under `output/marketing/` and `output/creatives/`. Its defining property is that **the Obsidian vault root is the repo root**, not `vault/`. `.obsidian/` therefore sits at the top level, and Obsidian sees every file in the project, with `vault/` appearing as one folder among several in the file explorer. Four content folders (`vault/`, `references/`, `scripts/`, `output/`) split the work by lifecycle stage: knowledge in, source material in, automation, deliverables out. `.claude/` holds the Claude Code configuration. Git remote is `nimrodatz/marketing-team`, branch `main`.
 
 ## Open Questions
 
-- `.obsidian/` is still untracked. Committing it keeps vault settings consistent across machines; `workspace.json` is already gitignored so the churn is handled. Awaiting a decision on whether to commit.
+- Whether the repo needs a branch-per-feature habit or whether committing straight to `main` stays adequate. Single developer, no CI, no collaborators — `main` is fine for now, and the answer changes the day a second person or an automated check enters.
 - Whether the generated PNGs under `output/creatives/` belong in git at all is unsettled. They are binary, regenerable, and each regeneration costs money — arguments pull both ways.
 - No CI and no tests. `scripts/` now holds two PowerShell scripts (`verify-site-facts.ps1`, `gen-image.ps1`) and both are verified by hand; the repo has no package manifest and, given that Node is not even installed on the working machine, probably should not grow one.
 
@@ -54,3 +54,26 @@ tags:
 - **Notes / Caveats:** `.obsidian/` עדיין untracked וההחלטה עליו לא הוכרעה. הסקריפט החדש
   קורא את `.env` בעצמו, ו-`.gitignore` כבר מחריג אותו — נבדק ב-`git status`.
 - **Related:** [[agent-creative]], [[agent-roster]], [[obsidian-skills-setup]], [[agent-ceo-orchestration]]
+
+### 2026-09-03 — קצב הקומיטים, ו-`.obsidian/` מוכרע [shipped]
+
+- **What was done:** שיחה על שיטת העבודה מול גיט, ואז שני קומיטים שניקו עץ עבודה שנצבר.
+  הקומיט הראשון תפס את **מוסכמת השמות עם מספר ריצה** (`<date>-<topic>-run<N>-<kind>`) —
+  16 קבצים: `CLAUDE.md`, שלושת הסוכנים, שבע הערות בוולט, ושינוי שם לתוצרי ריצה 1.
+  השני הפסיק לעקוב אחרי `.obsidian/graph.json`.
+- **Decisions:**
+  - **`.obsidian/` נשאר tracked** — שאלה פתוחה משתי ישיבות קודמות, ובפועל היא כבר הוכרעה
+    בשטח: הקבצים היו במעקב. `graph.json` הוצא ממנו והצטרף ל-`workspace.json` ברשימת ההחרגות,
+    מאותו נימוק בדיוק — אובסידיאן כותב אותו מחדש בכל פתיחה של תצוגת הגרף, כך שהוא הופיע
+    כשינוי ב-`git status` בכל סשן בלי לשאת שינוי אמיתי אף פעם. שאר הקונפיג — פלאגינים,
+    מראה — נשאר בגיט כי הוא כן שווה שיתוף בין מכונות.
+  - **קצב עבודה מול גיט:** קומיט בסוף כל יחידת עבודה שעומדת בפני עצמה (בפרויקט הזה — שלב
+    בפייפליין), פוש פעם אחת בסוף סשן. פוש הוא גיבוי מחוץ למחשב, לא הכרזה על גרסה יציבה;
+    בריפו של מפתח יחיד בלי CI אין למי לשבור את הבילד. "גרסה שסגורים עליה" מסומנת בתגית
+    (`git tag`), לא בהימנעות מפוש. עבודה שעלולה לשבור את הפייפליין — ענף.
+- **Notes / Caveats:** אישור לקומיט או לפוש **אינו נדבק בין סשנים ולא בתוך סשן** — צריך פקודה
+  מפורשת בכל פעם. מה שכן נשמר הוא ההקשר בלבד (ש-push פירושו `origin/main` ב-`nimrodatz/marketing-team`).
+  היסטוריית הגיט יושבת ב-`.git` על הדיסק ולא בסשן, ולכן פוש מסשן אחד דוחף גם קומיטים
+  שנוצרו בסשן אחר. אוטומציה אמיתית של קומיט בסוף משימה תדרוש hook ב-`settings.json` —
+  נשקל ונדחה, כי הודעות קומיט אוטומטיות מרעישות את ההיסטוריה.
+- **Related:** [[agent-ceo-orchestration]], [[agent-creative]], [[marketing-engine-prd]]
