@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>אתם מתמחרים ב-22:00, אחרי יום מלא בשטח. | CRAFT &amp; SYSTEM</title>
+<meta name="description" content="מערכות שמדברות בשפה שלכם ומפשטות לכם תהליכים">
+
+<!-- Tailwind via CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Google Fonts — Heebo (headings) + Assistant (body), copied verbatim from visual-identity.md §2 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Heebo:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
+
+<style>
+  /* ===== Brand tokens — embedded so the page survives a CDN failure (visual-identity.md §1,§2,§4) ===== */
+  :root {
+    /* backgrounds */
+    --color-bg-primary: #F8F6F2;
+    --color-bg-secondary: #EDEAE4;
+    --color-bg-card: #FFFFFF;
+    --color-bg-card-hover: #F4F1EC;
+    /* text */
+    --color-text-primary: #1A1714;
+    --color-text-secondary: #6B6460;
+    --color-text-muted: #A09890;
+    /* accent — terracotta */
+    --color-accent: #B5634B;
+    --color-accent-hover: #9A523D;
+    --color-accent-light: rgba(181, 99, 75, 0.1);
+    --color-focus: #B5634B;
+    /* warm neutrals & borders */
+    --color-neutral-accent: #2C2826;
+    --color-sand: #9C8E82;
+    --color-sand-light: rgba(156, 142, 130, 0.15);
+    --color-border: #DDD8D0;
+    --color-border-strong: #C0B8B0;
+    /* whatsapp — platform color, outside the palette on purpose */
+    --color-whatsapp: #25D366;
+    --color-whatsapp-hover: #1FBA58;
+    /* shadows — derived from the accent, never blue (see §7 red line) */
+    --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 30px rgba(0,0,0,0.10);
+    --shadow-accent: 0 8px 24px rgba(181, 99, 75, 0.25);
+    /* spacing */
+    --space-xs: 8px; --space-sm: 16px; --space-md: 24px; --space-lg: 48px; --space-xl: 80px; --space-xxl: 120px;
+    --container-max-width: 1100px;
+    --content-max-width: 800px;
+    /* fonts — real fallback stack, not decoration */
+    --font-body: 'Assistant', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --font-heading: 'Heebo', 'Assistant', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { font-size: 16px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+  body {
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  h1, h2, h3 { font-family: var(--font-heading); line-height: 1.3; margin: 0; letter-spacing: -0.01em; }
+
+  p { margin: 0; }
+
+  a, button, input, textarea { font-family: inherit; }
+
+  /* Focus indicator — never removed, never replaced with none */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+  }
+
+  .skip-link {
+    position: absolute; right: 1rem; top: -100px;
+    background: var(--color-accent); color: #fff; padding: 0.75rem 1.5rem;
+    border-radius: 8px; z-index: 200; transition: top 0.2s ease;
+  }
+  .skip-link:focus { top: 1rem; }
+
+  /* ===== Typography scale — 3 breakpoints, from visual-identity.md §3 ===== */
+  .h1-hero {
+    font-size: 2.4rem;      /* מובייל */
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  @media (min-width: 640px) { .h1-hero { font-size: 2.75rem; } }   /* בסיס */
+  @media (min-width: 768px) { .h1-hero { font-size: 3.5rem; } }    /* דסקטופ */
+
+  .subtitle-hero {
+    font-size: 1.05rem;     /* מובייל */
+    font-weight: 500;
+    line-height: 1.6;
+  }
+  @media (min-width: 640px) { .subtitle-hero { font-size: 1.15rem; } }
+  @media (min-width: 768px) { .subtitle-hero { font-size: 1.25rem; } }
+
+  .h2-section {
+    font-size: 2rem;        /* מובייל */
+    font-weight: 300;       /* דק — שוויצרי, לפי הכוונה */
+    line-height: 1.25;
+    max-width: 760px;
+  }
+  @media (min-width: 640px) { .h2-section { font-size: 2.625rem; } }
+
+  .subtitle-section {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    max-width: 580px;
+  }
+
+  .body-text { font-size: 1rem; }
+
+  .badge {
+    display: inline-flex; align-items: center;
+    background: var(--color-sand-light);
+    border: 1px solid rgba(156, 142, 130, 0.35);
+    color: var(--color-sand);
+    font-size: 0.75rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 0.4rem 1rem; border-radius: 100px;
+  }
+
+  /* ===== Buttons ===== */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0.9rem 2.25rem; font-weight: 700; font-size: 1.0625rem;
+    border: none; border-radius: 8px; cursor: pointer;
+    letter-spacing: 0.01em;
+    min-height: 44px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: var(--color-accent); color: #FFFFFF;
+    border-radius: 100px; padding: 1rem 2.75rem; font-size: 1.0625rem;
+  }
+  .btn-primary:hover { background: var(--color-accent-hover); transform: translateY(-2px); box-shadow: var(--shadow-accent); }
+
+  .btn-secondary {
+    background: transparent; color: var(--color-accent);
+    border: 2px solid var(--color-accent); border-radius: 100px;
+    padding: calc(1rem - 2px) calc(2.75rem - 2px); font-size: 1.0625rem;
+  }
+  .btn-secondary:hover { background: var(--color-accent-light); transform: translateY(-2px); }
+
+  .btn-whatsapp {
+    background: var(--color-whatsapp); color: #FFFFFF;
+    border-radius: 100px; padding: 0.85rem 2.5rem;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.25);
+  }
+  .btn-whatsapp:hover { background: var(--color-whatsapp-hover); transform: translateY(-2px); }
+
+  /* ===== Cards ===== */
+  .card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .card:hover { transform: translateY(-6px); border-color: var(--color-border-strong); box-shadow: var(--shadow-lg); }
+  .card-highlight { border: 2px solid var(--color-accent); }
+
+  section { padding: 5rem 0; }
+  .container { max-width: var(--container-max-width); margin: 0 auto; padding: 0 1.25rem; }
+  .content-width { max-width: var(--content-max-width); }
+
+  /* ===== Floating WhatsApp button ===== */
+  .floating-cta-wrap {
+    position: fixed; bottom: 2rem; left: 2rem; z-index: 99;
+    pointer-events: none;
+    opacity: 0; transform: translateY(16px) scale(0.95);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .floating-cta-wrap.visible { opacity: 1; transform: translateY(0) scale(1); }
+  .floating-cta-button {
+    pointer-events: auto;
+    display: inline-flex; align-items: center; gap: 0.65rem;
+    background: var(--color-whatsapp); color: #fff;
+    padding: 0.85rem 1.75rem; border-radius: 100px;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+    font-weight: 700; text-decoration: none;
+    min-height: 44px;
+  }
+  .floating-cta-button:hover { background: var(--color-whatsapp-hover); }
+  .floating-cta-button svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+  /* ===== Form ===== */
+  .field { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
+  .field label { font-weight: 600; font-size: 0.95rem; color: var(--color-text-primary); }
+  .field input {
+    min-height: 44px; padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border); border-radius: 8px;
+    background: #fff; color: var(--color-text-primary); font-size: 1rem;
+  }
+  .field input:focus { border-color: var(--color-accent); }
+
+  .form-status {
+    margin-top: 1rem; font-size: 0.95rem; min-height: 1.5rem;
+  }
+  .form-status.success { color: #3F7A4F; }
+  .form-status.error { color: var(--color-accent-hover); }
+
+  .quote-block {
+    border-right: 4px solid var(--color-accent);
+    padding: 1.5rem 1.75rem;
+    background: var(--color-accent-light);
+    border-radius: 8px;
+    font-size: 1.1rem;
+    line-height: 1.75;
+  }
+
+  footer a { color: var(--color-text-secondary); }
+
+  /* mobile-first: single column below 768px, grid from tablet up */
+  @media (min-width: 768px) {
+    .benefits-grid { grid-template-columns: repeat(3, 1fr) !important; }
+    .proof-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">דלגו לתוכן הראשי</a>
+
+<header class="container" style="padding-top: 1.5rem; padding-bottom: 0;">
+  <div style="font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 0.02em;">
+    CRAFT &amp; SYSTEM
+  </div>
+</header>
+
+<main id="main-content">
+
+  <!-- ===== HERO ===== -->
+  <!-- מקור: זווית 2 (ROI, כסף וזמן שנשרף) — הוק 1, מוטה יחיד→רבים. תת-כותרת: גוף הפנייה של אותה זווית, שורה 2, מוטה. -->
+  <section style="padding-top: 3rem; padding-bottom: 3rem;">
+    <div class="container content-width">
+      <h1 class="h1-hero" style="margin-bottom: 1.5rem;">
+        אתם מתמחרים ב-22:00, אחרי יום מלא בשטח. זו השעה הכי יקרה בשבוע שלכם.
+      </h1>
+      <p class="subtitle-hero" style="color: var(--color-text-secondary); margin-bottom: 2.5rem;">
+        הערב הוא חלון הניהול היחיד שלכם, והוא גם הזמן שבו נולדות טעויות התמחור.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+        <a href="https://wa.me/972506762006?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%95%D7%93" class="btn btn-primary" target="_blank" rel="noopener">
+          בואו נדבר בווטסאפ
+        </a>
+        <a href="#contact-form" class="btn btn-secondary">
+          השאר פרטים ונחזור אליך
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== הצעת ערך ===== -->
+  <!-- מקור: כותרת — site-copy.md "הצעת הערך" (כבר ברבים). גוף — גופי הפנייה מקובץ הקופי, זוויות 1+2+3, מוטה איפה שנדרש. -->
+  <section style="background: var(--color-bg-secondary);">
+    <div class="container content-width">
+      <h2 class="h2-section" style="margin-bottom: 1.5rem;">
+        מערכות שמדברות בשפה שלכם ומפשטות לכם תהליכים
+      </h2>
+      <p class="body-text" style="margin-bottom: 2rem; color: var(--color-text-secondary);">
+        היי, אני נימרוד — הנדסאי בניין. הייתי בשטח לפני שבניתי מערכות.
+      </p>
+      <div style="display: grid; gap: 1.25rem;">
+        <p class="body-text">
+          אני בונה סיסטם אחד שמחזיק את הלידים ואת מה שסוכם — במקום אחד, מהנייד, תוך כדי העבודה בשטח.
+        </p>
+        <p class="body-text">
+          אני מזיז את התמחור מהערב אל השטח: מחשבון שמחובר לחומרים ולשלבי הביצוע, ישירות מהנייד. בלי טעויות שאוכלות את הרווח.
+        </p>
+        <p class="body-text">
+          אני מקים סיסטם אחד שמחזיק את הסטטוס של כל אתר ושל כל קבלן משנה במקום אחד — בלי מערכות מסובכות לתפעל ובלי עקומת למידה מתישה. אתם לא מתחזקים כלום ולא לומדים כלום.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== תועלות — מסלול 02 שולחן עבודה, מילה במילה מ-site-copy.md ===== -->
+  <section>
+    <div class="container">
+      <div class="content-width" style="margin-bottom: 2.5rem;">
+        <span class="badge" style="margin-bottom: 1rem;">מומלץ לעסקים בצמיחה</span>
+        <h2 class="h2-section" style="margin-top: 1rem; margin-bottom: 1rem;">
+          02 · שולחן עבודה — החל מ-3,200 ₪
+        </h2>
+        <p class="subtitle-section">
+          חלון הראווה שלכם בתוספת כלי ניהול מערכתיים מאחורי הקלעים.
+        </p>
+      </div>
+
+      <div style="display: grid; gap: 1.5rem; grid-template-columns: 1fr;" class="benefits-grid">
+        <div class="card card-highlight">
+          <p class="body-text">כל היתרונות של מסלול 'חלון ראווה' בדף נחיתה מהיר ומרשים.</p>
+        </div>
+        <div class="card card-highlight">
+          <p class="body-text">חיבור למערכת ניהול לקוחות (CRM) לשליטה פשוטה מהנייד על לידים.</p>
+        </div>
+        <div class="card card-highlight">
+          <p class="body-text">הטמעת מערכת תמחור חכמה לאנשי שטח למניעת טעויות וחיסכון בזמן.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== הוכחה — "באים בטוב" בלבד ===== -->
+  <section style="background: var(--color-bg-secondary);">
+    <div class="container">
+      <div class="content-width" style="margin-bottom: 2.5rem;">
+        <h2 class="h2-section" style="margin-bottom: 1rem;">פתרונות מעשיים מהשטח</h2>
+        <p class="subtitle-section">מערכות ואתרים שנבנו במהירות ועובדים באופן יציב בשימוש יומיומי.</p>
+      </div>
+
+      <div style="display: grid; gap: 1.5rem; grid-template-columns: 1fr;" class="proof-grid">
+        <div class="card">
+          <span class="badge" style="margin-bottom: 1rem;">אתר תדמית · HTML/CSS/JS · רספונסיביות מלאה</span>
+          <h3 style="font-size: 1.25rem; font-weight: 600; margin: 1rem 0 0.75rem;">
+            אתר תדמית ונוכחות רשת – "באים בטוב" | ניהול פרויקטים ועבודות עץ
+          </h3>
+          <p class="body-text" style="color: var(--color-text-secondary); margin-bottom: 0.75rem;">
+            <strong>האתגר:</strong> הקמת כרטיס ביקור דיגיטלי מרשים ומהיר לחברה לניהול פרויקטים וביצוע עבודות עץ, שיציג את יכולות הביצוע והעבודות בשטח וימשוך לקוחות חדשים ללא תחזוקה מורכבת.
+          </p>
+          <p class="body-text" style="color: var(--color-text-secondary); margin-bottom: 1.5rem;">
+            <strong>הפתרון:</strong> אתר תדמית מינימליסטי מבוסס קוד נקי, מותאם לחלוטין למובייל עם זמני טעינה אפסיים. האתר מציג גלריית פרויקטים ממוקדת ומאפשר פנייה מיידית בווטסאפ.
+          </p>
+          <a href="https://baimbetov.me/" class="btn btn-secondary" target="_blank" rel="noopener" style="padding: 0.6rem 1.5rem; font-size: 0.95rem;">
+            צפייה באתר החי
+          </a>
+        </div>
+
+        <div class="card">
+          <span class="badge" style="margin-bottom: 1rem;">מערכת תמחור · Airtable CRM · אוטומציה לעסק</span>
+          <h3 style="font-size: 1.25rem; font-weight: 600; margin: 1rem 0 0.75rem;">
+            אפיון תהליכי שטח ומערכת תמחור חכמה – "באים בטוב"
+          </h3>
+          <p class="body-text" style="color: var(--color-text-secondary); margin-bottom: 0.75rem;">
+            <strong>האתגר:</strong> חברה לניהול פרויקטים וביצוע עבודות עץ נזקקה לארגון מחדש של תהליכי העבודה והלוגיסטיקה בשטח, לצד פתרון דיגיטלי פשוט שימנע טעויות בתמחור פרויקטים מורכבים וחומרי גלם.
+          </p>
+          <p class="body-text" style="color: var(--color-text-secondary); margin-bottom: 1.5rem;">
+            <strong>הפתרון:</strong> אפיון ותכנון מחדש של זרימת העבודה והרכש בשטח, בשילוב מחשבון תמחור ייעודי ומערכת CRM קלה ב-Airtable. המערכת מסנכרנת בין שלבי הביצוע הפיזיים לתמחור החומרים, וחוסכת שעות עבודה ידניות בכל שבוע.
+          </p>
+          <p style="font-size: 0.9rem; color: var(--color-text-muted);">
+            מערכת פנימית מאובטחת – שמירה על סודיות נתוני הלקוח (אין לינק חי)
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== הסרת סיכון — עוגן האתר, מילה במילה ברבים ===== -->
+  <section>
+    <div class="container content-width">
+      <blockquote class="quote-block">
+        השיחה ללא עלות או התחייבות. אם אני לא האדם המתאים לעזור לכם, אגיד לכם את זה מיד ואכוון אתכם לפתרון הנכון ביותר עבורכם.
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ===== CTA סוגר ===== -->
+  <section id="contact-form" style="background: var(--color-bg-secondary);">
+    <div class="container">
+      <div class="content-width" style="margin-bottom: 3rem;">
+        <span class="badge" style="margin-bottom: 1rem;">צור קשר</span>
+        <h2 class="h2-section" style="margin-top: 1rem; margin-bottom: 1.25rem;">
+          מוכנים לעשות סדר ולהתחיל לעבוד עם סיסטם שמשחרר לכם זמן?
+        </h2>
+        <p class="body-text" style="margin-bottom: 1rem; color: var(--color-text-secondary);">
+          בואו נשב על זה יחד. שיחה קצרה של 15 דקות – ואנחנו מבינים אם ואיך אפשר לעזור לכם.
+        </p>
+        <p class="body-text" style="color: var(--color-text-secondary);">
+          מעדיפים לדבר איתי ישירות?
+        </p>
+        <div style="margin-top: 1.5rem;">
+          <a href="https://wa.me/972506762006?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%95%D7%93" class="btn btn-whatsapp" target="_blank" rel="noopener">
+            דברו איתי בווטסאפ
+          </a>
+        </div>
+      </div>
+
+      <div class="card content-width">
+        <form id="lead-form" novalidate>
+          <div class="field">
+            <label for="name">שם</label>
+            <input type="text" id="name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="phone">טלפון</label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" required>
+          </div>
+          <p style="font-size: 0.85rem; margin: -0.75rem 0 1rem;">
+            <a href="/legal">מדיניות פרטיות, תנאי שימוש והצהרת נגישות</a>
+          </p>
+          <div class="field">
+            <label for="occupation">תחום עיסוק</label>
+            <input type="text" id="occupation" name="occupation" autocomplete="organization-title" required>
+          </div>
+          <button type="submit" class="btn btn-primary" id="submit-btn" style="width: 100%;">
+            השאר פרטים ונחזור אליך
+          </button>
+          <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="container" style="padding: 3rem 1.25rem; color: var(--color-text-secondary); font-size: 0.9rem;">
+  <p>© 2026 CRAFT &amp; SYSTEM. כל הזכויות שמורות.</p>
+  <p style="margin-top: 0.5rem;"><a href="/legal">מדיניות פרטיות, תנאי שימוש והצהרת נגישות</a></p>
+  <p style="margin-top: 0.5rem;">טכנולוגיה מעשית מבוססת קוד נקי ומהיר.</p>
+</footer>
+
+<!-- ===== כפתור וואטסאפ צף ===== -->
+<div class="floating-cta-wrap" id="floating-cta">
+  <a href="https://wa.me/972506762006?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%95%D7%93" class="floating-cta-button" target="_blank" rel="noopener" aria-label="דברו איתי בווטסאפ">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.36a9.9 9.9 0 0 0 4.62 1.14h.01c5.46 0 9.9-4.45 9.9-9.91S17.5 2 12.04 2zm5.78 14.1c-.24.68-1.19 1.25-1.96 1.4-.53.11-1.22.19-3.55-.76-2.98-1.23-4.9-4.24-5.05-4.44-.15-.2-1.2-1.6-1.2-3.05 0-1.45.75-2.16 1.02-2.46.24-.27.57-.4.9-.4.14 0 .28.01.4.02.34.02.51.04.73.55.28.66.94 2.28 1.02 2.44.08.16.13.35.03.56-.1.2-.15.33-.3.5-.15.18-.31.4-.45.53-.15.15-.3.31-.13.6.17.29.75 1.24 1.61 2 1.11.99 2.04 1.3 2.34 1.44.3.14.47.12.65-.07.18-.2.76-.88.96-1.18.2-.3.4-.25.68-.15.28.1 1.78.84 2.09 1 .31.15.52.23.6.36.08.13.08.75-.16 1.43z"/></svg>
+    דברו איתי בווטסאפ
+  </a>
+</div>
+
+<script>
+  (function () {
+    // כפתור צף — נכנס אחרי גלילה קלה, כך שהוא לא מתנגש עם ה-Hero
+    var floatBtn = document.getElementById('floating-cta');
+    function toggleFloat() {
+      if (window.scrollY > 300) {
+        floatBtn.classList.add('visible');
+      } else {
+        floatBtn.classList.remove('visible');
+      }
+    }
+    window.addEventListener('scroll', toggleFloat, { passive: true });
+    toggleFloat();
+
+    // ===== חוזה ה-Webhook =====
+    // __WEBHOOK_URL__ — כתובת webhook לא נמסרה בבריף לריצה הזו.
+    // config.json: "webhook_status": "unconfigured". הערוץ הראשי הוא וואטסאפ, שפעיל במלואו למעלה.
+    var WEBHOOK_URL = "__WEBHOOK_URL__";
+
+    var form = document.getElementById('lead-form');
+    var submitBtn = document.getElementById('submit-btn');
+    var statusEl = document.getElementById('form-status');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var payload = {
+        name: document.getElementById('name').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        occupation: document.getElementById('occupation').value.trim()
+      };
+
+      if (!payload.name || !payload.phone || !payload.occupation) {
+        statusEl.textContent = 'צריך למלא את כל השדות.';
+        statusEl.className = 'form-status error';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.7';
+      statusEl.textContent = '';
+      statusEl.className = 'form-status';
+
+      fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) {
+          if (!res.ok) { throw new Error('bad response'); }
+          statusEl.textContent = 'תודה, הפרטים התקבלו.';
+          statusEl.className = 'form-status success';
+          form.reset();
+        })
+        .catch(function () {
+          statusEl.textContent = 'משהו השתבש בשליחה. אפשר לנסות שוב, או לפנות בוואטסאפ.';
+          statusEl.className = 'form-status error';
+        })
+        .finally(function () {
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = '1';
+        });
+    });
+  })();
+</script>
+
+</body>
+</html>
