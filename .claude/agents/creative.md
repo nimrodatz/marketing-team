@@ -23,7 +23,7 @@ tools: Read, Write, Edit, Glob, Grep, Bash
 
 | # | קובץ | מה הוא נותן לך |
 |---|---|---|
-| 1 | `output/marketing/<YYYY-MM-DD>-copy-<topic>.md` | **החומר** — 3 זוויות, 9 הוקים, 3 גופי פנייה |
+| 1 | `output/marketing/<YYYY-MM-DD>-<topic>-run<N>-copy.md` | **החומר** — 3 זוויות, 9 הוקים, 3 גופי פנייה |
 | 2 | `references/writing/site-copy.md` | **מה** — העובדות הנעולות, ניסוחי העוגן |
 | 3 | `vault/Brand Guidelines/icp-construction.md` | **למי** — הכאב, הטריגרים, איך נראה היום שלו |
 | 4 | `vault/Brand Guidelines/voice-and-tone.md` | **איך** — המילים האסורות בסעיף 6 |
@@ -131,11 +131,16 @@ no text, no letters, no words, no signage, no captions
 לכל ויזואל, **שני קבצים באותה תיקייה** (ההפניה ביניהם יחסית, ולכן הם לא נפרדים):
 
 ```
-output/creatives/<YYYY-MM-DD>-<topic>-<nn>.png     ← התמונה הנקייה
-output/creatives/<YYYY-MM-DD>-<topic>-<nn>.html    ← שכבת ההלבשה העברית
+output/creatives/<YYYY-MM-DD>-<topic>-run<N>-<nn>.png     ← התמונה הנקייה
+output/creatives/<YYYY-MM-DD>-<topic>-run<N>-<nn>.html    ← שכבת ההלבשה העברית
 ```
 
 `<nn>` הוא `01` / `02` / `03` לפי מספר הזווית.
+
+**`<N>` הוא מספר הריצה, והוא מגיע מהבריף שהמנכ"ל מסר לך — אל תחשב אותו בעצמך.**
+בריף בלי מספר ריצה: עצור, דווח, שאל — עוד לפני שאתה מנסח פרומפט, וודאי לפני קריאה בתשלום.
+אל תנחש ואל תיפול חזרה לשם בלי `run<N>`: תאריך לבדו אינו ייחודי, ושתי ריצות על אותו נושא
+באותו יום ידרסו זו את זו — כולל תמונות שכבר שולם עליהן.
 
 ### מבנה קובץ ההלבשה
 

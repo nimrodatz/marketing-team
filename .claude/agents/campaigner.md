@@ -21,7 +21,7 @@ tools: Read, Write, Edit, Glob, Grep
 
 | # | קובץ | מה הוא נותן לך |
 |---|---|---|
-| 1 | `output/marketing/<YYYY-MM-DD>-copy-<topic>.md` | **החומר** — 3 זוויות, 9 הוקים, 3 גופי פנייה |
+| 1 | `output/marketing/<YYYY-MM-DD>-<topic>-run<N>-copy.md` | **החומר** — 3 זוויות, 9 הוקים, 3 גופי פנייה |
 | 2 | `references/writing/site-copy.md` | **מה** — מסלול 02 ב-3,200 ₪, לינק wa.me, ניסוחי העוגן |
 | 3 | `vault/Brand Guidelines/icp-construction.md` | **למי** — הכאב, הטריגרים, **טבלת ההתנגדויות בסעיף 6** |
 | 4 | `vault/Brand Guidelines/voice-and-tone.md` | **איך** — **כלל הפנייה הראשונה בסעיף 7**, המילים האסורות בסעיף 6 |
@@ -154,8 +154,12 @@ tools: Read, Write, Edit, Glob, Grep
 ## 7. פלט
 
 ```
-output/marketing/outbound-kit.md
+output/marketing/<YYYY-MM-DD>-<topic>-run<N>-outbound-kit.md
 ```
+
+`<topic>` בא מהבריף. **`<N>` הוא מספר הריצה, והוא מגיע מהבריף שהמנכ"ל מסר לך — אל תחשב
+אותו בעצמך.** בריף בלי מספר ריצה: עצור, דווח, שאל. אל תנחש ואל תיפול חזרה ל-`outbound-kit.md`
+בלי תאריך — זה היה השם הישן, והוא נדרס בכל ריצה.
 
 **המבנה:**
 

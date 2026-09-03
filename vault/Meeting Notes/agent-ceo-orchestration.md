@@ -90,7 +90,7 @@ tags:
 - עדכוני Vault שוטפים: Session Log, Open Questions, `_index.md`.
 
 > [!note] פיצול תיקיות הפלט
-> `output/marketing/` — תוצרי **טקסט** שיווקיים בלבד: זוויות, הוקים, `outbound-kit.md`.
+> `output/marketing/` — תוצרי **טקסט** שיווקיים בלבד: זוויות, הוקים, ערכת השטח.
 > `output/creatives/` — נכסים **ויזואליים** וקובצי ההלבשה שלהם: ה-PNG הנקי מטקסט ולצידו ה-`.html`
 > שמלביש עליו את הכותרת העברית. ההלבשה אינה תוצר טקסט שיווקי אלא שכבת הרנדור של הוויזואל,
 > והיא **חייבת** לשבת ליד ה-PNG כדי שההפניה היחסית תיפתר. תוצר של [[agent-creative]].
@@ -116,7 +116,7 @@ tags:
     [עצירה לאישור]
         │
         ▼
-  שלב 2 — קמפיינר  →  output/marketing/outbound-kit.md
+  שלב 2 — קמפיינר  →  output/marketing/  [ערכת שטח]
         │
     [עצירה לאישור]
         │
@@ -142,7 +142,7 @@ tags:
 
 - **מופעל:** `.claude/agents/copywriter.md` — ✅ קיים. אפיון מלא: [[agent-copywriter]]
 - **משימה:** כתיבת **3 זוויות שיווק** ו-3 הוקים לכל זווית, מותאמים לשטח
-- **פלט:** `output/marketing/<YYYY-MM-DD>-copy-<topic>.md` · טיוטות ב-`copywriter/drafts/`
+- **פלט:** `output/marketing/<YYYY-MM-DD>-<topic>-run<N>-copy.md` · טיוטות ב-`copywriter/drafts/`
 - **חובה לפני כתיבה:** `references/writing/site-copy.md` → [[icp-construction]] → [[voice-and-tone]]
 - **מילות טריגר להפעלה:** קופי · זוויות · הוקים · טקסט שיווקי · פנייה · "שלב 1"
 
@@ -150,7 +150,7 @@ tags:
 
 - **מופעל:** `.claude/agents/campaigner.md` — ✅ קיים. אפיון מלא: [[agent-campaigner]]
 - **משימה:** הפקת ערכת Outbound
-- **פלט:** `output/marketing/outbound-kit.md` הכולל:
+- **פלט:** `output/marketing/<date>-<topic>-run<N>-outbound-kit.md` הכולל:
   - פתיחי וואטסאפ אישיים
   - תסריט שיחה
   - מענה להתנגדויות
@@ -161,7 +161,7 @@ tags:
 
 - **מופעל:** `.claude/agents/creative.md` — ✅ קיים. אפיון מלא: [[agent-creative]]
 - **משימה:** תרגום שלוש הזוויות המאושרות לשלושה נכסים ויזואליים
-- **פלט:** `output/creatives/<YYYY-MM-DD>-<topic>-<nn>.png` + קובץ `.html` להלבשת הכותרת העברית
+- **פלט:** `output/creatives/<YYYY-MM-DD>-<topic>-run<N>-<nn>.png` + קובץ `.html` להלבשת הכותרת העברית
 - **חובה לפני כתיבה:** קובץ הקופי המאושר → `site-copy.md` → [[icp-construction]] → [[voice-and-tone]]
 - **מילות טריגר להפעלה:** קריאייטיב · ויז'ואל · ויזואל · תמונה · באנר · נכס ויזואלי · "שלב 3"
 
@@ -289,3 +289,10 @@ tags:
   זו הפעם הראשונה שיש לה מקרה אמיתי, והיא **טרם נבחנה בריצה**. הקריאייטיב טרם הורץ.
   אימות ה-Zero-Text בשכבה השנייה נשען על עין ולא על OCR.
 - **Related:** [[agent-creative]], [[agent-roster]], [[agent-campaigner]], [[agent-copywriter]], [[voice-and-tone]], [[outbound-construction-run-1]], [[repo-structure]]
+
+### 2026-09-03 — מוונציית שמות פלט עמידה להרצות חוזרות [shipped]
+
+- **What was done:** נוסף ל-`CLAUDE.md`, מיד אחרי דיאגרמת הצינור, מקטע **Output naming** שמגדיר את `<date>-<topic>-run<N>-<kind>` לשלושת השלבים ואת מקורו של `<N>`. הנתיבים בפתק הזה — פיצול תיקיות הפלט, דיאגרמת הצינור ומפרטי השלבים — יושרו אליו.
+- **Decisions:** **`vault/Publishing Log/` הוא הרישום היחיד של מספרי ריצה, והמנכ"ל הוא היחיד שקורא אותו.** בפתיחת ריצה הוא סופר את פתקי הריצה לאותו `<topic>`, מוסיף 1, ומוסר את `<N>` בבריף לכל סוכן. פתקי ריצה חדשים ייקראו `<topic>-run-<N>.md`. זו הרחבה של תפקיד המנכ"ל: הוא לא רק מאשר מעברי שלב, הוא גם מקצה את מרחב השמות.
+- **Notes / Caveats:** ההקצאה הזו היא **צעד ידני נוסף** בפתיחת כל ריצה, ואין עליה אכיפה מכנית — המנכ"ל יכול לשכוח למסור `<N>`. ההגנה היחידה היא שהסוכנים הונחו לעצור ולשאול במקום לנחש. אם התדירות תעלה, ייתכן שיידרש שער בסקריפט. פתק הריצה `outbound-construction-run-1` **לא שינה שם** — הוא פתק וולט ולא תוצר צינור, ו-`[[outbound-construction-run-1]]` מקושר מחמישה פתקים.
+- **Related:** [[agent-roster]], [[agent-campaigner]], [[agent-creative]], [[agent-copywriter]], [[outbound-construction-run-1]], [[marketing-engine-prd]]

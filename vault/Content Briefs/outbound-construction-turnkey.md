@@ -96,6 +96,15 @@ tags:
 | ⏸ | — | עצירה לאישור המשתמש — התוצר יוצא לאדם אמיתי |
 | 3 | המנכ"ל | `vault/Publishing Log/outbound-construction-run-1.md` |
 
+> [!note] הקבצים שונו שם ב-2026-09-03 — הטבלה מציגה את השמות כפי שהיו בריצה
+> מוונציית הפלט שונתה ל-`<date>-<topic>-run<N>-<kind>` כדי שהרצה חוזרת לא תדרוס תוצר קודם.
+> שני הקבצים עברו `git mv` ולא נמחקו:
+> - `…-copy-outbound-construction-turnkey.md` → `2026-09-03-outbound-construction-turnkey-run1-copy.md`
+> - `outbound-kit.md` → `2026-09-03-outbound-construction-turnkey-run1-outbound-kit.md`
+>
+> גם `output/creatives/2026-09-03-icp-evening-desk-01.png` הועבר ל-`creative/` — הוא היה תוצאת
+> ניסוי מסשן בניית [[agent-creative]] ולא תוצר צינור, וישב בלי קובץ ההלבשה הזוג שלו.
+
 ---
 
 ## 6. קריטריוני הצלחה

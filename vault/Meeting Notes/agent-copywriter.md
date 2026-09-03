@@ -112,7 +112,7 @@ tags:
 **התוצר המאושר:**
 
 ```
-output/marketing/<YYYY-MM-DD>-copy-<topic>.md
+output/marketing/<YYYY-MM-DD>-<topic>-run<N>-copy.md
 ```
 
 **טיוטות וגרסאות ביניים:** `copywriter/drafts/` — מרחב עבודה פנימי של הסוכנת.
@@ -166,12 +166,12 @@ output/marketing/<YYYY-MM-DD>-copy-<topic>.md
 בריף (vault/Content Briefs/)
         │
         ▼
-  שלב 1 · קופירייטרית  →  output/marketing/<YYYY-MM-DD>-copy-<topic>.md
+  שלב 1 · קופירייטרית  →  output/marketing/<YYYY-MM-DD>-<topic>-run<N>-copy.md
         │
    ⏸  עצירה לאישור המשתמש
         │
         ▼
-  שלב 2 · קמפיינר  →  output/marketing/outbound-kit.md
+  שלב 2 · קמפיינר  →  output/marketing/  [ערכת שטח]
 ```
 
 הסוכנת **אינה שולחת דבר לאף אחד** ואינה מפעילה סוכן אחר. היא כותבת קובץ, וזהו.
@@ -194,3 +194,10 @@ output/marketing/<YYYY-MM-DD>-copy-<topic>.md
 - **Decisions:** הכרעה אחת נדרשה — הסוכנת כתבה ב**גוף שני יחיד**, בסטייה מודעת מ-[[voice-and-tone]] סעיף 1 שקבע רבים, ו**סימנה את הסטייה בעצמה במקום להבליע אותה**. המשתמש אישר, וההכרעה עוגנה ככלל ערוץ בסעיף 7: יחיד בהודעה אישית, רבים בקופי שפונה לקהל. הסוכנת גם הוסיפה לכל זווית שורת "שימוש בשלב 2" (קרה / חמה / חוצה) שלא הייתה בשלד — תוספת שהתבררה כמועילה, כי היא נתנה לקמפיינר את המיפוי בלי לנחש.
 - **Notes / Caveats:** **קריטריון "שלוש זוויות נבדלות" אומת סוף-סוף** — הזוויות יצאו נבדלות בתוכן (מידע מפוזר בין אנשים / תמחור בערב / ריבוי אתרים) ולא כוואריאציות ניסוח, וה-Open Question שהמתינה לריצה נסגרה. שתי Open Questions נותרו: מקור ה-`<topic>` בשם הקובץ, ומקור הפרט האמיתי ל-placeholder בזווית 1. הניסוח "מחשבון שמחובר לחומרים ולשלבי הביצוע" הוא הפירוט היחיד בקובץ שאינו מילה במילה מ-`site-copy.md`; אושר כעקבי עם מיפוי ה-ICP, אך נרשם.
 - **Related:** [[outbound-construction-run-1]], [[outbound-construction-turnkey]], [[agent-campaigner]], [[voice-and-tone]], [[icp-construction]], [[agent-ceo-orchestration]]
+
+### 2026-09-03 — מוונציית שמות פלט עמידה להרצות חוזרות [shipped]
+
+- **What was done:** בלוק הפלט שונה מ-`<YYYY-MM-DD>-copy-<topic>.md` ל-`output/marketing/<YYYY-MM-DD>-<topic>-run<N>-copy.md`, בקובץ הסוכנת ובפתק הזה. תוצר ריצה 1 עבר `git mv` לשם החדש עם `run1`, והמצביע אליו מהטיוטה ב-`copywriter/drafts/` עודכן.
+- **Decisions:** `<N>` מגיע מהבריף ולא מחישוב של הסוכנת; בריף בלי מספר ריצה — עוצרים ושואלים. פירוט ההכרעה: [[agent-ceo-orchestration]].
+- **Notes / Caveats:** תוצר הקופי נחשב עד כה "מתוארך ולכן בטוח", וזה לא היה נכון — ריצה שנייה על אותו נושא באותו יום דרסה אותו בדיוק כמו את ערכת השטח. אזכור בשורת Session Log היסטורית לא שוכתב.
+- **Related:** [[agent-campaigner]], [[agent-creative]], [[agent-roster]], [[agent-ceo-orchestration]], [[outbound-construction-run-1]]

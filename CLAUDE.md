@@ -76,7 +76,7 @@ the user approves. The CEO is the single update point; agents never reach the ne
 brief (vault/Content Briefs/)
   → stage 1  copywriter (.claude/agents/copywriter.md)  → output/marketing/   [3 angles + hooks]
   ⏸ user approval
-  → stage 2  campaigner (.claude/agents/campaigner.md)  → output/marketing/outbound-kit.md
+  → stage 2  campaigner (.claude/agents/campaigner.md)  → output/marketing/   [outbound kit]
   ⏸ user approval
   → stage 3  creative   (.claude/agents/creative.md)    → output/creatives/   [clean PNG + HTML overlay]
   ⏸ user approval — plus an explicit COST approval before the run itself
@@ -84,24 +84,43 @@ brief (vault/Content Briefs/)
              write the run summary to vault/Publishing Log/, update the Session Log
 ```
 
+**Output naming — collision-proof across repeat runs.** Every pipeline deliverable is named:
+
+```
+<YYYY-MM-DD>-<topic>-run<N>-<kind>
+
+output/marketing/<date>-<topic>-run<N>-copy.md            stage 1
+output/marketing/<date>-<topic>-run<N>-outbound-kit.md    stage 2
+output/creatives/<date>-<topic>-run<N>-<nn>.png + .html   stage 3
+```
+
+`<N>` is the **run number for that topic**, and `vault/Publishing Log/` is its only registry: at the
+start of a run the CEO counts the existing run notes for that `<topic>` and adds 1. New run notes are
+named `<topic>-run-<N>.md`. `<nn>` stays the angle number (`01`/`02`/`03`).
+
+**An agent never derives `<N>` itself — the CEO passes it in the brief.** An agent handed a brief with
+no run number stops and asks; it must not guess, and must not fall back to an undated or fixed name.
+A date alone is not unique: two runs on one topic in one day collide, and that is exactly the bug this
+convention closes.
+
 **Stage 1 is built.** `.claude/agents/copywriter.md` exists and is runnable; its full spec lives in
 `vault/Meeting Notes/agent-copywriter.md`. Delegate to it whenever the request is about **קופי, זוויות,
 הוקים, טקסט שיווקי, פנייה,** or "שלב 1" — do not write marketing copy yourself in the main session.
 It reads `site-copy.md` → `icp-construction.md` → `voice-and-tone.md` in that order, has no network
 access, drafts under `copywriter/drafts/`, and saves the approved deliverable to
-`output/marketing/<YYYY-MM-DD>-copy-<topic>.md`.
+`output/marketing/<date>-<topic>-run<N>-copy.md`.
 
 **Stage 2 is built.** `.claude/agents/campaigner.md` exists and is runnable; its full spec lives in
 `vault/Meeting Notes/agent-campaigner.md`. Delegate to it for **Outbound, ערכת שטח, פתיח וואטסאפ,
 תסריט שיחה, מענה להתנגדויות, פולואפ,** or "שלב 2". It reads the approved copy file first, then
 `site-copy.md` → `icp-construction.md` → `voice-and-tone.md`, has no network access, and writes
-exactly one file: `output/marketing/outbound-kit.md`.
+exactly one file: the outbound kit, named per the output-naming convention below.
 
 **Stage 3 is built.** `.claude/agents/creative.md` exists and is runnable; its full spec lives in
 `vault/Meeting Notes/agent-creative.md`. Delegate to it for **קריאייטיב, ויז'ואל, ויזואל, תמונה,
 תמונות, באנר, קריאייטיבים, נכס ויזואלי,** or "שלב 3". It reads the approved copy file first, then
 `site-copy.md` → `icp-construction.md` → `voice-and-tone.md`, and produces **a pair of files per
-visual** in `output/creatives/`: `<YYYY-MM-DD>-<topic>-<nn>.png` (the clean image) plus a matching
+visual** in `output/creatives/`: `<date>-<topic>-run<N>-<nn>.png` (the clean image) plus a matching
 `.html` overlay carrying the Hebrew headline copied from the approved copy file.
 
 It is the **only agent with `Bash` and therefore the only one with network access**, scoped to
@@ -187,7 +206,7 @@ copywriter/drafts/   the copywriter's private scratch space — drafts only, nev
 creative/            the creative agent's private scratch space — prompts, experiments. Never a deliverable
 creative/reference/  visual inspiration and reference material
 output/              generated deliverables
-output/marketing/    pipeline output: copy angles, outbound-kit.md
+output/marketing/    pipeline output: copy angles, outbound kits
 output/creatives/    pipeline output: clean PNGs and their HTML overlay files
 ```
 
@@ -203,6 +222,6 @@ output/creatives/    pipeline output: clean PNGs and their HTML overlay files
   clean text-free PNG plus the `.html` that layers the Hebrew headline on top of it. The overlay is
   not a marketing text deliverable; it is the render layer of the visual, and it must sit beside its
   PNG for the relative reference to resolve. Marketing **text** deliverables — copy angles, hooks,
-  `outbound-kit.md` — stay under `output/marketing/`. Never mix the two.
+  the outbound kit — stay under `output/marketing/`. Never mix the two.
 - `output/marketing/` holds **approved deliverables only** — it is the pipeline contract the campaigner
   reads from. Work-in-progress copy lives in `copywriter/drafts/` and never ships from there.

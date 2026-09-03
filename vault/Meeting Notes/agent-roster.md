@@ -16,7 +16,6 @@ tags:
 - **הקריאייטיב טרם הורץ.** נבנה ואומת ברמת הסקריפט בלבד; ריצה ראשונה דורשת אישור עלות מהמשתמש, וכמו אצל הקמפיינר — סשן חדש, כי רישום הסוכנים נטען בפתיחה.
 - **אימות ה-Zero-Text נשען על קריאת התמונה, לא על בדיקה מכנית.** השער בסקריפט מוודא שהפרומפט *ביקש* תמונה נקייה; שהיא *חזרה* נקייה מאומת רק בעין. אין OCR. הפירוט: [[agent-creative]].
 - לא הוגדר סוכן בקרת איכות נפרד — שלב 4 מבוצע על ידי המנכ"ל עצמו. אם עומס הבקרה יגדל, ייתכן שיידרש סוכן QA.
-- `output/marketing/outbound-kit.md` הוא שם קבוע בעוד תוצר הקופי מתוארך — ריצה 2 תדרוס את הערכה.
 
 ---
 
@@ -57,7 +56,7 @@ tags:
 | **תפקיד** | כתיבת קופי Direct Response בטון Craft & System, מותאם ל-ICP של קבלנים ואנשי שטח |
 | **כלים** | `Read` · `Write` · `Edit` · `Glob` · `Grep` — **ללא גישת רשת** |
 | **קלט** | הבריף מ-`vault/Content Briefs/` + **סדר קריאה חובה:** `references/writing/site-copy.md` → [[icp-construction]] → [[voice-and-tone]] |
-| **פלט** | `output/marketing/<YYYY-MM-DD>-copy-<topic>.md` — **3 זוויות שיווק** ו-3 הוקים לכל זווית. טיוטות ב-`copywriter/drafts/` |
+| **פלט** | `output/marketing/<YYYY-MM-DD>-<topic>-run<N>-copy.md` — **3 זוויות שיווק** ו-3 הוקים לכל זווית. טיוטות ב-`copywriter/drafts/` |
 | **מפעיל** | המנכ"ל, בשלב 1 של הפייפליין |
 | **מגבלות** | אין לשנות מחירים · אין להמציא קייסים או מספרי ביצועים · אין קלישאות AI |
 
@@ -76,11 +75,11 @@ tags:
 | **תפקיד** | ארכיטקט Outbound — תרגום הקופי לערכת שטח אישית שאפשר לשלוח ידנית |
 | **כלים** | `Read` · `Write` · `Edit` · `Glob` · `Grep` — **ללא גישת רשת** |
 | **קלט** | פלט שלב 1 מ-`output/marketing/` → `site-copy.md` → [[icp-construction]] → [[voice-and-tone]] |
-| **פלט** | `output/marketing/outbound-kit.md` |
+| **פלט** | `output/marketing/<date>-<topic>-run<N>-outbound-kit.md` |
 | **מפעיל** | המנכ"ל, בשלב 2 של הפייפליין |
 | **מגבלות** | **אינו שולח דבר לאף אחד.** כותב קבצים בלבד · אינו נוגע במדיה ממומנת (`[deferred]`) · אינו משנה מחיר או את ה-Ask |
 
-**חמשת רכיבי החובה ב-`outbound-kit.md`:**
+**חמשת רכיבי החובה בערכת השטח:**
 1. פתיחי וואטסאפ — **שני נוסחים**: מעגל היכרות חם, ודפיקה על דלתות קרה
 2. תסריט שיחת טלפון — עד 90 שניות
 3. ה-Ask — **שיחה של 15 דקות**, ללא עלות וללא התחייבות
@@ -103,7 +102,7 @@ tags:
 | **תפקיד** | תרגום זוויות הקופי המאושרות לנכסים ויזואליים — מלביש מסר קיים, לא ממציא מסר |
 | **כלים** | `Read` · `Write` · `Edit` · `Glob` · `Grep` · **`Bash`** — הסוכן היחיד בצוות **עם גישת רשת**, ומצומצם להרצת `scripts/gen-image.ps1` בלבד |
 | **קלט** | פלט שלב 1 מ-`output/marketing/` → `site-copy.md` → [[icp-construction]] → [[voice-and-tone]] |
-| **פלט** | **זוג קבצים לכל ויזואל** ב-`output/creatives/`: `<YYYY-MM-DD>-<topic>-<nn>.png` (תמונה נקייה) + `.html` (שכבת ההלבשה העברית) |
+| **פלט** | **זוג קבצים לכל ויזואל** ב-`output/creatives/`: `<YYYY-MM-DD>-<topic>-run<N>-<nn>.png` (תמונה נקייה) + `.html` (שכבת ההלבשה העברית) |
 | **מנוע** | **`gpt-image-2` בלבד** — לא `gpt-image-1`, לא `dall-e-3`. השם **נעול כקבוע בתוך הסקריפט**, לא כפרמטר |
 | **תלות** | סקיל `gpt-image-gen` ו-`scripts/gen-image.ps1` — **שניהם קיימים** |
 | **מפעיל** | המנכ"ל, בשלב 3, **רק אחרי אישור עלות מפורש עם מספר תמונות** |
@@ -142,7 +141,7 @@ tags:
         │
         ▼
 ┌───────────────────────────┐
-│ שלב 2 · קמפיינר           │  →  output/marketing/outbound-kit.md
+│ שלב 2 · קמפיינר           │  →  output/marketing/  [ערכת שטח]
 └───────────────────────────┘
         │
    ⏸  עצירה לאישור המשתמש
@@ -216,3 +215,10 @@ tags:
   נוקו גם שאריות מגרסת הסדנה — `package.json` על סטאק Gemini/Node נמחק ו-`.env.example`
   שוכתב ל-`OPENAI_API_KEY`. הקופירייטרית והקמפיינר לא נגעו בעדכון הזה.
 - **Related:** [[agent-creative]], [[agent-campaigner]], [[agent-copywriter]], [[agent-ceo-orchestration]], [[marketing-engine-prd]], [[repo-structure]], [[outbound-construction-run-1]]
+
+### 2026-09-03 — מוונציית שמות פלט עמידה להרצות חוזרות [shipped]
+
+- **What was done:** טבלאות הפלט של שלושת הסוכנים בפתק הזה עודכנו למוונציה `<date>-<topic>-run<N>-<kind>`, יחד עם קובצי הסוכנים עצמם, `CLAUDE.md` ופתקי המפרט [[agent-copywriter]], [[agent-campaigner]], [[agent-creative]] ו-[[agent-ceo-orchestration]].
+- **Decisions:** **הבעיה סווגה מחדש מנקודתית לרוחבית.** ה-Open Question הקודמת תיארה רק את `outbound-kit.md` הקבוע, אבל גם הקופי וגם הוויזואלים נדרסים בהרצה חוזרת על אותו נושא באותו יום — שם מתוארך אינו מספיק. לכן התיקון חל על שלושת הסוכנים ולא על הקמפיינר בלבד.
+- **Notes / Caveats:** ה-Open Question על השם הקבוע **הוסרה**. שלוש ה-Open Questions האחרות בפתק — הקמפיינר שטרם רץ כסוכן רשום, הקריאייטיב שטרם הורץ, ואימות Zero-Text בעין — **נשארות פתוחות**; אף אחת מהן לא נגעה במוונציה. אזכור בשורת Session Log היסטורית לא שוכתב.
+- **Related:** [[agent-campaigner]], [[agent-creative]], [[agent-copywriter]], [[agent-ceo-orchestration]], [[outbound-construction-run-1]]

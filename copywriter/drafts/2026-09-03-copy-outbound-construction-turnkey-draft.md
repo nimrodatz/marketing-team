@@ -1,6 +1,6 @@
 # טיוטה — קופי Outbound קבלנים (Turnkey)
 
-טיוטת עבודה. הגרסה המאושרת: `output/marketing/2026-09-03-copy-outbound-construction-turnkey.md`
+טיוטת עבודה. הגרסה המאושרת: `output/marketing/2026-09-03-outbound-construction-turnkey-run1-copy.md`
 
 ## החלטות כתיבה
 
