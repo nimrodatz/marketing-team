@@ -72,3 +72,18 @@ creative/reference/*.png
 creative/reference/*.jpg
 creative/reference/*.jpeg
 creative/reference/*.webp
+
+# ─── שטח העבודה הפרטי של סוכן דפי הנחיתה ───────────────────
+# landing/ הוא scratch space ולא תוצר (ראה CLAUDE.md), ולכן ניסויים
+# ויזואליים בשורש שלו לא נכנסים להיסטוריה — אותו נימוק כמו creative/.
+# שים לב: landing/reference/ **כן נשמר במעקב** ואינו מוחרג כאן.
+# הוא חומר מקור שהמשתמש מעלה, לא ניסוי שהמכונה ייצרה — קרוב יותר
+# ל-references/ מאשר ל-creative/, ואין לו מקור אחר לשחזור ממנו.
+landing/*.png
+landing/*.jpg
+landing/*.jpeg
+landing/*.webp
+
+# תיקיית ברירת המחדל של scripts/extract-visual-identity.ps1 — HTML ו-CSS
+# גולמיים שנמשכו מהאתר החי. חומר גלם לקריאה, לא תוצר.
+.visual-extract/

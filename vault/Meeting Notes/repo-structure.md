@@ -9,7 +9,7 @@ tags:
 
 ## Overview
 
-`marketing team` is the AI Content OS working repo. Git conventions: commit per self-contained unit of work, push once at the end of a session, tag the versions worth returning to. As of 2026-09-03 it is no longer a skeleton: three agents, four skills, two agent scratch spaces (`copywriter/drafts/`, `creative/`), executable tooling in `scripts/`, and real deliverables under `output/marketing/` and `output/creatives/`. Its defining property is that **the Obsidian vault root is the repo root**, not `vault/`. `.obsidian/` therefore sits at the top level, and Obsidian sees every file in the project, with `vault/` appearing as one folder among several in the file explorer. Four content folders (`vault/`, `references/`, `scripts/`, `output/`) split the work by lifecycle stage: knowledge in, source material in, automation, deliverables out. `.claude/` holds the Claude Code configuration. Git remote is `nimrodatz/marketing-team`, branch `main`.
+`marketing team` is the AI Content OS working repo. Git conventions: commit per self-contained unit of work, push once at the end of a session, tag the versions worth returning to. As of 2026-09-03 it is no longer a skeleton: four agents, four skills, three agent scratch spaces (`copywriter/drafts/`, `creative/`, `landing/`), three executable scripts in `scripts/`, and real deliverables under `output/marketing/`, `output/creatives/` and `output/kits/`. Its defining property is that **the Obsidian vault root is the repo root**, not `vault/`. `.obsidian/` therefore sits at the top level, and Obsidian sees every file in the project, with `vault/` appearing as one folder among several in the file explorer. Four content folders (`vault/`, `references/`, `scripts/`, `output/`) split the work by lifecycle stage: knowledge in, source material in, automation, deliverables out. `.claude/` holds the Claude Code configuration. Git remote is `nimrodatz/marketing-team`, branch `main`.
 
 ## Open Questions
 
@@ -91,3 +91,30 @@ tags:
 - **Decisions:** **הקו נמתח לפי מעמד ולא לפי פורמט.** הטיעון המקובל — "לא שומרים בגיט מה שניתן לייצר מחדש" — **אינו תקף כאן**, כי `gpt-image-2` אינו דטרמיניסטי: אותו פרומפט יחזיר תמונה אחרת, וכל ניסיון עולה כסף. לכן PNG מאושר **אינו תוצר build אלא נכס מקור שבמקרה הוא בינארי**, ומקומו בגיט. לעומתו `creative/` מוגדר ב-`CLAUDE.md` כשטח עבודה פרטי ש**לעולם אינו תוצר**, ותמונה שיושבת בו היא ניסוי — היא לא נכס, ולכן היא לא נכנסת להיסטוריה. **הפרומפטים תחת `creative/` נשארים במעקב** ומהווים את רשומת השחזור. נשקל ונדחה **Git LFS**: הוא הפתרון הנכון טכנית, ותקורת התשתית שלו אינה מוצדקת למפתח יחיד בלי CI.
 - **Notes / Caveats:** ההחרגה ב-`creative/reference/` נוסחה **לפי סיומות תמונה ולא כתיקייה שלמה**, כדי שחומר טקסטואלי שייכתב שם בעתיד לא ייעלם בשקט. `.gitkeep` של שתי התיקיות נשאר במעקב וההחרגה אינה נוגעת בו. **ההחרגה אינה מנקה היסטוריה** — 2.2MB של התמונה שהוצאה ממעקב נשארים בקומיטים הקודמים; ניקוי אמיתי היה דורש שכתוב היסטוריה, שנשקל ונדחה כלא מוצדק. הריפו יושב בתוך OneDrive, ולכן לתמונות שאינן בגיט יש גיבוי מסונכרן — **אבל OneDrive מגבה קובץ ולא מקשר אותו לריצה שבה נוצר**, וזה בדיוק הנימוק לשמור את המאושרות בגיט.
 - **Related:** [[peer-intro-groups-run-1]], [[agent-creative]], [[agent-ceo-orchestration]], [[marketing-engine-prd]]
+
+### 2026-09-03 — מפת התיקיות אחרי כניסת סוכן דפי הנחיתה [shipped]
+
+- **What was done:** נוספו ארבע תיקיות בשורש — `landing/`, `landing/templates/`,
+  `landing/reference/` (שטח העבודה הפרטי של [[agent-landing]], מקבילה ל-`creative/`)
+  ו-`output/landing/` (סוג הפלט הרביעי). `scripts/` קיבל קובץ שלישי,
+  `extract-visual-identity.ps1`. `vault/Brand Guidelines/` עלה משני קבצים לשלושה עם
+  [[visual-identity]], ו-`.claude/agents/` משלושה לארבעה. `.gitignore` הורחב, ו-`CLAUDE.md`
+  עודכן בשישה מקומות. הריפו מונה כעת **ארבעה סוכנים, שלושה שטחי עבודה פרטיים
+  וארבעה סוגי פלט**.
+- **Decisions:** **`output/landing/` הוא סוג הפלט הראשון שהוא תיקייה ולא קובץ** — כי הוא
+  היחיד שנגרר החוצה אל שרת (Cloudflare Pages) בשלמותו. מזה נגזרה ההכרעה שהוא **אורז את
+  התמונות פנימה** ל-`assets/` במקום להפנות יחסית ל-`../creatives/` כמו קובץ ההלבשה וערכת
+  ה-kit. הכלל שנוסח: **נתיב יחסי החוצה מותר בתוצר שנצרך בתוך הריפו, ואסור בתוצר שנארז
+  ונשלח** — כלומר הקו נמתח לפי היעד ולא לפי סוג הקובץ, בדיוק כפי שהקו על תמונות בגיט
+  נמתח לפי מעמד ולא לפי פורמט. **`landing/reference/` הוחרג מההחרגה**: הוא נשאר במעקב
+  אף ש-`creative/reference/` אינו, כי הוא **חומר מקור שהמשתמש מעלה ולא ניסוי שהמכונה
+  ייצרה** — אין לו מקור לשחזור, והוא קרוב יותר ל-`references/` מאשר ל-`creative/`.
+  רק ניסויים בשורש `landing/` מוחרגים. **`extract-visual-identity.ps1` נכתב כסקריפט
+  בשם מפורש** ולא כפנייה חופשית לרשת, לפי אותו מודל של `verify-site-facts.ps1`.
+- **Notes / Caveats:** הסקריפט החדש **אינו כותב לוולט** — הוא שומר HTML ו-CSS גולמיים
+  לתיקיית פלט זמנית, והכתיבה של [[visual-identity]] היא עבודת עריכה. תיקיית הפלט שלו
+  היא ברירת מחדל `./.visual-extract` שאינה מוחרגת ב-`.gitignore`; בהרצה הזו הועבר לה
+  נתיב מפורש מחוץ לריפו, אבל **הרצה עתידית בלי `-OutDir` תשאיר חומר גולמי בעץ העבודה**.
+  `output/landing/` יכיל עותקים כפולים של תמונות שכבר יושבות ב-`output/creatives/` —
+  מחיר מודע של כלל האריזה.
+- **Related:** [[agent-landing]], [[visual-identity]], [[agent-roster]], [[agent-creative]], [[agent-ceo-orchestration]], [[marketing-engine-prd]]

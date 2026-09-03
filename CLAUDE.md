@@ -42,6 +42,13 @@ an end to firefighting, the move to a profitable *system*, direct language at ey
 The live site copy is extracted verbatim to `references/writing/site-copy.md` — **every agent that writes
 copy must read it first.** Prices, client names, case studies and links come from that file only.
 
+**The brand rests on three source-of-truth files, and each agent reads the ones its output touches:**
+`voice-and-tone.md` (how it sounds, plus the forbidden-words list), `icp-construction.md` (who it is
+for), and `visual-identity.md` (how it looks — the terracotta palette, Heebo/Assistant, the UI
+primitives). The third was extracted from the live site on 2026-09-03 via
+`scripts/extract-visual-identity.ps1`. **Any agent that touches design or UI must read it** — an agent
+that invents a palette invents a different one on every run.
+
 **Allowed tools:** `Read`, `Write`, `Edit`, `Glob`, `Grep`, `Agent`, `Bash`.
 
 `Bash` is scoped: **local git operations and local file management only.** Never use it to run
@@ -80,7 +87,9 @@ brief (vault/Content Briefs/)
   ⏸ user approval
   → stage 3  creative   (.claude/agents/creative.md)    → output/creatives/   [clean PNG + HTML overlay]
   ⏸ user approval — plus an explicit COST approval before the run itself
-  → stage 4  CEO control: verify deliverables, check the forbidden-words list,
+  → stage 4  landing    (.claude/agents/landing.md)     → output/landing/     [index.html + config.json + assets/]
+  ⏸ user approval — including opening the page yourself; the agent never saw it
+  → stage 5  CEO control: verify deliverables, check the forbidden-words list,
              build the send kit in output/kits/, write the run summary to
              vault/Publishing Log/, update the Session Log
 ```
@@ -93,8 +102,15 @@ brief (vault/Content Briefs/)
 output/marketing/<date>-<topic>-run<N>-copy.md            stage 1
 output/marketing/<date>-<topic>-run<N>-outbound-kit.md    stage 2
 output/creatives/<date>-<topic>-run<N>-<nn>.png + .html   stage 3
-output/kits/<date>-<topic>-run<N>-kit.html                stage 4
+output/landing/<date>-<topic>-run<N>/index.html
+                                     + config.json
+                                     + assets/            stage 4
+output/kits/<date>-<topic>-run<N>-kit.html                stage 5
 ```
+
+Stage 4 is the one deliverable that is a **directory** rather than a file — because it gets
+dragged out to a server whole. The `run<N>` rule applies to the directory name exactly as it
+applies to every filename above.
 
 `<N>` is the **run number for that topic**, and `vault/Publishing Log/` is its only registry: at the
 start of a run the CEO counts the existing run notes for that `<topic>` and adds 1. New run notes are
@@ -131,6 +147,44 @@ money**: it must not run a paid call unless the brief you hand it carries an exp
 **with the approved image count**. Without that it writes the prompts to `creative/`, reports, and
 stops. Approval for one run never carries to the next, and a rejected image regenerated counts
 against the quota.
+
+**Stage 4 is built.** `.claude/agents/landing.md` exists and is runnable; its full spec lives in
+`vault/Meeting Notes/agent-landing.md`. Delegate to it for **דף נחיתה, דף מכירה, עמוד נחיתה,
+לבנות דף, טופס לידים, landing, landing page, lead page, build landing,** or "שלב 4". It builds a
+single self-contained `index.html` — RTL, Hebrew, Mobile-First — with a floating WhatsApp button
+as the primary CTA and a lead form as the secondary one.
+
+It reads **five** files in order — the approved copy file → `site-copy.md` →
+`vault/Brand Guidelines/visual-identity.md` → `icp-construction.md` → `voice-and-tone.md` — and it
+is the first agent to need a fifth, because it is the first whose output is both text and design.
+**It has no `Bash` and no network access; the creative agent remains the only agent with either.**
+That is a decision, not an omission: `Bash` would have eased copying assets, but the same tool
+opens `curl` and `npm install`, and the deliverable would stop being a static page you can read
+by eye. It copies files with `Read` + `Write` instead.
+
+**It cannot see what it builds.** No browser, no screenshot — it writes HTML blind, and the visual
+check falls entirely to the user at stage 5. Its form contract is likewise never tested against a
+live webhook. A webhook URL comes from the brief you hand it; without one it writes the constant
+`__WEBHOOK_URL__`, records `"webhook_status": "unconfigured"` in `config.json`, reports, and
+**continues** — the page still works in full through WhatsApp.
+
+Two deliberate exceptions, recorded here so a later session does not "fix" them:
+
+1. **A CDN is allowed on a landing page** (Tailwind + Google Fonts), while the creative agent's
+   overlay file must open offline. The overlay is opened locally; a landing page is served from the
+   network anyway. The exception is scoped to the landing page and backed by a real font fallback
+   stack plus inlined colour tokens, so a failed CDN load costs quality, not the page.
+2. **The landing page copies its images inward** to `assets/` instead of referencing
+   `../creatives/…` the way the overlay and the kit do. Those are consumed **inside the repo**,
+   where a relative path resolves; the landing folder is **dragged out to a server**, and a folder
+   that points outside itself breaks on upload. The general rule: *a relative path pointing outward
+   is fine in a deliverable consumed in the repo, and wrong in one that gets packaged and shipped.*
+
+**Contact policy, settled 2026-09-03:** WhatsApp is the primary channel and the form is secondary,
+copying what the live site already does. **Never put a response-time promise on the page** — it is a
+commitment the page cannot keep, and it falls under the artificial-urgency ban in `voice-and-tone.md`.
+Target host is **Cloudflare Pages**, recorded in `config.json`; uploading is always the user's manual
+action, never the agent's.
 
 Two channel rules settled on 2026-09-03, both binding on every agent that writes outbound copy:
 
@@ -207,9 +261,14 @@ scripts/gen-image.ps1  the only path to the Images API — loads .env, enforces 
 copywriter/drafts/   the copywriter's private scratch space — drafts only, never a deliverable
 creative/            the creative agent's private scratch space — prompts, experiments. Never a deliverable
 creative/reference/  visual inspiration and reference material
+landing/             the landing agent's private scratch space — drafts, experiments. Never a deliverable
+landing/templates/   reusable HTML section templates (hero, benefits, form, CTA)
+landing/reference/   design references the user supplies — fonts, colours, style he likes
 output/              generated deliverables
 output/marketing/    pipeline output: copy angles, outbound kits
 output/creatives/    pipeline output: clean PNGs and their HTML overlay files
+output/landing/      pipeline output: one self-contained directory per run — index.html,
+                     config.json and an assets/ folder holding copies of the images
 output/kits/         pipeline output: the run's composite send-kit page — one HTML that puts the
                      approved copy, the visual and the field rules on a single phone screen
 ```
@@ -240,3 +299,15 @@ output/kits/         pipeline output: the run's composite send-kit page — one 
     Base64 image data is never committed.
   - **Never a substitute for the files.** `output/marketing/` and `output/creatives/` remain the
     deliverables of record; the kit is what the user opens on the phone in the field.
+- **`output/landing/` is the fourth kind: the hosted page.** One directory per run, written by the
+  `landing` agent in stage 4. Like the kit, it is a presentation layer over already-approved
+  deliverables and introduces no new copy — every line comes from `output/marketing/` or
+  `site-copy.md`, and wording that exists in neither goes back through the pipeline first.
+  - It is the **one deliverable that packages its own images**, into `assets/`, instead of pointing
+    at `../creatives/`. The rule that decides this is the destination, not the file type: *a
+    relative path pointing outward is fine in a deliverable consumed inside the repo, and wrong in
+    one that gets packaged and shipped.* A folder that points outside itself breaks on upload.
+  - **A CDN is allowed here and nowhere else.** See the stage 4 paragraph above; this does not
+    loosen the offline rule on the creative agent's overlay files.
+  - **Uploading is always the user's manual action.** The agent has no network and never publishes,
+    exactly as no agent ever sends a message to a real person.
