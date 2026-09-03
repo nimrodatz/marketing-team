@@ -1,0 +1,287 @@
+<title>ערכת השטח — פוסט הקבוצות</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@500;700&display=swap">
+<style>
+  :root{
+    --ground:#F1EFEB; --surface:#FBFAF8; --sunk:#E8E4DD;
+    --ink:#23272C; --muted:#6C7176; --faint:#8E9398;
+    --steel:#3C5A70; --steel-soft:#E2E9EE;
+    --timber:#9C7238; --timber-soft:#F0E7D9;
+    --line:#DBD6CE; --line-strong:#C6BFB4;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#15181B; --surface:#1D2126; --sunk:#22272C;
+      --ink:#E7E4DE; --muted:#9BA1A7; --faint:#7C8288;
+      --steel:#86ABC6; --steel-soft:#22323E;
+      --timber:#C99C61; --timber-soft:#33291B;
+      --line:#2C3238; --line-strong:#3D444B;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#15181B; --surface:#1D2126; --sunk:#22272C;
+    --ink:#E7E4DE; --muted:#9BA1A7; --faint:#7C8288;
+    --steel:#86ABC6; --steel-soft:#22323E;
+    --timber:#C99C61; --timber-soft:#33291B;
+    --line:#2C3238; --line-strong:#3D444B;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:"Assistant","Segoe UI",system-ui,sans-serif;
+    font-size:16px; line-height:1.65; direction:rtl;
+  }
+  .wrap{max-width:660px; margin:0 auto; padding:40px 20px 88px; display:flex; flex-direction:column; gap:44px}
+
+  /* ---- masthead ---- */
+  .mast{display:flex; flex-direction:column; gap:14px}
+  .eyebrow{
+    font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--faint); font-weight:600;
+  }
+  h1{
+    font-family:"Frank Ruhl Libre",Georgia,serif; font-weight:700;
+    font-size:clamp(30px,7vw,40px); line-height:1.2; margin:0; text-wrap:balance;
+  }
+  .sub{color:var(--muted); margin:0; max-width:52ch}
+  .status{
+    display:flex; flex-wrap:wrap; gap:8px; margin-top:4px;
+  }
+  .chip{
+    font-size:12.5px; font-weight:600; padding:5px 11px; border-radius:999px;
+    border:1px solid var(--line-strong); color:var(--muted); background:var(--surface);
+  }
+  .chip.hold{background:var(--timber-soft); border-color:transparent; color:var(--timber)}
+
+  /* ---- shot ---- */
+  figure{margin:0; display:flex; flex-direction:column; gap:10px}
+  figure img{display:block; width:100%; border-radius:3px}
+  figcaption{font-size:13.5px; color:var(--faint)}
+
+  /* ---- sections ---- */
+  section{display:flex; flex-direction:column; gap:18px}
+  .head{display:flex; align-items:baseline; gap:12px; border-bottom:1px solid var(--line); padding-bottom:10px}
+  .step{
+    font-family:"Frank Ruhl Libre",Georgia,serif; font-size:15px; font-weight:700;
+    color:var(--steel); flex:none;
+  }
+  h2{font-size:19px; font-weight:700; margin:0; letter-spacing:-.01em}
+  .when{margin-inline-start:auto; font-size:12.5px; color:var(--faint); flex:none}
+
+  .note{margin:0; color:var(--muted); font-size:15px; max-width:60ch}
+
+  /* ---- copy blocks ---- */
+  .msg{background:var(--surface); border:1px solid var(--line); border-radius:4px; overflow:hidden}
+  .msg-bar{
+    display:flex; align-items:center; gap:10px; padding:9px 14px;
+    background:var(--sunk); border-bottom:1px solid var(--line);
+  }
+  .msg-label{font-size:12.5px; font-weight:700; color:var(--muted); letter-spacing:.02em}
+  .msg-src{font-size:12px; color:var(--faint); margin-inline-start:auto}
+  .msg-body{
+    margin:0; padding:16px 18px; white-space:pre-wrap; line-height:1.8;
+    font-family:inherit; font-size:15.5px;
+  }
+  .msg-body .fill{
+    background:var(--timber-soft); color:var(--timber); font-weight:700;
+    padding:1px 5px; border-radius:3px;
+  }
+  .msg-foot{padding:0 18px 16px}
+  button.copy{
+    font:inherit; font-size:13.5px; font-weight:700; cursor:pointer;
+    background:transparent; color:var(--steel); border:1px solid var(--line-strong);
+    border-radius:3px; padding:7px 14px;
+  }
+  button.copy:hover{background:var(--steel-soft); border-color:var(--steel)}
+  button.copy:focus-visible{outline:2px solid var(--steel); outline-offset:2px}
+  button.copy[data-done="1"]{color:var(--timber); border-color:var(--timber)}
+
+  /* ---- replies ---- */
+  .replies{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line)}
+  .reply{
+    display:grid; grid-template-columns:1fr; gap:6px;
+    padding:14px 0; border-bottom:1px solid var(--line);
+  }
+  .said{font-size:14.5px; color:var(--muted); font-style:italic}
+  .back{font-size:15.5px; padding-inline-start:14px; border-inline-start:2px solid var(--steel)}
+  @media (min-width:560px){
+    .reply{grid-template-columns:0.85fr 1.15fr; gap:18px; align-items:start}
+    .said{padding-top:1px}
+  }
+
+  .rule{
+    background:var(--steel-soft); border-inline-start:3px solid var(--steel);
+    padding:14px 16px; border-radius:0 3px 3px 0; font-size:15px;
+  }
+  .rule b{color:var(--steel)}
+
+  /* ---- checklist ---- */
+  ul.check{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:0}
+  ul.check li{
+    display:flex; gap:12px; align-items:flex-start;
+    padding:11px 0; border-bottom:1px solid var(--line); font-size:15px;
+  }
+  ul.check li::before{
+    content:""; flex:none; width:15px; height:15px; margin-top:4px;
+    border:1.5px solid var(--line-strong); border-radius:2px;
+  }
+  ul.check li.warn::before{border-color:var(--timber); background:var(--timber-soft)}
+
+  footer{
+    border-top:1px solid var(--line); padding-top:18px;
+    font-size:13.5px; color:var(--faint); display:flex; flex-direction:column; gap:6px;
+  }
+  code{
+    font-family:ui-monospace,"Cascadia Mono",Consolas,monospace; font-size:12.5px;
+    background:var(--sunk); padding:1px 5px; border-radius:3px; direction:ltr; display:inline-block;
+  }
+  @media (prefers-reduced-motion:no-preference){
+    button.copy{transition:background .15s ease,border-color .15s ease,color .15s ease}
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <div class="eyebrow">Craft &amp; System · ריצה 1 · 3 בספטמבר 2026</div>
+    <h1>ערכת השטח — פוסט הקבוצות</h1>
+    <p class="sub">הכל להעתקה ידנית. שום דבר כאן לא נשלח לבד, ושום דבר לא נשלח עדיין.</p>
+    <div class="status">
+      <span class="chip hold">טרם נשלח</span>
+      <span class="chip">גוף שני רבים בקבוצה · יחיד בפרטי</span>
+      <span class="chip">בלי מחירים בפוסט</span>
+    </div>
+  </header>
+
+  <figure>
+    <img src="../creatives/2026-09-03-peer-intro-groups-run1-01.png" alt="ידיים מאובקות מניחות טלפון נייד על לוח עץ מוקצע באתר בנייה, ולצידו עיפרון נגרים, סרגל מתקפל וסרט מדידה">
+    <figcaption>הנייד מונח בשורה אחת עם העיפרון, הסרגל וסרט המדידה — עוד כלי על הלוח. המסך כבוי בכוונה: אין בתמונה אות אחת.</figcaption>
+  </figure>
+
+  <section>
+    <div class="head">
+      <span class="step">1</span>
+      <h2>הפוסט לקבוצה</h2>
+      <span class="when">גוף שני רבים</span>
+    </div>
+    <p class="note">זווית ההיכרות, הוק 3. זו הזווית היחידה שלא נוגעת בכאב של אף אחד בקבוצה — ולכן היא לא ניתנת לקריאה כהצבעה על מישהו.</p>
+
+    <div class="msg">
+      <div class="msg-bar">
+        <span class="msg-label">הנוסח המלא</span>
+        <span class="msg-src">זווית 1 · הוק 3</span>
+      </div>
+      <p class="msg-body">את מערכת התמחור הראשונה בניתי כי לא מצאתי אחת שמדברת בשפה של השטח.
+
+נעים להכיר, אני נימרוד. הנדסאי בניין ומורה דרך, ומי שלמד איתכם <span class="fill">&lt;המחזור/הקורס&gt;</span>.
+בשנים האחרונות ניהלתי וביצעתי פרויקטים בתחומים מגוונים, ובדרך הקמתי לעצמי מערכות תפעול בשטח.
+מחשבון תמחור, מעקב אחרי לידים, סדר בהזמנות מול ספקים — דברים שבניתי כי הייתי צריך אותם.
+היום אני בונה את אותם כלים גם לאחרים, תחת השם Craft &amp; System.
+מי שרוצה לראות איך זה נראה: https://craftsystem.co.il/</p>
+      <div class="msg-foot"><button class="copy" type="button">העתקת הנוסח</button></div>
+    </div>
+
+    <div class="msg">
+      <div class="msg-bar">
+        <span class="msg-label">וריאציה קצרה</span>
+        <span class="msg-src">לקבוצה שמקפידה על פרסום</span>
+      </div>
+      <p class="msg-body">אחרי שנים של ניהול פרויקטים בשטח, בניתי לעצמי את הכלים שהחזיקו אותם.
+
+אני נימרוד, מ־<span class="fill">&lt;המחזור/הקורס&gt;</span>. הנדסאי בניין ומורה דרך.
+מחשבון תמחור, מעקב לידים, סדר בהזמנות מול ספקים.
+היום אני בונה את הכלים האלה גם לאחרים, תחת השם Craft &amp; System.
+מי שרוצה לראות: https://craftsystem.co.il/</p>
+      <div class="msg-foot"><button class="copy" type="button">העתקת הנוסח</button></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="step">2</span>
+      <h2>אם מישהו מגיב בקבוצה</h2>
+      <span class="when">מול קהל</span>
+    </div>
+    <p class="note">התרחיש שבשבילו נכתב הרכיב הזה הוא התגובה הצינית. היא לא תוקפת את המוצר — היא בודקת את המעבר: מישהו שלמד איתך הנדסה עושה עכשיו משהו אחר.</p>
+
+    <div class="replies">
+      <div class="reply">
+        <div class="said">״אז עזבת את הבנייה?״</div>
+        <div class="back">לא עזבתי, פשוט עברתי לצד שבונה את הכלים. עדיין מריח בטון.</div>
+      </div>
+      <div class="reply">
+        <div class="said">״מה, הפכת לאיש מחשבים?״</div>
+        <div class="back">ממש לא. אני איש שטח שנמאס לו לתמחר בערב, אז בניתי לעצמי כלי.</div>
+      </div>
+      <div class="reply">
+        <div class="said">״בשביל זה יש אקסל״</div>
+        <div class="back">נכון, ואצל חלק גדול זה מספיק. אני עוסק במה שקורה כשזה כבר לא.</div>
+      </div>
+      <div class="reply">
+        <div class="said">״עוד אחד שמוכר קורסים״</div>
+        <div class="back">לא מוכר קורסים ולא מלמד כלום. בונה מערכות לאנשי שטח, וזהו.</div>
+      </div>
+      <div class="reply">
+        <div class="said">״יש כבר מאה כאלה״</div>
+        <div class="back">יש. אני זה שבא מהצד של הביצוע, וזה כל ההבדל שאני מביא.</div>
+      </div>
+    </div>
+
+    <div class="rule">
+      <b>תשובה אחת לאדם, ואז עוצרים.</b> אם הוא ממשיך — אימוג'י אגודל ותו לא.
+      ואם התגובה הפכה אישית — לא עונים בכלל. הקבוצה רואה מי הסלים.
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="step">3</span>
+      <h2>הפולואפ בפרטי</h2>
+      <span class="when">גוף שני יחיד</span>
+    </div>
+    <p class="note">רק כאן עולה שיחת 15 הדקות, ורק כאן עולה מחיר — ואך ורק אם נשאלת עליו שאלה ישירה. הנוסח המלא של שני הפולואפים ושל חמש ההתנגדויות יושב בקובץ ערכת השטח.</p>
+    <div class="rule">
+      <b>אין תזכורת שנייה.</b> מי שהגיב ולא ענה — לא מקבל דחיפה. תזכורת לחבר מהמחזור נקראת כלחץ.
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <h2>לפני שאתה שולח</h2>
+    </div>
+    <ul class="check">
+      <li class="warn">למלא את <code>&lt;המחזור/הקורס&gt;</code> — בלי זה אין פוסט. זו הלגיטימציה שלו, לא קישוט.</li>
+      <li>לבדוק בנורמות הפרסום של כל קבוצה. יש קבוצות עם מנהל שמקפיד.</li>
+      <li>מי שנמצא בכמה קבוצות יראה את זה כמה פעמים — נוסח מלא באחת, קצר באחרות, ולפרוס בזמן.</li>
+      <li>לצרף את התמונה לצד ההודעה. לא להטביע עליה טקסט.</li>
+      <li>אין מחיר ואין קישור וואטסאפ בפוסט. רק כתובת האתר.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <div>הנוסחים המלאים: <code>output/marketing/2026-09-03-peer-intro-groups-run1-outbound-kit.md</code></div>
+    <div>התמונה: <code>output/creatives/2026-09-03-peer-intro-groups-run1-01.png</code></div>
+  </footer>
+
+</div>
+
+<script>
+document.querySelectorAll("button.copy").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    var body = btn.closest(".msg").querySelector(".msg-body");
+    var text = body.innerText;
+    var done = function(){
+      btn.textContent = "הועתק";
+      btn.dataset.done = "1";
+      setTimeout(function(){ btn.textContent = "העתקת הנוסח"; btn.dataset.done = "0"; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function(){ btn.textContent = "סמן והעתק ידנית"; });
+    } else {
+      btn.textContent = "סמן והעתק ידנית";
+    }
+  });
+});
+</script>

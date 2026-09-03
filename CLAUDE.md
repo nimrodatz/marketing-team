@@ -81,7 +81,8 @@ brief (vault/Content Briefs/)
   → stage 3  creative   (.claude/agents/creative.md)    → output/creatives/   [clean PNG + HTML overlay]
   ⏸ user approval — plus an explicit COST approval before the run itself
   → stage 4  CEO control: verify deliverables, check the forbidden-words list,
-             write the run summary to vault/Publishing Log/, update the Session Log
+             build the send kit in output/kits/, write the run summary to
+             vault/Publishing Log/, update the Session Log
 ```
 
 **Output naming — collision-proof across repeat runs.** Every pipeline deliverable is named:
@@ -92,6 +93,7 @@ brief (vault/Content Briefs/)
 output/marketing/<date>-<topic>-run<N>-copy.md            stage 1
 output/marketing/<date>-<topic>-run<N>-outbound-kit.md    stage 2
 output/creatives/<date>-<topic>-run<N>-<nn>.png + .html   stage 3
+output/kits/<date>-<topic>-run<N>-kit.html                stage 4
 ```
 
 `<N>` is the **run number for that topic**, and `vault/Publishing Log/` is its only registry: at the
@@ -208,6 +210,8 @@ creative/reference/  visual inspiration and reference material
 output/              generated deliverables
 output/marketing/    pipeline output: copy angles, outbound kits
 output/creatives/    pipeline output: clean PNGs and their HTML overlay files
+output/kits/         pipeline output: the run's composite send-kit page — one HTML that puts the
+                     approved copy, the visual and the field rules on a single phone screen
 ```
 
 ## Ground rules
@@ -225,3 +229,14 @@ output/creatives/    pipeline output: clean PNGs and their HTML overlay files
   the outbound kit — stay under `output/marketing/`. Never mix the two.
 - `output/marketing/` holds **approved deliverables only** — it is the pipeline contract the campaigner
   reads from. Work-in-progress copy lives in `copywriter/drafts/` and never ships from there.
+- **`output/kits/` is the third kind: the composite send kit.** One `.html` per run, written by the
+  **CEO in stage 4** — not by any agent. It is a **presentation layer over deliverables that already
+  passed the gate**, and it introduces no new copy: every line in it is copied from the approved
+  `output/marketing/` files. If a kit page needs wording that doesn't exist yet, that wording goes
+  back through the pipeline first.
+  - It references its PNG **relatively** (`../creatives/<name>.png`), exactly like the overlay rule —
+    so the repo keeps one copy of the image and the file stays small.
+  - Publishing it as a hosted page inlines the image as a `data:` URI **in a temp copy only**.
+    Base64 image data is never committed.
+  - **Never a substitute for the files.** `output/marketing/` and `output/creatives/` remain the
+    deliverables of record; the kit is what the user opens on the phone in the field.
