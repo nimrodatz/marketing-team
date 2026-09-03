@@ -57,4 +57,5 @@ desktop.ini
 # state של החלון, משתנה בכל פתיחה — שאר הקונפיג כן נשמר בגיט
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
+.obsidian/graph.json
 .trash/
