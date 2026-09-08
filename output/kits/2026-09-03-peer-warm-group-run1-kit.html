@@ -1,0 +1,389 @@
+<title>ערכת השטח — הקבוצה החמה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@500;700&display=swap">
+<style>
+  :root{
+    --ground:#F1EFEB; --surface:#FBFAF8; --sunk:#E8E4DD;
+    --ink:#23272C; --muted:#6C7176; --faint:#8E9398;
+    --steel:#3C5A70; --steel-soft:#E2E9EE;
+    --timber:#9C7238; --timber-soft:#F0E7D9;
+    --line:#DBD6CE; --line-strong:#C6BFB4;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#15181B; --surface:#1D2126; --sunk:#22272C;
+      --ink:#E7E4DE; --muted:#9BA1A7; --faint:#7C8288;
+      --steel:#86ABC6; --steel-soft:#22323E;
+      --timber:#C99C61; --timber-soft:#33291B;
+      --line:#2C3238; --line-strong:#3D444B;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#15181B; --surface:#1D2126; --sunk:#22272C;
+    --ink:#E7E4DE; --muted:#9BA1A7; --faint:#7C8288;
+    --steel:#86ABC6; --steel-soft:#22323E;
+    --timber:#C99C61; --timber-soft:#33291B;
+    --line:#2C3238; --line-strong:#3D444B;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:"Assistant","Segoe UI",system-ui,sans-serif;
+    font-size:16px; line-height:1.65; direction:rtl;
+  }
+  .wrap{max-width:660px; margin:0 auto; padding:40px 20px 88px; display:flex; flex-direction:column; gap:44px}
+
+  /* ---- masthead ---- */
+  .mast{display:flex; flex-direction:column; gap:14px}
+  .eyebrow{
+    font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--faint); font-weight:600;
+  }
+  h1{
+    font-family:"Frank Ruhl Libre",Georgia,serif; font-weight:700;
+    font-size:clamp(30px,7vw,40px); line-height:1.2; margin:0; text-wrap:balance;
+  }
+  .sub{color:var(--muted); margin:0; max-width:52ch}
+  .status{
+    display:flex; flex-wrap:wrap; gap:8px; margin-top:4px;
+  }
+  .chip{
+    font-size:12.5px; font-weight:600; padding:5px 11px; border-radius:999px;
+    border:1px solid var(--line-strong); color:var(--muted); background:var(--surface);
+  }
+  .chip.hold{background:var(--timber-soft); border-color:transparent; color:var(--timber)}
+
+  /* ---- shot ---- */
+  figure{margin:0; display:flex; flex-direction:column; gap:10px}
+  figure img{display:block; width:100%; border-radius:3px}
+  figcaption{font-size:13.5px; color:var(--faint)}
+
+  /* ---- sections ---- */
+  section{display:flex; flex-direction:column; gap:18px}
+  .head{display:flex; align-items:baseline; gap:12px; border-bottom:1px solid var(--line); padding-bottom:10px}
+  .step{
+    font-family:"Frank Ruhl Libre",Georgia,serif; font-size:15px; font-weight:700;
+    color:var(--steel); flex:none;
+  }
+  h2{font-size:19px; font-weight:700; margin:0; letter-spacing:-.01em}
+  .when{margin-inline-start:auto; font-size:12.5px; color:var(--faint); flex:none}
+
+  .note{margin:0; color:var(--muted); font-size:15px; max-width:60ch}
+
+  /* ---- copy blocks ---- */
+  .msg{background:var(--surface); border:1px solid var(--line); border-radius:4px; overflow:hidden}
+  .msg-bar{
+    display:flex; align-items:center; gap:10px; padding:9px 14px;
+    background:var(--sunk); border-bottom:1px solid var(--line);
+  }
+  .msg-label{font-size:12.5px; font-weight:700; color:var(--muted); letter-spacing:.02em}
+  .msg-src{font-size:12px; color:var(--faint); margin-inline-start:auto}
+  .msg-body{
+    margin:0; padding:16px 18px; white-space:pre-wrap; line-height:1.8;
+    font-family:inherit; font-size:15.5px;
+  }
+  .msg-body .fill{
+    background:var(--timber-soft); color:var(--timber); font-weight:700;
+    padding:1px 5px; border-radius:3px;
+  }
+  .msg-foot{padding:0 18px 16px}
+  button.copy{
+    font:inherit; font-size:13.5px; font-weight:700; cursor:pointer;
+    background:transparent; color:var(--steel); border:1px solid var(--line-strong);
+    border-radius:3px; padding:7px 14px;
+  }
+  button.copy:hover{background:var(--steel-soft); border-color:var(--steel)}
+  button.copy:focus-visible{outline:2px solid var(--steel); outline-offset:2px}
+  button.copy[data-done="1"]{color:var(--timber); border-color:var(--timber)}
+
+  /* ---- replies ---- */
+  .replies{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line)}
+  .reply{
+    display:grid; grid-template-columns:1fr; gap:6px;
+    padding:14px 0; border-bottom:1px solid var(--line);
+  }
+  .said{font-size:14.5px; color:var(--muted); font-style:italic}
+  .back{font-size:15.5px; padding-inline-start:14px; border-inline-start:2px solid var(--steel)}
+  @media (min-width:560px){
+    .reply{grid-template-columns:0.85fr 1.15fr; gap:18px; align-items:start}
+    .said{padding-top:1px}
+  }
+
+  .rule{
+    background:var(--steel-soft); border-inline-start:3px solid var(--steel);
+    padding:14px 16px; border-radius:0 3px 3px 0; font-size:15px;
+  }
+  .rule b{color:var(--steel)}
+
+  /* ---- checklist ---- */
+  ul.check{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:0}
+  ul.check li{
+    display:flex; gap:12px; align-items:flex-start;
+    padding:11px 0; border-bottom:1px solid var(--line); font-size:15px;
+  }
+  ul.check li::before{
+    content:""; flex:none; width:15px; height:15px; margin-top:4px;
+    border:1.5px solid var(--line-strong); border-radius:2px;
+  }
+  ul.check li.warn::before{border-color:var(--timber); background:var(--timber-soft)}
+
+  footer{
+    border-top:1px solid var(--line); padding-top:18px;
+    font-size:13.5px; color:var(--faint); display:flex; flex-direction:column; gap:6px;
+  }
+  code{
+    font-family:ui-monospace,"Cascadia Mono",Consolas,monospace; font-size:12.5px;
+    background:var(--sunk); padding:1px 5px; border-radius:3px; direction:ltr; display:inline-block;
+  }
+  @media (prefers-reduced-motion:no-preference){
+    button.copy{transition:background .15s ease,border-color .15s ease,color .15s ease}
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <div class="eyebrow">Craft &amp; System · peer-warm-group · ריצה 1 · 3 בספטמבר 2026</div>
+    <h1>ערכת השטח — הקבוצה החמה</h1>
+    <p class="sub">קבוצת הקולגות מהלימודים, שכולם מכירים אותך היטב. הכל להעתקה ידנית. שום דבר כאן לא נשלח לבד, ושום דבר לא נשלח עדיין.</p>
+    <div class="status">
+      <span class="chip hold">טרם נשלח</span>
+      <span class="chip">רבים בפוסט · יחיד ב-1:1</span>
+      <span class="chip">אפס מחירים · אפס הטבה</span>
+      <span class="chip">הקייס היחיד: באים בטוב</span>
+    </div>
+  </header>
+
+  <figure>
+    <img src="../creatives/2026-09-03-peer-warm-group-run1-02.png" alt="שני אנשי מקצוע עומדים זה לצד זה מעל תוכנית פרושה על שולחן עץ באתר בנייה מסודר, פניהם מוסטות מהמצלמה, טאבלט כבוי מונח לצידם">
+    <figcaption>זווית 2 — התקרה, לא הקריסה. שניים מעל תוכנית באתר מסודר: אין פה שריפה לכבות. אין בתמונה אות אחת, והפנים מוסטות בכוונה.</figcaption>
+  </figure>
+
+  <div class="rule">
+    <b>הסיכון בריצה הזאת אינו ספאם — הוא "חבר שפתאום מוכר לך".</b>
+    מערכת יחסים קרובה סופגת פחות מכירה, לא יותר. לפני שליחה, קרא בקול ושאל אם חבר קרוב היה מרגיש נוח שזה נשלח לקבוצה שלו.
+  </div>
+
+  <section>
+    <div class="head">
+      <span class="step">1</span>
+      <h2>הפוסט לקבוצה</h2>
+      <span class="when">גוף שני רבים</span>
+    </div>
+    <p class="note">אין לינק wa.me בפוסט — מי שרוצה כותב בפרטי מהקבוצה. שני הנוסחים נשלחים כמו שהם, בלי שדה למילוי.</p>
+
+    <div class="msg">
+      <div class="msg-bar">
+        <span class="msg-label">נוסח ב&rsquo; — הנוסח שנשלח היום</span>
+        <span class="msg-src">זווית 2 · התקרה</span>
+      </div>
+      <p class="msg-body">רוב הדברים לא קורסים. הם מגיעים לתקרה.
+השיטה שמחזיקה אתכם היום — הראש, הפתקים, וכמה שיחות וואטסאפ — הביאה אתכם עד לכאן, וזה לא מובן מאליו.
+מה שאני בונה זה מה שמחזיק את העשרה הבאים: מקום אחד לתמחור, מקום אחד ללידים, שניהם מהנייד.
+בלי עקומת למידה מתישה ובלי עוד ערב מול טבלה.
+מי שזה רלוונטי לו — מגיב פה או כותב לי בפרטי.</p>
+      <div class="msg-foot"><button class="copy" type="button">העתקת הנוסח</button></div>
+    </div>
+
+    <div class="msg">
+      <div class="msg-bar">
+        <span class="msg-label">נוסח א&rsquo; — חסום עד העלאת הדף</span>
+        <span class="msg-src">זווית 1 · מה אני בונה עכשיו</span>
+      </div>
+      <p class="msg-body">אתם מכירים אותי, אז אני מדלג על ההיכרות.
+אני בונה דפי נחיתה ומערכות עבודה לאנשי שטח — ניהול לידים מהנייד, ומערכת תמחור שיושבת על החומרים.
+בפרויקט האחרון, מול חברה לניהול פרויקטים ועבודות עץ, זה אומר שהתמחור והלידים חיים במקום אחד.
+אם זה נוגע למשהו אצלכם — כתבו לי בפרטי או היכנסו לדף.
+ואם לא, לפחות עכשיו אתם יודעים מה אני עושה.</p>
+      <div class="msg-foot"><button class="copy" type="button">העתקת הנוסח</button></div>
+    </div>
+
+    <div class="rule">
+      <b>אל תשלח את נוסח א&rsquo; עדיין.</b> השורה "היכנסו לדף" מחייבת לינק, והלינק הוא דף הנחיתה של הריצה — לא האתר הראשי, שיש בו מחירים. ה-URL קיים רק אחרי שתעלה את הדף ידנית ל-Cloudflare Pages.
+    </div>
+
+    <div class="msg">
+      <div class="msg-bar">
+        <span class="msg-label">תוספת שתי הדלתות — אופציונלית, לסוף כל נוסח</span>
+        <span class="msg-src">זווית 3 · עמדת הצומת</span>
+      </div>
+      <p class="msg-body">רלוונטי לעבודה שלכם — כתבו לי בפרטי.
+רלוונטי למישהו שעובד איתכם — כתבו לי בפרטי.</p>
+      <div class="msg-foot"><button class="copy" type="button">העתקת הנוסח</button></div>
+    </div>
+    <p class="note">אל תשנה את האורך או המבנה של אחת השורות. ההיררכיה בין שתי הדלתות היא בדיוק מה שפוסל מראש את מי שיכול לקנות בעצמו.</p>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="step">2</span>
+      <h2>פנייה אישית אחרי תגובה</h2>
+      <span class="when">גוף שני יחיד</span>
+    </div>
+    <p class="note">למי שהגיב בקבוצה או כתב בפרטי. אותו טיעון של זווית 3, מוטה ליחיד.</p>
+
+    <div class="msg">
+      <div class="msg-bar">
+        <span class="msg-label">ההודעה</span>
+        <span class="msg-src">זווית 3 · מוטה ליחיד</span>
+      </div>
+      <p class="msg-body">היי <span class="fill">&lt;שם הנמען&gt;</span>,
+אתה יושב בצומת של הרבה עבודה.
+דרכך עוברים קבלני משנה, ספקים ולקוחות — וחלק מהם מחזיקים עסק שלם מתוך הוואטסאפ.
+אני בונה לאנשים כאלה דף שמציג את העבודה, ומערכת שמחזיקה תמחור ולידים במקום אחד.
+רלוונטי לעבודה שלך — שיחה קצרה של 15 דקות.
+רלוונטי למישהו שעובד איתך — שיחה קצרה של 15 דקות.
+ללא עלות וללא התחייבות.</p>
+      <div class="msg-foot"><button class="copy" type="button">העתקת הנוסח</button></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="step">3</span>
+      <h2>תסריט הטלפון</h2>
+      <span class="when">עד 90 שניות · יחיד</span>
+    </div>
+    <p class="note">טקסט מדובר, לא נקודות. שם הנמען הוא השדה היחיד למילוי.</p>
+
+    <div class="msg">
+      <div class="msg-bar">
+        <span class="msg-label">0:00–0:15 · פתיח</span>
+        <span class="msg-src">זווית 1</span>
+      </div>
+      <p class="msg-body">היי <span class="fill">&lt;שם הנמען&gt;</span>, זה נימרוד. אתה מכיר אותי, אז אני מדלג על ההיכרות.
+תפסתי אותך רגע טוב?</p>
+      <div class="msg-foot"><button class="copy" type="button">העתקת הנוסח</button></div>
+    </div>
+
+    <div class="msg">
+      <div class="msg-bar">
+        <span class="msg-label">0:15–0:50 · הבעיה</span>
+        <span class="msg-src">זווית 2</span>
+      </div>
+      <p class="msg-body">רוב הדברים לא קורסים. הם מגיעים לתקרה.
+השיטה שמחזיקה אותך היום — הראש, הפתקים, וכמה שיחות וואטסאפ — הביאה אותך עד לכאן, וזה לא מובן מאליו.
+אתה מחזיק שלושה פרויקטים במקביל וזה עובד. השאלה היא מה קורה בעשרה.</p>
+      <div class="msg-foot"><button class="copy" type="button">העתקת הנוסח</button></div>
+    </div>
+
+    <div class="msg">
+      <div class="msg-bar">
+        <span class="msg-label">0:50–1:30 · הפתרון וה-Ask</span>
+        <span class="msg-src">זווית 1 + הבריף</span>
+      </div>
+      <p class="msg-body">אני בונה דפי נחיתה ומערכות עבודה לאנשי שטח — ניהול לידים מהנייד, ומערכת תמחור שיושבת על החומרים.
+בפרויקט האחרון, מול חברה לניהול פרויקטים ועבודות עץ, זה אומר שהתמחור והלידים חיים במקום אחד.
+בלי עקומת למידה מתישה ובלי עוד ערב מול טבלה.
+בוא נשב על זה שיחה קצרה של 15 דקות. ללא עלות וללא התחייבות.
+אם אני לא האדם המתאים לעזור לך, אגיד לך את זה מיד ואכוון אותך לפתרון הנכון ביותר עבורך.</p>
+      <div class="msg-foot"><button class="copy" type="button">העתקת הנוסח</button></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="step">4</span>
+      <h2>ה-Ask — שני רבדים, ואין לערבב</h2>
+    </div>
+    <div class="replies">
+      <div class="reply">
+        <div class="said">בפוסט לקבוצה — <b>רבים</b></div>
+        <div class="back">מי שזה רלוונטי לו — מגיב פה או כותב לי בפרטי.<br><small>בלי לינק wa.me. הערוץ הוא הקבוצה עצמה.</small></div>
+      </div>
+      <div class="reply">
+        <div class="said">בפולואפ 1:1 — <b>יחיד</b></div>
+        <div class="back">שיחה קצרה של 15 דקות. ללא עלות וללא התחייבות.<br><small>טלפון או ווטסאפ. זום רק למי שמעדיף. <code>https://wa.me/972506762006</code></small></div>
+      </div>
+    </div>
+    <p class="note"><b>לא כותבים:</b> אורך שיחה אחר מ-15 דקות · שפת יועצים במקום "נתקע" ו"נופל בין הכיסאות" · "רק לשמוע עוד" · "בוא נכיר". <b>ולא מוכרים בשיחה</b> — היעד הוא שיחה אחת, וזהו.</p>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="step">5</span>
+      <h2>ארבע ההתנגדויות</h2>
+      <span class="when">יחיד</span>
+    </div>
+    <p class="note">עוגן הסרת הסיכון חוזר בכל ארבעת המענים: "השיחה ללא עלות או התחייבות. אם אני לא האדם המתאים לעזור לך, אגיד לך את זה מיד ואכוון אותך לפתרון הנכון ביותר עבורך."</p>
+    <div class="replies">
+      <div class="reply">
+        <div class="said">"אין לי זמן לזה עכשיו, אני בשיא הבטונים"</div>
+        <div class="back">לגמרי, ובגלל זה זו שיחה קצרה של 15 דקות. ומה שאני בונה לא מבקש ממך עוד ערב מול טבלה — הוא מזיז את זה מהערב אל השטח, מהנייד.</div>
+      </div>
+      <div class="reply">
+        <div class="said">"אני גרוע בזה, עזוב אותי מאפליקציות"</div>
+        <div class="back">אתה מחזיק שלושה פרויקטים בראש ובוואטסאפ, וזה עובד. זה לא חוסר הבנה — זה ניהול מצוין עם כלים גרועים. אתה לא צריך להיות איש מחשבים. אתה צריך שהעבודה תרוץ.</div>
+      </div>
+      <div class="reply">
+        <div class="said">"יש לי כבר אקסל וזה עובד לי מצוין"</div>
+        <div class="back">אתה צודק, והאקסל הזה הביא אותך עד לכאן. השאלה היא לא אם הוא עובד. השאלה היא כמה הוא עולה לך — בטעות תמחור אחת, או בליד שנפל בין הכיסאות.</div>
+      </div>
+      <div class="reply">
+        <div class="said">"כבר שילמתי על אתר ולא הביא כלום"</div>
+        <div class="back">מכיר את זה, וההבדל הוא לא בעיצוב. הסיסטם הדיגיטלי חייב להתחבר בצורה חלקה לעבודה הפיזית — דף שמציג את העבודה שלך, ומאחוריו מקום אחד שמחזיק תמחור ולידים.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="step">6</span>
+      <h2>פולואפ — 48 שעות אחרי אי-מענה</h2>
+      <span class="when">יחיד</span>
+    </div>
+    <div class="msg">
+      <div class="msg-bar">
+        <span class="msg-label">ההודעה</span>
+        <span class="msg-src">בלי דחיפות · בלי הצדקה מחודשת</span>
+      </div>
+      <p class="msg-body">היי <span class="fill">&lt;שם הנמען&gt;</span>,
+אין פה שום דחיפות. אם זה לא הזמן, זה בסדר גמור.
+מה שאני בונה נשאר על השולחן, ואפשר לחזור לזה מתי שרלוונטי לך.
+כאן, מתי שתרצה: https://wa.me/972506762006</p>
+      <div class="msg-foot"><button class="copy" type="button">העתקת הנוסח</button></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="step">7</span>
+      <h2>בדיקת שדה לפני שליחה</h2>
+      <span class="when">נימרוד, לא הסוכן</span>
+    </div>
+    <ul class="check">
+      <li class="warn">נורמות הפרסום בקבוצה נבדקו ידנית — לא ניתן לגזור מהקופי.</li>
+      <li>הפוסט נשלח <b>בלי</b> לינק wa.me.</li>
+      <li class="warn">אם נשלח נוסח א&rsquo; — דף הנחיתה כבר עלה, והלינק שלו מצורף.</li>
+      <li>שם הנמען מולא בכל הודעה אישית, ולא נשאר בסוגריים.</li>
+      <li class="warn">מבחן הקולגה: קרא את הפוסט בקול. אם הוא נשמע כמו מכירה לחבר — אל תשלח.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <div>כל מילה בעמוד הזה מועתקת מ-<code>output/marketing/2026-09-03-peer-warm-group-run1-copy.md</code> ומ-<code>…-outbound-kit.md</code>. אין כאן שורת קופי חדשה.</div>
+    <div>תוצרי הריצה: קובץ הקופי · ערכת ה-Outbound · <code>output/creatives/2026-09-03-peer-warm-group-run1-02.png</code> · <code>output/landing/2026-09-03-peer-warm-group-run1/</code></div>
+  </footer>
+
+</div>
+
+<script>
+document.querySelectorAll("button.copy").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    var body = btn.closest(".msg").querySelector(".msg-body");
+    var text = body.innerText;
+    var done = function(){
+      btn.textContent = "הועתק";
+      btn.dataset.done = "1";
+      setTimeout(function(){ btn.textContent = "העתקת הנוסח"; btn.dataset.done = "0"; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function(){ btn.textContent = "סמן והעתק ידנית"; });
+    } else {
+      btn.textContent = "סמן והעתק ידנית";
+    }
+  });
+});
+</script>

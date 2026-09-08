@@ -1,0 +1,33 @@
+{
+  "topic": "peer-warm-group",
+  "run": 1,
+  "date": "2026-09-03",
+  "source_copy": "output/marketing/2026-09-03-peer-warm-group-run1-copy.md",
+  "source_brief": "vault/Content Briefs/peer-warm-group.md",
+  "primary_cta": "whatsapp",
+  "whatsapp_url": "https://wa.me/972506762006?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%95%D7%93",
+  "whatsapp_text_decoded": "היי, הגעתי מהאתר ואשמח לשמוע עוד",
+  "whatsapp_button_count": 3,
+  "webhook_url": null,
+  "webhook_status": "unconfigured",
+  "webhook_constant": "__WEBHOOK_URL__",
+  "form_fields": ["name", "phone", "occupation"],
+  "assets": [
+    {
+      "file": "assets/hero.png",
+      "source": "output/creatives/2026-09-03-peer-warm-group-run1-02.png",
+      "copied": true,
+      "note": "הועתק ידנית על ידי הסשן הראשי ב-2026-09-08 — סוכן שלב 4 אינו יכול להעתיק קובץ בינארי (אין Bash, Write כותב טקסט בלבד)."
+    },
+    {
+      "file": "assets/nimrod-portrait.png",
+      "source": "landing/reference/nimrod-portrait.png",
+      "copied": true,
+      "note": "הועתק ידנית על ידי הסשן הראשי ב-2026-09-08 — צילום אמיתי של נימרוד, סקשן מי אני."
+    }
+  ],
+  "prices_on_page": false,
+  "response_time_promise": false,
+  "second_person": "plural",
+  "target_host": "cloudflare-pages"
+}
