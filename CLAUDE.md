@@ -39,8 +39,39 @@ and there must never be one.
 
 **Tone of voice** — Craft & System (https://craftsystem.co.il/): technology wired into the field,
 an end to firefighting, the move to a profitable *system*, direct language at eye level, zero AI clichés.
-The live site copy is extracted verbatim to `references/writing/site-copy.md` — **every agent that writes
-copy must read it first.** Prices, client names, case studies and links come from that file only.
+The live site copy is extracted verbatim to `references/writing/site-copy.md`, and **every agent that
+writes copy must read it first.** Prices, case studies and links come from that file only.
+
+**Three copy rules settled on 2026-09-08. They override anything older in this file, and
+`voice-and-tone.md` holds each one in full.**
+
+1. **The em dash is banned, permanently, in every artifact.** `—` (U+2014) and `–` (U+2013), in copy,
+   landing pages, kits, vault notes, commit messages and the CEO's own replies. Replace with a short
+   hyphen or a comma, whichever reads better, even where the short hyphen is grammatically the wrong
+   mark. The reason is perception, not style: the long dash now reads as AI-written. `voice-and-tone.md`
+   §6 category 5 makes it greppable. This is not a search-and-replace: a sentence that loses an em dash
+   usually needs splitting, not patching.
+
+2. **`site-copy.md` is a source of FACTS, not a source of LANGUAGE.** The live site is due for a
+   rewrite with the user, so agents take the spirit and never the wording. Quoting the site verbatim is
+   no longer a defence: copy that quotes it and still isn't clear to the reader is rejected.
+   **Facts stay locked** and are never invented or changed: prices, track names, the four cases, the
+   `wa.me` link. `voice-and-tone.md` §8 holds the split.
+
+3. **Hebrew syntax is an acceptance criterion, not polish.** `voice-and-tone.md` §9 adds four tests a
+   deliverable must pass: a sentence readable aloud in one pass; a metaphor whose meaning is stated and
+   not guessed; no term, product or track name assumed known that the artifact never introduced; and
+   pain written as a scenario rather than an abstract noun. None of the four is greppable, so the CEO
+   reads for them at the stage-5 gate.
+
+> **There are no paying clients yet.** "באים בטוב" is one of the user's own businesses, and all four
+> cases were built for himself or for people close to him. **No artifact may say "לקוח", "לקוחות
+> מרוצים" or "אצל לקוח אמיתי".** Write "מה שבניתי" instead. This is a factual correction, not a
+> stylistic one, and it is recorded in `voice-and-tone.md` §8 along with the one number the engine is
+> allowed to state: production errors in the carpentry the user ran fell from 30-40% to 1-5% in three
+> months. **That number is admissible in past tense and first person only, never as a promise** of what
+> a reader will get. `site-copy.md` and the live site still carry the inaccurate "אצל לקוח אמיתי"; the
+> site is the user's call and is not edited by the engine.
 
 **The brand rests on three source-of-truth files, and each agent reads the ones its output touches:**
 `voice-and-tone.md` (how it sounds, plus the forbidden-words list), `icp-construction.md` (who it is
@@ -255,7 +286,8 @@ Every folder has an `_index.md` listing its topics. Intra-vault references use `
 .claude/commands/    custom slash commands (empty)
 vault/               the Obsidian knowledge base — long-term memory
 references/          source material, research inputs
-references/writing/  extracted source copy — site-copy.md is the tone/pricing source of truth
+references/writing/  extracted source copy. site-copy.md is the FACTS source (prices, cases,
+                     links). Since 2026-09-08 it is no longer a language source: spirit, not wording
 scripts/             automation and tooling
 scripts/gen-image.ps1  the only path to the Images API — loads .env, enforces Zero-Text, writes the PNG
 copywriter/drafts/   the copywriter's private scratch space — drafts only, never a deliverable
