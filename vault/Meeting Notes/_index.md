@@ -13,3 +13,4 @@ Code, architecture, design decisions, bugfixes and refactors. One file per topic
 - [[agent-campaigner]] — אפיון סוכן ה-Outbound: מיפוי זווית→רכיב, חמשת רכיבי ערכת השטח וארבע ההתנגדויות
 - [[agent-creative]] — אפיון סוכן הוויז'ואל: שער העלות, שני חוקי הברזל (gpt-image-2 ו-Zero-Text), מיפוי זווית→ויזואל וזוג הפלט
 - [[agent-landing]] — אפיון סוכן דפי הנחיתה: בידוד ללא רשת, Mobile-First כאילוץ ICP, שני ערוצי ההמרה, חריג ה-CDN וכלל האריזה העצמאית
+- [[copy-refinement-peer-warm-group]] — פתק מסירה לדיוק הקופי של הקבוצה החמה: מה לקרוא, מה לא זז, ומה המכונה כבר תפסה
