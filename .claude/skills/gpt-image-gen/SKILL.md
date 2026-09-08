@@ -29,20 +29,36 @@ with a direct `curl`.
 Image engines do not render Hebrew correctly. What comes back is mangled
 letterforms that look like text but are not — worse than no text at all.
 
-**Therefore: every image this project generates carries no text whatsoever.**
+**Therefore: every image this project generates carries no words.**
 The Hebrew is layered on top afterwards, in code (HTML/CSS or SVG).
+
+**Revised 2026-09-08 by explicit user decision. The line runs between letters
+and numbers, not between text and no-text:**
+
+| | |
+|---|---|
+| **Allowed** | numerals · dimensions on a drawing · numeric tables · rulers · tape measures · gauges · anything whose marking is a number |
+| **Banned** | words in any language · Hebrew of any kind · signage · logos · brand marks · captions · letter-based units such as `mm` |
+
+The clause used to open with `no text`, which suppressed digits too and produced
+drawings with no dimensions on them. The audience is contractors and project
+managers, and a plan with no numbers on it reads as a prop.
 
 Every prompt ends with this clause, **verbatim**:
 
 ```
-no text, no letters, no words, no signage, no captions
+no words, no letters, no signage, no logos, no captions
 ```
 
 The script checks for it and **refuses to run without it** — the gate fires
 before the paid call, so a malformed prompt costs nothing. That is the mechanical
 half. The other half is yours: **open the returned PNG with `Read` and confirm
-there is no letter, word, sign or caption in it.** An image that came back with
-text is rejected and regenerated. Do not ship it and do not crop it out.
+there is no word, no Hebrew and no logo in it.** Numbers are fine and need no
+defending. An image that came back with a word is rejected and regenerated.
+Do not ship it and do not crop it out.
+
+**Never restore `no text` to the clause, and never edit the gate to get a
+malformed prompt through.** Widening it further is a user decision.
 
 ## Cost gate
 
@@ -83,12 +99,12 @@ English, comma-separated, concrete. Six parts in order:
 3. **Light** — golden hour, overcast, harsh noon
 4. **Palette** — the brand's, or the one the brief specifies
 5. **Style** — documentary photography, editorial, minimal 3D
-6. **The Zero-Text clause**, verbatim
+6. **The No-Words clause**, verbatim
 
 ```
 a contractor's hands holding a tablet on a concrete pour, late afternoon light,
 warm neutral palette, documentary photography, shallow depth of field,
-no text, no letters, no words, no signage, no captions
+no words, no letters, no signage, no logos, no captions
 ```
 
 **Two traps specific to this brand:**

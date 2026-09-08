@@ -87,3 +87,12 @@ landing/*.webp
 # תיקיית ברירת המחדל של scripts/extract-visual-identity.ps1 — HTML ו-CSS
 # גולמיים שנמשכו מהאתר החי. חומר גלם לקריאה, לא תוצר.
 .visual-extract/
+
+# תת-תיקיות של creative/ , נוסף 2026-09-08.
+# הכללים למעלה תופסים רק את שורש creative/ , ולכן חיתוכי האימות של שלב 3
+# (creative/crops01/ וכו', עשרות מגהבייט) נשארו במעקב. אותו נימוק בדיוק:
+# חומר עבודה בינארי וכבד, שהפרומפט והתוצר המאושר כבר משחזרים את הצורך בו.
+creative/**/*.png
+creative/**/*.jpg
+creative/**/*.jpeg
+creative/**/*.webp

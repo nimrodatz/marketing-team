@@ -236,20 +236,33 @@ official, locked decision. The name is a **constant inside `scripts/gen-image.ps
 there is deliberately no switch to override it. A failed call is reported and stopped, never retried
 against a different model, and the script is never edited to get around this.
 
-**Iron rule for visuals:** image engines do not render Hebrew correctly. Images produced with
-`gpt-image-2` carry **no text at all** — the prompt explicitly asks for clean visuals with no letters,
-signs or captions. Hebrew text is layered on top in code (HTML/CSS or SVG). An image that comes back
-with any text is rejected and regenerated.
+**Iron rule for visuals, revised 2026-09-08 by explicit user decision.** Image engines do not render
+Hebrew correctly, and pseudo-lettering is worse than nothing. So images produced with `gpt-image-2`
+carry **no words**. Hebrew is layered on top in code (HTML/CSS or SVG).
+
+**The line runs between letters and numbers, not between text and no-text:**
+
+- **Allowed:** numerals, dimensions on a drawing, numeric tables, rulers, tape measures, gauges,
+  anything whose marking is a number.
+- **Banned:** words in any language, Hebrew of any kind, signage, logos, brand marks, captions,
+  and letter-based units such as `mm`.
+
+The old clause opened with `no text`, which suppressed digits as well and produced drawings with no
+dimensions on them. The audience is contractors and project managers, and a plan with no numbers on it
+reads as a prop. **An image that comes back with a word, a logo or any Hebrew is rejected and
+regenerated; an image with numbers on it is fine.**
 
 Enforcement is two-layered. `scripts/gen-image.ps1` requires the clause
-`no text, no letters, no words, no signage, no captions` verbatim in every prompt and **refuses to run
+`no words, no letters, no signage, no logos, no captions` verbatim in every prompt and **refuses to run
 without it** — the gate fires *before* the paid call, so a malformed prompt costs nothing. On top of
-that, the agent opens every returned PNG with `Read` and confirms there is not a single letter in it.
+that, the agent opens every returned PNG with `Read` and confirms there is no word and no logo in it.
+**Never restore `no text` to that string, and never edit the gate to push a malformed prompt through.**
+Widening it further is a user decision, not an agent's.
 
 All image generation goes through one command:
 
 ```bash
-pwsh -File scripts/gen-image.ps1 -Prompt "<prompt ending in the Zero-Text clause>" -OutFile "output/creatives/<name>.png"
+pwsh -File scripts/gen-image.ps1 -Prompt "<prompt ending in the No-Words clause>" -OutFile "output/creatives/<name>.png"
 ```
 
 The script loads `OPENAI_API_KEY` from `.env` itself. **Never pass the key on a command line, never

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>בניית אתרים ומערכות ניהול לאנשי שטח ופרילנסרים | CRAFT &amp; SYSTEM</title>
+<meta name="description" content="אני בונה היום דפים ומערכות עבודה לאנשי שטח ולעצמאים בבנייה.">
+
+<!-- Google Fonts: הקריאה מועתקת מ-visual-identity.md סעיף 2 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Heebo:wght@200;300;400;500;700;800&display=swap">
+
+<!-- Tailwind CDN. הדף אינו תלוי בו: כל הסגנון כתוב למטה בערכים מפורשים -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+/* ==========================================================================
+   טוקני הצבע מוטמעים בקוד ולא נשלפים מ-CDN.
+   כשל טעינה של CDN עולה באיכות, לא בדף.
+   המקור: vault/Brand Guidelines/visual-identity.md סעיף 1
+   ========================================================================== */
+:root{
+  --color-bg-primary:#F8F6F2;
+  --color-bg-secondary:#EDEAE4;
+  --color-bg-card:#FFFFFF;
+  --color-bg-card-hover:#F4F1EC;
+
+  --color-text-primary:#1A1714;
+  --color-text-secondary:#6B6460;
+
+  --color-accent:#B5634B;
+  --color-accent-hover:#9A523D;
+  --color-accent-light:rgba(181,99,75,0.1);
+  --color-focus:#B5634B;
+
+  --color-neutral-accent:#2C2826;
+  --color-sand:#9C8E82;
+  --color-sand-light:rgba(156,142,130,0.15);
+  --color-border:#DDD8D0;
+  --color-border-strong:#C0B8B0;
+
+  /* צבע פלטפורמה, לכפתור הצף בלבד. ירוק אחד לדף */
+  --color-whatsapp:#25D366;
+  --color-whatsapp-hover:#1FBA58;
+
+  --shadow-sm:0 1px 4px rgba(0,0,0,0.06);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg:0 8px 30px rgba(0,0,0,0.10);
+  /* ההצללה נגזרת מהאקסנט. השארית הכחולה מסעיף 7 אינה מועתקת */
+  --shadow-accent:0 6px 20px rgba(181,99,75,0.28);
+
+  --font-body:'Assistant',-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --font-head:'Heebo','Assistant',-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+
+  --container:1100px;
+  --content:800px;
+}
+
+/* איפוס מפורש, כדי שהדף ייראה זהה עם Tailwind ובלעדיו */
+*,*::before,*::after{box-sizing:border-box;}
+html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body,h1,h2,h3,p,ul,li,figure,form,fieldset{margin:0;padding:0;}
+ul{list-style:none;}
+img{display:block;max-width:100%;height:auto;border:0;}
+button,input,select{font:inherit;color:inherit;}
+
+body{
+  background-color:var(--color-bg-primary);
+  color:var(--color-text-primary);
+  font-family:var(--font-body);
+  font-size:1rem;
+  font-weight:400;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{color:var(--color-accent);text-decoration:underline;}
+a:hover{color:var(--color-accent-hover);}
+
+/* חיווי פוקוס. אין להחליף ב-none */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{
+  outline:3px solid var(--color-focus);
+  outline-offset:3px;
+}
+
+.skip-link{
+  position:absolute;top:-100px;right:0;z-index:200;
+  background:var(--color-accent);color:#FFFFFF;
+  padding:0.75rem 1.25rem;border-radius:0 0 0 8px;
+  font-weight:700;text-decoration:none;
+}
+.skip-link:focus{top:0;color:#FFFFFF;}
+
+.container{
+  width:100%;max-width:var(--container);
+  margin-inline:auto;padding-inline:1.25rem;
+}
+.narrow{max-width:var(--content);margin-inline:auto;}
+
+/* ---------- הדר ---------- */
+.site-header{
+  background-color:var(--color-bg-primary);
+  border-bottom:1px solid var(--color-border);
+  padding-block:1rem;
+}
+.wordmark{
+  font-family:var(--font-head);
+  font-weight:700;
+  font-size:1.0625rem;
+  letter-spacing:0.06em;
+  color:var(--color-neutral-accent);
+}
+
+/* ---------- סקשן ---------- */
+.section{padding-block:3.5rem;}
+.section-alt{background-color:var(--color-bg-secondary);}
+.section-title{
+  font-family:var(--font-head);
+  font-weight:300;
+  font-size:2rem;
+  line-height:1.25;
+  letter-spacing:-0.01em;
+  max-width:760px;
+  margin-bottom:1.5rem;
+}
+.section p+p{margin-top:1rem;}
+.lead{font-size:1.0625rem;}
+
+/* ---------- הירו ---------- */
+.hero{padding-top:2rem;padding-bottom:3rem;}
+.hero-image{
+  border-radius:14px;
+  border:1px solid var(--color-border);
+  box-shadow:var(--shadow-md);
+  width:100%;
+  margin-bottom:2rem;
+}
+.hero h1{
+  font-family:var(--font-head);
+  font-weight:800;
+  font-size:2.4rem;
+  line-height:1.3;
+  letter-spacing:-0.02em;
+  margin-bottom:1rem;
+}
+.hero-sub{
+  font-size:1.05rem;
+  color:var(--color-text-secondary);
+  max-width:580px;
+  margin-bottom:1.75rem;
+}
+
+/* ---------- כפתורים ---------- */
+.cta-button{
+  display:inline-flex;align-items:center;justify-content:center;
+  gap:0.65rem;
+  min-height:56px;
+  padding:1rem 2.25rem;
+  border:none;border-radius:100px;
+  font-family:var(--font-body);
+  /* 1.25rem ומשקל 700: טקסט גדול, ולכן 4.33:1 עובר */
+  font-size:1.25rem;font-weight:700;
+  letter-spacing:0.01em;line-height:1.3;
+  text-decoration:none;
+  cursor:pointer;
+  transition:all 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+/* כל CTA בזרימת הדף הוא טרהקוטה, גם כשהוא פותח וואטסאפ */
+.cta-accent{
+  background-color:var(--color-accent);
+  color:#FFFFFF;
+  box-shadow:var(--shadow-accent);
+}
+.cta-accent:hover{
+  background-color:var(--color-accent-hover);
+  color:#FFFFFF;
+  transform:translateY(-2px);
+  box-shadow:0 10px 26px rgba(181,99,75,0.34);
+}
+.cta-accent:disabled{
+  opacity:0.6;cursor:default;transform:none;
+}
+.cta-icon{width:22px;height:22px;flex:0 0 auto;fill:currentColor;}
+
+/* ---------- הכפתור הצף: הירוק היחיד בדף ---------- */
+.floating-wrap{
+  position:fixed;inset:0;
+  pointer-events:none;z-index:99;
+}
+.floating-cta-button{
+  position:fixed;bottom:1.5rem;left:1.5rem; /* RTL: שמאל הוא הצד הרחוק */
+  pointer-events:auto;
+  display:inline-flex;align-items:center;gap:0.65rem;
+  min-height:52px;
+  padding:0.85rem 1.5rem;
+  border-radius:100px;
+  background-color:var(--color-whatsapp);
+  color:#FFFFFF;text-decoration:none;
+  font-weight:700;font-size:1.0625rem;line-height:1.2;
+  box-shadow:0 4px 14px rgba(37,211,102,0.25);
+  transition:all 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+.floating-cta-button:hover{
+  background-color:var(--color-whatsapp-hover);
+  color:#FFFFFF;transform:translateY(-2px);
+}
+.floating-cta-button .cta-icon{width:20px;height:20px;}
+
+/* ---------- כרטיסים ---------- */
+.card-grid{display:grid;gap:1.25rem;}
+.card{
+  background-color:var(--color-bg-card);
+  border:1px solid var(--color-border);
+  border-radius:14px;
+  padding:1.75rem;
+  box-shadow:var(--shadow-sm);
+}
+.card-strong{border:2px solid var(--color-accent);}
+.badge{
+  display:inline-block;
+  background-color:var(--color-sand-light);
+  border:1px solid rgba(156,142,130,0.35);
+  color:var(--color-sand);
+  border-radius:100px;
+  padding:0.35rem 0.9rem;
+  font-size:0.75rem;font-weight:600;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  margin-bottom:1rem;
+}
+
+/* ---------- מי אני ---------- */
+.portrait{
+  width:150px;height:150px;
+  border-radius:100px;
+  object-fit:cover;
+  border:2px solid var(--color-accent);
+  margin-bottom:1.5rem;
+}
+
+/* ---------- טופס ---------- */
+.form-card{
+  background-color:var(--color-bg-card);
+  border:1px solid var(--color-border);
+  border-radius:14px;
+  padding:1.75rem;
+  box-shadow:var(--shadow-sm);
+  margin-top:2rem;
+}
+.field{margin-bottom:1.25rem;}
+.field label{
+  display:block;
+  font-weight:600;
+  margin-bottom:0.4rem;
+}
+.field input{
+  display:block;width:100%;
+  min-height:52px;
+  padding:0.75rem 1rem;
+  font-size:1rem;
+  background-color:var(--color-bg-primary);
+  border:1px solid var(--color-border-strong);
+  border-radius:8px;
+}
+.field-note{
+  font-size:0.9375rem;
+  color:var(--color-text-secondary);
+  margin-top:0.5rem;
+}
+.form-message{
+  margin-top:1.25rem;
+  padding:1rem 1.15rem;
+  border-radius:8px;
+  font-weight:600;
+  line-height:1.6;
+}
+.form-message[hidden]{display:none;}
+.form-message.is-error{
+  background-color:var(--color-accent-light);
+  border:1px solid var(--color-accent);
+  color:var(--color-text-primary);
+}
+.form-message.is-ok{
+  background-color:var(--color-sand-light);
+  border:1px solid var(--color-border-strong);
+  color:var(--color-text-primary);
+}
+.form-message a{font-weight:700;}
+
+/* ---------- פוטר ---------- */
+.site-footer{
+  background-color:var(--color-neutral-accent);
+  color:#F8F6F2;
+  padding-block:2.5rem 5rem;
+  font-size:0.9375rem;
+}
+.site-footer a{color:#F8F6F2;}
+.site-footer p+p{margin-top:0.5rem;}
+
+/* ---------- מ-768px ---------- */
+@media (min-width:768px){
+  .section{padding-block:5rem;}
+  .hero h1{font-size:3.5rem;}
+  .hero-sub{font-size:1.25rem;}
+  .section-title{font-size:2.625rem;}
+  .card-grid{grid-template-columns:repeat(3,1fr);}
+  .floating-cta-button{bottom:2rem;left:2rem;}
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">דילוג לתוכן</a>
+
+<header class="site-header">
+  <div class="container">
+    <span class="wordmark">CRAFT &amp; SYSTEM</span>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ================= הירו ================= -->
+  <section class="hero">
+    <div class="container">
+      <img class="hero-image" src="assets/hero.png" alt="שולחן ניהול פרויקט באתר בנייה פעיל" width="1024" height="1024">
+      <h1>ניהלתי נגריה שמוכרת אונליין, ושם נולד מה שאני עושה היום.</h1>
+      <p class="hero-sub">את מה שבניתי לעצמי בנגריה אני בונה עכשיו לאנשים אחרים.</p>
+      <a class="cta-button cta-accent"
+         href="https://wa.me/972506762006?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%95%D7%93"
+         target="_blank" rel="noopener">
+        <svg class="cta-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.464 3.488"/></svg>
+        <span>דברו איתי בוואטסאפ</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ================= איפה זה נוגע לעבודה שלכם ================= -->
+  <section class="section section-alt">
+    <div class="container narrow">
+      <h2 class="section-title">איפה זה נוגע לעבודה שלכם</h2>
+      <p>אתם יושבים בערב על הצעת מחיר, אחרי יום מלא בשטח. מחשבים חומרים, שעות, נסיעות, ספקים.</p>
+      <p>הצעה שיוצאת בחיסור של כמה אחוזים לא מורגשת באותו רגע. היא מורגשת בסוף הפרויקט.</p>
+      <p>זו לא שכחה. זה חישוב שנבנה מחדש בכל פעם, במקום פעם אחת.</p>
+      <p>בתכלס, כולם יושבים היום על המחשב. אלה שעדיין עושים הכל ידני הם מעטים מאוד מאוד. השאלה היא לא אם אתם מול מסך, אלא כמה מהערב הולך על זה.</p>
+      <p>מי שמנהל חמישה קבלני משנה בראש הוא מנהל טוב עם כלים שלא נבנו בשבילו.</p>
+    </div>
+  </section>
+
+  <!-- ================= מה שבניתי ================= -->
+  <section class="section">
+    <div class="container narrow">
+      <h2 class="section-title">מה שבניתי</h2>
+      <p>ניהלתי נגריה שמוכרת אונליין. בניתי שם את התהליכים, מהמלאי ועד קו הייצור, ואת הדרישות למערכת שתחזיק אותם. טעויות הייצור ירדו שם מ-30-40% ל-1-5% תוך שלושה חודשים.</p>
+      <p>את המערכת עצמה לא אני פיתחתי. אני הגדרתי מה היא צריכה לעשות, ובעיקר שהיא תהיה משהו שהפועלים באמת מיישמים בשטח ולא משהו שנראה טוב על המסך.</p>
+    </div>
+  </section>
+
+  <!-- ================= מה שאני עושה היום ================= -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">מה שאני עושה היום</h2>
+      <div class="card-grid">
+        <div class="card">
+          <p>דף או אתר שמציג את העבודות שלכם דרש פעם חודשים ותקציב של חברה גדולה. היום הוא נבנה בשבועות, במחיר אחר לגמרי. זה לא קרה כי ירדה איכות. הכלים השתנו.</p>
+        </div>
+        <div class="card card-strong">
+          <p>אפשר היום לבנות הצעת מחיר שהמיסים, הפחת ושעות העבודה כבר יושבים בתוכה, בלי שתצטרכו לזכור להוסיף אותם. פעם זה היה פרויקט בפני עצמו. היום זה כמה ימי עבודה.</p>
+        </div>
+        <div class="card">
+          <p>הצעת מחיר, חשבונית, פולואפ, מסמך סיכום. כל אלה נדחים כי כל אחד מהם דורש ישיבה מול מחשב. היום חלק גדול מהם נסגר מהטלפון, בין משימות.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= מי אני ================= -->
+  <section class="section">
+    <div class="container narrow">
+      <img class="portrait" src="assets/nimrod-portrait.png" alt="צילום של נימרוד" width="300" height="300">
+      <h2 class="section-title">נעים להכיר, אני נימרוד.</h2>
+      <p>אני בונה היום דפים ומערכות עבודה לאנשי שטח ולעצמאים בבנייה.</p>
+      <p>את מה שבניתי אצלי אני בונה עכשיו לאנשים אחרים, ולעת עתה לאנשים קרובים. אני בתחילת הדרך.</p>
+    </div>
+  </section>
+
+  <!-- ================= CTA סוגר וטופס ================= -->
+  <section class="section section-alt">
+    <div class="container narrow">
+      <h2 class="section-title">מי שרוצה לראות איך זה נראה על העבודה שלו</h2>
+      <p class="lead">שיחה קצרה של 15 דקות, בלי עלות ובלי התחייבות.</p>
+
+      <p style="margin-top:1.75rem;">
+        <a class="cta-button cta-accent"
+           href="https://wa.me/972506762006?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%95%D7%93"
+           target="_blank" rel="noopener">
+          <svg class="cta-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.464 3.488"/></svg>
+          <span>דברו איתי בוואטסאפ</span>
+        </a>
+      </p>
+
+      <form class="form-card" id="lead-form" novalidate>
+        <div class="field">
+          <label for="lead-name">שם</label>
+          <input id="lead-name" name="name" type="text" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="lead-phone">טלפון</label>
+          <input id="lead-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="lead-field">תחום עבודה</label>
+          <input id="lead-field" name="field" type="text">
+        </div>
+
+        <button class="cta-button cta-accent" type="submit" id="lead-submit">השאירו פרטים ונחזור אליכם</button>
+        <p class="field-note"><a href="/legal">מדיניות פרטיות, תנאי שימוש והצהרת נגישות</a></p>
+
+        <p class="form-message is-error" id="form-error" role="alert" hidden></p>
+        <p class="form-message is-ok" id="form-ok" role="status" hidden>תודה, קיבלתי את הפרטים. אחזור אליכם.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>טכנולוגיה מעשית מבוססת קוד נקי ומהיר.</p>
+    <p><a href="/legal">מדיניות פרטיות, תנאי שימוש והצהרת נגישות</a></p>
+    <p>&copy; 2026 CRAFT &amp; SYSTEM. כל הזכויות שמורות.</p>
+  </div>
+</footer>
+
+<!-- הכפתור הצף: הירוק היחיד בדף -->
+<div class="floating-wrap" aria-hidden="false">
+  <a class="floating-cta-button"
+     href="https://wa.me/972506762006?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%95%D7%93"
+     target="_blank" rel="noopener">
+    <svg class="cta-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.464 3.488"/></svg>
+    <span>דברו איתי בוואטסאפ</span>
+  </a>
+</div>
+
+<script>
+(function () {
+  /* כתובת ה-webhook לא נמסרה בבריף. קבוע יחיד, מקום אחד. */
+  var WEBHOOK_URL = '__WEBHOOK_URL__';
+
+  var WHATSAPP_URL = 'https://wa.me/972506762006?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%95%D7%93';
+
+  var MSG_MISSING = 'חסרים פרטים. צריך שם, טלפון ותחום עבודה.';
+  var MSG_ERROR = 'השליחה לא עברה. אפשר לכתוב לי ישירות בוואטסאפ.';
+
+  var form = document.getElementById('lead-form');
+  var submit = document.getElementById('lead-submit');
+  var errorBox = document.getElementById('form-error');
+  var okBox = document.getElementById('form-ok');
+  if (!form) { return; }
+
+  function hideAll() {
+    errorBox.hidden = true;
+    okBox.hidden = true;
+  }
+
+  function showMissing() {
+    okBox.hidden = true;
+    errorBox.textContent = MSG_MISSING;
+    errorBox.hidden = false;
+  }
+
+  function showFailed() {
+    okBox.hidden = true;
+    errorBox.textContent = '';
+    var text = document.createTextNode(MSG_ERROR + ' ');
+    var link = document.createElement('a');
+    link.href = WHATSAPP_URL;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = 'דברו איתי בוואטסאפ';
+    errorBox.appendChild(text);
+    errorBox.appendChild(link);
+    errorBox.hidden = false;
+  }
+
+  function showOk() {
+    errorBox.hidden = true;
+    okBox.hidden = false;
+  }
+
+  function lock(state) {
+    submit.disabled = state;
+  }
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    hideAll();
+
+    var name = form.elements['name'].value.trim();
+    var phone = form.elements['phone'].value.trim();
+    var field = form.elements['field'].value.trim();
+
+    if (!name || !phone || !field) {
+      showMissing();
+      return;
+    }
+
+    /* אין webhook מחווט. הדף לא מזייף הצלחה: מצב שגיאה מיד, והפניה לוואטסאפ. */
+    if (WEBHOOK_URL.indexOf('__') === 0) {
+      showFailed();
+      return;
+    }
+
+    lock(true);
+
+    fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name,
+        phone: phone,
+        field: field,
+        source: '2026-09-08-peer-warm-group-run2'
+      })
+    }).then(function (response) {
+      lock(false);
+      if (response && response.ok) {
+        showOk();
+        form.reset();
+      } else {
+        showFailed();
+      }
+    }).catch(function () {
+      lock(false);
+      showFailed();
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

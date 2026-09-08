@@ -12,7 +12,7 @@
 
 .EXAMPLE
     pwsh -File scripts/gen-image.ps1 `
-        -Prompt "a construction site at golden hour, no text, no letters, no words, no signage, no captions" `
+        -Prompt "a construction site at golden hour, no words, no letters, no signage, no logos, no captions" `
         -OutFile "creative/test.png"
 #>
 
@@ -43,21 +43,41 @@ $ErrorActionPreference = 'Stop'
 $Model = 'gpt-image-2'
 
 # ─────────────────────────────────────────────────────────────────────────────
-# IRON RULE 2 — Zero-Text gate. Blocking, and it runs BEFORE the paid call.
-# Image engines do not render Hebrew correctly, so every image this project
-# produces is text-free and the Hebrew is layered on top in code. Relying on
-# the agent to remember the clause is not enforcement; this is.
+# IRON RULE 2 — No-Words gate. Blocking, and it runs BEFORE the paid call.
+#
+# Image engines do not render Hebrew correctly, and pseudo-lettering is worse
+# than nothing. So no image this project produces carries WORDS: the Hebrew is
+# layered on top in code. Relying on the agent to remember the clause is not
+# enforcement; this is.
+#
+# CHANGED 2026-09-08, by explicit user decision. The clause used to open with
+# "no text", which suppressed digits as well and produced drawings with no
+# dimensions on them. The audience is contractors and project managers, and a
+# plan with no numbers on it reads as a prop. The line now runs between
+# LETTERS and NUMBERS, not between text and no-text:
+#
+#   ALLOWED  — numerals, dimension figures, numeric tables, rulers, tape
+#              measures, gauges, anything whose marking is a number.
+#   BANNED   — words in any language, Hebrew of any kind, signage, logos,
+#              brand marks, captions, and letter-based units such as "mm".
+#
+# Do NOT restore "no text" to this string, and do NOT edit this gate to get a
+# malformed prompt through. Widening it again is a user decision, not an
+# agent's.
 # ─────────────────────────────────────────────────────────────────────────────
-$ZeroTextClause = 'no text, no letters, no words, no signage, no captions'
+$NoWordsClause = 'no words, no letters, no signage, no logos, no captions'
 
-if ($Prompt -notlike "*$ZeroTextClause*") {
+if ($Prompt -notlike "*$NoWordsClause*") {
     Write-Error @"
-Zero-Text gate: refused before spending anything.
+No-Words gate: refused before spending anything.
 
 The prompt must contain this clause verbatim:
-    $ZeroTextClause
+    $NoWordsClause
 
-Append it to the end of the prompt and run again.
+Numerals, dimensions and numeric tables are allowed and do not need
+permission in the prompt. Words, Hebrew, signage and logos are not.
+
+Append the clause to the end of the prompt and run again.
 "@
     exit 2
 }

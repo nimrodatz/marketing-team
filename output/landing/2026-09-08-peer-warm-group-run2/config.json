@@ -1,0 +1,30 @@
+{
+  "topic": "peer-warm-group",
+  "run": 2,
+  "date": "2026-09-08",
+  "source_copy": "output/marketing/2026-09-08-peer-warm-group-run2-copy.md",
+  "primary_cta": "whatsapp",
+  "whatsapp_url": "https://wa.me/972506762006?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%95%D7%93",
+  "whatsapp_text_decoded": "היי, הגעתי מהאתר ואשמח לשמוע עוד",
+  "whatsapp_text_note": "פרמטר הטקסט הנעול מ-site-copy.md. נוסח ייעודי לדף הזה אינו קיים בקופי המאושר, ולכן לא נכתב כאן. הוא עובר בפייפליין.",
+  "whatsapp_button_count": {
+    "green_floating": 1,
+    "terracotta_in_flow": 2
+  },
+  "webhook_url": null,
+  "webhook_status": "unconfigured",
+  "form_behavior_when_unconfigured": "error_state_and_whatsapp_fallback",
+  "assets": [
+    {
+      "file": "assets/hero.png",
+      "source": "output/creatives/2026-09-08-peer-warm-group-run2-01.png",
+      "copied": true
+    },
+    {
+      "file": "assets/nimrod-portrait.png",
+      "source": "landing/reference/nimrod-portrait.png",
+      "copied": true
+    }
+  ],
+  "target_host": "cloudflare-pages"
+}
