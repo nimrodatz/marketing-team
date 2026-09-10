@@ -16,15 +16,20 @@
   "form_behavior_when_unconfigured": "error_state_and_whatsapp_fallback",
   "assets": [
     {
-      "file": "assets/hero.png",
+      "file": "assets/hero.jpg",
       "source": "output/creatives/2026-09-08-peer-warm-group-run2-01.png",
-      "copied": true
+      "copied": true,
+      "dimensions": "1536x1024",
+      "bytes": 273525
     },
     {
-      "file": "assets/nimrod-portrait.png",
+      "file": "assets/nimrod-portrait.jpg",
       "source": "landing/reference/nimrod-portrait.png",
-      "copied": true
+      "copied": true,
+      "dimensions": "700x560",
+      "bytes": 55198
     }
   ],
+  "assets_note": "הומרו ל-JPEG והוקטנו ב-2026-09-10. במקור שני PNG במשקל 4.6MB, כבד מדי לדף Mobile-First שנפתח באתר בנייה עם קליטה בינונית. אחרי ההמרה 321KB, ירידה של 93 אחוז. PNG הוא הפורמט הלא נכון לצילום, ומכאן רוב הפער. קבצי המקור לא נגעו ונשארים במקומם.",
   "target_host": "cloudflare-pages"
 }
