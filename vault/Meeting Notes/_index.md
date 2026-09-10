@@ -15,3 +15,4 @@ Code, architecture, design decisions, bugfixes and refactors. One file per topic
 - [[agent-landing]], אפיון סוכן דפי הנחיתה: בידוד ללא רשת, Mobile-First כאילוץ ICP, שני ערוצי ההמרה, חריג ה-CDN וכלל האריזה העצמאית
 - [[copy-refinement-peer-warm-group]] · דיוק הקופי של הקבוצה החמה: האבחנה, שמונה ההכרעות, מפת הזוויות v2 וחומר הגלם הביוגרפי של נימרוד
 - [[copy-corrections]], יומן העריכות של נימרוד והנימוקים שלהן: ההפרדה בין תיקון מכני לכיול אנושי, ולמה נימוק שווה יותר מתיקון
+- [[multi-domain-expansion]], הרחבה לתחומים נוספים: למה אין צורך בצוותים חדשים, ושלושת הדברים שכבולים לבנייה
