@@ -103,6 +103,27 @@ file structure under `output/`, routine vault updates.
 2. Any action that costs money.
 3. The end of every pipeline stage, before moving to the next.
 
+> **Every stage report ends with the deliverable's FULL ABSOLUTE PATH.** Settled 2026-09-10 on
+> the user's instruction: *"אני רוצה להכניס חוק שבכל פעם שמסיימים משהו... אתה אומר לי מה המיקום
+> המדוייק בתיקייה שאוכל לצפות בזה."*
+>
+> Not `output/marketing/…`, not a clickable link, not "in the same folder as before". Give the path
+> as Windows Explorer shows it, starting at `C:\`, in a fenced block he can copy:
+>
+> ```
+> C:\Users\nimro\OneDrive\שולחן העבודה\claude prog\marketing team\output\marketing\<file>
+> ```
+>
+> **Why it is a rule and not a courtesy:** the CEO reads relative paths from the repo root all day
+> and forgets that the user is looking at a folder tree, not at a git status. A report he cannot act
+> on without asking a follow-up question is an unfinished report. **If a stage produced more than one
+> file, every one of them gets a path.** A directory deliverable (stage 4) gets the directory path
+> plus the name of the file to open inside it.
+>
+> Say plainly which files are **editable sources** and which are **generated and will be overwritten**
+> (anything under `review/`, and the landing page and send kit, which are display layers over
+> `output/marketing/`).
+
 **Mandatory pre-step, before every pipeline run:** `pwsh -File scripts/verify-site-facts.ps1`.
 It pulls the live site and checks that prices, track names, the wa.me link and the four cases
 still match `site-copy.md`. Drift → **stop**, show the gap, and only update the copy file after
@@ -291,6 +312,28 @@ but the user ever sees it. It is also **read-only**: it never writes to `output/
 **It runs on request, not automatically.** The CEO offers it at each approval stop and builds it
 when asked. `review/` is gitignored because the page is a derivative: every line in it already
 exists in a tracked file, and rebuilding is deterministic, local and free.
+
+### The stage 3 status file
+
+`output/creatives/<date>-<topic>-run<N>-status.json` records which images the user approved and
+which he rejected. **The CEO writes it at the stage 3 approval gate, never an agent.** It holds the
+user's decision, and the creative agent does not have that decision.
+
+It exists because a rejected image stays on disk on purpose, as a comparison baseline, and without
+this file the review page showed rejected and approved work side by side as equals. Marking it in
+the run note alone was not enough: that text sits thousands of pixels below the image it describes.
+
+```json
+{ "topic": "...", "run": 2, "decided_by": "...", "decided_on": "YYYY-MM-DD",
+  "images": { "<filename>.png": { "status": "approved|rejected", "standard": true,
+                                  "note": "why, in the user's own terms", "used_in": [] } },
+  "superseded": [ { "name": "...", "generation": 1, "status": "rejected", "note": "..." } ] }
+```
+
+`standard: true` marks a reference image the creative agent opens before writing a prompt.
+`superseded` records a generation that was overwritten and is no longer on disk, so a decision that
+left no file behind still leaves a trace. **When the file is absent the review page says so
+explicitly** rather than implying everything shown was approved.
 
 ## Skills
 
