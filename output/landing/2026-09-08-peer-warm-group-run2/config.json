@@ -11,8 +11,16 @@
     "green_floating": 1,
     "terracotta_in_flow": 2
   },
-  "webhook_url": null,
-  "webhook_status": "unconfigured",
+  "webhook_url": "/api/lead",
+  "webhook_status": "wired_pending_env",
+  "webhook_handler": "functions/api/lead.js",
+  "webhook_note": "פונקציית Cloudflare Pages בתוך תיקיית הדף. הנתיב יחסי ולכן אותו דומיין, בלי CORS. הטוקן של איירטייבל לעולם אינו מגיע לדפדפן ואינו בריפו: הדף מדבר עם הפונקציה, והפונקציה מדברת עם איירטייבל.",
+  "webhook_env_required": [
+    "AIRTABLE_TOKEN",
+    "AIRTABLE_BASE_ID",
+    "AIRTABLE_TABLE"
+  ],
+  "webhook_untested": "טרם נבדק מול איירטייבל אמיתי. עד שתרוץ שליחה אחת אמיתית אחרי הגדרת שלושת המשתנים, החיבור אינו מאומת.",
   "form_behavior_when_unconfigured": "error_state_and_whatsapp_fallback",
   "assets": [
     {

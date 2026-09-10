@@ -139,7 +139,7 @@ brief (vault/Content Briefs/)
   ⏸ user approval
   → stage 3  creative   (.claude/agents/creative.md)    → output/creatives/   [clean PNG + HTML overlay]
   ⏸ user approval — plus an explicit COST approval before the run itself
-  → stage 4  landing    (.claude/agents/landing.md)     → output/landing/     [index.html + config.json + assets/]
+  → stage 4  landing    (.claude/agents/landing.md)     → output/landing/     [index.html + config.json + assets/ + functions/]
   ⏸ user approval — including opening the page yourself; the agent never saw it
   → stage 5  CEO control: verify deliverables, check the forbidden-words list,
              build the send kit in output/kits/, write the run summary to
@@ -156,7 +156,8 @@ output/marketing/<date>-<topic>-run<N>-outbound-kit.md    stage 2
 output/creatives/<date>-<topic>-run<N>-<nn>.png + .html   stage 3
 output/landing/<date>-<topic>-run<N>/index.html
                                      + config.json
-                                     + assets/            stage 4
+                                     + assets/
+                                     + functions/api/lead.js   stage 4
 output/kits/<date>-<topic>-run<N>-kit.html                stage 5
 ```
 
@@ -216,8 +217,21 @@ by eye. It copies files with `Read` + `Write` instead.
 
 **It cannot see what it builds.** No browser, no screenshot — it writes HTML blind, and the visual
 check falls entirely to the user at stage 5. Its form contract is likewise never tested against a
-live webhook. A webhook URL comes from the brief you hand it; without one it writes the constant
-`__WEBHOOK_URL__`, records `"webhook_status": "unconfigured"` in `config.json`, reports, and
+live Airtable.
+
+**The form's default target, settled 2026-09-10, is `/api/lead`, and the agent no longer writes
+`__WEBHOOK_URL__`.** The page posts to a Cloudflare Pages Function that ships **inside the landing
+folder** at `functions/api/lead.js`, so the path is relative, the origin is the same, and there is no
+CORS and no hardcoded domain. **The agent does not write that function and must never invent one:**
+it copies `landing/templates/lead-function.js` byte for byte, exactly the way it copies images, and a
+fix to it is made in the template rather than in the copy. A brief that supplies a different URL
+overrides this; that is the exception.
+
+**The Airtable token never enters the page, the template or `config.json`.** It lives only as a
+Cloudflare environment variable that the user sets himself, alongside `AIRTABLE_BASE_ID` and
+`AIRTABLE_TABLE`. **A page that calls Airtable directly leaks a token to everyone who opens it**, and
+that is why the function exists at all rather than a `fetch` from the browser. The agent records
+`"webhook_status": "wired_pending_env"`, reports that the function was copied and **not** tested, and
 **continues** — the page still works in full through WhatsApp.
 
 Two deliberate exceptions, recorded here so a later session does not "fix" them:
@@ -374,13 +388,17 @@ copywriter/drafts/   the copywriter's private scratch space — drafts only, nev
 creative/            the creative agent's private scratch space — prompts, experiments. Never a deliverable
 creative/reference/  visual inspiration and reference material
 landing/             the landing agent's private scratch space — drafts, experiments. Never a deliverable
-landing/templates/   reusable HTML section templates (hero, benefits, form, CTA)
+landing/templates/   reusable HTML section templates (hero, benefits, form, CTA), plus
+                     lead-function.js, the canonical Cloudflare Pages Function the landing
+                     agent copies into every run. Fixes are made here, never in a copy
 landing/reference/   design references the user supplies — fonts, colours, style he likes
 output/              generated deliverables
 output/marketing/    pipeline output: copy angles, outbound kits
 output/creatives/    pipeline output: clean PNGs and their HTML overlay files
 output/landing/      pipeline output: one self-contained directory per run — index.html,
-                     config.json and an assets/ folder holding copies of the images
+                     config.json, an assets/ folder holding copies of the images, and
+                     functions/api/lead.js, the Cloudflare Pages Function that receives
+                     the form and writes the lead to Airtable
 output/kits/         pipeline output: the run's composite send-kit page — one HTML that puts the
                      approved copy, the visual and the field rules on a single phone screen
 review/              generated inspection pages, one per run. NOT a deliverable, NOT tracked in git.
@@ -424,5 +442,11 @@ scripts/build-review.ps1  builds one review page for one run. Read-only over out
     one that gets packaged and shipped.* A folder that points outside itself breaks on upload.
   - **A CDN is allowed here and nowhere else.** See the stage 4 paragraph above; this does not
     loosen the offline rule on the creative agent's overlay files.
+  - **It is also the one deliverable that ships server code**, `functions/api/lead.js`, copied
+    from `landing/templates/lead-function.js`. It ships inside the folder for the same reason the
+    images do: the folder is dragged out whole, so `/api/lead` resolves on the host and no domain
+    is hardcoded. **The Airtable token is never in it.** The token, the base id and the table name
+    are Cloudflare environment variables the user sets himself, and the whole point of the function
+    is that a page calling Airtable directly would expose that token to every visitor.
   - **Uploading is always the user's manual action.** The agent has no network and never publishes,
     exactly as no agent ever sends a message to a real person.
