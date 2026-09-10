@@ -9,13 +9,15 @@ tags:
 
 ## Overview
 
-`marketing team` is the AI Content OS working repo. Git conventions: commit per self-contained unit of work, push once at the end of a session, tag the versions worth returning to. As of 2026-09-03 it is no longer a skeleton: four agents, four skills, three agent scratch spaces (`copywriter/drafts/`, `creative/`, `landing/`), three executable scripts in `scripts/`, and real deliverables under `output/marketing/`, `output/creatives/` and `output/kits/`. Its defining property is that **the Obsidian vault root is the repo root**, not `vault/`. `.obsidian/` therefore sits at the top level, and Obsidian sees every file in the project, with `vault/` appearing as one folder among several in the file explorer. Four content folders (`vault/`, `references/`, `scripts/`, `output/`) split the work by lifecycle stage: knowledge in, source material in, automation, deliverables out. `.claude/` holds the Claude Code configuration. Git remote is `nimrodatz/marketing-team`, branch `main`.
+`marketing team` is the AI Content OS working repo. Git conventions: commit per self-contained unit of work, push once at the end of a session, tag the versions worth returning to. As of 2026-09-10 it is no longer a skeleton: four agents, four skills, three agent scratch spaces (`copywriter/drafts/`, `creative/`, `landing/`), five executable scripts in `scripts/`, real deliverables under `output/marketing/`, `output/creatives/`, `output/landing/` and `output/kits/`, and one generated inspection surface in `review/` that is derived from them and tracked nowhere. Its defining property is that **the Obsidian vault root is the repo root**, not `vault/`. `.obsidian/` therefore sits at the top level, and Obsidian sees every file in the project, with `vault/` appearing as one folder among several in the file explorer. Four content folders (`vault/`, `references/`, `scripts/`, `output/`) split the work by lifecycle stage: knowledge in, source material in, automation, deliverables out. `.claude/` holds the Claude Code configuration. Git remote is `nimrodatz/marketing-team`, branch `main`.
 
 ## Open Questions
 
 - Whether the repo needs a branch-per-feature habit or whether committing straight to `main` stays adequate. Single developer, no CI, no collaborators — `main` is fine for now, and the answer changes the day a second person or an automated check enters.
 - ~~Whether the generated PNGs under `output/creatives/` belong in git at all~~ — **resolved 2026-09-03. They stay.** The scratch images under `creative/` are the ones that leave; see the session entry below.
-- No CI and no tests. `scripts/` now holds two PowerShell scripts (`verify-site-facts.ps1`, `gen-image.ps1`) and both are verified by hand; the repo has no package manifest and, given that Node is not even installed on the working machine, probably should not grow one.
+- No CI and no tests. `scripts/` now holds five PowerShell scripts (`verify-site-facts.ps1`, `gen-image.ps1`, `extract-visual-identity.ps1`, `serve-landing.ps1`, `build-review.ps1`) and all five are verified by hand; the repo has no package manifest and, given that Node is not even installed on the working machine, probably should not grow one.
+- **`build-review.ps1` runs on demand and nothing calls it automatically.** That was the user's choice on 2026-09-10, over wiring it into the stage gates. It stays right only as long as the CEO remembers to offer the page at each stop; if the offer starts getting skipped, the pipeline rules are where the fix belongs.
+- **The Markdown renderer inside `build-review.ps1` is hand-rolled and partial.** It covers exactly what the agents write today. A future deliverable using syntax it does not know (nested lists deeper than one level, footnotes, embedded HTML) will render wrong on the review page while the source file stays correct. **The source file is always the authority; the review page is a view.**
 
 ## Session Log
 
@@ -118,3 +120,32 @@ tags:
   `output/landing/` יכיל עותקים כפולים של תמונות שכבר יושבות ב-`output/creatives/` —
   מחיר מודע של כלל האריזה.
 - **Related:** [[agent-landing]], [[visual-identity]], [[agent-roster]], [[agent-creative]], [[agent-ceo-orchestration]], [[marketing-engine-prd]]
+
+### 2026-09-10 - `review/`, סוג התיקייה הראשון שהוא נגזרת ולא מקור [shipped]
+
+- **The trigger:** נימרוד שאל איפה בודקים את הטקסטים של הקמפיין האחרון, ואמר שמבנה
+  התיקיות לא ברור לו מספיק כדי לדעת איפה לחפש מה. **האבחנה: זו לא בעיית תיעוד.**
+  `output/` מחולק **לפי סוג התוצר** ולא לפי ריצה, ולכן ריצה אחת מפוזרת על ארבע תיקיות
+  ובארבעה פורמטים. כדי לאשר שלב צריך לפתוח קובץ md, אחר כך תמונה, אחר כך דף HTML,
+  ואז לזכור לבד מה חסר. מפה כתובה הייתה מסבירה את הפיזור ולא מבטלת אותו.
+- **What was done:** נוסף `scripts/build-review.ps1`, סורק את `output/` לריצה אחת ובונה
+  דף HTML יחיד ב-`review/<slug>-review.html`: הקופי וערכת השטח מרונדרים במלואם, התמונות
+  מוצגות בגודל, דף הנחיתה וערכת השליחה מקושרים, ורשומת הריצה מ-`Publishing Log` מצורפת
+  בסוף. יש לו `-List` שמדפיס את כל הריצות עם מצב חמשת השלבים, ו-`-Open` שפותח בדפדפן.
+  `.gitignore` קיבל סעיף ל-`review/`, ו-`CLAUDE.md` קיבל סעיף חדש וארבע שורות בפריסת הריפו.
+  אומת על ריצה 2 של `peer-warm-group`: הדף נבנה, ה-RTL תקין, וכל הנתיבים היחסיים נפתרים.
+- **Decisions:** **`review/` הוא סוג התיקייה הראשון שהוא נגזרת מלאה, ולכן הראשון שמוחרג
+  מגיט בזכות המעמד הזה.** זה לא סותר את ההכרעה מ-3 בספטמבר על תמונות, שם הטיעון
+  "לא שומרים מה שניתן לייצר מחדש" **נדחה** כי `gpt-image-2` אינו דטרמיניסטי וכל הרצה
+  עולה כסף. כאן הטיעון **כן תקף**: הבנייה דטרמיניסטית, מקומית, חינם, וכל שורה בדף כבר
+  קיימת בקובץ אחר. **הדף אינו ערכת השליחה של שלב 5 ואסור שיהפוך לה**, ערכת השליחה
+  נכתבת בידי המנכ"ל, נבחרת בקפידה ונפתחת בשטח; דף הסקירה נבנה אוטומטית, מציג גם את מה
+  שנדחה, ואף אדם מלבד נימרוד לא רואה אותו. **הוא רץ לפי בקשה בלבד** ולא נקשר לשערי
+  השלבים, בבחירת נימרוד. הדף **מפנה יחסית** ל-`../output/...` ולא אורז עותקים, לפי הכלל
+  שנקבע ב-3 בספטמבר: נתיב יחסי החוצה מותר בתוצר שנצרך בתוך הריפו, ואסור בתוצר שנארז ונשלח.
+- **Notes / Caveats:** מרנדרר ה-Markdown נכתב ידנית ומכסה רק את מה שהסוכנים כותבים היום;
+  **קובץ המקור הוא תמיד הסמכות והדף הוא תצוגה.** ההרצה על ריצה 2 חשפה ממצא אמיתי שהדף
+  נועד בדיוק בשבילו: **לשתי התמונות של הריצה אין קובץ הלבשה עברי** ב-`output/creatives/`,
+  כלומר הכותרת שמלבישה אותן לא קיימת בשום מקום. זה לא באג בדף. זו חתיכה חסרה בשלב 3
+  שאף אחד לא ראה כי אף אחד לא הסתכל על שני סוגי הקבצים באותו מסך.
+- **Related:** [[peer-warm-group-run-2]], [[agent-ceo-orchestration]], [[agent-creative]], [[agent-landing]], [[copy-corrections]], [[marketing-engine-prd]]

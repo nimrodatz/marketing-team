@@ -268,6 +268,30 @@ pwsh -File scripts/gen-image.ps1 -Prompt "<prompt ending in the No-Words clause>
 The script loads `OPENAI_API_KEY` from `.env` itself. **Never pass the key on a command line, never
 echo it, never write it into any file.** The `gpt-image-gen` skill holds the full contract.
 
+## The review page
+
+`output/` is split by **kind of deliverable**, not by run, so one run is scattered across four
+folders and four formats. That is right for the pipeline and wrong for a human trying to approve a
+stage. `scripts/build-review.ps1` closes the gap: it collects everything that exists for one run
+into a single HTML page under `review/`.
+
+```bash
+pwsh -File scripts/build-review.ps1 -List
+pwsh -File scripts/build-review.ps1 -Topic peer-warm-group -Run 2 -Open
+```
+
+With no arguments it builds the most recent run. The page renders the copy file and the outbound
+kit in full, shows every PNG at size, links the landing page and the send kit, attaches the run
+note from `vault/Publishing Log/`, and states at the top which stages did not run.
+
+**It is not the stage 5 send kit and must never become one.** The send kit is written by the CEO,
+curated, and opened in the field. The review page is generated, shows rejected work too, and no one
+but the user ever sees it. It is also **read-only**: it never writes to `output/` or `vault/`.
+
+**It runs on request, not automatically.** The CEO offers it at each approval stop and builds it
+when asked. `review/` is gitignored because the page is a derivative: every line in it already
+exists in a tracked file, and rebuilding is deterministic, local and free.
+
 ## Skills
 
 | Skill | Use it for |
@@ -316,6 +340,9 @@ output/landing/      pipeline output: one self-contained directory per run — i
                      config.json and an assets/ folder holding copies of the images
 output/kits/         pipeline output: the run's composite send-kit page — one HTML that puts the
                      approved copy, the visual and the field rules on a single phone screen
+review/              generated inspection pages, one per run. NOT a deliverable, NOT tracked in git.
+                     Built on demand by scripts/build-review.ps1 and derived entirely from output/
+scripts/build-review.ps1  builds one review page for one run. Read-only over output/ and vault/
 ```
 
 ## Ground rules
