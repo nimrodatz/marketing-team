@@ -31,9 +31,13 @@ param(
 $ErrorActionPreference = 'Stop'
 
 $rootPath = (Resolve-Path -LiteralPath $Root).Path
+
+# A landing folder is the usual target and it always has an index.html. But a
+# review page lives in review/ and links its images as ../output/..., so it can
+# only be checked with the REPO ROOT served. Refusing that was an arbitrary
+# restriction, so a missing index.html is now a warning and not a stop.
 if (-not (Test-Path -LiteralPath (Join-Path $rootPath 'index.html'))) {
-    Write-Error "No index.html in $rootPath. Point -Root at a landing folder."
-    exit 2
+    Write-Host "  Note: no index.html here. Request a file by path, e.g. /review/<name>.html" -ForegroundColor Yellow
 }
 
 $mime = @{

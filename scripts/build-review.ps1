@@ -208,6 +208,13 @@ function Convert-Markdown {
 
 # ─── גילוי ריצות ────────────────────────────────────────────────────────────
 
+# טקסט שמגיע מקובץ סטטוס נכתב ביד, ולכן הוא לא נסמך עליו שיהיה HTML תקין.
+function HtmlEscape {
+    param([string]$Text)
+    if ([string]::IsNullOrEmpty($Text)) { return '' }
+    $Text -replace '&', '&amp;' -replace '<', '&lt;' -replace '>', '&gt;' -replace '"', '&quot;'
+}
+
 function Format-Size {
     param([long]$Bytes)
     if ($Bytes -ge 1MB) { return ('{0:N1} MB' -f ($Bytes / 1MB)) }
@@ -336,8 +343,26 @@ $kitBody = if ($kitExists) {
 }
 
 # שלב 3
+# קובץ הסטטוס של שלב 3, אם קיים. המנכ"ל כותב אותו בשער האישור, אחרי הכרעת נימרוד.
+# בלעדיו הדף מציג תמונה שנדחתה בדיוק כמו תמונה שאושרה, וזה בדיוק מה שהוא לא אמור לעשות.
+$creativeStatus = $null
+$statusFile = Join-Path $creativeDir "$slug-status.json"
+if (Test-Path -LiteralPath $statusFile) {
+    try {
+        $creativeStatus = Get-Content -LiteralPath $statusFile -Raw -Encoding UTF8 | ConvertFrom-Json
+    } catch {
+        Write-Host "  Warning: $slug-status.json exists but is not valid JSON. Ignoring it." -ForegroundColor Yellow
+        $creativeStatus = $null
+    }
+}
+
 $creativeBody = if ($pngs.Count -gt 0) {
     $g = [System.Text.StringBuilder]::new()
+
+    if (-not $creativeStatus) {
+        [void]$g.AppendLine('<p class="hint hint-warn"><strong>אין קובץ סטטוס לריצה הזאת.</strong> התמונות מוצגות בלי לומר מי מהן אושרה ומי נדחתה, כי המידע הזה לא נרשם בשום מקום שאפשר לקרוא. הקובץ החסר: <code>' + $slug + '-status.json</code>.</p>')
+    }
+
     [void]$g.AppendLine('<div class="gallery">')
     foreach ($p in $pngs) {
         $rel = "../output/creatives/$($p.Name)"
@@ -347,10 +372,54 @@ $creativeBody = if ($pngs.Count -gt 0) {
         } else {
             '<span class="muted">אין קובץ הלבשה תואם</span>'
         }
-        [void]$g.AppendLine("<figure><a href=""$rel"" target=""_blank""><img src=""$rel"" alt=""$($p.Name)""></a>")
-        [void]$g.AppendLine("<figcaption><code>$($p.Name)</code><br>$(Format-Size $p.Length) · $overlayLink</figcaption></figure>")
+
+        $st = $null
+        if ($creativeStatus -and $creativeStatus.images) {
+            $st = $creativeStatus.images.PSObject.Properties |
+                Where-Object { $_.Name -eq $p.Name } |
+                Select-Object -First 1 -ExpandProperty Value
+        }
+
+        $figClass = 'card'
+        $stampHtml = ''
+        $noteHtml = ''
+        if ($st) {
+            switch ($st.status) {
+                'approved' {
+                    $label = if ($st.standard) { 'אושרה · תמונת סטנדרט' } else { 'אושרה' }
+                    $stampHtml = "<span class=""stamp stamp-ok"">$label</span>"
+                    $figClass = 'card approved'
+                }
+                'rejected' {
+                    $stampHtml = '<span class="stamp stamp-bad">נדחתה</span>'
+                    $figClass = 'card rejected'
+                }
+                default {
+                    $stampHtml = "<span class=""stamp stamp-unknown"">$(HtmlEscape $st.status)</span>"
+                }
+            }
+            if ($st.note) { $noteHtml = "<p class=""stamp-note"">$(HtmlEscape $st.note)</p>" }
+        }
+
+        [void]$g.AppendLine("<figure class=""$figClass""><a href=""$rel"" target=""_blank""><img src=""$rel"" alt=""$($p.Name)""></a>")
+        [void]$g.AppendLine("<figcaption>$stampHtml<code>$($p.Name)</code><br>$(Format-Size $p.Length) · $overlayLink$noteHtml</figcaption></figure>")
     }
     [void]$g.AppendLine('</div>')
+
+    if ($creativeStatus -and $creativeStatus.superseded) {
+        [void]$g.AppendLine('<div class="superseded"><h4>גרסאות קודמות שנדרסו ואינן על הדיסק</h4>')
+        foreach ($sup in @($creativeStatus.superseded)) {
+            $supLabel = switch ($sup.status) {
+                'rejected' { 'נדחתה' }
+                'approved' { 'אושרה' }
+                default    { HtmlEscape $sup.status }
+            }
+            $supGen = if ($sup.generation) { " <span class=""muted"">· גרסה $($sup.generation)</span>" } else { '' }
+            [void]$g.AppendLine("<p><code>$(HtmlEscape $sup.name)</code> <span class=""stamp stamp-bad"">$supLabel</span>$supGen<br><span class=""muted"">$(HtmlEscape $sup.note)</span></p>")
+        }
+        [void]$g.AppendLine('</div>')
+    }
+
     [void]$g.AppendLine('<p class="hint">התמונה הנקייה היא ללא מילים בכוונה. הכותרת העברית יושבת בקובץ ההלבשה שלצידה, ורק שם רואים את התוצר המלא.</p>')
     $g.ToString()
 } else {
@@ -504,6 +573,20 @@ th{background:var(--bg2);font-weight:600}
 .callout p:last-child{margin-bottom:0}
 .wiki{color:var(--accent);border-bottom:1px dotted var(--accent)}
 .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.1rem}
+.gallery figure.card{padding:.75rem;border:1px solid var(--border);border-radius:12px;margin:0}
+.gallery figure.approved{border-color:#9CBE93;background:#F6FAF5}
+.gallery figure.rejected{border-color:#D9A79B;background:#FBF4F2}
+.gallery figure.rejected img{filter:grayscale(.85) opacity(.55)}
+.gallery figure.rejected:hover img{filter:none}
+.stamp{display:inline-block;font-size:.72rem;font-weight:700;padding:.15rem .6rem;border-radius:100px;margin-bottom:.4rem;direction:rtl}
+.stamp-ok{background:#E6EFE4;color:#3B5C35}
+.stamp-bad{background:#F4DED8;color:#8C3F2C}
+.stamp-unknown{background:#EFEAE6;color:var(--muted)}
+.stamp-note{direction:rtl;text-align:right;font-size:.78rem;line-height:1.6;color:var(--text2);margin:.5rem 0 0}
+.hint-warn{border-right:3px solid #C0705A;background:#FBF4F2;padding:.7rem .9rem;border-radius:6px}
+.superseded{margin-top:1.2rem;padding:.9rem 1.1rem;border:1px dashed var(--border-strong);border-radius:10px;background:#FAF8F5}
+.superseded h4{margin:0 0 .6rem;font-size:.9rem;font-weight:600}
+.superseded p{margin:0 0 .5rem;font-size:.82rem;line-height:1.65}
 figure{margin:0;background:var(--bg2);border:1px solid var(--border);border-radius:10px;
   padding:.6rem;text-align:center}
 figure img{width:100%;height:auto;border-radius:6px;display:block}
