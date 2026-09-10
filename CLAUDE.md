@@ -73,10 +73,25 @@ writes copy must read it first.** Prices, case studies and links come from that 
 > a reader will get. `site-copy.md` and the live site still carry the inaccurate "אצל לקוח אמיתי"; the
 > site is the user's call and is not edited by the engine.
 
-**The brand rests on three source-of-truth files, and each agent reads the ones its output touches:**
+**The brand rests on four source-of-truth files, and each agent reads the ones its output touches:**
 `voice-and-tone.md` (how it sounds, plus the forbidden-words list), `icp-construction.md` (who it is
-for), and `visual-identity.md` (how it looks — the terracotta palette, Heebo/Assistant, the UI
-primitives). The third was extracted from the live site on 2026-09-03 via
+for), `crafts.md` (which trade, added 2026-09-10: the physical world, the jargon and the pain
+flavour of the craft the brief names), and `visual-identity.md` (how it looks: the terracotta
+palette, Heebo/Assistant, the UI primitives).
+
+**`crafts.md` exists because a ban written against one failure became a ban against a whole trade.**
+The creative agent forbade "furniture carpentry" outright after a run-2 image was rejected, which
+also locked out carpenters, a legitimate sub-segment and the trade behind "באים בטוב" itself.
+**What failed in run 2 was gallery aesthetics, not the trade.** So the rule was split: **the
+aesthetic bans stay global and no brief can override them** (gallery, luxury-product and art
+framing; a clean office, open-space or startup look; suits, handshakes and a smiling team around a
+table; identifiable faces), while **the physical world became a variable the brief chooses.**
+Three tiers: **general** (`בנייה כללי`, a deliberate choice and not a fallback), **a specific
+craft**, and **another discipline** (tour guides, musicians), which stays **blocked** until it has
+an `icp-*.md` of its own. **An agent handed a craft that is not in the file stops and asks; it never
+invents a physical world.** Every entry carries `מכויל` or `טיוטה`, and **a draft craft is reported
+for approval before any paid image call**, the same cost-gate logic as everywhere else, because the
+failure that started all this cost a paid call. The third was extracted from the live site on 2026-09-03 via
 `scripts/extract-visual-identity.ps1`. **Any agent that touches design or UI must read it** — an agent
 that invents a palette invents a different one on every run.
 
