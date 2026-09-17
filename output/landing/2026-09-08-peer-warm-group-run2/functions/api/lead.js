@@ -1,5 +1,5 @@
 /*
- * קליטת ליד מטופס דף הנחיתה, ודחיפה לאיירטייבל.
+ * קליטת ליד מטופס דף הנחיתה ומטופס האתר, ודחיפה לאיירטייבל.
  *
  * Cloudflare Pages Function. הנתיב נגזר ממיקום הקובץ: functions/api/lead.js
  * מתורגם ל-POST /api/lead באותו דומיין שבו יושב הדף.
@@ -19,16 +19,24 @@
  * מיפוי השדות. השמאלי הוא מה שהדף שולח, הימני הוא שם העמודה באיירטייבל.
  * זה המקום היחיד לשנות בו אם העמודות אצלך נקראות אחרת.
  * שם עמודה שלא קיים בטבלה יחזיר 422 מאיירטייבל, והדף יראה מצב שגיאה. זה תקין.
+ *
+ * השמות תואמים לטבלת clients בבסיס craft & system, שנקראה ב-2026-09-17.
+ * "מה הפרוייקט?" הוא שדה ההודעה החופשית, והוא היה שם עוד לפני שהיה טופס בקוד.
  */
 const FIELDS = {
-  name: 'שם',
+  name: 'שם לקוח',
   phone: 'טלפון',
+  email: 'אימייל',
   field: 'תחום עבודה',
+  message: 'מה הפרוייקט?',
   source: 'מקור'
 };
 
-/* תקרת אורך לכל ערך. לא ולידציה, אלא חסם על שדה שמישהו ידביק לתוכו טקסט ענק. */
+/* תקרת אורך. לא ולידציה, אלא חסם על שדה שמישהו ידביק לתוכו טקסט ענק.
+   להודעה תקרה נפרדת וגבוהה: שדה טקסט חופשי שנחתך ב-300 תווים
+   מאבד את החצי השני של מה שהפונה כתב, וזה בדיוק החלק שמסביר מה הוא צריך. */
 const MAX_LEN = 300;
+const MAX_LEN_MESSAGE = 2000;
 
 function json(status, body) {
   return new Response(JSON.stringify(body), {
@@ -37,9 +45,9 @@ function json(status, body) {
   });
 }
 
-function clean(value) {
+function clean(value, maxLen) {
   if (typeof value !== 'string') return '';
-  return value.trim().slice(0, MAX_LEN);
+  return value.trim().slice(0, maxLen || MAX_LEN);
 }
 
 export async function onRequest({ request, env }) {
@@ -71,19 +79,31 @@ export async function onRequest({ request, env }) {
 
   const name = clean(payload && payload.name);
   const phone = clean(payload && payload.phone);
+  const email = clean(payload && payload.email);
   const field = clean(payload && payload.field);
+  const message = clean(payload && payload.message, MAX_LEN_MESSAGE);
   const source = clean(payload && payload.source);
 
-  /* אותה דרישה בדיוק שהדף אוכף אצלו. נאכפת שוב כאן,
-     כי ולידציה בדפדפן היא נוחות למשתמש ולא שער. */
-  if (!name || !phone || !field) {
+  /*
+   * חובה: שם וטלפון בלבד.
+   *
+   * זה השתנה ב-2026-09-17, ובכוונה. שני טפסים שונים מזינים את הפונקציה הזו:
+   * דף הנחיתה שואל תחום עבודה, וטופס האתר שואל אימייל והודעה במקומו.
+   * דרישה של "תחום עבודה" היתה מפילה ב-400 כל פנייה שמגיעה מהאתר.
+   *
+   * כל טופס אוכף אצלו בדפדפן את מה שהוא עצמו דורש. האכיפה כאן היא השער,
+   * וולידציה בדפדפן היא נוחות למשתמש ולא תחליף לה.
+   */
+  if (!name || !phone) {
     return json(400, { ok: false });
   }
 
   const fields = {};
   fields[FIELDS.name] = name;
   fields[FIELDS.phone] = phone;
-  fields[FIELDS.field] = field;
+  if (email) fields[FIELDS.email] = email;
+  if (field) fields[FIELDS.field] = field;
+  if (message) fields[FIELDS.message] = message;
   if (source) fields[FIELDS.source] = source;
 
   const url = 'https://api.airtable.com/v0/' +
@@ -99,7 +119,8 @@ export async function onRequest({ request, env }) {
         'Content-Type': 'application/json'
       },
       /* typecast מאפשר לאיירטייבל להמיר טקסט לערך של single select
-         במקום לדחות את הרשומה. בלעדיו עמודת "תחום עבודה" מסוג בחירה תיכשל. */
+         במקום לדחות את הרשומה. בלעדיו עמודת "מקור" תיכשל,
+         והוא גם מה שמאפשר לטלפון מסוג Phone number לקלוט מחרוזת. */
       body: JSON.stringify({ fields, typecast: true })
     });
   } catch (err) {

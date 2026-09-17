@@ -18,3 +18,4 @@ Code, architecture, design decisions, bugfixes and refactors. One file per topic
 - [[multi-domain-expansion]], הרחבה לתחומים נוספים: למה אין צורך בצוותים חדשים, ושלושת הדברים שכבולים לבנייה
 - [[site-repo-integration]], הגבול בין ריפו האתר למנוע השיווק: ריפו נפרד, וולט משותף, תלות חד סטרית, ומה יש בקוד האתר בפועל
 - [[launch-runway]], מסלול ההשקה: מה נשאר עד שליחה בפועל, החוסם היחיד, וההחלטה על הסים
+- [[airtable-lead-intake]], חוזה קליטת הלידים: סכמת העמודות בטבלה `clients`, מה כל טופס שולח, והגבול בין המנוע לניהול הפרויקטים
