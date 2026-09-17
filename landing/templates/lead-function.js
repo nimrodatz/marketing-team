@@ -22,6 +22,10 @@
  *
  * השמות תואמים לטבלת clients בבסיס craft & system, שנקראה ב-2026-09-17.
  * "מה הפרוייקט?" הוא שדה ההודעה החופשית, והוא היה שם עוד לפני שהיה טופס בקוד.
+ *
+ * "מקור" הוא הערוץ ו"קמפיין" הוא הריצה, והפרדה ביניהם אינה קוסמטית:
+ * "מקור" הוא single select, ומזהה ריצה שנשלח לתוכו היה יוצר ערך בחירה חדש
+ * בכל ריצה ומזהם את השדה. זה בדיוק הבאג שתוקן בדף של ריצה 2.
  */
 const FIELDS = {
   name: 'שם לקוח',
@@ -29,7 +33,8 @@ const FIELDS = {
   email: 'אימייל',
   field: 'תחום עבודה',
   message: 'מה הפרוייקט?',
-  source: 'מקור'
+  source: 'מקור',
+  campaign: 'קמפיין'
 };
 
 /* תקרת אורך. לא ולידציה, אלא חסם על שדה שמישהו ידביק לתוכו טקסט ענק.
@@ -83,6 +88,7 @@ export async function onRequest({ request, env }) {
   const field = clean(payload && payload.field);
   const message = clean(payload && payload.message, MAX_LEN_MESSAGE);
   const source = clean(payload && payload.source);
+  const campaign = clean(payload && payload.campaign);
 
   /*
    * חובה: שם וטלפון בלבד.
@@ -105,6 +111,7 @@ export async function onRequest({ request, env }) {
   if (field) fields[FIELDS.field] = field;
   if (message) fields[FIELDS.message] = message;
   if (source) fields[FIELDS.source] = source;
+  if (campaign) fields[FIELDS.campaign] = campaign;
 
   const url = 'https://api.airtable.com/v0/' +
     encodeURIComponent(env.AIRTABLE_BASE_ID) + '/' +
