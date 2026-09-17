@@ -34,8 +34,20 @@ const FIELDS = {
   field: 'תחום עבודה',
   message: 'מה הפרוייקט?',
   source: 'מקור',
-  campaign: 'קמפיין'
+  campaign: 'קמפיין',
+  status: 'סטטוס פנייה'
 };
+
+/*
+ * כל פנייה שמגיעה מטופס נכנסת כליד חדש, תמיד, ולא לפי מה שהדף שולח.
+ *
+ * זה לא נוחות. הקנבן והתהליך של נימרוד בנויים על "סטטוס פנייה",
+ * ורשומה שנוחתת בלי ערך אינה מופיעה באף עמודה ופשוט נעלמת מהעין.
+ * אותר ב-2026-09-17 בשתי השליחות הראשונות, שנחתו בלי סטטוס.
+ *
+ * הערך קבוע בשרת ואינו מגיע מהדפדפן: זה שדה תהליך ולא קלט של הפונה.
+ */
+const STATUS_NEW = 'ליד חדש';
 
 /* תקרת אורך. לא ולידציה, אלא חסם על שדה שמישהו ידביק לתוכו טקסט ענק.
    להודעה תקרה נפרדת וגבוהה: שדה טקסט חופשי שנחתך ב-300 תווים
@@ -112,6 +124,7 @@ export async function onRequest({ request, env }) {
   if (message) fields[FIELDS.message] = message;
   if (source) fields[FIELDS.source] = source;
   if (campaign) fields[FIELDS.campaign] = campaign;
+  fields[FIELDS.status] = STATUS_NEW;
 
   const url = 'https://api.airtable.com/v0/' +
     encodeURIComponent(env.AIRTABLE_BASE_ID) + '/' +
