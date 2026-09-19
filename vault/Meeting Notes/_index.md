@@ -19,3 +19,4 @@ Code, architecture, design decisions, bugfixes and refactors. One file per topic
 - [[site-repo-integration]], הגבול בין ריפו האתר למנוע השיווק: ריפו נפרד, וולט משותף, תלות חד סטרית, ומה יש בקוד האתר בפועל
 - [[launch-runway]], מסלול ההשקה: מה נשאר עד שליחה בפועל, החוסם היחיד, וההחלטה על הסים
 - [[airtable-lead-intake]], חוזה קליטת הלידים: סכמת העמודות בטבלה `clients`, מה כל טופס שולח, והגבול בין המנוע לניהול הפרויקטים
+- [[positioning-pain-first]], היפוך הציר: כאב לפני הוכחה, ערך לפני בקשה, ושתי ההכרעות שפותחות את ריצה 3
