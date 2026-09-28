@@ -1,0 +1,19 @@
+{
+  "client": "baimbetov",
+  "siteUrl": "https://baimbetov.me/",
+  "sourceOfTruth": "clients/baimbetov/facts.md",
+  "facts": [
+    { "group": "וואטסאפ",  "label": "מספר wa.me: 972506762006",            "needles": ["972506762006"] },
+
+    { "group": "שירותים",  "label": "פרגולות",                              "needles": ["פרגולות"] },
+    { "group": "שירותים",  "label": "דקים",                                 "needles": ["דקים"] },
+    { "group": "שירותים",  "label": "מבני עץ",                              "needles": ["מבני עץ"] },
+
+    { "group": "הוכחה",    "label": "קונסטרוקטור בצוות",                    "needles": ["קונסטרוקטור"] },
+
+    { "group": "הבטחות",   "label": "הצעת מחיר מפורטת",                     "needles": ["הצעת מחיר מפורטת"] },
+    { "group": "הבטחות",   "label": "אין תוספת בלי אישור",                  "needles": ["בלי האישור שלכם"] },
+
+    { "group": "אזור",     "label": "מחדרה ועד אשדוד",                      "needles": ["מחדרה ועד אשדוד"] }
+  ]
+}
