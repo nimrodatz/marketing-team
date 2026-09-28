@@ -250,11 +250,11 @@ output/creatives/<YYYY-MM-DD>-<topic>-run<N>-<nn>.html    ← שכבת ההלב�
   בכלל** — סריקה מלאה החזירה אפס נכסים ויזואליים. המשתמש אישר שזו הייתה בדיקת ציות ולא
   בקשה אמיתית, אך הפער נשאר פתוח. סוגיית **גוף שני יחיד מול רבים** בכותרת הוויזואל נותרה
   לא מוכרעת — היא התייתרה בריצה הזו עם מחיקת ההלבשה, ותחזור בריצת צינור מלאה.
-- **Related:** [[agent-copywriter]], [[agent-ceo-orchestration]], [[icp-construction]], [[voice-and-tone]], [[agent-roster]], [[outbound-construction-run-1]]
+- **Related:** [[agent-copywriter]], [[agent-ceo-orchestration]], [[icp-construction]], [[voice-and-tone]], [[agent-roster]], [[outbound-construction-turnkey-run-1]]
 
 ### 2026-09-03 — מוונציית שמות פלט עמידה להרצות חוזרות [shipped]
 
 - **What was done:** זוג הפלט בסעיף 7 שונה ל-`output/creatives/<YYYY-MM-DD>-<topic>-run<N>-<nn>.png` ו-`.html`, בקובץ הסוכן ובפתק הזה. `output/creatives/2026-09-03-icp-evening-desk-01.png` הועבר ב-`git mv` ל-`creative/`, לצד הפרומפט שלו ב-`prompts-icp-evening-desk.md`.
 - **Decisions:** **תמונת הניסוי אינה תוצר צינור.** היא נוצרה בסשן בניית הסוכן, בלי בריף ובלי קובץ הלבשה זוג, ולכן מקומה בשטח העבודה הפרטי ולא ב-`output/creatives/`. התוצאה: `output/creatives/` מכיל מעתה **רק זוגות PNG+HTML מלאים**, וכלל הזוג הפך לניתן לאכיפה מכנית במקום לבדיקה בעין.
 - **Notes / Caveats:** ה-Open Question שקבעה ש"שמות הפלט מתוארכים ולכן אינם נדרסים" **הוסרה — הטענה הייתה שגויה**, והיא זו שהובילה לבאג: תאריך לבדו אינו ייחודי, ושתי ריצות על אותו נושא באותו יום דורסות זו את זו. אצל הקריאייטיב זה חמור יותר מאשר אצל שאר הסוכנים, כי התוצר הנדרס **שולם עליו**. נוספה לסוכן הוראה לעצור על בריף בלי `<N>` **לפני ניסוח הפרומפט**, לא רק לפני הקריאה.
-- **Related:** [[agent-campaigner]], [[agent-roster]], [[agent-ceo-orchestration]], [[agent-copywriter]], [[outbound-construction-run-1]]
+- **Related:** [[agent-campaigner]], [[agent-roster]], [[agent-ceo-orchestration]], [[agent-copywriter]], [[outbound-construction-turnkey-run-1]]

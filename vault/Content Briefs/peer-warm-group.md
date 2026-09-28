@@ -1,5 +1,6 @@
 ---
 client: craft-system
+channel: group-post
 tags:
   - brief
   - outbound

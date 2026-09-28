@@ -26,7 +26,7 @@ tools: Read, Write, Edit, Glob, Grep
 
 | # | קובץ | מה הוא נותן לך |
 |---|---|---|
-| 1 | `output/marketing/<YYYY-MM-DD>-<topic>-run<N>-copy.md` | **החומר**: הזוויות, ההוקים, גופי הפנייה, מחרוזות הדף |
+| 1 | `output/<client>/marketing/<YYYY-MM-DD>-<topic>-run<N>-copy.md` | **החומר**: הזוויות, ההוקים, גופי הפנייה, מחרוזות הדף |
 | 2 | `vault/Engine/house-standards.md` | **הכללים של כל לקוח**: המילים האסורות (§2), עובדות (§4), גוף שני (§5) |
 | 3 | `clients/<client>/client.md` | **המניפסט**: הקווים האדומים (§4), **יעד הפריסה ונקודת הקצה של הטופס** (§5) |
 | 4 | קובץ ה-`facts` מהמניפסט | **מה**: העובדות הנעולות, ניסוחי העוגן, קישור הוואטסאפ |
@@ -35,8 +35,8 @@ tools: Read, Write, Edit, Glob, Grep
 | 7 | קובץ ה-`voice` מהמניפסט | **איך זה נשמע**: מילים אסורות נוספות |
 | 8 | קובץ ה-`playbook` מהמניפסט | **ההחלטות**: מפת הסקשנים ושדות הטופס (§7), ה-Ask (§4), עוגן הסרת הסיכון (§5) |
 
-אתר את קובץ הקופי עם `Glob` על `output/marketing/*-run*-copy.md`, שמו משתנה לפי תאריך.
-סרוק גם את `output/creatives/` באותו `<topic>-run<N>` (הנכסים הוויזואליים)
+אתר את קובץ הקופי עם `Glob` על `output/<client>/marketing/*-<topic>-run<N>-copy.md`, שמו משתנה לפי תאריך.
+סרוק גם את `output/<client>/creatives/` באותו `<topic>-run<N>` (הנכסים הוויזואליים)
 ואת `landing/reference/` (רפרנסים עיצוביים שהמשתמש העלה; ריק זה מצב תקין).
 
 **הסדר לא שרירותי.** מי שקורא קודם את הזהות הוויזואלית מתחיל לעצב, ורק אחר כך מחפש
@@ -189,12 +189,14 @@ JS ואנילי קצר ששולח `POST` עם `Content-Type: application/json`. 
 ## 7. פלט
 
 ```
-output/landing/<YYYY-MM-DD>-<topic>-run<N>/
+output/<client>/landing/<YYYY-MM-DD>-<topic>-run<N>/
     index.html
     config.json
     assets/<שם התמונה>.png
     functions/api/lead.js
 ```
+
+`<client>` הוא הערך של שדה `client` בבריף, אותו slug של `clients/<client>/`. תיקייה שעוד לא קיימת נוצרת עם הקובץ.
 
 **התמונות מועתקות פנימה ל-`assets/`** ומופנות יחסית (`assets/<name>.png`).
 העתקה נעשית ב-`Read` על המקור ו-`Write` ליעד, אין לך `Bash`.
@@ -214,14 +216,14 @@ output/landing/<YYYY-MM-DD>-<topic>-run<N>/
   "topic": "<topic>",
   "run": <N>,
   "date": "<YYYY-MM-DD>",
-  "source_copy": "output/marketing/<...>-copy.md",
+  "source_copy": "output/<client>/marketing/<...>-copy.md",
   "primary_cta": "whatsapp",
   "client": "<client>",
   "whatsapp_url": "<קישור ה-wa.me מקובץ ה-facts>?text=...",
   "whatsapp_text_decoded": "<הטקסט לפני הקידוד>",
   "webhook_url": null,
   "webhook_status": "unconfigured",
-  "assets": [{ "file": "assets/01.png", "source": "output/creatives/<...>.png" }],
+  "assets": [{ "file": "assets/01.png", "source": "output/<client>/creatives/<...>.png" }],
   "target_host": "cloudflare-pages"
 }
 ```

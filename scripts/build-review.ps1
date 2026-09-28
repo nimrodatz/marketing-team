@@ -1,15 +1,15 @@
 <#
 .SYNOPSIS
-    Craft & System - בניית דף סקירה אחד לריצת פייפליין.
+    מנוע השיווק - בניית דף סקירה אחד לריצת פייפליין של לקוח אחד.
 
 .DESCRIPTION
     למה זה קיים:
-      תוצרי ריצה אחת מפוזרים על ארבע תיקיות ב-output/ , כי החלוקה שם היא לפי סוג
+      תוצרי ריצה אחת מפוזרים על ארבע תיקיות ב-output/<client>/ , כי החלוקה שם היא לפי סוג
       התוצר ולא לפי ריצה. כדי לאשר שלב צריך לפתוח קובץ md, ואז תמונה, ואז דף HTML,
       ואז לזכור מה חסר. הסקריפט הזה אוסף את כל מה שקיים לריצה אחת לדף אחד.
 
     מה זה לא:
-      **זו לא ערכת השליחה של שלב 5.** ערכת השליחה יושבת ב-output/kits/ , נכתבת
+      **זו לא ערכת השליחה של שלב 5.** ערכת השליחה יושבת ב-output/<client>/kits/ , נכתבת
       בידי המנכ"ל, ונועדה לפתיחה בשטח. דף הסקירה הוא כלי בקרה פנימי בלבד:
       הוא נבנה אוטומטית, הוא לא תוצר, והוא לא עובר לאף אדם אחר.
 
@@ -21,6 +21,10 @@
       review/<date>-<topic>-run<N>-review.html
       התיקייה מוחרגת מגיט. הדף נגזר במלואו מהתוצרים, ולכן אין מה לשמור בהיסטוריה.
 
+    לקוח:
+      -Client בוחר את התיקייה output/<client>/ . ברירת המחדל craft-system, הלקוח
+      הראשון, כדי שכל פקודה שנכתבה לפני שהמנוע שירת כמה לקוחות תמשיך לעבוד.
+
     קודי יציאה:
       0 = הדף נבנה · 1 = לא נמצאה ריצה תואמת · 2 = הבדיקה עצמה נכשלה
 
@@ -28,10 +32,12 @@
     pwsh -File scripts/build-review.ps1
     pwsh -File scripts/build-review.ps1 -List
     pwsh -File scripts/build-review.ps1 -Topic peer-warm-group -Run 2 -Open
+    pwsh -File scripts/build-review.ps1 -Client baimbetov -List
 #>
 
 [CmdletBinding()]
 param(
+    [string]$Client = 'craft-system',
     [string]$Topic,
     [int]$Run = 0,
     [switch]$List,
@@ -42,6 +48,9 @@ $ErrorActionPreference = 'Stop'
 $OutputEncoding = [System.Text.Encoding]::UTF8
 
 $RepoRoot = Split-Path -Parent $PSScriptRoot
+
+# יחסי לשורש המאגר, כי הוא משמש גם בנתיבים על הדיסק וגם בקישורים שבדף (../$outRoot/...).
+$outRoot = "output/$Client"
 
 # ─── מרנדרר Markdown מינימלי ────────────────────────────────────────────────
 # מספיק בדיוק לפורמט שהסוכנים כותבים: כותרות, טבלאות, קוד, callouts, רשימות.
@@ -222,9 +231,9 @@ function Format-Size {
     return "$Bytes B"
 }
 
-$marketingDir = Join-Path $RepoRoot 'output/marketing'
+$marketingDir = Join-Path $RepoRoot "$outRoot/marketing"
 if (-not (Test-Path -LiteralPath $marketingDir)) {
-    Write-Error "לא נמצאה התיקייה output/marketing. הרץ מתוך שורש המאגר."
+    Write-Error "לא נמצאה התיקייה $outRoot/marketing. בדוק את -Client, או שללקוח הזה עוד אין ריצה."
     exit 2
 }
 
@@ -242,7 +251,7 @@ Get-ChildItem -LiteralPath $marketingDir -Filter '*-copy.md' -File | ForEach-Obj
 }
 
 if ($runs.Count -eq 0) {
-    Write-Error "לא נמצא אף קובץ קופי ב-output/marketing."
+    Write-Error "לא נמצא אף קובץ קופי ב-$outRoot/marketing."
     exit 1
 }
 
@@ -250,13 +259,13 @@ $runs = $runs | Sort-Object Date, Topic, Run
 
 if ($List) {
     Write-Host ""
-    Write-Host "  ריצות שנמצאו ב-output/" -ForegroundColor Cyan
+    Write-Host "  ריצות שנמצאו ב-$outRoot/" -ForegroundColor Cyan
     Write-Host ""
     $runs | ForEach-Object {
         $kit  = Get-ChildItem -LiteralPath $marketingDir -Filter "$($_.Slug)-outbound-kit.md" -File -ErrorAction SilentlyContinue
-        $pngs = @(Get-ChildItem -LiteralPath (Join-Path $RepoRoot 'output/creatives') -Filter "$($_.Slug)-*.png" -File -ErrorAction SilentlyContinue)
-        $land = Test-Path -LiteralPath (Join-Path $RepoRoot "output/landing/$($_.Slug)")
-        $send = Test-Path -LiteralPath (Join-Path $RepoRoot "output/kits/$($_.Slug)-kit.html")
+        $pngs = @(Get-ChildItem -LiteralPath (Join-Path $RepoRoot "$outRoot/creatives") -Filter "$($_.Slug)-*.png" -File -ErrorAction SilentlyContinue)
+        $land = Test-Path -LiteralPath (Join-Path $RepoRoot "$outRoot/landing/$($_.Slug)")
+        $send = Test-Path -LiteralPath (Join-Path $RepoRoot "$outRoot/kits/$($_.Slug)-kit.html")
         $mark = { param($ok) if ($ok) { '✔' } else { '·' } }
         Write-Host ("  {0}  run{1}  {2}   שלב1 {3}  שלב2 {4}  שלב3 {5}({6})  שלב4 {7}  שלב5 {8}" -f `
             $_.Date, $_.Run, $_.Topic.PadRight(28), (& $mark $true), (& $mark ([bool]$kit)),
@@ -285,9 +294,9 @@ $slug = $target.Slug
 
 $copyPath    = $target.Copy
 $kitPath     = Join-Path $marketingDir "$slug-outbound-kit.md"
-$creativeDir = Join-Path $RepoRoot 'output/creatives'
-$landingDir  = Join-Path $RepoRoot "output/landing/$slug"
-$sendKitPath = Join-Path $RepoRoot "output/kits/$slug-kit.html"
+$creativeDir = Join-Path $RepoRoot "$outRoot/creatives"
+$landingDir  = Join-Path $RepoRoot "$outRoot/landing/$slug"
+$sendKitPath = Join-Path $RepoRoot "$outRoot/kits/$slug-kit.html"
 $notePath    = Join-Path $RepoRoot "vault/Publishing Log/$($target.Topic)-run-$($target.Run).md"
 
 $pngs = @()
@@ -365,10 +374,10 @@ $creativeBody = if ($pngs.Count -gt 0) {
 
     [void]$g.AppendLine('<div class="gallery">')
     foreach ($p in $pngs) {
-        $rel = "../output/creatives/$($p.Name)"
+        $rel = "../$outRoot/creatives/$($p.Name)"
         $overlay = Join-Path $creativeDir ($p.BaseName + '.html')
         $overlayLink = if (Test-Path -LiteralPath $overlay) {
-            "<a href=""../output/creatives/$($p.BaseName).html"" target=""_blank"">פתח את שכבת ההלבשה העברית</a>"
+            "<a href=""../$outRoot/creatives/$($p.BaseName).html"" target=""_blank"">פתח את שכבת ההלבשה העברית</a>"
         } else {
             '<span class="muted">אין קובץ הלבשה תואם</span>'
         }
@@ -430,9 +439,9 @@ $creativeBody = if ($pngs.Count -gt 0) {
 $landingExists = Test-Path -LiteralPath $landingDir
 $landingBody = if ($landingExists) {
     $l = [System.Text.StringBuilder]::new()
-    [void]$l.AppendLine("<p><a class=""btn"" href=""../output/landing/$slug/index.html"" target=""_blank"">פתח את דף הנחיתה בדפדפן</a></p>")
+    [void]$l.AppendLine("<p><a class=""btn"" href=""../$outRoot/landing/$slug/index.html"" target=""_blank"">פתח את דף הנחיתה בדפדפן</a></p>")
     [void]$l.AppendLine('<p class="hint">לבדיקה בטלפון אמיתי, על אותה רשת ובלי להעלות לשום שרת:</p>')
-    [void]$l.AppendLine("<pre class=""snippet""><code>pwsh -File scripts/serve-landing.ps1 -Root ""output/landing/$slug""</code></pre>")
+    [void]$l.AppendLine("<pre class=""snippet""><code>pwsh -File scripts/serve-landing.ps1 -Root ""$outRoot/landing/$slug""</code></pre>")
     if ($landingAssets.Count -gt 0) {
         $total = ($landingAssets | Measure-Object -Property Length -Sum).Sum
         [void]$l.AppendLine('<h3>נכסים בתוך התיקייה</h3><div class="table-wrap"><table><thead><tr><th>קובץ</th><th>גודל</th></tr></thead><tbody>')
@@ -453,7 +462,7 @@ $landingBody = if ($landingExists) {
 # שלב 5
 $sendExists = Test-Path -LiteralPath $sendKitPath
 $sendBody = if ($sendExists) {
-    "<p><a class=""btn"" href=""../output/kits/$slug-kit.html"" target=""_blank"">פתח את ערכת השליחה</a></p>" +
+    "<p><a class=""btn"" href=""../$outRoot/kits/$slug-kit.html"" target=""_blank"">פתח את ערכת השליחה</a></p>" +
     '<p class="hint">זה התוצר שנפתח בטלפון בשטח. הוא לא מוסיף אף מילה חדשה, הכל מועתק מהקבצים המאושרים שלמעלה.</p>'
 } else {
     '<p class="empty">ערכת השליחה לא נכתבה. שלב 5 לא רץ, והריצה אינה סגורה.</p>'
@@ -495,15 +504,15 @@ if ($missing.Count -gt 0) {
 [void]$html.AppendLine('</header>')
 
 Add-Stage -Id 'stage1' -Num '1' -Title 'קופי, זוויות והוקים' -Exists $true `
-    -PathLabel "output/marketing/$slug-copy.md" -Body $copyBody
+    -PathLabel "$outRoot/marketing/$slug-copy.md" -Body $copyBody
 Add-Stage -Id 'stage2' -Num '2' -Title 'ערכת שטח, Outbound' -Exists $kitExists `
-    -PathLabel "output/marketing/$slug-outbound-kit.md" -Body $kitBody -Collapsed $true
+    -PathLabel "$outRoot/marketing/$slug-outbound-kit.md" -Body $kitBody -Collapsed $true
 Add-Stage -Id 'stage3' -Num '3' -Title 'קריאייטיב, תמונות ושכבת הלבשה' -Exists ($pngs.Count -gt 0) `
-    -PathLabel "output/creatives/$slug-*.png" -Body $creativeBody
+    -PathLabel "$outRoot/creatives/$slug-*.png" -Body $creativeBody
 Add-Stage -Id 'stage4' -Num '4' -Title 'דף נחיתה' -Exists $landingExists `
-    -PathLabel "output/landing/$slug/" -Body $landingBody
+    -PathLabel "$outRoot/landing/$slug/" -Body $landingBody
 Add-Stage -Id 'stage5' -Num '5' -Title 'ערכת שליחה' -Exists $sendExists `
-    -PathLabel "output/kits/$slug-kit.html" -Body $sendBody
+    -PathLabel "$outRoot/kits/$slug-kit.html" -Body $sendBody
 Add-Stage -Id 'note' -Num '★' -Title 'רשומת הריצה ביומן הפרסום' -Exists $noteExists `
     -PathLabel "vault/Publishing Log/$($target.Topic)-run-$($target.Run).md" -Body $noteBody -Collapsed $true
 

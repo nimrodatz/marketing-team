@@ -26,7 +26,7 @@ tools: Read, Write, Edit, Glob, Grep, Bash
 
 | # | קובץ | מה הוא נותן לך |
 |---|---|---|
-| 1 | `output/marketing/<YYYY-MM-DD>-<topic>-run<N>-copy.md` | **החומר**: 3 זוויות, 9 הוקים, 3 גופי פנייה |
+| 1 | `output/<client>/marketing/<YYYY-MM-DD>-<topic>-run<N>-copy.md` | **החומר**: 3 זוויות, 9 הוקים, 3 גופי פנייה |
 | 2 | `vault/Engine/house-standards.md` | **הכללים של כל לקוח**: המילים האסורות (§2), **תמונות** (§6), **שערים** (§7) |
 | 3 | `clients/<client>/client.md` | **המניפסט**: **סטטוס הלקוח**, איפה יושב כל קובץ מותג, הקווים האדומים (§4) |
 | 4 | קובץ ה-`facts` מהמניפסט | **מה**: העובדות הנעולות, ניסוחי העוגן |
@@ -38,7 +38,7 @@ tools: Read, Write, Edit, Glob, Grep, Bash
 **בקובץ ה-`world` קרא את הכללים הכלליים שלו ואת הערך שהבריף נקב בו**, אם הוא בנוי
 מערכים (כמו קראפטים). בריף בלי שדה כזה: ברירת המחדל שהמניפסט מציין, וציין זאת בדיווח.
 
-אתר את קובץ הקופי עם `Glob` על `output/marketing/*-run<N>-copy.md`, שמו משתנה לפי תאריך.
+אתר את קובץ הקופי עם `Glob` על `output/<client>/marketing/*-run<N>-copy.md`, שמו משתנה לפי תאריך.
 
 **הסדר לא שרירותי.** מי שקורא קודם את ה-ICP מתחיל לדמיין סצנה משלו במקום לתרגם זווית,
 והבידול שהקופירייטרית ייצרה נמחק.
@@ -214,9 +214,11 @@ no words, no letters, no signage, no logos, no captions
 לכל ויזואל, **שני קבצים באותה תיקייה** (ההפניה ביניהם יחסית, ולכן הם לא נפרדים):
 
 ```
-output/creatives/<YYYY-MM-DD>-<topic>-run<N>-<nn>.png     ← התמונה הנקייה
-output/creatives/<YYYY-MM-DD>-<topic>-run<N>-<nn>.html    ← שכבת ההלבשה העברית
+output/<client>/creatives/<YYYY-MM-DD>-<topic>-run<N>-<nn>.png     ← התמונה הנקייה
+output/<client>/creatives/<YYYY-MM-DD>-<topic>-run<N>-<nn>.html    ← שכבת ההלבשה העברית
 ```
+
+`<client>` הוא הערך של שדה `client` בבריף, אותו slug של `clients/<client>/`. תיקייה שעוד לא קיימת נוצרת עם הקובץ.
 
 `<nn>` הוא `01` / `02` / `03` לפי מספר הזווית.
 

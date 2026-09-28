@@ -14,8 +14,8 @@
     verification tool is not worth an admin shell.
 
 .EXAMPLE
-    pwsh -File scripts/serve-landing.ps1 -Root "output/landing/2026-09-08-peer-warm-group-run2"
-    pwsh -File scripts/serve-landing.ps1 -Root "output/landing/<dir>" -Port 8080
+    pwsh -File scripts/serve-landing.ps1 -Root "output/craft-system/landing/2026-09-08-peer-warm-group-run2"
+    pwsh -File scripts/serve-landing.ps1 -Root "output/<client>/landing/<dir>" -Port 8080
 #>
 
 [CmdletBinding()]

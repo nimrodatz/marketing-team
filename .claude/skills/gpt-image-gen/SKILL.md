@@ -76,7 +76,7 @@ them, and stop. Approval for one run never carries over to the next.
 One line:
 
 ```bash
-pwsh -File scripts/gen-image.ps1 -Prompt "<the full prompt>" -OutFile "output/creatives/<name>.png"
+pwsh -File scripts/gen-image.ps1 -Prompt "<the full prompt>" -OutFile "output/<client>/creatives/<name>.png"
 ```
 
 | Parameter | Required | Default | Notes |
@@ -130,7 +130,7 @@ no words, no letters, no signage, no logos, no captions
 |---|---|
 | `creative/` | The agent's scratch space — experiments, prompt drafts. Never a deliverable |
 | `creative/reference/` | Inspiration and reference material |
-| `output/creatives/` | Final assets: the clean PNG plus its overlay file |
+| `output/<client>/creatives/` | Final assets: the clean PNG plus its overlay file |
 
-Marketing **text** deliverables never go in `output/creatives/` — they live in
-`output/marketing/`.
+Marketing **text** deliverables never go in `output/<client>/creatives/` — they live in
+`output/<client>/marketing/`.

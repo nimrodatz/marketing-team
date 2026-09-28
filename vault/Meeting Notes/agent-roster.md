@@ -8,7 +8,7 @@ tags:
 
 ## Overview
 
-מפת הצוות של [[marketing-engine-prd]]: מי הסוכנים במנוע השיווק, מה הקובץ של כל אחד, מה הקלט והפלט שלו, ומי מפעיל אותו. נכון ל-2026-09-03 **הצוות מונה ארבעה סוכנים, כולם קיימים**: המנכ"ל — שהוא הסשן הראשי עצמו ולא קובץ agent — **הקופירייטרית** ([[agent-copywriter]]), **הקמפיינר** ([[agent-campaigner]]), **הקריאייטיב** ([[agent-creative]]) ו**דפי הנחיתה** ([[agent-landing]]). **נכון ל-2026-09-08 כל ארבעתם הורצו לפחות פעם אחת, כסוכנים רשומים** — שני הראשונים ב-[[outbound-construction-run-1]], הקריאייטיב ב-[[peer-intro-groups-run-1]], ודפי הנחיתה ב-[[peer-warm-group-run-1]], שהיא גם הריצה הראשונה שעברה את חמשת השלבים במלואם. עם כניסת דפי הנחיתה הפייפליין מונה **חמישה שלבים** — הבקרה של המנכ"ל זזה משלב 4 לשלב 5, בדיוק כפי שזזה מ-3 ל-4 כשנכנס הקריאייטיב. הפתק הזה הוא מפת הסטטוס; האפיון המעמיק של כל סוכן חי בפתק הייעודי שלו.
+מפת הצוות של [[marketing-engine-prd]]: מי הסוכנים במנוע השיווק, מה הקובץ של כל אחד, מה הקלט והפלט שלו, ומי מפעיל אותו. נכון ל-2026-09-03 **הצוות מונה ארבעה סוכנים, כולם קיימים**: המנכ"ל — שהוא הסשן הראשי עצמו ולא קובץ agent — **הקופירייטרית** ([[agent-copywriter]]), **הקמפיינר** ([[agent-campaigner]]), **הקריאייטיב** ([[agent-creative]]) ו**דפי הנחיתה** ([[agent-landing]]). **נכון ל-2026-09-08 כל ארבעתם הורצו לפחות פעם אחת, כסוכנים רשומים** — שני הראשונים ב-[[outbound-construction-turnkey-run-1]], הקריאייטיב ב-[[peer-intro-groups-run-1]], ודפי הנחיתה ב-[[peer-warm-group-run-1]], שהיא גם הריצה הראשונה שעברה את חמשת השלבים במלואם. עם כניסת דפי הנחיתה הפייפליין מונה **חמישה שלבים** — הבקרה של המנכ"ל זזה משלב 4 לשלב 5, בדיוק כפי שזזה מ-3 ל-4 כשנכנס הקריאייטיב. הפתק הזה הוא מפת הסטטוס; האפיון המעמיק של כל סוכן חי בפתק הייעודי שלו.
 
 ## Open Questions
 
@@ -249,10 +249,10 @@ tags:
 
 ### 2026-09-03 — הקמפיינר נבנה והצוות הושלם [shipped]
 
-- **What was done:** הקמפיינר עבר מ-`[planned]` לקיים בעקבות כתיבת `.claude/agents/campaigner.md` ו-[[agent-campaigner]]. מפרטו בטבלה עודכן במלואו: תפקיד כארכיטקט Outbound, רשימת כלים מלאה, סדר הקלטים, **חמישה** רכיבי חובה במקום ארבעה, ו-callout חדש עם מיפוי זווית→רכיב. הצוות הפעיל עלה משניים לשלושה, והפייפליין ניתן להרצה מקצה לקצה בפעם הראשונה — ואכן הורץ, [[outbound-construction-run-1]].
+- **What was done:** הקמפיינר עבר מ-`[planned]` לקיים בעקבות כתיבת `.claude/agents/campaigner.md` ו-[[agent-campaigner]]. מפרטו בטבלה עודכן במלואו: תפקיד כארכיטקט Outbound, רשימת כלים מלאה, סדר הקלטים, **חמישה** רכיבי חובה במקום ארבעה, ו-callout חדש עם מיפוי זווית→רכיב. הצוות הפעיל עלה משניים לשלושה, והפייפליין ניתן להרצה מקצה לקצה בפעם הראשונה — ואכן הורץ, [[outbound-construction-turnkey-run-1]].
 - **Decisions:** `Edit`, `Glob` ו-`Grep` נוספו לכלי הקמפיינר מעבר למפרט המקורי בפתק הזה ומעבר ל-`Read/Write/Edit` שנתבקשו — בלי `Glob` הוא לא מאתר קובץ קופי ששמו מתוארך, ובלי `Grep` הוא לא סורק את עצמו מול המילים האסורות; שניהם קריאה בלבד ולכן הבידוד נשמר. נוסף **מיפוי זווית→רכיב** שלא היה במפרט המקורי: הערכה צורכת תשעה הוקים ומייצרת שני פתיחים, ובלי כלל מפורש הסוכן ממצע את שלוש הזוויות ומוחק את הבידול שהכרעת המיזוג נועדה לייצר. ה-Ask נעול ל-**15 דקות** לפי `site-copy.md`, וה-Open Question על גישת רשת לקמפיינר **נסגרה סופית** — כתיבת קבצים בלבד, כפי שהייתה הנטייה.
 - **Notes / Caveats:** בריצה הראשונה הקמפיינר **לא רץ כסוכן רשום** אלא דרך סוכן כללי, כי רישום הסוכנים נטען בפתיחת סשן וקובץ הסוכן נוצר באותו סשן — בידוד הכלים היה הוראה ולא מנגנון. נרשם כ-Open Question ולתיקון בריצה 2. סוכן הקריאייטיב (יובל) לא נגע בעדכון הזה.
-- **Related:** [[agent-campaigner]], [[agent-copywriter]], [[outbound-construction-run-1]], [[outbound-construction-turnkey]], [[agent-ceo-orchestration]], [[marketing-engine-prd]]
+- **Related:** [[agent-campaigner]], [[agent-copywriter]], [[outbound-construction-turnkey-run-1]], [[outbound-construction-turnkey]], [[agent-ceo-orchestration]], [[marketing-engine-prd]]
 
 ### 2026-09-03 — סוכן הקריאייטיב נבנה והצוות הושלם [shipped]
 
@@ -273,14 +273,14 @@ tags:
   החזיר exit 2 בלי לגעת ב-API. אימות שהתמונה חזרה נקייה נשען על קריאה ולא על OCR.
   נוקו גם שאריות מגרסת הסדנה — `package.json` על סטאק Gemini/Node נמחק ו-`.env.example`
   שוכתב ל-`OPENAI_API_KEY`. הקופירייטרית והקמפיינר לא נגעו בעדכון הזה.
-- **Related:** [[agent-creative]], [[agent-campaigner]], [[agent-copywriter]], [[agent-ceo-orchestration]], [[marketing-engine-prd]], [[repo-structure]], [[outbound-construction-run-1]]
+- **Related:** [[agent-creative]], [[agent-campaigner]], [[agent-copywriter]], [[agent-ceo-orchestration]], [[marketing-engine-prd]], [[repo-structure]], [[outbound-construction-turnkey-run-1]]
 
 ### 2026-09-03 — מוונציית שמות פלט עמידה להרצות חוזרות [shipped]
 
 - **What was done:** טבלאות הפלט של שלושת הסוכנים בפתק הזה עודכנו למוונציה `<date>-<topic>-run<N>-<kind>`, יחד עם קובצי הסוכנים עצמם, `CLAUDE.md` ופתקי המפרט [[agent-copywriter]], [[agent-campaigner]], [[agent-creative]] ו-[[agent-ceo-orchestration]].
 - **Decisions:** **הבעיה סווגה מחדש מנקודתית לרוחבית.** ה-Open Question הקודמת תיארה רק את `outbound-kit.md` הקבוע, אבל גם הקופי וגם הוויזואלים נדרסים בהרצה חוזרת על אותו נושא באותו יום — שם מתוארך אינו מספיק. לכן התיקון חל על שלושת הסוכנים ולא על הקמפיינר בלבד.
 - **Notes / Caveats:** ה-Open Question על השם הקבוע **הוסרה**. שלוש ה-Open Questions האחרות בפתק — הקמפיינר שטרם רץ כסוכן רשום, הקריאייטיב שטרם הורץ, ואימות Zero-Text בעין — **נשארות פתוחות**; אף אחת מהן לא נגעה במוונציה. אזכור בשורת Session Log היסטורית לא שוכתב.
-- **Related:** [[agent-campaigner]], [[agent-creative]], [[agent-copywriter]], [[agent-ceo-orchestration]], [[outbound-construction-run-1]]
+- **Related:** [[agent-campaigner]], [[agent-creative]], [[agent-copywriter]], [[agent-ceo-orchestration]], [[outbound-construction-turnkey-run-1]]
 
 ### 2026-09-03 — סוכן דפי הנחיתה נבנה, הצינור עלה לחמישה שלבים [shipped]
 
@@ -313,4 +313,4 @@ tags:
 - **What was done:** [[agent-landing]] הורץ לראשונה ב-[[peer-warm-group-run-1]], וזו **הריצה הראשונה שעברה את חמשת השלבים במלואם**. ה-Overview עודכן כך שהוא מציין לאיזו ריצה כל סוכן נכנס בפועל. שתי שאלות פתוחות שנפתרו בריצה הקודמת — "הקמפיינר טרם רץ כסוכן רשום" ו"הקריאייטיב טרם הורץ" — **הוסרו**, ובמקומן נרשמו שלוש שאלות שנפתחו בהרצת שלב 4.
 - **Decisions:** מפת הסטטוס עברה מ"מי נבנה" ל**"מי הורץ ובאיזו ריצה"** — קיומו של קובץ סוכן לא אומר שהוא עבד, וההרצה הראשונה של שלב 4 היא בדיוק מה שחשף את חוסם ההעתקה הבינארית שאף קריאת קוד לא הייתה תופסת.
 - **Notes / Caveats:** **שתי חולשות המבנה שנרשמו מראש התאמתו בשטח** — הסוכן באמת לא רואה את מה שהוא בונה, והכלים שלו באמת לא הספיקו למשימה שהמפרט הטיל עליו. הראשונה נסגרה בכלי חיצוני (שרת מקומי) והשנייה נותרה פתוחה. **סוכן QA עדיין לא נדרש** — שער הבקרה של שלב 5 רץ כ-`grep` ולקח דקות.
-- **Related:** [[peer-warm-group-run-1]], [[agent-landing]], [[agent-creative]], [[peer-intro-groups-run-1]], [[outbound-construction-run-1]], [[agent-ceo-orchestration]], [[marketing-engine-prd]]
+- **Related:** [[peer-warm-group-run-1]], [[agent-landing]], [[agent-creative]], [[peer-intro-groups-run-1]], [[outbound-construction-turnkey-run-1]], [[agent-ceo-orchestration]], [[marketing-engine-prd]]

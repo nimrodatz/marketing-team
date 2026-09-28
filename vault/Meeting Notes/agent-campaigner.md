@@ -265,17 +265,17 @@ output/marketing/<YYYY-MM-DD>-<topic>-run<N>-copy.md   ← תוצר שלב 1
 
 ### 2026-09-03 — הריצה הראשונה: הערכה נבנתה ועברה בסבב אחד [shipped]
 
-- **What was done:** הסוכן הורץ בפעם הראשונה על תוצר הקופי המאושר של [[outbound-construction-turnkey]], וייצר את `output/marketing/outbound-kit.md` — חמישה רכיבים, ארבע התנגדויות, כל רכיב מסומן בזווית ובהוק שממנו נגזר. עבר את שער הבקרה **בסבב אחד**, עם תיקון מנכ"ל אחד. סיכום מלא: [[outbound-construction-run-1]].
+- **What was done:** הסוכן הורץ בפעם הראשונה על תוצר הקופי המאושר של [[outbound-construction-turnkey]], וייצר את `output/marketing/outbound-kit.md` — חמישה רכיבים, ארבע התנגדויות, כל רכיב מסומן בזווית ובהוק שממנו נגזר. עבר את שער הבקרה **בסבב אחד**, עם תיקון מנכ"ל אחד. סיכום מלא: [[outbound-construction-turnkey-run-1]].
 - **Decisions:** **מיפוי זווית→רכיב הוכיח את עצמו** — הערכה יצאה עם שני פתיחים נבדלים באמת (חם מזווית 3, קר מזווית 1) ולא בממוצע, וזה היה הכשל שהמיפוי נבנה למנוע. התיקון היחיד של המנכ"ל: **הטיית עוגן הסרת הסיכון לגוף יחיד** — הסוכן זיהה את הסתירה בין הנעילה "מילה במילה" לכלל הערוץ, **דיווח ולא הכריע**, וזו בדיוק ההתנהגות שסעיף 6 מבקש; ההכרעה נפלה אצל המנכ"ל ועוגנה ב-[[voice-and-tone]] סעיף 7.
 - **Notes / Caveats:** **הסוכן לא רץ כסוכן רשום.** קובץ הסוכן נוצר באותו סשן, ורישום הסוכנים נטען בפתיחת סשן — לכן הוא הופעל דרך סוכן כללי שקיבל הוראה לקרוא את הקובץ ולפעול לפיו. **בידוד הכלים היה הוראה ולא מנגנון**; ריצה 2 חייבת `subagent_type: campaigner`. שער הבקרה תפס שלוש התאמות `grep` שכולן ישבו בשורות האיסור ולא בטקסט הנשלח — הקריאה היא שהכריעה, לא הסריקה.
-- **Related:** [[outbound-construction-run-1]], [[outbound-construction-turnkey]], [[agent-copywriter]], [[voice-and-tone]], [[icp-construction]], [[agent-ceo-orchestration]]
+- **Related:** [[outbound-construction-turnkey-run-1]], [[outbound-construction-turnkey]], [[agent-copywriter]], [[voice-and-tone]], [[icp-construction]], [[agent-ceo-orchestration]]
 
 ### 2026-09-03 — מוונציית שמות פלט עמידה להרצות חוזרות [shipped]
 
 - **What was done:** בלוק הפלט בסעיף 7 של `.claude/agents/campaigner.md` ובפתק הזה שונה מ-`outbound-kit.md` הקבוע ל-`output/marketing/<YYYY-MM-DD>-<topic>-run<N>-outbound-kit.md`. תוצר ריצה 1 עבר `git mv` לשם החדש עם `run1`, ושורת "מקור הקופי" בכותרתו הופנתה מחדש לקובץ הקופי ששונה שם גם הוא. נוסף לסוכן איסור מפורש לחשב `<N>` בעצמו או ליפול חזרה לשם הישן.
 - **Decisions:** **`<N>` מגיע מהבריף שהמנכ"ל מוסר, לעולם לא מחישוב של הסוכן.** הרישום היחיד של מספרי הריצה הוא `vault/Publishing Log/` — המנכ"ל סופר פתקי ריצה לאותו נושא ומוסיף 1. סוכן שקיבל בריף בלי מספר ריצה עוצר ושואל; זה מה שמונע חזרה של הבאג דרך הדלת האחורית.
 - **Notes / Caveats:** ה-Open Question על השם הקבוע **הוסרה** — היא נסגרה. אזכורי `outbound-kit.md` שנותרו בפתק הזה יושבים ברשומות Session Log היסטוריות בלבד ולא שוכתבו. המוונציה טרם נבחנה בהרצה בפועל — ריצה 2 היא המבחן.
-- **Related:** [[agent-roster]], [[agent-ceo-orchestration]], [[agent-copywriter]], [[agent-creative]], [[outbound-construction-run-1]], [[outbound-construction-turnkey]]
+- **Related:** [[agent-roster]], [[agent-ceo-orchestration]], [[agent-copywriter]], [[agent-creative]], [[outbound-construction-turnkey-run-1]], [[outbound-construction-turnkey]]
 
 ### 2026-09-17 · ארבע משמעויות לאותה אות, ומלכודת שנתפסה בשטח [shipped]
 

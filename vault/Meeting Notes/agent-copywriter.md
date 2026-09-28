@@ -15,7 +15,7 @@ tags:
 הפתק מגדיר חמישה דברים: בידוד הכלים הקשיח והנימוק שלו, סדר קריאת הקלטים המחייב,
 מיפוי שלוש הזוויות לתת-סגמנטים, פורמט הפלט, ושער הבקרה (QA Gate).
 נכון ל-2026-09-03 הסוכנת **קיימת והורצה** — `.claude/agents/copywriter.md` נכתב, והריצה הראשונה
-([[outbound-construction-run-1]]) עברה את שער הבקרה בסבב אחד ו**אימתה את קריטריון
+([[outbound-construction-turnkey-run-1]]) עברה את שער הבקרה בסבב אחד ו**אימתה את קריטריון
 "שלוש זוויות נבדלות"**. הקול בוואטסאפ הוכרע באותה ריצה: **גוף שני יחיד ב-Outbound**,
 רבים בקופי שפונה לקהל ([[voice-and-tone]] סעיף 7).
 מסמכי היסוד שהיא צורכת: [[icp-construction]] ו-[[voice-and-tone]].
@@ -190,14 +190,14 @@ output/marketing/<YYYY-MM-DD>-<topic>-run<N>-copy.md
 
 ### 2026-09-03 — הריצה הראשונה: "שלוש זוויות נבדלות" אומת [shipped]
 
-- **What was done:** הסוכנת הורצה בפעם הראשונה, על הבריף [[outbound-construction-turnkey]], וייצרה את `output/marketing/2026-09-03-copy-outbound-construction-turnkey.md` — שלוש זוויות, תשעה הוקים, שלושה גופי פנייה. עברה את שער הבקרה **בסבב אחד**, בלי תיקונים. סיכום הריצה: [[outbound-construction-run-1]].
+- **What was done:** הסוכנת הורצה בפעם הראשונה, על הבריף [[outbound-construction-turnkey]], וייצרה את `output/marketing/2026-09-03-copy-outbound-construction-turnkey.md` — שלוש זוויות, תשעה הוקים, שלושה גופי פנייה. עברה את שער הבקרה **בסבב אחד**, בלי תיקונים. סיכום הריצה: [[outbound-construction-turnkey-run-1]].
 - **Decisions:** הכרעה אחת נדרשה — הסוכנת כתבה ב**גוף שני יחיד**, בסטייה מודעת מ-[[voice-and-tone]] סעיף 1 שקבע רבים, ו**סימנה את הסטייה בעצמה במקום להבליע אותה**. המשתמש אישר, וההכרעה עוגנה ככלל ערוץ בסעיף 7: יחיד בהודעה אישית, רבים בקופי שפונה לקהל. הסוכנת גם הוסיפה לכל זווית שורת "שימוש בשלב 2" (קרה / חמה / חוצה) שלא הייתה בשלד — תוספת שהתבררה כמועילה, כי היא נתנה לקמפיינר את המיפוי בלי לנחש.
 - **Notes / Caveats:** **קריטריון "שלוש זוויות נבדלות" אומת סוף-סוף** — הזוויות יצאו נבדלות בתוכן (מידע מפוזר בין אנשים / תמחור בערב / ריבוי אתרים) ולא כוואריאציות ניסוח, וה-Open Question שהמתינה לריצה נסגרה. שתי Open Questions נותרו: מקור ה-`<topic>` בשם הקובץ, ומקור הפרט האמיתי ל-placeholder בזווית 1. הניסוח "מחשבון שמחובר לחומרים ולשלבי הביצוע" הוא הפירוט היחיד בקובץ שאינו מילה במילה מ-`site-copy.md`; אושר כעקבי עם מיפוי ה-ICP, אך נרשם.
-- **Related:** [[outbound-construction-run-1]], [[outbound-construction-turnkey]], [[agent-campaigner]], [[voice-and-tone]], [[icp-construction]], [[agent-ceo-orchestration]]
+- **Related:** [[outbound-construction-turnkey-run-1]], [[outbound-construction-turnkey]], [[agent-campaigner]], [[voice-and-tone]], [[icp-construction]], [[agent-ceo-orchestration]]
 
 ### 2026-09-03 — מוונציית שמות פלט עמידה להרצות חוזרות [shipped]
 
 - **What was done:** בלוק הפלט שונה מ-`<YYYY-MM-DD>-copy-<topic>.md` ל-`output/marketing/<YYYY-MM-DD>-<topic>-run<N>-copy.md`, בקובץ הסוכנת ובפתק הזה. תוצר ריצה 1 עבר `git mv` לשם החדש עם `run1`, והמצביע אליו מהטיוטה ב-`copywriter/drafts/` עודכן.
 - **Decisions:** `<N>` מגיע מהבריף ולא מחישוב של הסוכנת; בריף בלי מספר ריצה — עוצרים ושואלים. פירוט ההכרעה: [[agent-ceo-orchestration]].
 - **Notes / Caveats:** תוצר הקופי נחשב עד כה "מתוארך ולכן בטוח", וזה לא היה נכון — ריצה שנייה על אותו נושא באותו יום דרסה אותו בדיוק כמו את ערכת השטח. אזכור בשורת Session Log היסטורית לא שוכתב.
-- **Related:** [[agent-campaigner]], [[agent-creative]], [[agent-roster]], [[agent-ceo-orchestration]], [[outbound-construction-run-1]]
+- **Related:** [[agent-campaigner]], [[agent-creative]], [[agent-roster]], [[agent-ceo-orchestration]], [[outbound-construction-turnkey-run-1]]

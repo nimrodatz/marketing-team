@@ -30,11 +30,11 @@ status: wip
 - [x] **שלב 2:** `clients/craft-system/client.md`, `playbook.md` ו-`facts-check.json`. תבנית ריקה ב-`clients/_template/` (שבעה קבצים).
 - [x] **הוקדם משלב 6:** `scripts/verify-site-facts.ps1` מקבל `-Client` (ברירת מחדל `craft-system`) וקורא את `facts-check.json`. בלי קובץ או בלי `siteUrl`: דילוג מוצהר ויציאה 0.
 - [x] **שלב 3:** ארבעת הסוכנים קוראים לפי מניפסט. §1 בכל סוכן: שדה `client` מהבריף ← [[house-standards]] ← `clients/<client>/client.md` ← הקבצים לפי תפקיד ← playbook. בריף בלי `client` = עצירה. אפס הופעות של שמות קבצי C&S, מחירים או wa.me בגוף הסוכנים.
-- [ ] **בדיקת רגרסיה:** בוצעה בחלקה. **צריך לחזור עליה בסשן חדש**, ראה Session Log.
+- [x] **בדיקת רגרסיה:** עברה בסשן חדש, 2026-09-28. ההגדרה שנטענה היא החדשה, ושתי ההתנהגויות נובעות ממנה. ראה Session Log.
 - [ ] **שלב 4:** הקמפיינר מקבל שדה `channel` (`outbound` / `paid-social` / `paid-search`). בערוצים הממומנים התוצר הוא `…-run<N>-ads-kit.md`: גרסאות מודעה לפי מגבלות התווים של מטא וגוגל, קהלים, מבנה קמפיין, מילות מפתח ומילות שלילה, תקציב, UTM לכל מודעה. `PAUSED` בלבד. להסיר מ-campaigner/creative את "Meta Ads `[deferred]`".
-- [ ] **שלב 5:** `.claude/commands/new-client.md` (ראיון ← תיק לקוח בסטטוס `טיוטה`) ו-`.claude/commands/new-campaign.md` (לקוח, ערוץ, הצעה ותקציב ← בריף עם `run<N>`). לקוח בטיוטה לא מגיע לשלב 3 בלי אישור.
-- [ ] **שלב 6:** להעביר את `output/{marketing,creatives,landing,kits}` אל `output/craft-system/` עם `git mv`. להוסיף `-Client` ל-`build-review.ps1` (ברירת מחדל: craft-system, נתיבים יחסיים `../output/<client>/…`). לעדכן את נתיב תמונת הייחוס ב-playbook §6 וב-`client.md` §7, ואת נתיבי `output/` בארבעת הסוכנים.
-- [ ] **שלב 7:** `CLAUDE.md`: "מנכ"ל הסוכנות", שלב אפס שבו מזהים את הלקוח וקוראים את המניפסט. כל מה שייחודי ל-C&S עובר למניפסט שלה. לעדכן את שלד הבריף (שדות `client` ו-`channel`), את [[multi-domain-expansion]] (השאלה הפתוחה על בחירת ה-ICP נסגרת) ואת קבצי `_index.md`.
+- [x] **שלב 5:** `.claude/commands/new-client.md` (ראיון ← תיק לקוח בסטטוס `טיוטה`) ו-`.claude/commands/new-campaign.md` (לקוח, ערוץ, הצעה ותקציב ← בריף עם `run<N>`). לקוח בטיוטה לא מגיע לשלב 3 בלי אישור. **בוצע 2026-09-28. לא הורץ עדיין על לקוח אמיתי**: ההרצה הראשונה היא שלב 8.
+- [x] **שלב 6:** להעביר את `output/{marketing,creatives,landing,kits}` אל `output/craft-system/` עם `git mv`. להוסיף `-Client` ל-`build-review.ps1` (ברירת מחדל: craft-system, נתיבים יחסיים `../output/<client>/…`). לעדכן את נתיב תמונת הייחוס ב-playbook §6 וב-`client.md` §7, ואת נתיבי `output/` בארבעת הסוכנים. **בוצע 2026-09-28**, וגם `-SiteUrl` ל-`extract-visual-identity.ps1`.
+- [x] **שלב 7:** `CLAUDE.md`: "מנכ"ל הסוכנות", שלב אפס שבו מזהים את הלקוח וקוראים את המניפסט. כל מה שייחודי ל-C&S עובר למניפסט שלה. לעדכן את שלד הבריף (שדות `client` ו-`channel`), את [[multi-domain-expansion]] (השאלה הפתוחה על בחירת ה-ICP נסגרת) ואת קבצי `_index.md`. **בוצע 2026-09-28.**
 - [ ] **שלב 8:** `clients/baimbetov/` בסטטוס `טיוטה`, מתוך הכספת של באים בטוב (`מסרים/מסר מהותי - עבודה.md`, `מסרים/קופי אתר ראשי.md`, `יומן החלטות.md`). הוויזואל לפי `assets/css/style.css` באתר: `--wood #7a5236`, `--wood-light #f3ece2`, `--wood-honey #b8895a`, `--wood-dark #5c3d27`, `--bg-light #f7f6f2`, `--text-main #2b2a27`, Heebo/Assistant. ה-`world`: פרגולות ודקים בחצר פרטית, **וצילום מוצר מוגמר מותר**. הטופס: `/api/lead` שכבר קיים באתר (שדות: name, phone, projectType ∈ פרגולה/דק/מבנה עץ/אחר, city, details, utm, page), ולכן לא מעתיקים פונקציה. הדף: `baimbetov.me/pergola/`. **עצירה לאישור נימרוד.**
 - [ ] **אחרי זה:** `/new-campaign` לפרגולות אחרי סוכות.
 
@@ -43,9 +43,10 @@ status: wip
 - `functions/api/lead.js` באתר של באים בטוב כותב תמיד `מקור: 'אתר'`. לידים מדף הנחיתה יזוהו רק לפי UTM ו"דף מקור". כדאי לקבל `source` מהטופס.
 - ה-Ask של באים בטוב: פגישה ומדידה? הצעת מחיר? צריך את ההכרעה של נימרוד לפני ה-playbook.
 - מחיר "החל מ-" לפרגולה: עדיין פתוח בכספת של באים בטוב.
-- **שלד הבריף** (`vault/Content Briefs/_template-brief.md`) עדיין בלי שדה `client`. נכנס בשלב 7, יחד עם `channel`.
 - **"לקוח" בתוך C&S, ביחיד על קייס 3:** פתוח, **ושייך לתיק של C&S ולא למנוע.** עד הכרעה הסוכנים הולכים לפי המחמיר. `clients/craft-system/client.md` §4.6.
-- **עוד תוכן של C&S ב-`CLAUDE.md`:** פסקת ה-Tone of voice, שלושת כללי הקופי שמפנים ל-`voice-and-tone`, ארבעת קבצי המותג, הטרהקוטה והמחירים באיסורים המוחלטים. עוברים בשלב 7.
+- **תפקיד `facts` של C&S מצביע לתוך קובץ ה-`voice`** (`site-copy.md` + [[voice-and-tone]] §8). לכן הקופירייטרית קוראת את `voice` לפני `icp`, בניגוד לסדר שבהגדרה שלה. שתי אפשרויות: לקרוא רק את §8 בשלב ה-facts, או להוציא את העובדות הנעולות לקובץ `facts` נפרד. הכרעה של נימרוד.
+- **בריף שמפנה החוצה למפת זוויות:** [[peer-warm-group]] §4 מחזיק את מפה v1, וה-v2 התקפה יושבת ב-[[copy-refinement-peer-warm-group]]. להגדרה של הקופירייטרית אין כלל למקרה כזה. גם השורה "`<N>` = 2" בבריף מיושנת. זה עניין של הבריף ולא של המנוע.
+- **ערוץ ממומן:** `/new-campaign` ושלד הבריף כבר מקבלים `paid-social` ו-`paid-search`, אבל הקמפיינר עוצר עליהם עד שלב 4.
 - פתקים היסטוריים (`agent-roster`, `agent-campaigner`, `outbound-construction-turnkey`) עדיין מפנים ל"[[agent-copywriter]] סעיף 4" בשביל טבלת הזוויות, שעברה ל-playbook §1. לא תוקן, כי אלה רשומות של מה שהיה.
 
 ## Session Log
@@ -76,3 +77,23 @@ status: wip
 - **What was done:** הבלוק על "לקוח", הקייסים, מספר הנגריה וההפרדה בין באים בטוב לנגריה עבר ל-`clients/craft-system/client.md` §4, סעיפים 6-9. ב-`CLAUDE.md` נשארה הפניה אחת.
 - **Decisions:** **נימרוד חידד את העיקרון: החלטות נקודתיות נשארות אצל הלקוח.** התיקון הקודם, שהוסיף ל-`CLAUDE.md` "האיסור חל רק על C&S", היה תיקון נכון בשכבה הלא נכונה, והוא הוחלף בהעברה. השאלה על קייס 3 לא חוסמת כלום, וההכרעה בה שייכת לתיק של C&S.
 - **Related:** [[voice-and-tone]], [[house-standards]], [[agent-ceo-orchestration]]
+
+### 2026-09-28 · בדיקת הרגרסיה חזרה בסשן חדש ועברה [shipped]
+
+- **What was done:** שתי הרצות יבשות של הקופירייטרית עם run 99 פיקטיבי. **(1)** על [[peer-warm-group]] עם `client: craft-system`. **(2)** על עותק זמני בלי השורה `client`, בתיקיית ה-scratchpad. העותק נמחק בסוף. שום קובץ לא נכתב, ו-`git status` נקי.
+- **Decisions:** **הרגרסיה עברה.** התמלילים של שני הסוכנים נבדקו ישירות, ולא רק הדיווח שלהם. באף הרצה לא היה Read או Glob על `.claude/`, ולא היו Write או Edit. **הרצה 1** קראה את הבריף, את [[house-standards]], את `client.md`, את `site-copy.md`, את [[voice-and-tone]], את [[icp-construction]], את [[crafts]] ואת `playbook.md`. זו אותה קבוצה כמו בסשן הקודם. היא בחרה `world` = `בנייה כללי` כברירת מחדל מהמניפסט, ודיווחה שהבריף לא נקב בקראפט. את הזוויות היא לקחה מהבריף במפה v2 (זה אני, התקרה, ההפניה) ולא מה-playbook. מחירים אסורים לפי §3 של הבריף. **הרצה 2** קראה קובץ אחד, הבריף, ועצרה ושאלה. היא ציטטה את §1 בהגדרה החדשה, "בריף בלי `client`: עצרי, דווחי, שאלי", ולא את [[house-standards]], שאותו לא פתחה בכלל. היא גם זיהתה את הרמזים ל-C&S בבריף וסירבה להסיק מהם לקוח.
+- **Notes / Caveats:** **ממצא אחד על המנוע:** תפקיד `facts` של C&S מצביע לתוך [[voice-and-tone]] §8, ולכן `voice` נקרא לפני `icp`. זה נכנס ל-Open Questions. ממצאים על הבריף: מפת הזוויות v1 ב-§4 מול v2 ב-[[copy-refinement-peer-warm-group]], שורת "`<N>` = 2" מיושנת, ודרישות שאין להן מקום בשלד (שני נוסחים, מחרוזות UI, שני גופים דקדוקיים). הסוכנת קראה את פתק ה-copy-refinement כי הבריף מגדיר אותו קלט חובה, אף שהוא לא בטבלת הקריאה שלה.
+- **Related:** [[house-standards]], [[peer-warm-group]], [[copy-refinement-peer-warm-group]], [[voice-and-tone]], [[crafts]], [[agent-copywriter]]
+
+### 2026-09-28 · שלבים 5-7: פקודות, תיקייה לכל לקוח, ו-`CLAUDE.md` של סוכנות [shipped]
+
+- **What was done:** **שלב 5:** נכתבו `.claude/commands/new-client.md` (ראיון בסבבים, תפקיד אחד לכל סבב, העתקת `clients/_template/`, שבעה קבצים בטיוטה) ו-`.claude/commands/new-campaign.md` (לקוח, topic, ערוץ, הצעה, תקציב, ספירת `run<N>`, בריף ועצירה). **שלב 6:** `output/{marketing,creatives,landing,kits}` עברו ל-`output/craft-system/` עם `git mv`. `build-review.ps1` קיבל `-Client`, ונבדק: הרשימה מציגה את ארבע הריצות, ודף הסקירה של `peer-warm-group` run 2 נבנה עם ארבעה קישורים שכולם קיימים על הדיסק. נתיבי `output/` עודכנו בארבעת הסוכנים, ב-`gpt-image-gen`, ב-`serve-landing.ps1`, ב-playbook §6 וב-`client.md` §5 ו-§7. **שלב 7:** `CLAUDE.md` נכתב מחדש: מנכ"ל של סוכנות, טבלת שלוש השכבות, שלב אפס, שתי הפקודות, ו-`output/<client>/` בכל נתיב. שלד הבריף נעשה כללי, עם `client`, `channel` ו-`run` ב-frontmatter. נוצר `vault/Engine/_index.md`.
+- **Decisions:** **הקראפטים ותת-הסגמנטים א/ב/ג עברו משלד הבריף ל-playbook של C&S §9**, כמו שהם, כי לקוח אחר לא משתמש בהם. **`/new-campaign` עוצר כשיומן הפרסום ו-`output/` נותנים מספר ריצה שונה**, במקום לבחור אחד מהם. **topic שייך ללקוח אחד**, כי היומן סופר לפי topic בלבד. **`extract-visual-identity.ps1` קיבל `-SiteUrl`**, כי הוא היה קשור לאתר של C&S ו-`/new-client` צריך אותו. **נתיבי מקור בתוך תוצרים ישנים לא תוקנו**, כי הם רשומה של זמן הריצה. לשלושת הבריפים הקיימים נוסף `channel`. ב-[[multi-domain-expansion]] נסגרה השאלה על בחירת ה-ICP.
+- **Notes / Caveats:** **שתי הפקודות לא הורצו.** ההרצה הראשונה שלהן היא שלב 8 (באים בטוב). הסוכנים לא הורצו שוב אחרי שינוי הנתיבים. השינוי מכני, אבל הגדרות הסוכנים נטענות בתחילת הסשן, ולכן רק סשן חדש יראה אותן. שום דבר לא נכנס לקומיט.
+- **Related:** [[house-standards]], [[agent-ceo-orchestration]], [[multi-domain-expansion]], [[_template-brief]], [[peer-warm-group]], [[peer-intro-groups]], [[outbound-construction-turnkey]], [[crafts]]
+
+### 2026-09-28 · שם הריצה ביומן הפרסום תוקן, והכל נכנס לקומיט [shipped]
+
+- **What was done:** `vault/Publishing Log/outbound-construction-run-1.md` שונה ל-`outbound-construction-turnkey-run-1.md` עם `git mv`. כל הקישורים אליו בכספת עודכנו, 40 הופעות ב-14 קבצים, כולל ה-`_index.md` של יומן הפרסום.
+- **Decisions:** **נימרוד אישר את שינוי השם.** עכשיו שם הרשומה תואם ל-topic, ולכן `/new-campaign` ו-`build-review.ps1` מוצאים אותה לפי `<topic>-run-<N>.md`. הקישורים עודכנו גם בפתקים היסטוריים, כי קישור שבור הוא לא רשומה של מה שהיה אלא רק רעש.
+- **Related:** [[outbound-construction-turnkey-run-1]], [[outbound-construction-turnkey]]

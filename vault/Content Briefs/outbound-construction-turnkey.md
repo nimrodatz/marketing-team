@@ -1,5 +1,6 @@
 ---
 client: craft-system
+channel: outbound
 tags:
   - brief
   - outbound
@@ -95,7 +96,7 @@ tags:
 | ⏸ | — | עצירה לאישור המשתמש |
 | 2 | [[agent-campaigner]] | `output/marketing/outbound-kit.md` — 5 רכיבים, 4 התנגדויות |
 | ⏸ | — | עצירה לאישור המשתמש — התוצר יוצא לאדם אמיתי |
-| 3 | המנכ"ל | `vault/Publishing Log/outbound-construction-run-1.md` |
+| 3 | המנכ"ל | `vault/Publishing Log/outbound-construction-turnkey-run-1.md` |
 
 > [!note] הקבצים שונו שם ב-2026-09-03 — הטבלה מציגה את השמות כפי שהיו בריצה
 > מוונציית הפלט שונתה ל-`<date>-<topic>-run<N>-<kind>` כדי שהרצה חוזרת לא תדרוס תוצר קודם.

@@ -24,7 +24,7 @@ tools: Read, Write, Edit, Glob, Grep
 
 | # | קובץ | מה הוא נותן לך |
 |---|---|---|
-| 1 | `output/marketing/<YYYY-MM-DD>-<topic>-run<N>-copy.md` | **החומר**: 3 זוויות, 9 הוקים, 3 גופי פנייה |
+| 1 | `output/<client>/marketing/<YYYY-MM-DD>-<topic>-run<N>-copy.md` | **החומר**: 3 זוויות, 9 הוקים, 3 גופי פנייה |
 | 2 | `vault/Engine/house-standards.md` | **הכללים של כל לקוח**: המילים האסורות (§2), תחביר (§3), עובדות (§4), **גוף שני והטיית גוף** (§5) |
 | 3 | `clients/<client>/client.md` | **המניפסט**: איפה יושב כל קובץ מותג, העובדות בקצרה, הקווים האדומים (§4) |
 | 4 | קובץ ה-`facts` מהמניפסט | **מה**: מחירים, קישורים, ניסוחי העוגן |
@@ -36,7 +36,7 @@ tools: Read, Write, Edit, Glob, Grep
 **קובץ `world` שבנוי מערכים** (כמו קראפטים): קרא את הערך שהבריף נקב בו. בריף בלי שדה
 כזה: ברירת המחדל שהמניפסט מציין, וציין בדיווח שהבריף לא נקב באחד.
 
-אתר את קובץ הקופי עם `Glob` על `output/marketing/*-run<N>-copy.md`, שמו משתנה לפי תאריך.
+אתר את קובץ הקופי עם `Glob` על `output/<client>/marketing/*-run<N>-copy.md`, שמו משתנה לפי תאריך.
 
 **הסדר לא שרירותי.** מי שקורא קודם את ה-ICP מתחיל לנסח מחדש במקום לתרגם,
 והבידול שהקופירייטרית ייצרה נמחק.
@@ -148,8 +148,10 @@ tools: Read, Write, Edit, Glob, Grep
 ## 7. פלט
 
 ```
-output/marketing/<YYYY-MM-DD>-<topic>-run<N>-outbound-kit.md
+output/<client>/marketing/<YYYY-MM-DD>-<topic>-run<N>-outbound-kit.md
 ```
+
+`<client>` הוא הערך של שדה `client` בבריף, אותו slug של `clients/<client>/`. תיקייה שעוד לא קיימת נוצרת עם הקובץ.
 
 `<topic>` בא מהבריף. **`<N>` הוא מספר הריצה, והוא מגיע מהבריף שהמנכ"ל מסר לך, אל תחשב
 אותו בעצמך.** בריף בלי מספר ריצה: עצור, דווח, שאל. אל תנחש ואל תיפול חזרה ל-`outbound-kit.md`

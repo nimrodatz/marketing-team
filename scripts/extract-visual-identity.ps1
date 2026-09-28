@@ -23,19 +23,24 @@
     קודי יציאה:
       0 = נמשך בהצלחה · 2 = המשיכה נכשלה (רשת/סטטוס)
 
+    לקוח אחר:
+      -SiteUrl מחליף את האתר. ברירת המחדל נשארת craftsystem.co.il, הלקוח הראשון.
+      /new-client משתמש בזה כדי למלא את clients/<slug>/visual.md.
+
 .EXAMPLE
     pwsh -File scripts/extract-visual-identity.ps1 -OutDir "$env:TEMP/cs-visual"
+    pwsh -File scripts/extract-visual-identity.ps1 -SiteUrl "https://example.co.il/" -OutDir "$env:TEMP/x-visual"
 #>
 
 param(
-    [string]$OutDir = './.visual-extract'
+    [string]$OutDir = './.visual-extract',
+    [string]$SiteUrl = 'https://craftsystem.co.il/'
 )
 
 $ErrorActionPreference = 'Stop'
 $OutputEncoding = [System.Text.Encoding]::UTF8
 
-$SiteUrl = 'https://craftsystem.co.il/'
-$Agent   = @{ 'User-Agent' = 'craft-system-visual-extract/1.0' }
+$Agent   = @{ 'User-Agent' = 'marketing-engine-visual-extract/1.0' }
 
 function Get-Text {
     param([string]$Uri)

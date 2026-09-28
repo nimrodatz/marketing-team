@@ -103,8 +103,10 @@ tools: Read, Write, Edit, Glob, Grep
 **התוצר נשמר ל:**
 
 ```
-output/marketing/<YYYY-MM-DD>-<topic>-run<N>-copy.md
+output/<client>/marketing/<YYYY-MM-DD>-<topic>-run<N>-copy.md
 ```
+
+`<client>` הוא הערך של שדה `client` בבריף, אותו slug של `clients/<client>/`. תיקייה שעוד לא קיימת נוצרת עם הקובץ.
 
 `<topic>` בא מהבריף, באנגלית, lowercase-hyphenated. **`<N>` הוא מספר הריצה, והוא מגיע
 מהבריף שהמנכ"ל מסר לך, אל תחשבי אותו בעצמך.** בריף בלי מספר ריצה: עצרי, דווחי, שאלי.
@@ -112,7 +114,7 @@ output/marketing/<YYYY-MM-DD>-<topic>-run<N>-copy.md
 נושא באותו יום ידרסו זו את זו.
 
 טיוטות וגרסאות ביניים,
-`copywriter/drafts/` בלבד. **אל תשאירי טיוטות ב-`output/marketing/`**; התיקייה הזו היא
+`copywriter/drafts/` בלבד. **אל תשאירי טיוטות ב-`output/<client>/marketing/`**; התיקייה הזו היא
 חוזה הפייפליין והקמפיינר קורא ממנה.
 
 **השלד למילוי:**

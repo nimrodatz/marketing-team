@@ -161,5 +161,5 @@ Meta Ads נשארו `[deferred]` ומחוץ לסקופ.
 
 - **What was done:** שני תוצרי הריצה עברו `git mv` למוונציה החדשה `<date>-<topic>-run<N>-<kind>`: קובץ הקופי ל-`2026-09-03-outbound-construction-turnkey-run1-copy.md`, וערכת השטח ל-`2026-09-03-outbound-construction-turnkey-run1-outbound-kit.md`. נוסף callout בסעיף 1 שמתעד ישן→חדש. פריט 4 ב"לכייל בריצה הבאה" סומן כהוכרע.
 - **Decisions:** **הטבלאות ההיסטוריות לא שוכתבו.** הן מתעדות את מה שקרה בריצה, והשמות שמופיעים בהן היו נכונים אז — התיקון נעשה בתוספת callout, לא בעריכת הרשומה. `git mv` ולא מחיקה+יצירה, כדי שההיסטוריה תישמר כשינוי שם.
-- **Notes / Caveats:** הפתק הזה **לא שינה שם** אף שהמוונציה החדשה לפתקי ריצה היא `<topic>-run-<N>.md` — `[[outbound-construction-run-1]]` מקושר מחמישה פתקים, ושינוי שם היה שובר את הקישורים. המוונציה חלה על פתקים חדשים בלבד. הערכה עדיין **לא נשלחה לאף אדם**, ושאר השאלות הפתוחות של הריצה לא נגעו בשינוי הזה.
+- **Notes / Caveats:** הפתק הזה **לא שינה שם** אף שהמוונציה החדשה לפתקי ריצה היא `<topic>-run-<N>.md` — `[[outbound-construction-turnkey-run-1]]` מקושר מחמישה פתקים, ושינוי שם היה שובר את הקישורים. המוונציה חלה על פתקים חדשים בלבד. הערכה עדיין **לא נשלחה לאף אדם**, ושאר השאלות הפתוחות של הריצה לא נגעו בשינוי הזה.
 - **Related:** [[agent-campaigner]], [[agent-copywriter]], [[agent-creative]], [[agent-roster]], [[agent-ceo-orchestration]], [[outbound-construction-turnkey]]
