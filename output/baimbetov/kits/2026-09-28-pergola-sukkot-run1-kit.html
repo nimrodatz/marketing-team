@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ערכת עלייה, פרגולות אחרי סוכות</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600&family=Heebo:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --bg:#f7f6f2; --surface:#ffffff; --sunk:#ecebe4;
+    --ink:#2b2a27; --muted:#5e5d57; --line:#dcd8cf;
+    --wood:#7a5236; --wood-soft:#f3ece2; --honey:#b8895a;
+    --olive:#6a6659; --wa:#1e7e43; --stop:#a3402c; --stop-soft:#f8ece8;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#1c1b19; --surface:#252421; --sunk:#2f2d29;
+      --ink:#ece9e2; --muted:#b3afa6; --line:#3a3833;
+      --wood:#d0a27a; --wood-soft:#3a2e24; --honey:#d9b088;
+      --olive:#bdb7a6; --wa:#4cc07a; --stop:#e08a74; --stop-soft:#3a2622;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#1c1b19; --surface:#252421; --sunk:#2f2d29;
+    --ink:#ece9e2; --muted:#b3afa6; --line:#3a3833;
+    --wood:#d0a27a; --wood-soft:#3a2e24; --honey:#d9b088;
+    --olive:#bdb7a6; --wa:#4cc07a; --stop:#e08a74; --stop-soft:#3a2622;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Assistant","Segoe UI",system-ui,sans-serif; font-size:16px; line-height:1.65}
+  .wrap{max-width:660px; margin:0 auto; padding:36px 16px 80px; display:flex; flex-direction:column; gap:40px}
+  .wrap > *{min-width:0; max-width:100%}
+  h1,h2{font-family:"Heebo","Assistant",sans-serif; margin:0; text-wrap:balance}
+  h1{font-size:clamp(28px,7vw,38px); font-weight:700; line-height:1.2}
+  h2{font-size:21px; font-weight:500; margin-bottom:14px}
+  .eyebrow{font-size:12.5px; color:var(--muted); font-weight:600; letter-spacing:.06em}
+  .sub{color:var(--muted); margin:8px 0 0}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
+  .chip{font-size:13px; font-weight:600; padding:4px 11px; border-radius:999px; background:var(--surface); border:1px solid var(--line); color:var(--muted)}
+  .chip.hold{background:var(--wood-soft); border-color:transparent; color:var(--wood)}
+  figure{margin:0}
+  figure img{display:block; width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:6px; background:var(--sunk)}
+  figcaption{font-size:13.5px; color:var(--muted); margin-top:8px}
+  .hero-line{font-family:"Heebo",sans-serif; font-size:22px; font-weight:500; line-height:1.35; margin:14px 0 0}
+  .card{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:18px 18px}
+  ol,ul{margin:0; padding-inline-start:22px}
+  li{margin:6px 0}
+  code,.path{font-family:ui-monospace,Consolas,monospace; font-size:13px; background:var(--sunk); padding:2px 6px; border-radius:4px; overflow-wrap:anywhere; word-break:break-all}
+  code{direction:ltr; unicode-bidi:isolate; white-space:nowrap; word-break:normal}
+  .path{display:block; padding:10px 12px; margin-top:8px; direction:ltr; text-align:left}
+  .angle{border-inline-start:3px solid var(--honey); padding-inline-start:14px; margin-top:18px}
+  .angle:first-of-type{margin-top:0}
+  .angle b{display:block; font-size:14px; color:var(--wood); margin-bottom:4px}
+  .angle ol{padding-inline-start:20px}
+  .stop{background:var(--stop-soft); border:0}
+  .stop h2{color:var(--stop)}
+  .note{font-size:14px; color:var(--muted); margin-top:10px}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <header>
+    <div class="eyebrow">באים בטוב · pergola-sukkot · ריצה 1 · 2026-09-28</div>
+    <h1>ערכת עלייה: פרגולות אחרי סוכות</h1>
+    <p class="sub">דף הנחיתה מוכן, וכל מודעה בריצה הבאה תפנה אליו. הדף עולה לאוויר רק כשנימרוד מעתיק אותו לריפו של האתר.</p>
+    <div class="chips">
+      <span class="chip">קופי ✓</span>
+      <span class="chip">דף נחיתה ✓</span>
+      <span class="chip">שלבים 2 ו-3 דולגו לפי הבריף</span>
+      <span class="chip hold">עוד לא באוויר</span>
+    </div>
+  </header>
+
+  <section>
+    <figure>
+      <img src="../landing/2026-09-28-pergola-sukkot-run1/assets/slide1.jpg" alt="פרגולת עץ גדולה בחצר בית פרטי עם קשתות">
+      <figcaption>תמונת ה-Hero בדף. תמונה אמיתית מהאתר.</figcaption>
+    </figure>
+    <p class="hero-line">הסוכה צריכה להחזיק שבוע. פרגולה צריכה לעבור חורף.</p>
+    <p class="sub">באים בטוב מתכננים ובונים פרגולות עץ לבתים פרטיים, מהמדידה ועד המסירה.</p>
+  </section>
+
+  <section class="card">
+    <h2>להעלות את הדף</h2>
+    <ol>
+      <li>להעתיק את <b>כל התיקייה</b>, כולל <code>assets/</code>:
+        <span class="path">C:\Users\nimro\OneDrive\שולחן העבודה\claude prog\marketing team\output\baimbetov\landing\2026-09-28-pergola-sukkot-run1\</span>
+        אל:
+        <span class="path">C:\my projects\baimbetov\pergola\</span>
+        את <code>config.json</code> לא צריך להעתיק. הוא רשומה פנימית של המנוע.</li>
+      <li>לבדוק מקומית ב-<code>index.html</code> שהדף נראה תקין. <b>הטופס לא ישלח מקובץ מקומי</b>, וזה צפוי.</li>
+      <li>push ל-<code>main</code>. הדף עולה ל-<code>baimbetov.me/pergola/</code>.</li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>בדיקה אחת אחרי העלייה</h2>
+    <ol>
+      <li>לפתוח בטלפון:
+        <span class="path">https://baimbetov.me/pergola/?utm_source=pergola-sukkot</span></li>
+      <li>לשלוח ליד בדיקה מהטופס.</li>
+      <li>באיירטייבל, "באים בטוב - CRM": לוודא שנכנסו <b>סוג פרויקט = פרגולה</b>, ה-UTM, ו"דף מקור" = <code>/pergola/</code>.</li>
+      <li>ללחוץ על כפתור הוואטסאפ, ולוודא שנפתחת ההודעה "היי! אני פונה מדף הפרגולות ואשמח לשמוע עוד".</li>
+    </ol>
+    <p class="note">הליד יירשם עם "מקור: אתר", כי נקודת הקצה כותבת תמיד את הערך הזה. את הקמפיין מזהים לפי ה-UTM ו"דף מקור".</p>
+  </section>
+
+  <section class="card">
+    <h2>תשעת ההוקים המאושרים, לריצה 2</h2>
+    <p class="note" style="margin-top:0">ההוקים מועתקים מקובץ הקופי כמו שהם, בשביל המודעות. הפלטפורמה והתקציב עוד לא הוכרעו.</p>
+    <div class="angle">
+      <b>זווית 1 · כל התהליך במקום אחד</b>
+      <ol>
+        <li>פירקתם את הסוכה. לפרגולה לא תצטרכו לתאם מתכנן, מהנדס ונגר.</li>
+        <li>הסוכה עמדה שבוע. פרגולה צריכה תכנון, חישוב וביצוע. אצלנו שלושתם בכתובת אחת.</li>
+        <li>את הסוכה הקמתם בערב אחד, לבד. את הפרגולה נתכנן ונבנה אנחנו, מהמדידה ועד המסירה.</li>
+      </ol>
+    </div>
+    <div class="angle">
+      <b>זווית 2 · הליווי והפיקוח שלנו</b>
+      <ol>
+        <li>פירקתם את הסוכה. את הפרגולה נבנה בלי שתצטרכו לרדוף אחרי אף אחד.</li>
+        <li>הסוכה ירדה. אנחנו באים למדוד, ונשארים בשטח עד הבורג האחרון.</li>
+        <li>הסוכה צריכה להחזיק שבוע. פרגולה צריכה לעבור חורף.</li>
+      </ol>
+    </div>
+    <div class="angle">
+      <b>זווית 3 · שקיפות</b>
+      <ol>
+        <li>הסוכה ירדה. לפני שמנסרים קורה אחת לפרגולה, תדעו בדיוק מה נבנה.</li>
+        <li>פירקתם את הסוכה? הצעת המחיר לפרגולה תגיע אליכם מפורטת, סעיף אחרי סעיף.</li>
+        <li>אחרי הסוכה באה הפרגולה. כמה זמן תיקח העבודה, תדעו עוד לפני שמתחילים.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="card stop">
+    <h2>מה לא נכנס לשום מודעה ולשום תשובה</h2>
+    <ul>
+      <li>מחיר, ו"החל מ-".</li>
+      <li>"נוציא לכם היתר". מותר רק "מלווים אתכם בבירור".</li>
+      <li>אחריות לכמה שנים, או מחיר סגור.</li>
+      <li>הבטחה לזמן תגובה, וגם לא "נחזור אליכם עד סוף יום העבודה".</li>
+      <li>הנחה, מבצע, או "רק השבוע". "אחרי סוכות" מותר, כי זה לוח שנה אמיתי.</li>
+      <li>דקים ומבני עץ אחרים. הקמפיין מדבר רק על פרגולות.</li>
+      <li>ביקורות וציטוטים של לקוחות. עוד אין כאלה.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>לפני שמודעה עולה</h2>
+    <ul>
+      <li>לבחור פלטפורמה ותקציב: מטא, גוגל או שניהם.</li>
+      <li>להתקין את פיקסל מטא ו-GA4, ויחד איתם באנר קוקיז ועדכון למדיניות הפרטיות.</li>
+      <li>כל מודעה נוצרת במצב <b>PAUSED</b>. את ההפעלה עושים ידנית.</li>
+    </ul>
+  </section>
+
+</main>
+</body>
+</html>

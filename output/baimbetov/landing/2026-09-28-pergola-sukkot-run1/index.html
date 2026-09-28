@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>באים בטוב | פרגולות עץ עם קונסטרוקטור בצוות</title>
+    <meta name="description" content="פרגולות עץ במרכז הארץ, מהתכנון ועד הבורג האחרון. קונסטרוקטור חותם על כל מבנה. אנחנו אחראים על הביצוע עד המסירה. הצעת מחיר מפורטת לפני שמתחילים.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="he_IL">
+    <meta property="og:title" content="באים בטוב | פרגולות עץ עם קונסטרוקטור בצוות">
+    <meta property="og:description" content="פרגולות עץ, מהתכנון והחישוב ועד המסירה. אתם מקבלים פרגולה מוכנה בלי לרדוף אחרי אף אחד.">
+    <meta property="og:url" content="https://baimbetov.me/pergola/">
+    <meta property="og:image" content="https://baimbetov.me/pergola/assets/slide1.jpg">
+    <meta name="theme-color" content="#7a5236">
+    <link rel="icon" type="image/png" href="assets/NimrodLogoFav.png">
+    <link rel="apple-touch-icon" href="assets/NimrodLogoFav.png">
+
+    <!-- Fonts: the exact call from clients/baimbetov/visual.md section 2 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600&family=Heebo:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+
+    <!--
+        Brand tokens and all styling live here, inline. Tokens copied from clients/baimbetov/visual.md.
+        No Tailwind: the page lands inside the client's site, which does not use it, and every rule it
+        would add is already written here. If the font CDN fails, the fallback stack takes over.
+    -->
+    <style>
+        :root {
+            --wood: #7a5236;
+            --wood-dark: #5c3d27;
+            --wood-honey: #b8895a;
+            --wood-light: #f3ece2;
+            --primary-color: #6a6659;
+            --primary-dark: #4b483e;
+            --accent-color: #b5a999;
+            --accent-light: #ecebe4;
+            --bg-light: #f7f6f2;
+            --bg-white: #ffffff;
+            --bg-dark: #2b2a27;
+            --text-main: #2b2a27;
+            --text-light: #5e5d57;
+            --wa-green: #1e7e43;
+            --wa-green-dark: #18683a;
+            --color-focus: var(--primary-dark);
+            --font-heading: 'Heebo', 'Segoe UI', Arial, sans-serif;
+            --font-body: 'Assistant', 'Segoe UI', Arial, sans-serif;
+            --shadow-wood: 0 4px 15px rgba(122, 82, 54, 0.2);
+            --shadow-wa: 0 4px 15px rgba(30, 126, 67, 0.25);
+            --shadow-card: -20px 20px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        [hidden] { display: none !important; }
+
+        html { scroll-behavior: smooth; }
+
+        body.page {
+            margin: 0;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-main);
+            background: var(--bg-light);
+            padding-bottom: 96px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        .page img { max-width: 100%; height: auto; display: block; }
+
+        .container {
+            width: 100%;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        /* Focus: never removed */
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible,
+        summary:focus-visible {
+            outline: 3px solid var(--color-focus);
+            outline-offset: 3px;
+        }
+        .site-footer a:focus-visible { outline-color: var(--bg-white); }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            right: 20px;
+            z-index: 2000;
+            background: var(--text-main);
+            color: var(--bg-white);
+            padding: 12px 20px;
+            text-decoration: none;
+            font-family: var(--font-heading);
+        }
+        .skip-link:focus { top: 10px; }
+
+        /* Header */
+        .site-header { background: var(--bg-white); border-bottom: 1px solid var(--accent-light); }
+        .site-header .container { display: flex; align-items: center; min-height: 72px; }
+        .site-header .logo-link { display: inline-flex; align-items: center; min-height: 44px; }
+        .site-header .logo-link img { height: 52px; width: auto; }
+
+        /* Type */
+        .page .h1 {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            font-size: 2rem;
+            line-height: 1.25;
+            margin: 0 0 16px;
+            color: var(--text-main);
+        }
+        .page .h2 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            font-size: 1.8rem;
+            line-height: 1.3;
+            margin: 0 0 12px;
+            color: var(--text-main);
+        }
+        .page .h3 {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            font-size: 1.4rem;
+            line-height: 1.35;
+            margin: 0 0 10px;
+            color: var(--text-main);
+        }
+        .page .lead { font-size: 1.15rem; margin: 0 0 12px; }
+        .page .muted { color: var(--text-light); }
+        .page .section-desc { color: var(--text-light); margin: 0 0 28px; }
+
+        .section { padding: 56px 0; }
+        .section-white { background: var(--bg-white); }
+        .section-oak { background: var(--wood-light); }
+
+        /* Buttons */
+        .btn.btn-wood,
+        .btn.btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 48px;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 2px;
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: var(--bg-white);
+            text-decoration: none;
+            cursor: pointer;
+            box-sizing: border-box;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+        .btn.btn-wood { background-color: var(--wood); box-shadow: var(--shadow-wood); }
+        .btn.btn-wood:hover { background-color: var(--wood-dark); transform: translateY(-2px); }
+        .btn.btn-wood:disabled { opacity: 0.7; cursor: wait; transform: none; }
+        .btn.btn-whatsapp { background-color: var(--wa-green); box-shadow: var(--shadow-wa); }
+        .btn.btn-whatsapp:hover { background-color: var(--wa-green-dark); transform: translateY(-2px); }
+        .btn.btn-full { width: 100%; }
+        .btn-icon { width: 22px; height: 22px; fill: currentColor; flex-shrink: 0; }
+
+        .text-link {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+            color: var(--wood-dark);
+            font-family: var(--font-heading);
+            font-weight: 500;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+        .text-link:hover { color: var(--wood); }
+
+        /* Hero */
+        .hero { padding: 32px 0 48px; }
+        .hero-text .about { font-size: 1.15rem; margin: 0 0 10px; color: var(--text-main); }
+        .hero-text .sub { margin: 0 0 22px; color: var(--text-light); }
+        .hero-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; margin-bottom: 22px; }
+        .hero-links { display: flex; flex-wrap: wrap; gap: 4px 24px; }
+        .trust-list { list-style: none; margin: 0 0 28px; padding: 0; }
+        .trust-list .trust-item {
+            position: relative;
+            padding-right: 22px;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+        .trust-list .trust-item::before {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 0.65em;
+            width: 10px;
+            height: 10px;
+            background: var(--wood-honey);
+            border-radius: 1px;
+        }
+        .hero-media .hero-img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: var(--shadow-card);
+        }
+
+        /* Steps */
+        .steps { list-style: none; margin: 0; padding: 0; counter-reset: step; }
+        .steps .step {
+            counter-increment: step;
+            background: var(--bg-light);
+            border-radius: 4px;
+            padding: 24px 20px;
+            margin-bottom: 16px;
+            border-top: 3px solid var(--wood-honey);
+        }
+        .steps .step::before {
+            content: counter(step);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            margin-bottom: 10px;
+            background: var(--wood);
+            color: var(--bg-white);
+            font-family: var(--font-heading);
+            font-weight: 500;
+            border-radius: 2px;
+        }
+        .steps .step p { margin: 0 0 8px; }
+        .steps .step .permit {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--accent-color);
+            color: var(--text-main);
+        }
+
+        /* Why cards */
+        .cards { display: grid; gap: 20px; }
+        .cards .card {
+            background: var(--bg-white);
+            border-radius: 4px;
+            padding: 26px 22px;
+            box-shadow: var(--shadow-card);
+        }
+        .cards .card p { margin: 0 0 10px; }
+        .cards .card p:last-child { margin-bottom: 0; }
+
+        /* Gallery */
+        .gallery { display: grid; gap: 14px; }
+        .gallery .gallery-img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        /* FAQ */
+        .faq { max-width: 780px; }
+        .faq .faq-item { border-bottom: 1px solid var(--accent-color); }
+        .faq .faq-item summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            min-height: 56px;
+            padding: 12px 0;
+            cursor: pointer;
+            list-style: none;
+        }
+        .faq .faq-item summary::-webkit-details-marker { display: none; }
+        .faq .faq-item summary::after {
+            content: "+";
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            line-height: 1;
+            color: var(--wood);
+            flex-shrink: 0;
+        }
+        .faq .faq-item[open] summary::after { content: "\2212"; }
+        .faq .faq-item summary .h3 { margin: 0; font-size: 1.2rem; }
+        .faq .faq-item p { margin: 0 0 18px; color: var(--text-light); }
+
+        /* CTA and form */
+        .cta-wrap { max-width: 620px; margin: 0 auto; }
+        .cta-wrap .cta-text { margin: 0 0 6px; font-size: 1.1rem; }
+        .cta-wrap .cta-next { margin: 0; }
+        .cta-wrap .cta-free { margin: 0 0 24px; color: var(--text-light); font-weight: 300; }
+
+        .lead-form {
+            background: var(--bg-white);
+            border-radius: 4px;
+            padding: 24px 20px;
+            box-shadow: var(--shadow-card);
+        }
+        .lead-form .field-group { margin-bottom: 18px; }
+        .lead-form .field-label {
+            display: block;
+            margin-bottom: 6px;
+            font-family: var(--font-heading);
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+        .lead-form .optional { color: var(--text-light); font-weight: 400; }
+        .lead-form .field {
+            display: block;
+            width: 100%;
+            min-height: 48px;
+            box-sizing: border-box;
+            padding: 10px 14px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--text-main);
+            background: var(--bg-light);
+            border: 1px solid var(--accent-color);
+            border-radius: 2px;
+        }
+        .lead-form .field::placeholder { color: var(--text-light); opacity: 1; }
+        .lead-form textarea.field { min-height: 110px; resize: vertical; }
+        .lead-form .field[aria-invalid="true"] { border-color: #a3402c; }
+        .lead-form .form-note { margin: 8px 0 0; font-size: 1rem; color: var(--text-light); }
+        .lead-form .form-note a { color: var(--wood-dark); text-decoration: underline; }
+        .lead-form { position: relative; }
+        .lead-form .hp-field {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+        }
+        .lead-form .form-error {
+            margin: 0 0 16px;
+            padding: 12px 15px;
+            border-right: 3px solid #a3402c;
+            background: #f8ece8;
+            color: #7d2f20;
+            font-size: 1rem;
+        }
+
+        .form-success {
+            padding: 36px 24px;
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+            background: var(--wood-light);
+            text-align: center;
+        }
+        .form-success p { margin: 0; }
+
+        .contact-alt { margin-top: 28px; text-align: center; }
+        .contact-alt .contact-alt-label {
+            display: block;
+            margin-bottom: 10px;
+            font-family: var(--font-heading);
+            color: var(--text-light);
+        }
+        .contact-alt .contact-email {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+            margin-top: 8px;
+            color: var(--wood-dark);
+        }
+
+        /* Footer */
+        .site-footer {
+            background: var(--bg-dark);
+            color: var(--bg-white);
+            padding: 40px 0 32px;
+            text-align: center;
+        }
+        .site-footer .footer-logo { height: 56px; width: auto; margin: 0 auto 16px; filter: brightness(0) invert(1) opacity(0.8); }
+        .site-footer .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 20px; margin-bottom: 12px; }
+        .site-footer .footer-links a {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+            color: var(--bg-white);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .site-footer .copy { margin: 0; font-size: 1rem; color: var(--accent-light); }
+
+        /* Floating WhatsApp: in RTL it sits on the left */
+        .floating-widget {
+            position: fixed;
+            bottom: 16px;
+            left: 16px;
+            z-index: 1500;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .floating-widget .widget-trigger {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            border: none;
+            border-radius: 50%;
+            background-color: var(--wa-green);
+            color: var(--bg-white);
+            box-shadow: var(--shadow-wa);
+            cursor: pointer;
+        }
+        .floating-widget .widget-trigger:hover { background-color: var(--wa-green-dark); }
+        .floating-widget .widget-trigger svg { width: 30px; height: 30px; fill: currentColor; }
+
+        .widget-bubble {
+            position: relative;
+            width: min(290px, calc(100vw - 32px));
+            box-sizing: border-box;
+            margin-bottom: 14px;
+            padding: 20px 18px 18px;
+            background: var(--bg-white);
+            border: 1px solid var(--accent-light);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            text-align: right;
+        }
+        .widget-bubble .close-bubble {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            border: none;
+            background: transparent;
+            font-size: 1.5rem;
+            line-height: 1;
+            color: var(--text-light);
+            cursor: pointer;
+        }
+        .widget-bubble .bubble-title {
+            display: block;
+            font-family: var(--font-heading);
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            padding-left: 40px;
+        }
+        .widget-bubble .bubble-status { display: block; color: var(--text-light); margin-bottom: 10px; }
+        .widget-bubble .bubble-text { margin: 0 0 14px; color: var(--text-main); }
+        .widget-bubble .widget-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 48px;
+            padding: 10px 15px;
+            border-radius: 6px;
+            background-color: var(--wa-green);
+            color: var(--bg-white);
+            font-family: var(--font-heading);
+            font-weight: 500;
+            text-decoration: none;
+        }
+        .widget-bubble .widget-btn:hover { background-color: var(--wa-green-dark); }
+        .widget-bubble .widget-btn svg { width: 20px; height: 20px; fill: currentColor; }
+
+        /* Wider screens: min-width expands upward from the mobile base */
+        @media (min-width: 768px) {
+            .page .h1 { font-size: 2.6rem; }
+            .page .h2 { font-size: 2.2rem; }
+            .section { padding: 80px 0; }
+            .hero { padding: 56px 0 72px; }
+            .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+            .hero-actions { flex-direction: row; align-items: center; gap: 24px; flex-wrap: wrap; }
+            .gallery { grid-template-columns: 1fr 1fr; }
+            .lead-form { padding: 32px 30px; }
+        }
+        @media (min-width: 992px) {
+            .page .h1 { font-size: 3rem; }
+            .page .h2 { font-size: 2.4rem; }
+            .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+            .steps .step { margin-bottom: 0; }
+            .cards { grid-template-columns: repeat(3, 1fr); }
+            .floating-widget { bottom: 30px; left: 30px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body class="page">
+    <a href="#main" class="skip-link">דלג לתוכן הראשי</a>
+
+    <header class="site-header">
+        <div class="container">
+            <a href="/" class="logo-link"><img src="assets/NimrodLogoFinal.svg" alt="באים בטוב" width="73" height="52"></a>
+        </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+
+        <!-- Hero -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <h1 id="hero-title" class="h1">הסוכה צריכה להחזיק שבוע. פרגולה צריכה לעבור חורף.</h1>
+                    <p class="about">באים בטוב מתכננים ובונים פרגולות עץ לבתים פרטיים, מהמדידה ועד המסירה.</p>
+                    <p class="sub">קונסטרוקטור בצוות חותם על כל מבנה. אתם מקבלים פרגולה מוכנה, בלי לרדוף אחרי אף אחד.</p>
+                    <div class="hero-actions">
+                        <a class="btn btn-whatsapp js-wa" data-wa-button="יצירת קשר" href="https://wa.me/972506762006?text=%D7%94%D7%99%D7%99!%20%D7%90%D7%A0%D7%99%20%D7%A4%D7%95%D7%A0%D7%94%20%D7%9E%D7%93%D7%A3%20%D7%94%D7%A4%D7%A8%D7%92%D7%95%D7%9C%D7%95%D7%AA%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%95%D7%93" target="_blank" rel="noopener">
+                            <svg aria-hidden="true" focusable="false" class="btn-icon" viewBox="0 0 24 24"><path d="M12.012 2c-5.506 0-9.988 4.482-9.988 9.988 0 1.76.459 3.473 1.33 4.985l-1.413 5.163 5.281-1.385c1.455.794 3.09 1.213 4.782 1.214 5.506 0 9.988-4.482 9.988-9.988.001-5.507-4.481-9.987-9.988-9.987zm5.952 14.127c-.244.688-1.222 1.328-1.745 1.408-.475.074-.954.062-2.827-.665-2.285-.887-3.799-3.21-3.913-3.363-.114-.153-.928-1.233-.928-2.35 0-1.117.581-1.666.787-1.892.206-.226.45-.282.599-.282.15 0 .3-.001.43.006.136.007.319-.052.499.385.187.452.64 1.558.696 1.671.056.113.094.245.019.395-.075.151-.114.245-.226.377-.113.132-.236.294-.339.395-.113.113-.231.236-.094.471.137.236.609.998 1.303 1.616.892.795 1.644 1.04 1.87 1.153.226.113.358.094.49-.057.132-.151.565-.659.716-.885.151-.226.301-.188.508-.113.207.075 1.318.621 1.544.735.226.113.376.17.432.264.056.094.056.546-.188 1.234z"/></svg>
+                            <span>שלחו לנו וואטסאפ</span><span class="sr-only"> (נפתח בחלון חדש)</span>
+                        </a>
+                        <div class="hero-links">
+                            <a class="text-link" href="#contact">ספרו לנו על הפרויקט</a>
+                            <a class="text-link" href="#gallery">לעבודות שלנו</a>
+                        </div>
+                    </div>
+                    <ul class="trust-list">
+                        <li class="trust-item">קונסטרוקטור בצוות, לא מבחוץ</li>
+                        <li class="trust-item">הצעת מחיר מפורטת לפני שמתחילים</li>
+                        <li class="trust-item">מחדרה ועד אשדוד ויהודה ושומרון</li>
+                    </ul>
+                </div>
+                <div class="hero-media">
+                    <img class="hero-img" src="assets/slide1.jpg" alt="פרגולת עץ גדולה בחצר בית פרטי עם קשתות" fetchpriority="high">
+                </div>
+            </div>
+        </section>
+
+        <!-- How it works: facts.md section 1 -->
+        <section class="section section-white" id="process" aria-labelledby="process-title">
+            <div class="container">
+                <h2 id="process-title" class="h2">איך זה עובד</h2>
+                <ol class="steps">
+                    <li class="step">
+                        <h3 class="h3">תכנון</h3>
+                        <p>מגיעים, מודדים ושומעים מה אתם רוצים. מקבלים תכנון מסודר, ויודעים בדיוק מה נבנה לפני שמנסרים את הקורה הראשונה.</p>
+                    </li>
+                    <li class="step">
+                        <h3 class="h3">חישוב ואישור קונסטרוקטור</h3>
+                        <p>אנחנו הקונסטרוקטורים. מחשבים עומסים, חיבורים ועיגון, וחותמים על המבנה. לא צריך לחפש מהנדס.</p>
+                        <p class="permit">צריך היתר? זה תלוי בגודל, במיקום ובתקנות, ואנחנו מלווים אתכם בבירור.</p>
+                    </li>
+                    <li class="step">
+                        <h3 class="h3">ביצוע</h3>
+                        <p>הצוות שלנו בונה, ולפעמים מצטרפים בעלי מקצוע שאנחנו בוחרים. אנחנו אחראים על הביצוע עד המסירה. אתם מדברים רק איתנו.</p>
+                    </li>
+                    <li class="step">
+                        <h3 class="h3">מסירה</h3>
+                        <p>עוברים איתכם על כל פרט עד הבורג האחרון, ומקבלים מבנה מוכן לשימוש.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Why us: the three approved angles -->
+        <section class="section section-oak" id="why" aria-labelledby="why-title">
+            <div class="container">
+                <h2 id="why-title" class="h2">למה לבנות איתנו</h2>
+                <div class="cards">
+                    <article class="card">
+                        <h3 class="h3">כל התהליך בכתובת אחת</h3>
+                        <p>בדרך כלל מתאמים לבד מתכנן, מהנדס ונגר, ומקווים שהם ידברו ביניהם.</p>
+                        <p>אצלנו כל התהליך בכתובת אחת. מגיעים ומודדים, קונסטרוקטור מחשב ומאשר את המבנה, בונים ומוסרים.</p>
+                        <p>צריך היתר? זה תלוי בגודל, במיקום ובתקנות, ואנחנו מלווים אתכם בבירור.</p>
+                    </article>
+                    <article class="card">
+                        <h3 class="h3">איתכם עד הבורג האחרון</h3>
+                        <p>פרגולה שנבנתה בלי חישוב זזה אחרי חורף אחד.</p>
+                        <p>אצלנו הקונסטרוקטור בצוות, לא מבחוץ. הוא חותם על כל מבנה.</p>
+                        <p>הצוות שלנו בונה, ולפעמים מצטרפים בעלי מקצוע שאנחנו בוחרים.</p>
+                        <p>אתם מקבלים פרגולה מוכנה, בלי לרדוף אחרי אף אחד.</p>
+                        <p>זה מה שעומד מאחורי השם באים בטוב.</p>
+                    </article>
+                    <article class="card">
+                        <h3 class="h3">הצעת מחיר מפורטת, סעיף אחרי סעיף</h3>
+                        <p>משהו לא צפוי מתגלה באמצע העבודה, ותוספת מחיר מגיעה בלי שאישרתם אותה.</p>
+                        <p>אצלנו פרגולה מתחילה בפגישה ומדידה אצלכם בחצר.</p>
+                        <p>אחריה מקבלים הצעת מחיר מפורטת לפי סעיפים, עם הערכה של זמן הביצוע.</p>
+                        <p>אם משהו משתנה בדרך, שום תוספת לא נעשית בלי האישור שלכם.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Proof: real photos only -->
+        <section class="section section-white" id="gallery" aria-labelledby="gallery-title">
+            <div class="container">
+                <h2 id="gallery-title" class="h2">עבודות שבנינו</h2>
+                <p class="section-desc">תמונות אמיתיות מעבודות שלנו.</p>
+                <div class="gallery">
+                    <img class="gallery-img" src="assets/20180418_143809_AG.png" alt="פרגולה עם עמודי עץ וקירוי אפור, לאורך קיר הבית, מעל ריצוף אבן ומול דשא" loading="lazy">
+                    <img class="gallery-img" src="assets/IMG-20220501-WA0017_AG.png" alt="פרגולת עץ גדולה ודק עץ בחצר" loading="lazy">
+                    <img class="gallery-img" src="assets/IMG_20211222_192642_AG.png" alt="פרגולת עץ עם קירוי במבוק מעל מרפסת" loading="lazy">
+                    <img class="gallery-img" src="assets/IMG_20220519_143958_AG.png" alt="פרגולה לבנה מעל דק עץ ופינת ישיבה" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ: playbook section 5 -->
+        <section class="section" id="faq" aria-labelledby="faq-title">
+            <div class="container">
+                <h2 id="faq-title" class="h2">שאלות שכדאי לשאול לפני שבונים</h2>
+                <div class="faq">
+                    <details class="faq-item">
+                        <summary><h3 class="h3">למה צריך קונסטרוקטור?</h3></summary>
+                        <p>החישוב קובע את עובי הקורות, את החיבורים ואת העיגון.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary><h3 class="h3">כמה זה עולה?</h3></summary>
+                        <p>המחיר תלוי בגודל, בסוג העץ ובמורכבות. אחרי פגישה ומדידה תקבלו הצעת מחיר מפורטת לפי סעיפים.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary><h3 class="h3">כמה זמן זה לוקח?</h3></summary>
+                        <p>בהצעת המחיר תקבלו הערכה של זמן הביצוע, כדי שתדעו למה לצפות לפני שמתחילים.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary><h3 class="h3">צריך היתר?</h3></summary>
+                        <p>זה תלוי בגודל, במיקום ובתקנות של הרשות המקומית.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Closing CTA and form -->
+        <section class="section section-oak" id="contact" aria-labelledby="contact-title">
+            <div class="container">
+                <div class="cta-wrap">
+                    <h2 id="contact-title" class="h2">ספרו לנו מה אתם רוצים לבנות</h2>
+                    <p class="cta-text">השאירו פרטים, ונחזור אליכם לתיאום פגישה ומדידה.</p>
+                    <p class="cta-next">קובעים פגישה ומדידה, ומקבלים הצעת מחיר מפורטת.</p>
+                    <p class="cta-free">(הפגישה בלי עלות.)</p>
+
+                    <form class="lead-form" id="lead-form" novalidate>
+                        <p class="form-error" id="form-error" role="alert" hidden></p>
+
+                        <div class="field-group">
+                            <label class="field-label" for="name">שם מלא</label>
+                            <input class="field" type="text" id="name" name="name" autocomplete="name" required maxlength="100" placeholder="השם שלכם">
+                        </div>
+
+                        <div class="field-group">
+                            <label class="field-label" for="phone">טלפון</label>
+                            <input class="field" type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" required maxlength="20" placeholder="מספר הטלפון" aria-describedby="privacy-note">
+                            <p class="form-note" id="privacy-note">הפרטים נשמרים אצלנו רק כדי לחזור אליכם. פרטים ב<a href="/privacy/">מדיניות הפרטיות</a>.</p>
+                        </div>
+
+                        <div class="field-group">
+                            <label class="field-label" for="city">יישוב</label>
+                            <input class="field" type="text" id="city" name="city" autocomplete="address-level2" required maxlength="80" placeholder="איפה הפרויקט?">
+                        </div>
+
+                        <div class="field-group">
+                            <label class="field-label" for="details">ספרו בקצרה על הפרויקט <span class="optional">(לא חובה)</span></label>
+                            <textarea class="field" id="details" name="details" rows="3" maxlength="2000" placeholder="למשל: פרגולה בחצר של כ-20 מ&quot;ר, צמודה לבית"></textarea>
+                        </div>
+
+                        <!-- Decided by the CEO: this campaign is pergolas only, so the type is fixed, not chosen -->
+                        <input type="hidden" name="projectType" value="פרגולה">
+                        <input type="hidden" name="utm" id="utm" value="">
+                        <input type="hidden" name="page" id="page" value="">
+
+                        <!-- Honeypot: the endpoint pretends success when this is filled -->
+                        <div class="hp-field" aria-hidden="true">
+                            <label for="company">חברה</label>
+                            <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
+                        </div>
+
+                        <button type="submit" class="btn btn-wood btn-full" id="lead-submit">שליחה</button>
+                    </form>
+
+                    <div class="form-success" id="form-success" role="status" tabindex="-1" hidden>
+                        <h3 class="h3">תודה, קיבלנו!</h3>
+                        <p>נחזור אליכם לתיאום פגישה ומדידה.</p>
+                    </div>
+
+                    <div class="contact-alt">
+                        <span class="contact-alt-label">מעדיפים לכתוב?</span>
+                        <a class="btn btn-whatsapp js-wa" data-wa-button="יצירת קשר" href="https://wa.me/972506762006?text=%D7%94%D7%99%D7%99!%20%D7%90%D7%A0%D7%99%20%D7%A4%D7%95%D7%A0%D7%94%20%D7%9E%D7%93%D7%A3%20%D7%94%D7%A4%D7%A8%D7%92%D7%95%D7%9C%D7%95%D7%AA%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%95%D7%93" target="_blank" rel="noopener">
+                            <svg aria-hidden="true" focusable="false" class="btn-icon" viewBox="0 0 24 24"><path d="M12.012 2c-5.506 0-9.988 4.482-9.988 9.988 0 1.76.459 3.473 1.33 4.985l-1.413 5.163 5.281-1.385c1.455.794 3.09 1.213 4.782 1.214 5.506 0 9.988-4.482 9.988-9.988.001-5.507-4.481-9.987-9.988-9.987zm5.952 14.127c-.244.688-1.222 1.328-1.745 1.408-.475.074-.954.062-2.827-.665-2.285-.887-3.799-3.21-3.913-3.363-.114-.153-.928-1.233-.928-2.35 0-1.117.581-1.666.787-1.892.206-.226.45-.282.599-.282.15 0 .3-.001.43.006.136.007.319-.052.499.385.187.452.64 1.558.696 1.671.056.113.094.245.019.395-.075.151-.114.245-.226.377-.113.132-.236.294-.339.395-.113.113-.231.236-.094.471.137.236.609.998 1.303 1.616.892.795 1.644 1.04 1.87 1.153.226.113.358.094.49-.057.132-.151.565-.659.716-.885.151-.226.301-.188.508-.113.207.075 1.318.621 1.544.735.226.113.376.17.432.264.056.094.056.546-.188 1.234z"/></svg>
+                            <span>שלחו לנו וואטסאפ</span><span class="sr-only"> (נפתח בחלון חדש)</span>
+                        </a>
+                        <br>
+                        <a class="contact-email" href="mailto:baimbetovPM@gmail.com">baimbetovPM@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <img class="footer-logo" src="assets/NimrodLogoFinal.svg" alt="באים בטוב" width="78" height="56" loading="lazy">
+            <nav class="footer-links">
+                <a href="/accessibility/">הצהרת נגישות</a>
+                <a href="/privacy/">מדיניות פרטיות</a>
+                <a href="/terms/">תנאי שימוש</a>
+            </nav>
+            <p class="copy">&copy; <span id="current-year">2026</span> באים בטוב · תכנון, קונסטרוקציה וביצוע בעץ. כל הזכויות שמורות.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp: the bubble never opens by itself -->
+    <div class="floating-widget" id="whatsapp-widget">
+        <div class="widget-bubble" id="widget-bubble" hidden>
+            <button type="button" class="close-bubble" id="close-bubble" aria-label="סגירת חלון הוואטסאפ">&times;</button>
+            <strong class="bubble-title">באים בטוב</strong>
+            <span class="bubble-status">מתכננים ובונים פרגולות עץ</span>
+            <p class="bubble-text">היי! נשמח לשמוע על הפרגולה שאתם רוצים. כתבו לנו כאן בוואטסאפ, או השאירו פרטים בטופס.</p>
+            <a class="widget-btn js-wa" id="bubble-wa" data-wa-button="בועה צפה" href="https://wa.me/972506762006?text=%D7%94%D7%99%D7%99!%20%D7%90%D7%A0%D7%99%20%D7%A4%D7%95%D7%A0%D7%94%20%D7%9E%D7%93%D7%A3%20%D7%94%D7%A4%D7%A8%D7%92%D7%95%D7%9C%D7%95%D7%AA%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%95%D7%93" target="_blank" rel="noopener">
+                <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12.012 2c-5.506 0-9.988 4.482-9.988 9.988 0 1.76.459 3.473 1.33 4.985l-1.413 5.163 5.281-1.385c1.455.794 3.09 1.213 4.782 1.214 5.506 0 9.988-4.482 9.988-9.988.001-5.507-4.481-9.987-9.988-9.987zm5.952 14.127c-.244.688-1.222 1.328-1.745 1.408-.475.074-.954.062-2.827-.665-2.285-.887-3.799-3.21-3.913-3.363-.114-.153-.928-1.233-.928-2.35 0-1.117.581-1.666.787-1.892.206-.226.45-.282.599-.282.15 0 .3-.001.43.006.136.007.319-.052.499.385.187.452.64 1.558.696 1.671.056.113.094.245.019.395-.075.151-.114.245-.226.377-.113.132-.236.294-.339.395-.113.113-.231.236-.094.471.137.236.609.998 1.303 1.616.892.795 1.644 1.04 1.87 1.153.226.113.358.094.49-.057.132-.151.565-.659.716-.885.151-.226.301-.188.508-.113.207.075 1.318.621 1.544.735.226.113.376.17.432.264.056.094.056.546-.188 1.234z"/></svg>
+                <span>כתבו לנו בוואטסאפ</span><span class="sr-only"> (נפתח בחלון חדש)</span>
+            </a>
+        </div>
+        <button type="button" class="widget-trigger" id="widget-trigger" aria-label="צרו איתנו קשר בוואטסאפ" aria-expanded="false" aria-controls="widget-bubble">
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12.012 2c-5.506 0-9.988 4.482-9.988 9.988 0 1.76.459 3.473 1.33 4.985l-1.413 5.163 5.281-1.385c1.455.794 3.09 1.213 4.782 1.214 5.506 0 9.988-4.482 9.988-9.988.001-5.507-4.481-9.987-9.988-9.987zm5.952 14.127c-.244.688-1.222 1.328-1.745 1.408-.475.074-.954.062-2.827-.665-2.285-.887-3.799-3.21-3.913-3.363-.114-.153-.928-1.233-.928-2.35 0-1.117.581-1.666.787-1.892.206-.226.45-.282.599-.282.15 0 .3-.001.43.006.136.007.319-.052.499.385.187.452.64 1.558.696 1.671.056.113.094.245.019.395-.075.151-.114.245-.226.377-.113.132-.236.294-.339.395-.113.113-.231.236-.094.471.137.236.609.998 1.303 1.616.892.795 1.644 1.04 1.87 1.153.226.113.358.094.49-.057.132-.151.565-.659.716-.885.151-.226.301-.188.508-.113.207.075 1.318.621 1.544.735.226.113.376.17.432.264.056.094.056.546-.188 1.234z"/></svg>
+        </button>
+    </div>
+
+    <script>
+    (function () {
+        'use strict';
+
+        // Existing endpoint on baimbetov.me (client.md section 5). Same origin, relative path.
+        var WEBHOOK_URL = '/api/lead';
+        var WA_CLICK_URL = '/api/whatsapp-click';
+        var PHONE_PATTERN = /^[+\d][\d\s\-()]{7,20}$/;
+
+        var yearEl = document.getElementById('current-year');
+        if (yearEl) { yearEl.textContent = String(new Date().getFullYear()); }
+
+        // Attribution: read from this page's querystring only. Same keys and format as the main site,
+        // and stored under the same session key so the main site keeps crediting the campaign.
+        var ATTRIBUTION_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid'];
+        var params = new URLSearchParams(window.location.search);
+        var attribution = ATTRIBUTION_KEYS
+            .filter(function (key) { return params.get(key); })
+            .map(function (key) { return key + '=' + params.get(key); })
+            .join(' | ');
+        if (attribution) {
+            try { sessionStorage.setItem('bb_attribution', attribution); } catch (err) {}
+        }
+
+        // WhatsApp clicks: logged without personal data, like on the main site
+        var waLinks = document.querySelectorAll('.js-wa');
+        Array.prototype.forEach.call(waLinks, function (link) {
+            link.addEventListener('click', function () {
+                try {
+                    var payload = JSON.stringify({
+                        button: link.getAttribute('data-wa-button'),
+                        utm: attribution,
+                        page: window.location.pathname
+                    });
+                    navigator.sendBeacon(WA_CLICK_URL, new Blob([payload], { type: 'application/json' }));
+                } catch (err) {}
+            });
+        });
+
+        // Floating bubble: opens only on tap, closes on the close button or Escape
+        var trigger = document.getElementById('widget-trigger');
+        var bubble = document.getElementById('widget-bubble');
+        var closeBtn = document.getElementById('close-bubble');
+        var bubbleLink = document.getElementById('bubble-wa');
+
+        function setBubble(open) {
+            bubble.hidden = !open;
+            trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            if (open) { bubbleLink.focus(); }
+        }
+        trigger.addEventListener('click', function () { setBubble(bubble.hidden); });
+        closeBtn.addEventListener('click', function () { setBubble(false); trigger.focus(); });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && !bubble.hidden) { setBubble(false); trigger.focus(); }
+        });
+
+        // Lead form
+        var form = document.getElementById('lead-form');
+        var formError = document.getElementById('form-error');
+        var formSuccess = document.getElementById('form-success');
+        var submitBtn = document.getElementById('lead-submit');
+        var busy = false;
+
+        document.getElementById('utm').value = attribution;
+        document.getElementById('page').value = window.location.pathname;
+
+        function showError(message, field) {
+            formError.textContent = message;
+            formError.hidden = false;
+            if (field) {
+                field.setAttribute('aria-invalid', 'true');
+                field.focus();
+            }
+        }
+
+        form.addEventListener('input', function (e) {
+            if (e.target && e.target.removeAttribute) { e.target.removeAttribute('aria-invalid'); }
+            formError.hidden = true;
+        });
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (busy) { return; }
+
+            var f = form.elements;
+            var name = f.name.value.trim();
+            var phone = f.phone.value.trim();
+            var city = f.city.value.trim();
+
+            if (!name) { return showError('נא למלא שם.', f.name); }
+            if (!PHONE_PATTERN.test(phone)) { return showError('נא למלא מספר טלפון תקין.', f.phone); }
+            if (!city) { return showError('נא למלא יישוב.', f.city); }
+
+            busy = true;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'שולח...';
+
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: name,
+                    phone: phone,
+                    projectType: f.projectType.value,
+                    city: city,
+                    details: f.details.value.trim(),
+                    utm: f.utm.value,
+                    page: f.page.value,
+                    company: f.company.value
+                })
+            }).then(function (res) {
+                if (!res.ok) { throw new Error('HTTP ' + res.status); }
+                form.hidden = true;
+                formSuccess.hidden = false;
+                formSuccess.focus();
+            }).catch(function () {
+                showError('משהו השתבש בשליחה. אפשר לנסות שוב, או לשלוח לנו וואטסאפ.');
+                busy = false;
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'שליחה';
+            });
+        });
+    })();
+    </script>
+</body>
+</html>

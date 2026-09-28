@@ -117,7 +117,7 @@ tags:
 ## 6. בדיקת עובדות מול האתר
 
 `clients/baimbetov/facts-check.json`, דרך `pwsh -File scripts/verify-site-facts.ps1 -Client baimbetov`.
-**לא הורץ עדיין:** ההרצה נוגעת ברשת, והיא ממתינה לאישור של נימרוד.
+**רץ ב-2026-09-28 ועבר 8 מתוך 8**, פעם לפני `/new-campaign` ופעם בשלב 0 של ריצה 1 של [[pergola-sukkot]].
 
 ---
 
