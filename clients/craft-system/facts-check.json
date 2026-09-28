@@ -1,0 +1,21 @@
+{
+  "client": "craft-system",
+  "siteUrl": "https://craftsystem.co.il/",
+  "sourceOfTruth": "references/writing/site-copy.md",
+  "facts": [
+    { "group": "מחירים",       "label": "מסלול 01: 990 ₪",               "needles": ["990"] },
+    { "group": "מחירים",       "label": "מסלול 02: 3,200 ₪",             "needles": ["3,200", "3200"] },
+    { "group": "מחירים",       "label": "מסלול 03: מחיר מותאם אישית",    "needles": ["מותאם אישית"] },
+
+    { "group": "שמות מסלולים", "label": "חלון ראווה",                     "needles": ["חלון ראווה"] },
+    { "group": "שמות מסלולים", "label": "שולחן עבודה",                    "needles": ["שולחן עבודה"] },
+    { "group": "שמות מסלולים", "label": "אקו-סיסטם",                      "needles": ["אקו-סיסטם", "אקו סיסטם"] },
+
+    { "group": "וואטסאפ",      "label": "מספר wa.me: 972506762006",       "needles": ["972506762006"] },
+
+    { "group": "קייסים",       "label": "קייס 1+2: באים בטוב",            "needles": ["באים בטוב"] },
+    { "group": "קייסים",       "label": "קייס 1: לינק חי baimbetov.me",   "needles": ["baimbetov.me"] },
+    { "group": "קייסים",       "label": "קייס 3: לינק חי lukasbielka.com", "needles": ["lukasbielka.com"] },
+    { "group": "קייסים",       "label": "קייס 4: מורה דרך",               "needles": ["מורה דרך"] }
+  ]
+}

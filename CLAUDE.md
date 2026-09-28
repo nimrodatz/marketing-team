@@ -64,14 +64,11 @@ writes copy must read it first.** Prices, case studies and links come from that 
    pain written as a scenario rather than an abstract noun. None of the four is greppable, so the CEO
    reads for them at the stage-5 gate.
 
-> **There are no paying clients yet.** "באים בטוב" is one of the user's own businesses, and all four
-> cases were built for himself or for people close to him. **No artifact may say "לקוח", "לקוחות
-> מרוצים" or "אצל לקוח אמיתי".** Write "מה שבניתי" instead. This is a factual correction, not a
-> stylistic one, and it is recorded in `voice-and-tone.md` §8 along with the one number the engine is
-> allowed to state: production errors in the carpentry the user ran fell from 30-40% to 1-5% in three
-> months. **That number is admissible in past tense and first person only, never as a promise** of what
-> a reader will get. `site-copy.md` and the live site still carry the inaccurate "אצל לקוח אמיתי"; the
-> site is the user's call and is not edited by the engine.
+> **Rules about what a client may claim live in that client's folder, not here.** Craft & System's
+> rules (the word "לקוח", the four cases, the one admissible number, and the split between
+> "באים בטוב" and the carpentry) moved to `clients/craft-system/client.md` §4 on 2026-09-28.
+> This file holds engine rules only. A rule that is true for one client and wrong for another
+> does not belong in it.
 
 **The brand rests on four source-of-truth files, and each agent reads the ones its output touches:**
 `voice-and-tone.md` (how it sounds, plus the forbidden-words list), `icp-construction.md` (who it is

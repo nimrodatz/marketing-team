@@ -1,54 +1,63 @@
 <#
 .SYNOPSIS
-    אימות העובדות הנעולות של Craft & System מול האתר החי.
+    אימות העובדות הנעולות של לקוח מול האתר החי שלו.
 
 .DESCRIPTION
     למה זה קיים:
-      references/writing/site-copy.md הוא צילום מסך של האתר מרגע מסוים. אם מחיר משתנה
-      באתר ואף אחד לא מעדכן את הקובץ, הסוכנים ימשיכו לכתוב את המחיר הישן.
+      קובץ העובדות של לקוח (אצל C&S: references/writing/site-copy.md) הוא צילום מסך של האתר
+      מרגע מסוים. אם מחיר משתנה באתר ואף אחד לא מעדכן את הקובץ, הסוכנים ימשיכו לכתוב את
+      המחיר הישן.
 
     מי מריץ:
       המנכ"ל (הסשן הראשי) בתחילת כל ריצת פייפליין, לפני שלב הקופי.
-      הסוכנים לא ניגשים לרשת ולא מריצים את זה. הם קוראים את site-copy.md בלבד.
+      הסוכנים לא ניגשים לרשת ולא מריצים את זה. הם קוראים את קובץ העובדות בלבד.
 
     מה זה עושה:
-      מושך את ה-HTML של האתר ובודק שכל עובדה נעולה עדיין מופיעה בו.
-      פלט OK, או דוח דריפט + יציאה בקוד 1.
+      קורא את clients/<Client>/facts-check.json, מושך את ה-HTML של האתר ובודק שכל עובדה
+      נעולה עדיין מופיעה בו. פלט OK, או דוח דריפט + יציאה בקוד 1.
+      ללקוח בלי facts-check.json או בלי siteUrl: הודעת דילוג ויציאה בקוד 0.
 
     מה זה לא עושה:
-      לא כותב לשום קובץ. המבנה העריכתי של site-copy.md הוא עבודת עריכה ולא פרסינג,
-      ולכן העדכון בפועל הוא של המנכ"ל — אחרי הצגת הדריפט למשתמש ואישורו.
+      לא כותב לשום קובץ. המבנה העריכתי של קובץ העובדות הוא עבודת עריכה ולא פרסינג,
+      ולכן העדכון בפועל הוא של המנכ"ל, אחרי הצגת הדריפט למשתמש ואישורו.
 
     קודי יציאה:
-      0 = כל העובדות תואמות · 1 = נמצא דריפט · 2 = הבדיקה עצמה נכשלה (רשת/סטטוס)
+      0 = כל העובדות תואמות, או דילוג מוצהר · 1 = נמצא דריפט · 2 = הבדיקה עצמה נכשלה
 
 .EXAMPLE
     pwsh -File scripts/verify-site-facts.ps1
+    pwsh -File scripts/verify-site-facts.ps1 -Client craft-system
 #>
+
+param(
+    [string]$Client = 'craft-system'
+)
 
 $ErrorActionPreference = 'Stop'
 $OutputEncoding = [System.Text.Encoding]::UTF8
 
-$SiteUrl       = 'https://craftsystem.co.il/'
-$SourceOfTruth = 'references/writing/site-copy.md'
+$RepoRoot   = Split-Path -Parent $PSScriptRoot
+$ConfigPath = Join-Path $RepoRoot "clients/$Client/facts-check.json"
 
-# כל עובדה: Group ו-Label לתצוגה, Needles = חלופות מקובלות (מספיק שאחת נמצאת).
-$Facts = @(
-    @{ Group = 'מחירים';        Label = 'מסלול 01 — 990 ₪';              Needles = @('990') }
-    @{ Group = 'מחירים';        Label = 'מסלול 02 — 3,200 ₪';            Needles = @('3,200', '3200') }
-    @{ Group = 'מחירים';        Label = 'מסלול 03 — מחיר מותאם אישית';   Needles = @('מותאם אישית') }
+if (-not (Test-Path -LiteralPath $ConfigPath)) {
+    Write-Host "דילוג: ללקוח '$Client' אין clients/$Client/facts-check.json." -ForegroundColor Yellow
+    Write-Host '  אין מה לאמת מול אתר. זה לא אישור שהעובדות נכונות, רק שלא נבדקו.'
+    exit 0
+}
 
-    @{ Group = 'שמות מסלולים';  Label = 'חלון ראווה';                     Needles = @('חלון ראווה') }
-    @{ Group = 'שמות מסלולים';  Label = 'שולחן עבודה';                    Needles = @('שולחן עבודה') }
-    @{ Group = 'שמות מסלולים';  Label = 'אקו-סיסטם';                      Needles = @('אקו-סיסטם', 'אקו סיסטם') }
+$config = Get-Content -LiteralPath $ConfigPath -Raw -Encoding UTF8 | ConvertFrom-Json
 
-    @{ Group = 'וואטסאפ';       Label = 'מספר wa.me — 972506762006';      Needles = @('972506762006') }
+if ([string]::IsNullOrWhiteSpace($config.siteUrl)) {
+    Write-Host "דילוג: ללקוח '$Client' אין siteUrl ב-facts-check.json." -ForegroundColor Yellow
+    Write-Host '  אין מה לאמת מול אתר. זה לא אישור שהעובדות נכונות, רק שלא נבדקו.'
+    exit 0
+}
 
-    @{ Group = 'קייסים';        Label = 'קייס 1+2 — באים בטוב';           Needles = @('באים בטוב') }
-    @{ Group = 'קייסים';        Label = 'קייס 1 — לינק חי baimbetov.me';  Needles = @('baimbetov.me') }
-    @{ Group = 'קייסים';        Label = 'קייס 3 — לינק חי lukasbielka.com'; Needles = @('lukasbielka.com') }
-    @{ Group = 'קייסים';        Label = 'קייס 4 — מורה דרך';              Needles = @('מורה דרך') }
-)
+$SiteUrl       = $config.siteUrl
+$SourceOfTruth = $config.sourceOfTruth
+
+# כל עובדה: group ו-label לתצוגה, needles = חלופות מקובלות (מספיק שאחת נמצאת).
+$Facts = @($config.facts)
 
 # נרמול ה-HTML לטקסט נראה: הסרת script/style, הסרת תגיות, פענוח ישויות נפוצות
 # וכיווץ רווחים. מונע החמצה כשתגית מפצלת מילה באמצע.
@@ -64,17 +73,17 @@ function ConvertTo-VisibleText {
 
 try {
     $response = Invoke-WebRequest -Uri $SiteUrl -UseBasicParsing -TimeoutSec 30 `
-                                  -Headers @{ 'User-Agent' = 'craft-system-fact-check/1.0' }
+                                  -Headers @{ 'User-Agent' = "$Client-fact-check/1.0" }
 }
 catch {
     Write-Host "✗ כשל בפנייה ל-$SiteUrl : $($_.Exception.Message)" -ForegroundColor Red
-    Write-Host '  לא ניתן לאמת. אין להסיק שהעובדות השתנו — רק שהבדיקה נכשלה.'
+    Write-Host '  לא ניתן לאמת. אין להסיק שהעובדות השתנו, רק שהבדיקה נכשלה.'
     exit 2
 }
 
 if ($response.StatusCode -ne 200) {
     Write-Host "✗ האתר החזיר סטטוס $($response.StatusCode)" -ForegroundColor Red
-    Write-Host '  לא ניתן לאמת. אין להסיק שהעובדות השתנו — רק שהבדיקה נכשלה.'
+    Write-Host '  לא ניתן לאמת. אין להסיק שהעובדות השתנו, רק שהבדיקה נכשלה.'
     exit 2
 }
 
@@ -88,15 +97,15 @@ $haystack = $html + "`n" + (ConvertTo-VisibleText -Html $html)
 $drift = @()
 foreach ($fact in $Facts) {
     $found = $false
-    foreach ($needle in $fact.Needles) {
+    foreach ($needle in $fact.needles) {
         if ($haystack.Contains($needle)) { $found = $true; break }
     }
 
     if ($found) {
-        Write-Host "✓ [$($fact.Group)] $($fact.Label)" -ForegroundColor Green
+        Write-Host "✓ [$($fact.group)] $($fact.label)" -ForegroundColor Green
     }
     else {
-        Write-Host "✗ [$($fact.Group)] $($fact.Label)" -ForegroundColor Red
+        Write-Host "✗ [$($fact.group)] $($fact.label)" -ForegroundColor Red
         $drift += $fact
     }
 }
@@ -104,16 +113,16 @@ foreach ($fact in $Facts) {
 Write-Host ''
 
 if ($drift.Count -eq 0) {
-    Write-Host "OK — כל $($Facts.Count) העובדות הנעולות תואמות ל-$SourceOfTruth." -ForegroundColor Green
+    Write-Host "OK: כל $($Facts.Count) העובדות הנעולות של '$Client' תואמות ל-$SourceOfTruth." -ForegroundColor Green
     exit 0
 }
 
-Write-Host "דריפט — $($drift.Count) עובדות לא נמצאו באתר:" -ForegroundColor Red
+Write-Host "דריפט: $($drift.Count) עובדות של '$Client' לא נמצאו באתר:" -ForegroundColor Red
 foreach ($fact in $drift) {
-    Write-Host "  • [$($fact.Group)] $($fact.Label)  (חיפשנו: $($fact.Needles -join ' | '))"
+    Write-Host "  • [$($fact.group)] $($fact.label)  (חיפשנו: $($fact.needles -join ' | '))"
 }
 Write-Host ''
 Write-Host 'עצירה. אין להריץ את הפייפליין על עובדות שלא אומתו.'
 Write-Host "הצעד הבא: להציג את הדריפט למשתמש, ורק אחרי אישורו לעדכן את $SourceOfTruth."
-Write-Host 'שינוי מחיר הוא החלטה של המשתמש בלבד — לא של המנוע.'
+Write-Host 'שינוי מחיר הוא החלטה של המשתמש בלבד, לא של המנוע.'
 exit 1
