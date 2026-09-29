@@ -176,6 +176,28 @@
         .btn.btn-wood:disabled { opacity: 0.7; cursor: wait; transform: none; }
         .btn.btn-whatsapp { background-color: var(--wa-green); box-shadow: var(--shadow-wa); }
         .btn.btn-whatsapp:hover { background-color: var(--wa-green-dark); transform: translateY(-2px); }
+        /* Secondary: outline in wood tones, reads under the green WhatsApp button */
+        .btn.btn-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 10px 33px;
+            border: 2px solid var(--wood);
+            border-radius: 2px;
+            background-color: transparent;
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: var(--wood-dark);
+            text-decoration: none;
+            cursor: pointer;
+            box-sizing: border-box;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+        .btn.btn-outline:hover { background-color: var(--wood-light); border-color: var(--wood-dark); transform: translateY(-2px); }
+        .hero-actions .btn-outline { margin-top: 4px; }
         .btn.btn-full { width: 100%; }
         .btn-icon { width: 22px; height: 22px; fill: currentColor; flex-shrink: 0; }
 
@@ -494,6 +516,7 @@
             .hero { padding: 56px 0 72px; }
             .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
             .hero-actions { flex-direction: row; align-items: center; gap: 24px; flex-wrap: wrap; }
+            .hero-actions .btn-outline { margin-top: 0; }
             .gallery { grid-template-columns: 1fr 1fr; }
             .lead-form { padding: 32px 30px; }
         }
@@ -539,8 +562,8 @@
                             <svg aria-hidden="true" focusable="false" class="btn-icon" viewBox="0 0 24 24"><path d="M12.012 2c-5.506 0-9.988 4.482-9.988 9.988 0 1.76.459 3.473 1.33 4.985l-1.413 5.163 5.281-1.385c1.455.794 3.09 1.213 4.782 1.214 5.506 0 9.988-4.482 9.988-9.988.001-5.507-4.481-9.987-9.988-9.987zm5.952 14.127c-.244.688-1.222 1.328-1.745 1.408-.475.074-.954.062-2.827-.665-2.285-.887-3.799-3.21-3.913-3.363-.114-.153-.928-1.233-.928-2.35 0-1.117.581-1.666.787-1.892.206-.226.45-.282.599-.282.15 0 .3-.001.43.006.136.007.319-.052.499.385.187.452.64 1.558.696 1.671.056.113.094.245.019.395-.075.151-.114.245-.226.377-.113.132-.236.294-.339.395-.113.113-.231.236-.094.471.137.236.609.998 1.303 1.616.892.795 1.644 1.04 1.87 1.153.226.113.358.094.49-.057.132-.151.565-.659.716-.885.151-.226.301-.188.508-.113.207.075 1.318.621 1.544.735.226.113.376.17.432.264.056.094.056.546-.188 1.234z"/></svg>
                             <span>שלחו לנו וואטסאפ</span><span class="sr-only"> (נפתח בחלון חדש)</span>
                         </a>
+                        <a class="btn btn-outline" href="#contact">ספרו לנו על הפרויקט</a>
                         <div class="hero-links">
-                            <a class="text-link" href="#contact">ספרו לנו על הפרויקט</a>
                             <a class="text-link" href="#gallery">לעבודות שלנו</a>
                         </div>
                     </div>

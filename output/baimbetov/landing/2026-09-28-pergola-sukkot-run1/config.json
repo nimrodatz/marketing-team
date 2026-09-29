@@ -28,7 +28,8 @@
     "legal_links": "/privacy/, /terms/, /accessibility/ as absolute paths from the site root. The page lives at baimbetov.me/pergola/.",
     "utm_format": "Same keys and format as the main site: utm_source, utm_medium, utm_campaign, utm_content, utm_term, gclid, fbclid, joined with ' | '. Also written to sessionStorage key bb_attribution, which the main site reads.",
     "duplicate_image": "20130604_184553_AG.png removed by the CEO: same photo as slide1.jpg. Not used, not listed.",
-    "tailwind": "Not loaded. All styling is inline CSS from visual.md tokens."
+    "tailwind": "Not loaded. All styling is inline CSS from visual.md tokens.",
+    "hero_form_button": "2026-09-29: hero.link.form (ספרו לנו על הפרויקט, href #contact) moved from a text link in .hero-links to a secondary outline button (.btn-outline, wood tokens) beside the WhatsApp button in .hero-actions, after user phone testing. Same string, no new copy."
   },
   "assets": [
     { "file": "assets/slide1.jpg", "source": "C:\\my projects\\baimbetov\\assets\\hero_slides\\slide1.jpg", "copied": true, "copied_by": "CEO", "used_in": "hero", "alt_id": "alt.slide1" },
