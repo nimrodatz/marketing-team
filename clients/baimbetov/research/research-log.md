@@ -6,6 +6,35 @@
 
 ---
 
+## 2026-09-30 | קטגוריה ראשית בפרופיל העסקי בגוגל (gbp-primary-category) | ערוצים
+**מילות מפתח:** primary category, קטגוריה ראשית, Carport and pergola builder, Gazebo builder, בונה ביתנים, גזיבו, Deck builder, בונה דקים, נגר, קבלן, reverification, אימות מחדש
+**שאילתות:** "Google Business Profile Help choose business category primary category", "Google Business Profile category list \"pergola\" category gazebo builder deck builder", "\"Carport and pergola builder\" gcid", "Google business categories list Hebrew translation \"בונה דקים\"", "\"פרגולות\" קטגוריה גוגל עסקי \"בונה\" סככות חניה ופרגולות", "\"בונה סככות חניה ופרגולות\" OR ...", "\"בונה ביתנים (גזיבו)\" פרגולות", "Whitespark local search ranking factors primary category ...", "changing primary category Google Business Profile suspension reverification ..."
+**חיפוש חוזר:** לא. ה-entry של 2026-09-29 על הפרופיל עסק בדירוג הכללי, לא בקטגוריות.
+**מקורות:**
+- [GBP Help 7249669, אנגלית ועברית](https://support.google.com/business/answer/7249669?hl=iw) - איכות: גבוהה - קטגוריות משפיעות על הדירוג, עריכה עלולה לדרוש אימות מחדש, אין קטגוריה מותאמת
+- [GBP Help 3038177](https://support.google.com/business/answer/3038177?hl=en) - איכות: גבוהה - "IS a" ולא "HAS a", כמה שפחות קטגוריות, אסור למלא את השם במילים
+- [Dalton Luka](https://daltonluka.com/blog/google-my-business-categories) (2026-05-09) ו-[Seoteric](https://www.seoteric.com/complete-list-of-google-business-profile-categories-2024-updated/) - איכות: בינונית (רשימות סוכנות, ארה"ב) - "Carport and pergola builder" קיימת
+- [Sterling Sky, שינויי קטגוריות](https://www.sterlingsky.ca/google-my-business-category-changes/) - איכות: בינונית-גבוהה - הרשימה משתנה ממדינה למדינה
+- [Whitespark 2026](https://whitespark.ca/local-search-ranking-factors/) - איכות: בינונית-גבוהה (סקר מומחים) - קטגוריה ראשית מקום 1, נוספות מקום 8
+- [Sterling Sky, השעיות](https://www.sterlingsky.ca/top-reasons-google-my-business-suspended-your-listing/) - איכות: בינונית-גבוהה - לא לרכז עריכות
+- [pleper.com, כלי קטגוריות בעברית](https://pleper.com/index.php?do=tools&sdo=gmb_categories&lang=iw) - **נכשל**: נטען ב-JavaScript. לא לנסות שוב ב-WebFetch
+- [Google Maps, "פרגולות עץ"](https://www.google.com/maps/search/%D7%A4%D7%A8%D7%92%D7%95%D7%9C%D7%95%D7%AA+%D7%A2%D7%A5?hl=iw) - **נכשל**: נטען ב-JavaScript, אין רשימת עסקים. הקטגוריה של מתחרים **לא נבדקה**. לא לנסות שוב ב-WebFetch
+- gtstu, reinstatelabs, renewlocal, birdeye (ירידה של "שבוע-שבועיים" אחרי שינוי) - איכות: נמוכה, בלי מקור - **לא נקראו, לא נכנסו**
+**מסקנה:** יש קטגוריה באנגלית עם המילה פרגולה, "Carport and pergola builder". **הזמינות שלה בישראל והתווית העברית: לא נמצאו.** הקטגוריה הראשית של מתחרים: לא נצפתה.
+**קובץ:** `google-business-profile-categories-help.md`, `gbp-category-list-pergola.md`, `whitespark-local-ranking-factors-2026.md`, `sterlingsky-gbp-suspension-edits.md`
+---
+
+## 2026-09-30 | תנאי השובר של גוגל אדס מהלינק של נימרוד | ערוצים
+**מילות מפתח:** שובר, voucher, incentives, s500g500, promotional credit, תנאים
+**שאילתות:** אין WebSearch. WebFetch ישיר על הלינק שנימרוד שלח, בשלוש גרסאות, ועל דף התנאים הסטטי
+**חיפוש חוזר:** נושא דינמי (מבצע), והפעם יש לינק לתנאים של השובר עצמו, שלא היה ב-entries של 2026-09-29.
+**מקורות:**
+- [הלינק של נימרוד, iw_il](https://ads.google.com/intl/iw_il/home/terms-and-conditions/incentives/?bc=IL&bid=s500g500%7Cib:6653296821%7C) - **נכשל**: התוכן נטען ב-JavaScript, חזרה הודעת "משהו השתבש". גם `hl=en`, `en_il` ו-`en_us` בלי פרמטרים נכשלו. לא לנסות שוב ב-WebFetch
+- [Google Ads, תנאי שוברים](https://www.google.com/ads/coupons/terms.html) - איכות: גבוהה (הפלטפורמה עצמה, ישראל) - נקרא. תנאים כלליים, **בלי סכום**
+**מסקנה:** קוד תוך 14 יום מהחשיפה הראשונה, זיכוי תוך 35 יום, תוקף זיכוי 60 יום, **תוקף המבצע 3 חודשים מההנפקה או תאריך שעל השובר.** הסכומים ו-s500g500 לא אומתו.
+**קובץ:** `clients/baimbetov/research/google-ads-voucher-terms-il.md`
+---
+
 ## 2026-09-29 | שיעור סגירה מליד לעבודה | ערוצים
 **מילות מפתח:** close rate, closing rate, lead to sale, שיעור סגירה, ליד לעבודה
 **שאילתות:** "contractor lead to sale close rate home improvement leads benchmark survey 2025"
