@@ -6,6 +6,108 @@
 
 ---
 
+## 2026-09-30 | מבנה אתר: canonical, קישורים פנימיים, תמונות, מהירות, נתונים מובנים למאמר, דף 404 | ערוצים
+**מילות מפתח:** canonical, internal links, קישורים פנימיים, anchor text, FAQ rich results, FAQPage, breadcrumbs, Article schema, image SEO, srcset, Core Web Vitals, LCP, 404.html, soft 404, Cloudflare Pages, מבנה אתר, דף שירות
+**שאילתות:** "Google Search Central FAQ rich results limited to government health sites FAQPage change", "Google Search Central consolidate duplicate URLs rel canonical guidelines", "Google Search Central link best practices crawlable links anchor text internal links", "Google Search Central image SEO best practices lazy loading responsive images srcset". בנוסף WebFetch ישיר על דף ה-Article, Core Web Vitals, Cloudflare Pages ושגיאות HTTP, ובדיקה של האתר החי
+**חיפוש חוזר:** לא. ה-entry הקודם של SEO עסק ב-Search Console, ב-LocalBusiness ובחוק הפרגולות. הפעם: מבנה ודפים
+**מקורות:**
+- [Google, documentation updates](https://developers.google.com/search/updates) - איכות: גבוהה - FAQ rich result לא מוצג מ-2026-05-07. פירורי לחם רק בדסקטופ מינואר 2025. **התאריכים בסיכום של הכלי יצאו פעם אחת משובשים, ונבדקו בקריאה שנייה**
+- [Google, canonical](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls) - איכות: גבוהה (2026-07-10) - רמז חזק, כתובת מלאה, עקביות עם מפת האתר
+- [Google, links](https://developers.google.com/search/docs/crawling-indexing/links-crawlable) - איכות: גבוהה (2025-12-10) - כל דף חשוב מקושר מדף אחר
+- [Google, images](https://developers.google.com/search/docs/appearance/google-images) - איכות: גבוהה (2026-03-02) - רקע CSS לא מאונדקס, שם קובץ תיאורי
+- [Google, Core Web Vitals](https://developers.google.com/search/docs/appearance/core-web-vitals) - איכות: גבוהה (2025-12-10)
+- [Google, Article](https://developers.google.com/search/docs/appearance/structured-data/article) - איכות: גבוהה (2026-09-08) - אין שדות חובה
+- [Cloudflare Pages](https://developers.cloudflare.com/pages/configuration/serving-pages/) - איכות: גבוהה (2026-04-21) - בלי 404.html כל כתובת מחזירה את `/`
+- [Google, HTTP errors](https://developers.google.com/search/docs/crawling-indexing/http-network-errors) - איכות: גבוהה, אבל הדף מזכיר soft 404 רק בקצרה
+- האתר החי, `baimbetov.me/this-page-does-not-exist-2026/` ו-`/assets/js/consent.js` - איכות: גבוהה (תצפית) - שניהם החזירו את דף הבית
+- techwyse, searchenginejournal, searchengineland, inblog, almcorp, seranking, imagify, yoast, link-assistant ואחרים - איכות: נמוכה-בינונית - **לא נקראו**, המקורות הראשוניים מספיקים
+**מסקנה:** אין צורך בסימון FAQ בדפים חדשים. כל דף חדש: canonical מלא, במפת האתר, מקושר מדף אחר בטקסט שמתאר אותו. חסר `404.html`, וקוד המדידה לא עלה לאוויר.
+**קובץ:** `google-faq-rich-results-deprecation.md`, `google-canonical-consolidate.md`, `google-link-best-practices.md`, `google-image-seo.md`, `google-core-web-vitals.md`, `google-article-structured-data.md`, `cloudflare-pages-spa-404.md`, `site-structure-audit-2026-09-30.md`
+---
+
+## 2026-09-30 | מדידה באתר: אירועים מרכזיים ב-GA4, והסכמה לעוגיות בישראל | מדידה
+**מילות מפתח:** GA4, key events, אירוע מרכזי, generate_lead, תיקון 13, עוגיות, cookies, הסכמה, opt-in, הרשות להגנת הפרטיות, באנר
+**שאילתות:** "GA4 key events mark event as key event generate_lead recommended events help", "תיקון 13 חוק הגנת הפרטיות עוגיות אתרים הרשות להגנת הפרטיות הנחיה", "gov.il הרשות להגנת הפרטיות גיליון עמדה עוגיות cookies אתר אינטרנט הסכמה". בנוסף קריאה מקומית של `consent.js` ו-`privacy/index.html` בריפו
+**חיפוש חוזר:** לא. ה-entry של 2026-09-29 על מדידה עסק במה שמטא וגוגל אדס דורשים, לא ב-GA4 ולא בחוק
+**מקורות:**
+- [Analytics Help 12966437](https://support.google.com/analytics/answer/12966437?hl=en) - איכות: גבוהה - הגדרת אירוע מרכזי, חל על נתונים חדשים בלבד
+- [law.co.il](https://www.law.co.il/news/2020/11/05/israeli-privacy-regulator-recommends-cookies-consent/) - איכות: בינונית (משרד עורכי דין, 2020) - המלצת opt-in של הרשות, לא מחייבת
+- [gov.il, גילוי דעת על הסכמה](https://www.gov.il/he/pages/consent-2026) - **נכשל**: 403. לא לנסות שוב ב-WebFetch
+- tabnav, divinesites, brn, digita, web-a, webwecan, suls, a-2-z ואחרים - איכות: נמוכה (בוני אתרים וסוכנויות, טענות סותרות) - **לא נקראו, לא נכנסו**
+- easyinsights, lovesdata, stape, analyticsmania - איכות: נמוכה-בינונית - **לא נקראו**
+**מסקנה:** קוד המדידה והבאנר כבר כתובים בריפו, עם מזהים ריקים. חסרים מזהים, העלאה, וסימון שני האירועים ב-GA4. **החובה החוקית לבאנר לא אומתה ממקור ראשוני.**
+**קובץ:** `ga4-key-events.md`, `israel-cookie-consent-secondary.md`, `site-structure-audit-2026-09-30.md`
+---
+
+## 2026-09-30 | מבנה האתרים של מתחרים, ודף בית שממיר | מתחרים
+**מילות מפתח:** מבנה אתר מתחרים, ניווט, דף שירות, בלוג, דף עבודות, homepage, דף הבית, NN/g, Nielsen Norman
+**שאילתות:** "Nielsen Norman Group homepage design guidelines communicate who you are what you do top of page". בנוסף WebFetch על דפי הבית של שלושה מתחרים מ-`competitors.md`
+**חיפוש חוזר:** לא. ה-entry של 2026-09-29 קרא את דפי הפרגולה של המתחרים למיצוב ולמחיר, לא את מבנה האתר
+**מקורות:**
+- [אביב פרגולות](https://aviv-pergola.co.il/) - איכות: גבוהה (אתר המתחרה) - 15 דפי שירות, בלוג, פרויקטים, המלצות
+- [עץ ופלא](https://etzvapele.co.il/) - איכות: גבוהה - 10 דפי שירות, בלוג, גלריה, דפי אזור, המלצות
+- [MyWood](https://my-wood.co.il/) - איכות: גבוהה - 7 דפי שירות, בלוג
+- [NN/g, 5 Principles](https://www.nngroup.com/articles/homepage-design-principles/) - איכות: גבוהה (מחקר שימושיות, 2024-03-15, לא ענפי) - דף הבית כנתב, דוגמאות אמיתיות
+- designprinciplesftw, principles.design, webtechs, fountn - איכות: נמוכה - **לא נקראו**
+**מסקנה:** כל שלושת המתחרים הם מרכז עם דף לכל שירות, בלוג ודף עבודות. **לא נמצא נתון שמשווה סדרי סקשנים בדף בית של עסק בנייה.**
+**קובץ:** `competitors.md` (סעיף "מבנה האתרים שלהם"), `nngroup-homepage-principles.md`
+---
+
+## 2026-09-30 | חיפוש AI: מאיפה ChatGPT, Gemini ו-AI Overviews לוקחים המלצות על עסקים מקומיים | ערוצים
+**מילות מפתח:** AI Overviews, AI Mode, ChatGPT search, Gemini, Perplexity, OAI-SearchBot, GEO, llms.txt, citations, Foursquare, Bing Places, חיפוש AI
+**שאילתות:** "Google Search Central AI features and your website AI Overviews AI Mode how to appear", "ChatGPT search local business recommendations data sources Bing Foursquare study 2025", "BrightLocal study AI search local business recommendations sources ChatGPT Gemini Perplexity citations 2025", "OpenAI help ChatGPT search how it works third-party search providers OAI-SearchBot publishers appear", "Bing Places for Business supported countries Israel"
+**מקורות:**
+- [Google, AI features](https://developers.google.com/search/docs/appearance/ai-features) - איכות: גבוהה (2025-12-10) - אין דרישות מיוחדות, אין קבצי AI
+- [OpenAI, crawlers](https://developers.openai.com/api/docs/bots) - איכות: גבוהה - OAI-SearchBot נדרש להופעה
+- [BrightLocal, AI ו-listings](https://www.brightlocal.com/blog/ai-search-using-listings-sources/) - איכות: בינונית (2025-07-22, 20 חיפושים, ארה"ב) - אתרים 58% מהמקורות של ChatGPT
+- [BrightLocal, LCRS AI](https://www.brightlocal.com/research/lcrs-ai-trust/) - איכות: בינונית-גבוהה (2026-03-10, 1,002 מבוגרים, ארה"ב) - 45% השתמשו ב-AI להמלצה מקומית
+- [Steady Demand](https://www.steadydemand.com/chatgpts-local-results-arent-coming-from-foursquare-and-probably-never-really-were/) - איכות: בינונית (2026-08-21, 2,880 פרומפטים) - הטענה על Foursquare לא מחזיקה
+- [Bing Places, עזרה](https://www.bing.com/forbusiness/help?setlang=en) - **נכשל**: הדף החזיר רק "Search". **תמיכה בישראל לא אומתה.** לא לנסות שוב ב-WebFetch
+- agenceminimal, localfalcon, pagetraffic, superprompt, cited.so, surfacelocal, vyzz, localdominator, beancount, natlawreview - איכות: נמוכה (סוכנויות ומוכרי כלים) - **לא נקראו, לא נכנסו**
+**מסקנה:** אין עבודה נפרדת ל-AI. אותם יסודות: אתר עם טקסט ברור, פרופיל מלא, ביקורות, רישום עקבי. מקורות ישראליים שמודלים קוראים: **לא נמצא.**
+**קובץ:** `google-ai-features-site-owners.md`, `openai-crawlers-chatgpt-search.md`, `brightlocal-ai-search-local-sources-2025.md`, `steadydemand-chatgpt-foursquare-2026.md`
+---
+
+## 2026-09-30 | SEO לאתר: Search Console, נתונים מובנים, חוק הפרגולות | ערוצים
+**מילות מפתח:** SEO, Search Console, sitemap, indexing, אינדקס, schema, LocalBusiness, structured data, נתונים מובנים, חוק הפרגולות, היתר לפרגולה, פטור
+**שאילתות:** "Google Search Central SEO starter guide local business structured data LocalBusiness", "פרגולה מעץ היתר פטור תקנות מה צריך לדעת לפני שבונים". בנוסף: קריאה מקומית של `sitemap.xml`, `robots.txt` ו-`index.html` בריפו של האתר
+**מקורות:**
+- [Google, SEO Starter Guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide) - איכות: גבוהה (2025-12-10) - שעות עד חודשים, E-E-A-T לא גורם דירוג
+- [Google, LocalBusiness](https://developers.google.com/search/docs/appearance/structured-data/local-business) - איכות: גבוהה - חובה שם וכתובת, אין הנחיה לעסק שירות
+- [architecture.org.il](https://architecture.org.il/%D7%97%D7%95%D7%A7-%D7%94%D7%A4%D7%A8%D7%92%D7%95%D7%9C%D7%95%D7%AA-%D7%AA%D7%99%D7%A7%D7%95%D7%9F-101-%D7%9E%D7%93%D7%A8%D7%99%D7%9A-%D7%9E%D7%A2%D7%95%D7%93%D7%9B%D7%9F-%D7%9C%D7%A2%D7%91%D7%95/) - איכות: בינונית-נמוכה (אתר פרטי, בלי קישור רשמי) - 50 מ"ר, הודעה תוך 45 יום עם אישור קונסטרוקטור. **לא אומת במקור רשמי**
+- pushleads, redsharkdigital, agencyanalytics, localo, tovtoda, pergola-o, habone, weizmann, hazongroup, technokoluzi ואחרים - איכות: נמוכה או מתחרים - **לא נקראו**
+- הריפו של האתר - איכות: גבוהה - `/pergola/` לא במפת האתר, בלי canonical ובלי קישור מדף הבית
+**מסקנה:** לדומיין חדש, 4 שבועות הם אינדקס וחשיפות ראשונות, לא לידים. "חוק הפרגולות" הוא נושא חיפוש חוזר, והנוסח הרשמי עוד לא נקרא.
+**קובץ:** `google-seo-starter-guide.md`, `google-localbusiness-structured-data.md`, `pergola-permit-exemption-secondary.md`, `site-seo-audit-2026-09-30.md`
+---
+
+## 2026-09-30 | קבוצות מקומיות בפייסבוק ובוואטסאפ | ערוצים
+**מילות מפתח:** Facebook groups, קבוצות פייסבוק, קבוצות שכונתיות, המלצות מקומיות, פוסט בקבוצה, local groups
+**שאילתות:** "Facebook groups rules promotional posts businesses group admin \"recommendations\" local community groups Meta Help", "קבוצות פייסבוק שכונתיות המלצות על בעלי מקצוע מחקר ישראל"
+**מקורות:**
+- [Meta, Pages, Groups and Events Policies](https://www.facebook.com/policies_center/pages_groups_events) - איכות: גבוהה (הפלטפורמה) - אין כלל כללי על פוסט של עסק בקבוצה, מנהל הקבוצה קובע
+- groupboss, multiplegroupposter, fbgroupbulkposter, hootsuite - איכות: נמוכה (כלים לפרסום המוני, בלי מקור) - **לא נקראו, לא נכנסו**
+- askpavel, stra, natural-poster, finder ואחרים בעברית - איכות: נמוכה - **לא נקראו**. אין בהם מחקר
+**מסקנה:** **לא נמצא נתון על מה שקבוצות מקומיות מביאות.** הכללים נקבעים בכל קבוצה.
+**קובץ:** `meta-pages-groups-policy.md`
+---
+
+## 2026-09-30 | הפרופיל בגוגל: ביקורות, פוסטים, שאלות ותשובות, שירותים, אזור שירות, מדדים | ערוצים
+**מילות מפתח:** Google posts, פוסטים, Q&A, שאלות ותשובות, review policy, מדיניות ביקורות, incentives, תמריץ, services, שירותים, service area, אזור שירות, hide address, performance, insights, מדדים
+**שאילתות:** "Google Business Profile Help create posts on your Business Profile", "Google Business Profile Q&A questions and answers discontinued 2025", "Google Maps user contributed content policy fake engagement reviews incentives selectively solicit positive reviews", "Google Business Profile Help service-area business hide address service area ranking", "Google Business Profile Help performance metrics calls website clicks searches \"Business Profile performance\""
+**חיפוש חוזר:** לא. ה-entries הקודמים עסקו בדירוג הכללי (7091) ובקטגוריות. דף Whitespark 2026 נקרא שוב, לגורמים אחרים באותו דף.
+**מקורות:**
+- [GBP Help 7342169, פוסטים](https://support.google.com/business/answer/7342169?hl=en) - איכות: גבוהה - אין טענה על השפעה על דירוג, ארכיון אחרי חצי שנה
+- [Google for Developers, Q&A API](https://developers.google.com/my-business/content/qanda/change-log) - איכות: גבוהה - הממשק הופסק ב-2025-11-03. הסרת הסקשן הציבורי רק מבלוגים של סוכנויות, **לא נכנסה כעובדה**
+- [Maps policy 7400114](https://support.google.com/contributionpolicy/answer/7400114?hl=en), [16597558](https://support.google.com/contributionpolicy/answer/16597558?hl=en-GB), [GBP Help 3474122](https://support.google.com/business/answer/3474122?hl=en) - איכות: גבוהה - בלי תמריץ, בלי סינון, בלי לחץ
+- [Whitespark 2026](https://whitespark.ca/local-search-ranking-factors/) - איכות: בינונית-גבוהה (סקר מומחים) - ביקורות ושירותים גבוה, פוסטים ו-Q&A נמוך
+- [Whitespark, כתובת מוסתרת](https://whitespark.ca/blog/should-service-area-businesses-show-or-hide-their-address-for-local-seo/) - איכות: בינונית (מומחה, 2024-10-28) - אזור שירות לא משפיע על דירוג
+- [GBP Help 9918094, מדדים](https://support.google.com/business/answer/9918094?hl=en) - איכות: גבוהה - מדד החיפושים חודשי
+- ppc.land, stanventures, applausehq, wiserreview, rankai, localfalcon, brightlocal ועוד - איכות: נמוכה-בינונית - **לא נקראו**, המקורות הראשוניים מספיקים
+**מסקנה:** ביקורות בקצב קבוע ושירותים בפרופיל שווים זמן. פוסטים מעט, שאלות ותשובות לא. אזור השירות לא מזיז דירוג.
+**קובץ:** `google-maps-review-policy.md`, `google-business-profile-posts-help.md`, `gbp-qa-deprecation.md`, `whitespark-service-area-address-2024.md`, `google-business-profile-performance-metrics.md`, תוספת ב-`whitespark-local-ranking-factors-2026.md`
+---
+
 ## 2026-09-30 | קטגוריה ראשית בפרופיל העסקי בגוגל (gbp-primary-category) | ערוצים
 **מילות מפתח:** primary category, קטגוריה ראשית, Carport and pergola builder, Gazebo builder, בונה ביתנים, גזיבו, Deck builder, בונה דקים, נגר, קבלן, reverification, אימות מחדש
 **שאילתות:** "Google Business Profile Help choose business category primary category", "Google Business Profile category list \"pergola\" category gazebo builder deck builder", "\"Carport and pergola builder\" gcid", "Google business categories list Hebrew translation \"בונה דקים\"", "\"פרגולות\" קטגוריה גוגל עסקי \"בונה\" סככות חניה ופרגולות", "\"בונה סככות חניה ופרגולות\" OR ...", "\"בונה ביתנים (גזיבו)\" פרגולות", "Whitespark local search ranking factors primary category ...", "changing primary category Google Business Profile suspension reverification ..."

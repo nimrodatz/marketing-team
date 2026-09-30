@@ -9,4 +9,5 @@ Editorial briefs and campaign specs: audience, angle, channel, deliverables and 
 - [[peer-warm-group]], פנייה לקבוצת קולגות שכולם מכירים את נימרוד היטב: קהל חם, שתי דלתות שוות, וכלל ה-placeholder
 - [[pergola-sukkot]], באים בטוב: פרגולות אחרי סוכות. ריצה 1 היא קופי ודף נחיתה, הוק הסוכה ושלושה עוגני ערך, ובלי מחיר
 - [[google-reviews]], באים בטוב: בקשת ביקורת בגוגל מלקוחות עבר. הודעה אישית מיהודה לכל לקוח, בלי שמות ב-git
+- [[wooden-pergolas-page]], באים בטוב: דף הפרגולות הקבוע באתר, בלי סוכה. קופי ומחרוזות דף בלבד, והבנייה בפרויקט האתר
 - [[_template-brief]], שלד בריף לכל לקוח: `client`, `channel` ו-`run` ב-frontmatter, השדות הקבועים, ושלוש ההכרעות שמזיזות את התוצר. `/new-campaign` ממלא אותו
