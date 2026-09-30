@@ -12,3 +12,5 @@ Publish runs and their outcomes: what went out, where, when, how it performed, a
 - [[peer-warm-group-run-2]], ריצת ההשוואה אחרי כללי הקופי החדשים: העולם הפיזי של הקהל, המעבר מ-Zero-Text ל-No-Words, והכרעת הטרהקוטה מול הירוק
 - [[wooden-pergolas-page-run-1]], באים בטוב: קופי לדף הפרגולות הקבוע באתר. שלב 1 בלבד, והדף נבנה בפרויקט האתר
 - [[site-phase1-strings-run-1]], באים בטוב: מחרוזות ל-404, לקישור לפרגולות ולמאמרים. שלב 1 בלבד, מאושר
+- [[homepage-description-run-1]], באים בטוב: תיאור דף הבית, og וכותרת המשנה, והבועה הצפה. שלב 1 בלבד, מאושר
+- [[pergola-signing-fix-run-1]], באים בטוב: בלי "חותם על כל מבנה" ב-`/pergola/`, ארבע מחרוזות. שלב 1 בלבד, מאושר
