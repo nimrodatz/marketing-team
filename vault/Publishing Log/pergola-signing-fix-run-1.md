@@ -17,7 +17,7 @@ tags:
 
 ## Open Questions
 
-- האם הבונה החליף את המחרוזות, ומתי.
+- הבונה החליף, ובאוויר מ-2026-10-04 (ראו [[homepage-signing-fix-run-1]]).
 - דף הבית, `index.html` שורה 194: מכוסה ב-[[homepage-signing-fix-run-1]] (2026-10-04).
 
 ## Session Log

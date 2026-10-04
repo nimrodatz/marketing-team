@@ -29,3 +29,7 @@ tags:
 ### 2026-10-04 · הבונה החיל ב-site-phase1 [wip]
 
 - **What was done:** 8 מחרוזות ב-`index.html` (meta, og, twitter, נתונים מובנים, כותרת משנה, שלב 02, הבועה הצפה). המנכ"ל אימת ב-git: קובץ אחד שונה, אפס "חות" בדף הבית וב-`/pergola/`. **Next:** נימרוד בודק את הבועה בדפדפן, עושה commit וממזג ל-`main`.
+
+### 2026-10-04 · באוויר [done]
+
+- **What was done:** נימרוד עשה commit (f4459f0), מיזג את `site-phase1` ל-`main` ודחף. המנכ"ל בדק ב-`baimbetov.me`: אפס "חות" בדף הבית וב-`/pergola/`, ה-meta החדש, הבועה בלי "זמינים כעת", ודף 404 מחזיר 404. **Related:** [[pergola-signing-fix-run-1]]

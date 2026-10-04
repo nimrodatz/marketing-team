@@ -34,7 +34,6 @@ status: wip
 ## Open Questions
 
 - **שלב ו, שלושה נשארו:** `copywriter` ו-`campaigner` כוילו (2026-10-04). נשארו `strategist`, `creative`, `landing`: קיצוץ, `scope: edit`, `model`. **הבדיקה רצה כסוכן כללי שקורא את הקובץ**, כי הגדרות סוכנים נטענות רק בפתיחת סשן.
-- **באתר החי, `main` של באים בטוב:** "חותם על כל מבנה" עדיין שם. **התיקון מוכן ב-`site-phase1`** (הבונה החיל 8 מחרוזות בדף הבית, 2026-10-04, בלי commit). נשאר אצל נימרוד: commit, בדיקת הבועה הצפה בדפדפן, ומיזוג fast-forward ל-`main`.
 - **בדיקת לפני ואחרי** של `CLAUDE.md` החדש לא רצה: שלוש משימות זהות, והשוואת מה נקרא ומה נשכח.
 - **קבצי נושא שנשארו מעל 25 אלף תווים בגלל הגוף ולא הלוג:** `voice-and-tone`, `peer-warm-group-run-2`, `copy-refinement-peer-warm-group`, `agent-ceo-orchestration`, `agent-roster`, ועוד חמישה. כלל הארכוב נוגע רק בלוג.
 - **`obsidian-vault-workflow/SKILL.md` עצמו מלא מקפים ארוכים** מהגרסה המקורית. לא נוקה, כי החלפה מכנית שוברת משפטים.
@@ -126,3 +125,7 @@ status: wip
 - **What was done:** `campaigner.md` מ-13,400 ל-9,000 תווים: ערכה קרה (חמשת הרכיבים) וערכה חמה (היחידות מהבריף, מענה לתגובות, תזכורת, תודה), עמוד שליחה ואז נספח, סדר עדיפות, מצב עריכה, `model: opus`. בדיקה על [[google-reviews]]: `campaigner/drafts/ab-test/comparison.md`. הקופירייטרית (הגדרה חדשה) מצאה שגוש התיאורים לדף הבית מ-2026-09-30 לא הוחל אף פעם, והבונה החיל אותו יחד עם החתימה ב-`site-phase1` ([[homepage-signing-fix-run-1]]).
 - **Decisions:** נימרוד: Opus לקמפיינר; ערכה = עמוד שליחה ונספח; הבדיקה על ערכת הביקורות; להרחיב את בריף דף הבית ל-meta ולהריץ את הבונה.
 - **Notes / Caveats:** שינויים ב-network-outreach (הערכה, כרטיס השיתוף, היומן) נעשו בסשן אחר ולא נגעתי בהם. **Related:** [[agent-campaigner]], [[homepage-description-run-1]]
+
+### 2026-10-04 · דף הבית ו-/pergola/ באוויר בלי חתימה [done]
+
+- **What was done:** `site-phase1` מוזג ל-`main` (f4459f0) ונבדק באתר החי. השאלה הפתוחה על האתר נסגרה. **Related:** [[homepage-signing-fix-run-1]]
