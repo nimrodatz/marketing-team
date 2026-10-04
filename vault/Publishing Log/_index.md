@@ -13,4 +13,5 @@ Publish runs and their outcomes: what went out, where, when, how it performed, a
 - [[wooden-pergolas-page-run-1]], באים בטוב: קופי לדף הפרגולות הקבוע באתר. שלב 1 בלבד, והדף נבנה בפרויקט האתר
 - [[site-phase1-strings-run-1]], באים בטוב: מחרוזות ל-404, לקישור לפרגולות ולמאמרים. שלב 1 בלבד, מאושר
 - [[homepage-description-run-1]], באים בטוב: תיאור דף הבית, og וכותרת המשנה, והבועה הצפה. שלב 1 בלבד, מאושר
+- [[network-outreach-run-1]], באים בטוב: הודעה לרשת, סטטוס והפניה מלקוחות עבר. 0 ₪, שלבים 1 ו-2, גלריות ועבודות עץ נוספות
 - [[pergola-signing-fix-run-1]], באים בטוב: בלי "חותם על כל מבנה" ב-`/pergola/`, ארבע מחרוזות. שלב 1 בלבד, מאושר
