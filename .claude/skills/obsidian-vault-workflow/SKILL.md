@@ -26,15 +26,19 @@ State the task's topic in one short phrase (e.g. "email cron hardening", "publis
 3. If no exact match, look for a **close semantic match** (e.g. task "email SES retry" vs existing `email-cron-hardening.md`).
    - If a close match exists → **ask the user** whether to append to the existing topic or create a new one.
    - If nothing close → a new topic file will be created at end of session (do not create an empty stub now).
-4. If a matching topic file exists → **Read it fully** (Overview + every prior Session Log entry) before touching code. This is the single most important step for context loading.
+4. If a matching topic file exists → **read its Overview, its Open Questions and the last 3 Session Log entries** before touching anything. This is the single most important step for context loading. Read older entries only when the task needs history: reopening a decision, a regression, or a question the recent entries do not answer. Settled 2026-10-04: the full-log read cost more per task than CLAUDE.md itself.
 
 ### 3. Read recency context (parallel)
 
 Regardless of topic file presence, also read:
 
-- `vault/Meeting Notes/` — list the directory, read the **2–3 most recent** entries (sort by last session date inside the file, or by filename).
+- `vault/Meeting Notes/` — list the directory and read **only the Overview** of the 2-3 most recent notes, and only of those related to the task. Skip them for a small task.
 - `vault/Content Briefs/` — scan for briefs whose titles match the task domain; read any plausibly related.
 - `vault/Brand Guidelines/` — read if the task touches content, channels, UI, copy, or design.
+
+### 3a. Size rule: archive long logs
+
+A topic file over **25,000 characters** gets its older Session Log entries moved to `vault/Archive/<topic>-log.md`, oldest first, keeping the last 5 in place. The topic file gets one line under `## Session Log`: `Older entries: [[<topic>-log]]`. Overview and Open Questions never move. Do it at Phase 2 of the session that crosses the line.
 
 ### 4. Report what you pulled
 
@@ -210,8 +214,8 @@ At task start:
 - [ ] Named the topic in one phrase
 - [ ] Opened the folder's `_index.md` to find the topic (fastest filename discovery)
 - [ ] Looked for exact filename match; handled close-match case (asked user if ambiguous)
-- [ ] If topic file exists → Read it fully (Overview + Open Questions + every Session Log entry)
-- [ ] Read 2–3 most recent Meeting Notes
+- [ ] If topic file exists → read Overview + Open Questions + last 3 Session Log entries
+- [ ] Read the Overview of related recent Meeting Notes (skip for a small task)
 - [ ] Scanned Content Briefs, read Brand Guidelines if task touches content/UI
 - [ ] Stated what context was loaded (one sentence)
 
@@ -223,5 +227,6 @@ At task end:
 - [ ] Updated `## Open Questions` — added new items; removed resolved ones
 - [ ] Appended `### YYYY-MM-DD — <title> [status]` at the **bottom** of Session Log
 - [ ] Entry has What was done / Decisions / Notes / Related (with `[[wikilinks]]` or explicit `none`)
+- [ ] File over 25,000 characters → older entries moved to `vault/Archive/`
 - [ ] Read the file back to verify
 - [ ] Only then claimed completion
