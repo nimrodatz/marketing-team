@@ -296,3 +296,9 @@ Older entries: [[agent-roster-log]]
 - **Decisions:** **הסוכן לא נכנס לחמשת השלבים ולא מזיז את המספור.** הוא אופציונלי, רץ לפני שיש topic, ולכן אין לו `run<N>`. **הוא השני עם גישת רשת**, בכלים שקוראים בלבד, **והקריאייטיב נשאר היחיד עם `Bash`**.
 - **Notes / Caveats:** טרם הורץ. הספירה "ארבעה סוכנים" ב-Overview נשארת נכונה לפייפליין עצמו.
 - **Related:** [[agent-strategist]], [[post-holiday-roadmap]], [[multi-client-engine]]
+
+### 2026-10-04 · ארבעה סוכנים נוספו, אחד בוטל [planned]
+
+- **What was done:** נוספו `content-writer`, `seo` ו-`researcher` (צוות התוכן, מ-`the5agents`) ו-`site-builder` (צוות הבנייה). `image-designer` של צוות התוכן לא הועבר והפך למצב `content` ב-`creative`. הצוות מונה עכשיו תשעה סוכנים בארבעה צוותים, והמפה המלאה ב-`CLAUDE.md` §5.
+- **Decisions:** `researcher` ו-`seo` על `model: sonnet`. אין עדיין צוות אוטומציות.
+- **Related:** [[agency-hierarchy]], [[content-team]], [[agent-site-builder]]

@@ -80,3 +80,9 @@ handoffs/
 - **What was done:** נימרוד ציין שהוא מעביר הודעות כל הזמן בין שלושת הצוותים. המנכ"ל כתב הצעה: בעלות אחת לכל דף, תיבת בקשות משותפת ושרשרת אחת.
 - **Decisions:** לא מיישמים היום, לפי החלטת נימרוד.
 - **Related:** [[site-repo-integration]], [[pergola-signing-fix]], [[post-holiday-roadmap]]
+
+### 2026-10-04 · הבעיה נפתרה אחרת: הצוותים עברו לסוכנות [shipped]
+
+- **What was done:** צוות התוכן והבונה הפכו לסוכנים בתוך הסוכנות, כך שהמנכ"ל מפעיל אותם ישירות. **תיבת הבקשות לא נדרשת.** טבלת הבעלות מסעיף 1 נכנסה ככלל ל-`CLAUDE.md`, ל-`copywriter.md` ולבריף האתר.
+- **Decisions:** title ו-meta של דף שירות עברו מצוות התוכן ל-`copywriter`, ו-`seo` ממליץ.
+- **Related:** [[agency-hierarchy]], [[content-team]], [[agent-site-builder]]

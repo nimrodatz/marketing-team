@@ -95,8 +95,8 @@ Delegate by the trigger words. Each agent's file is its full spec; do not restat
 | | `creative` | תמונה, ויז'ואל, באנר, קריאייטיב, שלב 3, and images for articles and posts (mode `content`) |
 | | `landing` | דף נחיתה לקמפיין, טופס לידים, שלב 4. Packaged under `output/`, not in a site repo |
 | Content | `content-writer` | מאמר, פוסט, קרוסלה, רילס, הסבת מאמר לפוסטים. Not site pages |
-| | `seo` | מילות מפתח, מפת מילים, בריף SEO, בדיקת מאמר לפני פרסום, title ו-meta recommendations |
-| | `researcher` | מקורות למאמר, ניתוח תוצאות חיפוש. Shares `clients/<c>/research/` with the strategist |
+| | `seo` | מילות מפתח, מפת מילים, ניתוח תוצאות חיפוש, בריף SEO, בדיקת מאמר לפני פרסום, המלצת title ו-meta |
+| | `researcher` | מקורות למאמר, נוסח חוק, מחקר עסק ומתחרים ללקוח חדש. Shares `clients/<c>/research/` and its log with `strategist` and `seo` |
 | Build | `site-builder` | בניית אתר, תיקון באתר, דף חדש באתר, in the client's site repo |
 | Systems | none yet | מערכות ניהול ואוטומציות. Built on the first real job, not before |
 
@@ -138,7 +138,8 @@ Three rules are called out because he settled them on 2026-09-08:
    meaning is stated; no term the artifact never introduced; pain as a scenario, not an abstract noun.
 
 Second person follows the channel (§5). The default Ask is in the client's playbook §4.
-**Never put a response-time promise on any page.**
+**Never put a response-time promise in anything the agency produces** (landing pages, articles, kits). A
+client may keep one on its own existing site by its own decision: Baim Betov does, playbook §4.
 
 ## 8. Images
 
