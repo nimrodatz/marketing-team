@@ -6,6 +6,12 @@ audience: <B2B | B2C>
 site: <https://... או none>
 channels:
   - <outbound | group-post | landing | paid-social | paid-search>
+services:              # which teams work on this client. CLAUDE.md stage zero, step 3
+  - <marketing | content | site | automation>
+repos:
+  site: <local path of the client's site repo, or none>
+  remote: <github URL, or none>
+  deploy: <cloudflare-pages:<project>, or none>   # every push to main goes live
 tags:
   - client
 ---

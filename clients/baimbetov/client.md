@@ -9,6 +9,14 @@ channels:
   - landing
   - paid-social
   - paid-search
+services:              # pending Nimrod: merge-review.md row 4
+  - marketing
+  - content
+  - site
+repos:
+  site: "C:/my projects/baimbetov"
+  remote: https://github.com/nimrodatz/Baim-Betov
+  deploy: cloudflare-pages:baim-betov   # every push to main goes live
 tags:
   - client
 ---

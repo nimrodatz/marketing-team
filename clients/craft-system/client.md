@@ -8,6 +8,13 @@ channels:
   - outbound
   - group-post
   - landing
+services:
+  - marketing
+  - site
+repos:
+  site: unknown   # the working copy is Antigravity's; claude prog/craft-system is a stale clone, 5 commits behind
+  remote: https://github.com/nimrodatz/craft-system
+  deploy: cloudflare-pages
 tags:
   - client
 ---
