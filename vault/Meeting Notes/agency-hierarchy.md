@@ -102,3 +102,7 @@ status: wip
 - **Decisions:** **כל האתרים יושבים ב-`C:\my projects\sites\`**, ו-Antigravity, אם נפתח, עובד מאותה תיקייה. **`the5agents` לא מגובה בגיטהאב:** כל מה שהיה שווה משהו עבר לסוכנות, ויש גיבוי מקומי ב-`claude prog\_backups\`. נימרוד ימחק את התיקייה בעצמו אחרי כמה שבועות. להדגמה משתמשים בריפו של הסוכנות.
 - **Notes / Caveats:** ה-commit לענף `tracking` באתר באים בטוב נחסם על ידי מנגנון ההרשאות, ולכן העברת ריפו האתר ל-`sites\` עוד לא בוצעה. `claude prog\craft-system` הישן נשאר במקומו, ואסור לעבוד ממנו.
 - **Related:** [[agent-site-builder]], [[site-repo-integration]]
+
+### 2026-10-04 · אינדקס Meeting Notes לפי לקוח [done]
+
+- **What was done:** `vault/Meeting Notes/_index.md` חולק לסעיפים: המנוע (מבנה וזיכרון, צוותים), Craft & System, באים בטוב, Telavivian. נושא חדש נכנס לסעיף של הלקוח שהוא משרת. **Decisions:** כספת אחת נשארת; ההפרדה בין לקוחות היא לפי תיקיות ולפי סעיפי האינדקס, ומפצלים כספת רק כשלקוח מקבל את התיק שלו, בהסכם סודיות, או בעשרות לקוחות. **Related:** [[multi-client-engine]]
