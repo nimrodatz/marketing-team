@@ -12,7 +12,7 @@ services:
   - marketing
   - site
 repos:
-  site: unknown   # the working copy is Antigravity's; claude prog/craft-system is a stale clone, 5 commits behind
+  site: "C:/my projects/sites/craft-system"   # fresh clone 2026-10-04; Antigravity opens this folder too. claude prog/craft-system is stale, do not use
   remote: https://github.com/nimrodatz/craft-system
   deploy: cloudflare-pages
 tags:

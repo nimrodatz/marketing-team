@@ -9,7 +9,7 @@ channels:
   - landing
   - paid-social
   - paid-search
-services:              # pending Nimrod: merge-review.md row 4
+services:              # approved 2026-10-04; social and automations not active
   - marketing
   - content
   - site
@@ -55,26 +55,28 @@ tags:
 | `world` | `clients/baimbetov/world.md` (ערך אחד: `חצר פרטית`) | טיוטה |
 | `visual` | `clients/baimbetov/visual.md` | טיוטה |
 | `playbook` | `clients/baimbetov/playbook.md` | טיוטה |
+| `decisions` | `clients/baimbetov/decisions.md` (היומן מהכספת, מ-2026-09-27) | פעיל |
 
 ### 2א. המקורות שמהם התיק נכתב
 
-הכספת של באים בטוב יושבת ב-`C:\Users\nimro\OneDrive\שולחן העבודה\claude prog\baimbetov\`,
-והאתר ב-`C:\my projects\baimbetov\`. **קיצורים שבהם משתמשים כל קבצי התיק:**
+הכספת של באים בטוב עברה לתיק הזה ב-2026-10-04 (`merge-review.md` שורה 8). **היומן הוא `decisions.md`,
+ושאר הכספת יושבת ב-`reference/vault/`.** הכספת הישנה, `claude prog\baimbetov\`, נשארת לקריאה בלבד.
+האתר ב-`C:\my projects\baimbetov\`. **קיצורים שבהם משתמשים כל קבצי התיק** (נתיבים יחסית ל-`clients/baimbetov/`):
 
 | קיצור | הקובץ |
 |---|---|
-| `BB/סקירה` | `00 - סקירת פרויקט.md` (עודכן 2026-09-27) |
-| `BB/החלטות` | `יומן החלטות.md` |
-| `BB/מסר` | `מסרים/מסר מהותי - עבודה.md` |
-| `BB/קופי` | `מסרים/קופי אתר ראשי.md` (מאושר, באוויר מ-2026-09-27) |
-| `BB/פרופיל` | `גוגל ביזנס/תוכן לפרופיל.md` |
-| `BB/קמפיין` | `קמפיינים/פרגולות אחרי סוכות.md` |
-| `BB/תכנית` | `תכנית עבודה - 2026-09-28.md` |
+| `BB/סקירה` | `reference/vault/00 - סקירת פרויקט.md` (עודכן 2026-09-27) |
+| `BB/החלטות` | `decisions.md` |
+| `BB/מסר` | `reference/vault/מסרים/מסר מהותי - עבודה.md` |
+| `BB/קופי` | `reference/vault/מסרים/קופי אתר ראשי.md` (מאושר, באוויר מ-2026-09-27) |
+| `BB/פרופיל` | `reference/vault/גוגל ביזנס/תוכן לפרופיל.md` |
+| `BB/קמפיין` | `reference/vault/קמפיינים/פרגולות אחרי סוכות.md` |
+| `BB/תכנית` | `reference/vault/תכנית עבודה - 2026-09-28.md` |
 | `אתר/CSS` | `C:\my projects\baimbetov\assets\css\style.css` |
 | `אתר/lead` | `C:\my projects\baimbetov\functions\api\lead.js` |
 
-**הכספת של באים בטוב היא המקור, והתיק הזה הוא עותק מסונן.** החלטה חדשה נרשמת שם, ואחר כך
-מעודכנת כאן. תיק שסותר את הכספת: הכספת גוברת, והסוכן עוצר ומדווח.
+**התיק הזה הוא המקור היחיד** (מ-2026-10-04). החלטה חדשה נרשמת ב-`decisions.md`, ועובדה שנולדת ממנה
+עוברת ל-`facts.md` באישור נימרוד. אין עוד מקום אחר שבו נרשמות החלטות על הלקוח.
 
 ---
 

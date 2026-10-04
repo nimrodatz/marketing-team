@@ -33,11 +33,7 @@ status: wip
 
 ## Open Questions
 
-- **מיזוג באים בטוב:** 6 סתירות ו-3 החלטות פתוחות ב-`clients/baimbetov/merge-review.md`. בעיקר: מה קורה לכספת `claude prog\baimbetov` (שורה 8).
-- **`services` של באים בטוב** נכתב לפי ההמלצה, ומסומן כממתין (שורה 4 שם).
 - **ריפו האתר של באים בטוב:** בענף `tracking` יש 8 קבצים ששונו ו-3 חדשים שלא נשמרו. אחרי שמירה: העברה ל-`C:\my projects\sites\baimbetov`, ועדכון `CLAUDE.md` שלו שיפנה לתיק הלקוח.
-- **עותק העבודה של אתר קראפט אנד סיסטם** הוא של Antigravity, והנתיב שלו לא ידוע. `repos.site: unknown`.
-- **גיבוי `the5agents` בגיטהאב**: יש גיבוי מקומי בלבד. ריפו פרטי דורש את נימרוד.
 - **שלב ו לא בוצע:** קיצוץ חמשת הסוכנים הקיימים (11 עד 20 אלף תווים כל אחד), מצב `scope: edit` בהם, ו-`model` לכל סוכן.
 - **בדיקת לפני ואחרי** של `CLAUDE.md` החדש לא רצה: שלוש משימות זהות, והשוואת מה נקרא ומה נשכח.
 - **קבצי נושא שנשארו מעל 25 אלף תווים בגלל הגוף ולא הלוג:** `voice-and-tone`, `peer-warm-group-run-2`, `copy-refinement-peer-warm-group`, `agent-ceo-orchestration`, `agent-roster`, ועוד חמישה. כלל הארכוב נוגע רק בלוג.
@@ -92,3 +88,17 @@ status: wip
 - **Decisions:** **the5agents מפורק ולא מקונן.** **הכספת קוראת 3 רשומות אחרונות**, לא את כל הלוג. **המנכ"ל מבצע משימה קטנה לבד, ומיישם ניסוח שנימרוד הכתיב, אבל לא מנסח.** **אין סוכן אתר אחד**: אתר הוא שרשרת, והחוליה החסרה היחידה הייתה מי שכותב קוד. **אוטומציות: אין סוכן עד העבודה הראשונה.** **ה-serp עבר ל-`seo`**, כי סוכן לא מפעיל סוכן.
 - **Notes / Caveats:** **תיקון שלי באמצע:** כתבתי בהתחלה ש"הבטחת זמן מענה" היא סתירה פתוחה, ובפועל נימרוד כבר הכריע ב-2026-09-28 שהיא נשארת בטופס של האתר הראשי (`playbook.md` §4). `CLAUDE.md` ו-`merge-review.md` תוקנו. **שום דבר לא נמחק ושום דבר לא נדחף.** שלב ו נדחה כי הוא משנה סוכנים שעובדים היום.
 - **Related:** [[content-team]], [[agent-site-builder]], [[team-handoffs]], [[site-repo-integration]], [[multi-client-engine]], [[multi-domain-expansion]], [[agent-roster]], [[post-holiday-roadmap]]
+
+### 2026-10-04 · מיזוג באים בטוב בוצע [wip]
+
+- **What was done:** נימרוד אישר את כל ההמלצות ב-`merge-review.md`, וקצב של 2 מאמרים בחודש. הכספת `claude prog\baimbetov` עברה לתיק: היומן ל-`clients/baimbetov/decisions.md`, השאר ל-`reference/vault/`, והכספת הישנה סומנה לקריאה בלבד (`_עבר לסוכנות.md`). קיצורי `BB/` במניפסט מצביעים לנתיבים החדשים, כך שאף קובץ אחר לא שוכתב. `services` אושר. המתחרים אוחדו (8 שמות), והמיצוב ונושאי התוכן עברו ל-`playbook.md` §9.
+- **Decisions:** **תיק הלקוח הוא המקור היחיד**, והכלל "הכספת גוברת" הוסר מ-`client.md` §2א. שבע ההחלטות נרשמו ב-`decisions.md` עם מספר השורה.
+- **Notes / Caveats:** לא נעשה commit. נשאר אצל נימרוד: commit לענף `tracking` באתר, ואחריו העברת הריפו ל-`C:\my projects\sites\`; נתיב אתר C&S; גיבוי `the5agents`; push. שלב ו בסשן נפרד.
+- **Related:** [[content-team]], [[agent-site-builder]], [[post-holiday-roadmap]]
+
+### 2026-10-04 · אתר C&S עבר ל-sites, ו-the5agents בלי גיבוי בענן [wip]
+
+- **What was done:** עותק נקי של `craft-system` מגיטהאב ב-`C:\my projects\sites\craft-system`, ו-`repos.site` במניפסט מצביע אליו. נימרוד אישר שאין ב-Antigravity עבודה שלא נדחפה.
+- **Decisions:** **כל האתרים יושבים ב-`C:\my projects\sites\`**, ו-Antigravity, אם נפתח, עובד מאותה תיקייה. **`the5agents` לא מגובה בגיטהאב:** כל מה שהיה שווה משהו עבר לסוכנות, ויש גיבוי מקומי ב-`claude prog\_backups\`. נימרוד ימחק את התיקייה בעצמו אחרי כמה שבועות. להדגמה משתמשים בריפו של הסוכנות.
+- **Notes / Caveats:** ה-commit לענף `tracking` באתר באים בטוב נחסם על ידי מנגנון ההרשאות, ולכן העברת ריפו האתר ל-`sites\` עוד לא בוצעה. `claude prog\craft-system` הישן נשאר במקומו, ואסור לעבוד ממנו.
+- **Related:** [[agent-site-builder]], [[site-repo-integration]]
