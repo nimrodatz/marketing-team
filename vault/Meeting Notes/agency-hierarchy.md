@@ -33,7 +33,6 @@ status: wip
 
 ## Open Questions
 
-- **ריפו האתר של באים בטוב:** בענף `tracking` יש 8 קבצים ששונו ו-3 חדשים שלא נשמרו. אחרי שמירה: העברה ל-`C:\my projects\sites\baimbetov`, ועדכון `CLAUDE.md` שלו שיפנה לתיק הלקוח.
 - **שלב ו לא בוצע:** קיצוץ חמשת הסוכנים הקיימים (11 עד 20 אלף תווים כל אחד), מצב `scope: edit` בהם, ו-`model` לכל סוכן.
 - **בדיקת לפני ואחרי** של `CLAUDE.md` החדש לא רצה: שלוש משימות זהות, והשוואת מה נקרא ומה נשכח.
 - **קבצי נושא שנשארו מעל 25 אלף תווים בגלל הגוף ולא הלוג:** `voice-and-tone`, `peer-warm-group-run-2`, `copy-refinement-peer-warm-group`, `agent-ceo-orchestration`, `agent-roster`, ועוד חמישה. כלל הארכוב נוגע רק בלוג.
@@ -106,3 +105,11 @@ status: wip
 ### 2026-10-04 · אינדקס Meeting Notes לפי לקוח [done]
 
 - **What was done:** `vault/Meeting Notes/_index.md` חולק לסעיפים: המנוע (מבנה וזיכרון, צוותים), Craft & System, באים בטוב, Telavivian. נושא חדש נכנס לסעיף של הלקוח שהוא משרת. **Decisions:** כספת אחת נשארת; ההפרדה בין לקוחות היא לפי תיקיות ולפי סעיפי האינדקס, ומפצלים כספת רק כשלקוח מקבל את התיק שלו, בהסכם סודיות, או בעשרות לקוחות. **Related:** [[multi-client-engine]]
+
+### 2026-10-04 · האתר נשמר, ההעברה ל-sites נעצרה על נעילה [wip]
+
+- **What was done:** נימרוד עשה commit לענף `tracking` (005431e). `baimbetov-site-phase1` עבר ל-`C:\my projects\sites\` והקישור תוקן. `C:\my projects\baimbetov` נעול גם אחרי סגירת Antigravity; נימרוד מפעיל מחדש את המחשב. **Next:** להעביר, `git worktree repair` מתוך `sites\baimbetov`, לעדכן `client.md` (`repos.site`, `אתר/CSS`, `אתר/lead`, דף נחיתה) ולסגור את המשימה.
+
+### 2026-10-04 · ריפו האתר של באים בטוב ב-sites [done]
+
+- **What was done:** נימרוד העביר את `C:\my projects\baimbetov` ל-`C:\my projects\sites\baimbetov` והריץ `git worktree repair`; שני העותקים (`tracking`, `site-phase1`) תקינים. `client.md` עודכן: `repos.site`, §2א, `אתר/CSS`, `אתר/lead`, ודף הנחיתה. **Decisions:** `config.json` של דף הנחיתה מ-2026-09-28 לא שונה, כי הוא רישום היסטורי. **Related:** [[site-repo-integration]], [[agent-site-builder]]

@@ -14,7 +14,7 @@ services:              # approved 2026-10-04; social and automations not active
   - content
   - site
 repos:
-  site: "C:/my projects/baimbetov"
+  site: "C:/my projects/sites/baimbetov"
   remote: https://github.com/nimrodatz/Baim-Betov
   deploy: cloudflare-pages:baim-betov   # every push to main goes live
 tags:
@@ -61,7 +61,7 @@ tags:
 
 הכספת של באים בטוב עברה לתיק הזה ב-2026-10-04 (`merge-review.md` שורה 8). **היומן הוא `decisions.md`,
 ושאר הכספת יושבת ב-`reference/vault/`.** הכספת הישנה, `claude prog\baimbetov\`, נשארת לקריאה בלבד.
-האתר ב-`C:\my projects\baimbetov\`. **קיצורים שבהם משתמשים כל קבצי התיק** (נתיבים יחסית ל-`clients/baimbetov/`):
+האתר ב-`C:\my projects\sites\baimbetov\`. **קיצורים שבהם משתמשים כל קבצי התיק** (נתיבים יחסית ל-`clients/baimbetov/`):
 
 | קיצור | הקובץ |
 |---|---|
@@ -72,8 +72,8 @@ tags:
 | `BB/פרופיל` | `reference/vault/גוגל ביזנס/תוכן לפרופיל.md` |
 | `BB/קמפיין` | `reference/vault/קמפיינים/פרגולות אחרי סוכות.md` |
 | `BB/תכנית` | `reference/vault/תכנית עבודה - 2026-09-28.md` |
-| `אתר/CSS` | `C:\my projects\baimbetov\assets\css\style.css` |
-| `אתר/lead` | `C:\my projects\baimbetov\functions\api\lead.js` |
+| `אתר/CSS` | `C:\my projects\sites\baimbetov\assets\css\style.css` |
+| `אתר/lead` | `C:\my projects\sites\baimbetov\functions\api\lead.js` |
 
 **התיק הזה הוא המקור היחיד** (מ-2026-10-04). החלטה חדשה נרשמת ב-`decisions.md`, ועובדה שנולדת ממנה
 עוברת ל-`facts.md` באישור נימרוד. אין עוד מקום אחר שבו נרשמות החלטות על הלקוח.
@@ -118,7 +118,7 @@ tags:
 |---|---|
 | **ערוצים פעילים** | אתר, פרופיל עסקי בגוגל, וואטסאפ. דף נחיתה לכל קמפיין (Hub & Spoke) |
 | **ערוצים ממומנים** | מתוכנן: מטא כערוץ ראשי, גוגל חיפוש כמשני (שם ממומש שובר של 1,500 ₪). `BB/תכנית` §3 · `PAUSED` בלבד |
-| **דף נחיתה** | **בריפו של הלקוח**, `C:\my projects\baimbetov\`, תחת נתיב כמו `baimbetov.me/pergola/`. כל push ל-`main` שם עולה לאוויר אוטומטית, ולכן **הסוכן כותב ל-`output/baimbetov/landing/` בלבד**, ונימרוד מעתיק לריפו |
+| **דף נחיתה** | **בריפו של הלקוח**, `C:\my projects\sites\baimbetov\`, תחת נתיב כמו `baimbetov.me/pergola/`. כל push ל-`main` שם עולה לאוויר אוטומטית, ולכן **הסוכן כותב ל-`output/baimbetov/landing/` בלבד**, ונימרוד מעתיק לריפו |
 | **טופס** | **`/api/lead` שכבר קיים באתר** (`webhook_status: existing_endpoint`). לא מעתיקים פונקציה. שדות: `name`, `phone`, `projectType` ∈ פרגולה / דק / מבנה עץ / אחר, `city`, `details` (לא חובה), `utm`, `page`. `אתר/lead` |
 | **CRM** | איירטייבל, בסיס "באים בטוב - CRM". ליד חדש שולח מייל ל-`baimbetovPM@gmail.com`. `BB/החלטות` 2026-09-28 |
 | **מעקב** | GA4 נוצר ב-2026-09-30, מזהה המדידה `G-4RW3W69MWD` (נכס "באים בטוב - אתר", ישראל, ₪), שמירת נתוני אירועים 14 חודשים, ו-Google Signals כבוי, כך שהנתונים לא מקושרים לחשבונות גוגל של הגולשים. הקוד עוד לא באתר. פיקסל מטא עדיין לא הותקן. **פרטיות לפי התקן המחמיר (GDPR), גם כשבישראל לא נדרש** (החלטת נימרוד, 2026-09-30): שום כלי מדידה או פרסום לא נטען לפני הסכמה בבאנר, "דחייה" בולטת כמו "אישור", אפשר לחזור בו בכל עת, והמדיניות מעודכנת לפני שהקוד עולה. `BB/קמפיין` |
