@@ -18,7 +18,7 @@ tags:
 ## Open Questions
 
 - האם הבונה החליף את המחרוזות, ומתי.
-- דף הבית, `index.html` שורה 194: אותו `step.2.body` עם "וחותמים על המבנה". לא מכוסה באף בריף.
+- דף הבית, `index.html` שורה 194: מכוסה ב-[[homepage-signing-fix-run-1]] (2026-10-04).
 
 ## Session Log
 

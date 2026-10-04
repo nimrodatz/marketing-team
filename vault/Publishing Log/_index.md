@@ -15,3 +15,4 @@ Publish runs and their outcomes: what went out, where, when, how it performed, a
 - [[homepage-description-run-1]], באים בטוב: תיאור דף הבית, og וכותרת המשנה, והבועה הצפה. שלב 1 בלבד, מאושר
 - [[network-outreach-run-1]], באים בטוב: הודעה לרשת, סטטוס והפניה מלקוחות עבר. 0 ₪, שלבים 1 ו-2, גלריות ועבודות עץ נוספות
 - [[pergola-signing-fix-run-1]], באים בטוב: בלי "חותם על כל מבנה" ב-`/pergola/`, ארבע מחרוזות. שלב 1 בלבד, מאושר
+- [[homepage-signing-fix-run-1]], באים בטוב: בלי חתימה בדף הבית, שלוש מחרוזות מנוסח מאושר. רשימה לבונה ב-`site-phase1`

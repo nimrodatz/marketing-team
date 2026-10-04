@@ -13,5 +13,6 @@ Editorial briefs and campaign specs: audience, angle, channel, deliverables and 
 - [[site-phase1-strings]], באים בטוב: מחרוזות האתר לשלב 1. דף 404, קישור מדף הבית לפרגולות, דף המאמרים ותבנית מאמר
 - [[homepage-description]], באים בטוב: תיאור חדש לדף הבית בלי "מנהלים ומפקחים", והבועה הצפה בלי "זמינים כעת"
 - [[pergola-signing-fix]], באים בטוב: הורדת "חותם על כל מבנה" מ-`/pergola/`, בחריג ל-§8. שני משפטים אצלנו, התיאור לגוגל אצל צוות התוכן
+- [[homepage-signing-fix]], באים בטוב: הורדת "וחותמים על המבנה" משלב 02 בדף הבית, ליישור עם `/pergola/`. `scope: edit`
 - [[network-outreach]], באים בטוב: הודעה אישית לרשת, סטטוס וואטסאפ והפניה מלקוחות עבר. 0 ₪, מכר ולא ליד, ובלי ההוקים של הסוכה
 - [[_template-brief]], שלד בריף לכל לקוח: `client`, `channel` ו-`run` ב-frontmatter, השדות הקבועים, ושלוש ההכרעות שמזיזות את התוצר. `/new-campaign` ממלא אותו

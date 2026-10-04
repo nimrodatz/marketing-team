@@ -33,7 +33,8 @@ status: wip
 
 ## Open Questions
 
-- **שלב ו לא בוצע:** קיצוץ חמשת הסוכנים הקיימים (11 עד 20 אלף תווים כל אחד), מצב `scope: edit` בהם, ו-`model` לכל סוכן.
+- **שלב ו, שלושה נשארו:** `copywriter` ו-`campaigner` כוילו (2026-10-04). נשארו `strategist`, `creative`, `landing`: קיצוץ, `scope: edit`, `model`. **הבדיקה רצה כסוכן כללי שקורא את הקובץ**, כי הגדרות סוכנים נטענות רק בפתיחת סשן.
+- **באתר החי, `main` של באים בטוב:** "חותם על כל מבנה" עדיין שם. **התיקון מוכן ב-`site-phase1`** (הבונה החיל 8 מחרוזות בדף הבית, 2026-10-04, בלי commit). נשאר אצל נימרוד: commit, בדיקת הבועה הצפה בדפדפן, ומיזוג fast-forward ל-`main`.
 - **בדיקת לפני ואחרי** של `CLAUDE.md` החדש לא רצה: שלוש משימות זהות, והשוואת מה נקרא ומה נשכח.
 - **קבצי נושא שנשארו מעל 25 אלף תווים בגלל הגוף ולא הלוג:** `voice-and-tone`, `peer-warm-group-run-2`, `copy-refinement-peer-warm-group`, `agent-ceo-orchestration`, `agent-roster`, ועוד חמישה. כלל הארכוב נוגע רק בלוג.
 - **`obsidian-vault-workflow/SKILL.md` עצמו מלא מקפים ארוכים** מהגרסה המקורית. לא נוקה, כי החלפה מכנית שוברת משפטים.
@@ -113,3 +114,15 @@ status: wip
 ### 2026-10-04 · ריפו האתר של באים בטוב ב-sites [done]
 
 - **What was done:** נימרוד העביר את `C:\my projects\baimbetov` ל-`C:\my projects\sites\baimbetov` והריץ `git worktree repair`; שני העותקים (`tracking`, `site-phase1`) תקינים. `client.md` עודכן: `repos.site`, §2א, `אתר/CSS`, `אתר/lead`, ודף הנחיתה. **Decisions:** `config.json` של דף הנחיתה מ-2026-09-28 לא שונה, כי הוא רישום היסטורי. **Related:** [[site-repo-integration]], [[agent-site-builder]]
+
+### 2026-10-04 · שלב ו התחיל: הקופירייטרית כוילה [wip]
+
+- **What was done:** `copywriter.md` מ-11,900 ל-9,000 תווים: שלושה מצבים (זוויות, דף, עריכה), סדר עדיפות (נעול > בריף > ברירות מחדל של הלקוח), `model: opus`. בדיקת לפני ואחרי על שתי משימות: תיקון בדף הבית ([[homepage-signing-fix]]) וזוויות [[network-outreach]]. ההשוואה ב-`copywriter/drafts/ab-test/comparison.md`.
+- **Decisions:** נימרוד: Opus לקופירייטרית; תיקון מחזיר טבלת לפני ואחרי; דף הבית מיושר עם `/pergola/`; **לא מוסיפים ל-facts ש"לא חותמים על מבנה לא תקין"**, כי זה מובן, והאיסור על "כל מבנה" מספיק.
+- **Notes / Caveats:** ריצת "אחרי" הראשונה נטענה עם ההגדרה הישנה (`stale/`). הבריף חשף לשתי הגרסאות את שמות הזוויות שאושרו. **ממצא באתר:** ראו Open Questions. **Related:** [[agent-copywriter]], [[pergola-signing-fix]]
+
+### 2026-10-04 · הקמפיינר כויל, והבונה החיל את דף הבית [wip]
+
+- **What was done:** `campaigner.md` מ-13,400 ל-9,000 תווים: ערכה קרה (חמשת הרכיבים) וערכה חמה (היחידות מהבריף, מענה לתגובות, תזכורת, תודה), עמוד שליחה ואז נספח, סדר עדיפות, מצב עריכה, `model: opus`. בדיקה על [[google-reviews]]: `campaigner/drafts/ab-test/comparison.md`. הקופירייטרית (הגדרה חדשה) מצאה שגוש התיאורים לדף הבית מ-2026-09-30 לא הוחל אף פעם, והבונה החיל אותו יחד עם החתימה ב-`site-phase1` ([[homepage-signing-fix-run-1]]).
+- **Decisions:** נימרוד: Opus לקמפיינר; ערכה = עמוד שליחה ונספח; הבדיקה על ערכת הביקורות; להרחיב את בריף דף הבית ל-meta ולהריץ את הבונה.
+- **Notes / Caveats:** שינויים ב-network-outreach (הערכה, כרטיס השיתוף, היומן) נעשו בסשן אחר ולא נגעתי בהם. **Related:** [[agent-campaigner]], [[homepage-description-run-1]]

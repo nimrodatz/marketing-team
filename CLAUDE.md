@@ -176,7 +176,7 @@ output/<client>/     deliverables only, one folder per client, split by kind:
   content/<run>/ (article or posts, with sources and images)  site/ (site briefs and maps)
 vault/               the engine's memory: Engine, Meeting Notes, Content Briefs, Publishing Log,
                      Brand Guidelines (Craft & System's own brand files), Archive
-copywriter/drafts/, creative/, landing/   agents' scratch space, never a deliverable
+copywriter/drafts/, campaigner/drafts/, creative/, landing/   agents' scratch space, never a deliverable
 landing/templates/   section templates and lead-function.js. Fixes are made here, never in a copy
 scripts/             gen-image, verify-site-facts, build-review, serve-landing, extract-visual-identity
 references/          source material
