@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "baimbetov-site",
+      "runtimeExecutable": "pwsh",
+      "runtimeArgs": ["-File", "scripts/serve-landing.ps1", "-Root", "C:/my projects/sites/baimbetov", "-Port", "8765"],
+      "port": 8765
+    }
+  ]
+}
