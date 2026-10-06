@@ -98,7 +98,7 @@ Delegate by the trigger words. Each agent's file is its full spec; do not restat
 | | `seo` | מילות מפתח, מפת מילים, ניתוח תוצאות חיפוש, בריף SEO, בדיקת מאמר לפני פרסום, המלצת title ו-meta |
 | | `researcher` | מקורות למאמר, נוסח חוק, מחקר עסק ומתחרים ללקוח חדש. Shares `clients/<c>/research/` and its log with `strategist` and `seo` |
 | Build | `site-builder` | בניית אתר, תיקון באתר, דף חדש באתר, in the client's site repo |
-| Systems | none yet | מערכות ניהול ואוטומציות. Built on the first real job, not before |
+| Systems | none yet, the CEO builds | מערכות ניהול ואוטומציות, CRM באיירטייבל. First job 2026-10-06: [[baimbetov-crm]]. An agent only when the work repeats |
 
 **One owner per page:** a page's text, title and meta belong to `copywriter`; an article to
 `content-writer` with `seo`; code and layout to `site-builder`; facts and prices to the CEO.

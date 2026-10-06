@@ -118,8 +118,20 @@
   </section>
 
   <section>
-    <h2>הודעה ג: בקשת הפניה מלקוחות עבר</h2>
-    <p class="when">מ-2026-10-11, רק למי שכתב ביקורת או ענה בחום. בלי תמונה.</p>
+    <h2>מי מקבל את הודעה ג, ומתי</h2>
+    <div class="note">
+      <b>כתב ביקורת וכבר קיבל תודה:</b> ג1.<br>
+      <b>כתב ביקורת ועוד לא קיבל תודה</b>, גם אם כתב רק אחרי התזכורת: ג2, במקום הודעת התודה ולא בנוסף לה.<br>
+      <b>ענה בחום בלי ביקורת:</b> ג1.<br>
+      <b>אמר שכתב, והביקורת לא מופיעה בפרופיל:</b> ג1, בלי להזכיר את הביקורת.<br>
+      <b>לא כתב ולא ענה, ענה "לא עכשיו", או ענה עם בעיה בעבודה שעוד לא נסגרה:</b> כלום.<br><br>
+      <b>מתי:</b> אם השדה "נשלחה תזכורת" בטבלת "לקוחות עבר" ריק, שולחים מ-2026-10-11. אם יש בו תאריך, שולחים שבועיים אחריו. ביום חול, בין 10:00 ל-19:00. להודעה ג אין תזכורת ואין המשך.
+    </div>
+  </section>
+
+  <section>
+    <h2>הודעה ג1: בקשת הפניה מלקוחות עבר</h2>
+    <p class="when">למי שכבר קיבל תודה על הביקורת, או ענה בחום בלי ביקורת. בלי תמונה.</p>
     <div class="toggle" data-target="c">
       <button aria-pressed="true" data-v="m">נמען</button>
       <button aria-pressed="false" data-v="f">נמענת</button>
@@ -129,6 +141,17 @@
       <div class="bubble" id="c"></div>
     </div>
     <div class="note">"בנו" מוצג כאן. כשהשולח עשה את העבודה לבד, כתוב "בי".</div>
+  </section>
+
+  <section>
+    <h2>הודעה ג2: תודה והפניה, בשתי בועות</h2>
+    <p class="when">למי שכתב ביקורת ועוד לא קיבל עליה תודה. שולחים רק אחרי שראיתם את הביקורת בפרופיל, ורק מי ששלח ללקוח את בקשת הביקורת. בועה 1 היא התודה והבקשה לשתף, ומיד אחריה בועה 2, ההודעה שמשתפים. הלקוח מעביר הלאה רק את בועה 2, ולכן מי שמקבל אותה לא קורא על הביקורת.</p>
+    <div class="toggle" data-target="c2">
+      <button aria-pressed="true" data-v="m">נמען</button>
+      <button aria-pressed="false" data-v="f">נמענת</button>
+      <button aria-pressed="false" data-v="c">זוג</button>
+    </div>
+    <div class="phone" id="c2" style="gap:6px"></div>
   </section>
 
   <section>
@@ -143,7 +166,7 @@
   const L = s => `<span class="lnk">${s}</span>`;
   const dm = '{{DM}}';
   const ref = '{{REF}}';
-  const LINKS = { n: {dm:'baimbetov.me/n', ref:'baimbetov.me/nr'}, y: {dm:'baimbetov.me/y', ref:'baimbetov.me/yr'} };
+  const LINKS = { n: {dm:'https://baimbetov.me/n', ref:'https://baimbetov.me/nr'}, y: {dm:'https://baimbetov.me/y', ref:'https://baimbetov.me/yr'} };
   let sender = 'n';
   const state = {};
   const T = '<span class="time">10:42</span>';
@@ -206,10 +229,32 @@ ${P('שם פרטי של השולח')}`,
 ${P('שם פרטי של השולח')}`
     }
   };
+  const c2share = `בבאים בטוב אנחנו בונים פרגולות, דקים וגלריות, וגם עבודות עץ נוספות.
+אנחנו מגיעים למדוד, מתכננים את המבנה, בונים ומוסרים. כל התהליך בכתובת אחת.
+זה הדף: ${ref}
+${P('שם פרטי של השולח')}`;
+  texts.c2 = {
+    m: [`היי ${P('שם')}, מה שלומך?
+ראיתי מה שכתבת בגוגל. תודה, זה ממש שימח אותי.
+ההודעה הבאה היא על מה שאנחנו בונים.
+אם אתה חושב על מישהו שזה יכול לעניין, נשמח שתשתף אותה איתו.`, c2share],
+    f: [`היי ${P('שם')}, מה שלומך?
+ראיתי מה שכתבת בגוגל. תודה, זה ממש שימח אותי.
+ההודעה הבאה היא על מה שאנחנו בונים.
+אם את חושבת על מישהו שזה יכול לעניין, נשמח שתשתפי אותה איתו.`, c2share],
+    c: [`היי ${P('שם')} ו${P('שם')}, מה שלומכם?
+ראיתי מה שכתבתם בגוגל. תודה, זה ממש שימח אותי.
+ההודעה הבאה היא על מה שאנחנו בונים.
+אם אתם חושבים על מישהו שזה יכול לעניין, נשמח שתשתפו אותה איתו.`, c2share]
+  };
   const CARD = `<span class="card"><img src="https://baimbetov.me/assets/hero_slides/slide2.jpg" alt="" style="object-position:center 30%"><span class="ct"><b>באים בטוב | מתכננים. מאשרים. בונים. עד הבורג האחרון.</b><span>פרגולות, דקים ומבני עץ, בתכנון, בחישוב ובניהול שלנו. אתם מקבלים מבנה מוכן בלי לרדוף אחרי אף אחד.</span><i>baimbetov.me</i></span></span>`;
-  const body = id => texts[id][state[id]].replace('{{DM}}', LINKS[sender].dm).replace('{{REF}}', LINKS[sender].ref);
+  const fill = s => s.replace('{{DM}}', LINKS[sender].dm).replace('{{REF}}', LINKS[sender].ref);
+  const parts = id => [].concat(texts[id][state[id]]).map(fill);
+  const linked = s => s.replace(/https:\/\/baimbetov\.me\/\w+/, m => L(m));
   function show(id){
-    document.getElementById(id).innerHTML = CARD + body(id).replace(/baimbetov\.me\/\w+/, m => L(m)) + T;
+    const p = parts(id);
+    if (p.length === 1) { document.getElementById(id).innerHTML = CARD + linked(p[0]) + T; return; }
+    document.getElementById(id).innerHTML = p.map(s => `<div class="bubble">${s.includes('baimbetov.me') ? CARD : ''}${linked(s)}${T}</div>`).join('');
   }
   function showAll(){ Object.keys(state).forEach(show); }
   document.querySelectorAll('.toggle[data-target]').forEach(t => {
@@ -220,15 +265,20 @@ ${P('שם פרטי של השולח')}`
       t.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
       state[id] = b.dataset.v; show(id);
     });
-    const copy = document.createElement('button');
-    copy.className = 'copy'; copy.textContent = 'העתק נוסח';
-    copy.addEventListener('click', async () => {
-      const tmp = document.createElement('div'); tmp.innerHTML = body(id);
-      try { await navigator.clipboard.writeText(tmp.textContent); copy.textContent = 'הועתק'; }
-      catch { copy.textContent = 'ההעתקה נחסמה'; }
-      setTimeout(() => copy.textContent = 'העתק נוסח', 1600);
-    });
-    t.appendChild(copy);
+    const n = [].concat(texts[id].m).length;
+    for (let i = 0; i < n; i++) {
+      const label = n === 1 ? 'העתק נוסח' : `העתק בועה ${i + 1}`;
+      const copy = document.createElement('button');
+      copy.className = 'copy'; copy.textContent = label;
+      if (i > 0) copy.style.marginInlineStart = '0';
+      copy.addEventListener('click', async () => {
+        const tmp = document.createElement('div'); tmp.innerHTML = parts(id)[i];
+        try { await navigator.clipboard.writeText(tmp.textContent); copy.textContent = 'הועתק'; }
+        catch { copy.textContent = 'ההעתקה נחסמה'; }
+        setTimeout(() => copy.textContent = label, 1600);
+      });
+      t.appendChild(copy);
+    }
   });
   document.querySelectorAll('#sender button').forEach(b => b.addEventListener('click', () => {
     document.querySelectorAll('#sender button').forEach(x => x.setAttribute('aria-pressed', x === b));
