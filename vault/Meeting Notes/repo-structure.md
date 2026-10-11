@@ -149,3 +149,8 @@ tags:
   כלומר הכותרת שמלבישה אותן לא קיימת בשום מקום. זה לא באג בדף. זו חתיכה חסרה בשלב 3
   שאף אחד לא ראה כי אף אחד לא הסתכל על שני סוגי הקבצים באותו מסך.
 - **Related:** [[peer-warm-group-run-2]], [[agent-ceo-orchestration]], [[agent-creative]], [[agent-landing]], [[copy-corrections]], [[marketing-engine-prd]]
+
+### 2026-10-11 · כל פרויקט חדש נפתח ב-C:\dev [planned]
+- **Decisions:** נמרוד: כל פרויקט חדש של Claude Code, קוד או לא, נפתח בתיקייה משלו ב-`C:\dev\<name>` (שם קצר באנגלית). כבר שם: `quotes`, `office`. הפרויקטים הקיימים תחת `claude prog` ב-OneDrive (marketing team, baimbetov, craft-system, zurisrael, the5agents) יעברו לשם בהמשך, כל אחד כצעד נפרד.
+- **Notes / Caveats:** הנתיב של OneDrive מופיע ב-16 קבצים בריפו הזה (CLAUDE.md, קבצי לקוח, הערות vault). העברה = קומיט ו-push, העברת התיקייה, העברת תיקיית הזיכרון של Claude, ותיקון הנתיבים. לא באמצע משימה ולא כשסשן פתוח על הפרויקט.
+- **Related:** [[baimbetov-crm]], [[post-holiday-roadmap]]
