@@ -5,3 +5,4 @@ The house standard: rules that bind every client of the engine. A client's own f
 ## Topics
 
 - [[house-standards]], סטנדרט הבית: קצב, רשימת המילים האסורות, תחביר, עובדות, גוף שני, תמונות ושערים תפעוליים
+- [[task-catalog]], קטלוג המשימות וצירי האסטרטגיה: איך אפיון של לקוח הופך לאסטרטגיה ולתכנית עבודה
