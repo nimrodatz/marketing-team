@@ -191,3 +191,4 @@ tags:
 - **Next:** דיוק עם נימרוד, ואז דף `/intake` באתר וטבלת `אפיונים`.
 - **Related:** [[client-discovery]], [[task-catalog]]
 - 2026-10-14: טופס האפיון `/intake` נבנה ונמצא בקומיט בענף `intake-form` באתר. הפרומפט להעלאה ולשליחה לעמית: `output/amit-evyatar/2026-10-14-intake-launch-prompt.md`. [[client-discovery]]
+- 2026-10-14: `/intake` באוויר (דומיין לא מוצג למי שאתרו פעיל, עמודת `סיכום` קריאה, `?v=` לנכסים) ונשלח לעמית, יעד 25.10. תאריכי ההסכם ב-Airtable. [[client-discovery]]
