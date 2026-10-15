@@ -45,6 +45,7 @@ Code, architecture, design decisions, bugfixes and refactors. One file per topic
 תיק: `clients/baimbetov/` · יומן ההחלטות: `clients/baimbetov/decisions.md`
 
 - [[baimbetov-crm]], ה-CRM באיירטייבל: לידים ← הצעות מחיר ← פרויקטים ← תשלומים, האוטומציות ומה פתוח
+- [[baimbetov-seo-strategy]], אסטרטגיית SEO לגוגל: פרופיל וביקורות, דף שירות בחודש, מאמר בחודש, בלי דפי עיר, ותכנית 90 יום
 - [[post-holiday-roadmap]], התכנית אחרי החג: העלאת דף הפרגולות, מודעות לריצה 2, סוכן אסטרטגיה, ותשתית תוכן ו-SEO לבאים בטוב
 
 ## Telavivian (דיאנה)
