@@ -12,6 +12,12 @@
       "runtimeExecutable": "pwsh",
       "runtimeArgs": ["-File", "scripts/serve-landing.ps1", "-Root", "C:/my projects/sites/craft-system", "-Port", "8766"],
       "port": 8766
+    },
+    {
+      "name": "check-preview",
+      "runtimeExecutable": "pwsh",
+      "runtimeArgs": ["-File", "scripts/serve-landing.ps1", "-Root", "review/check-preview", "-Port", "8767"],
+      "port": 8767
     }
   ]
 }

@@ -16,4 +16,5 @@ Editorial briefs and campaign specs: audience, angle, channel, deliverables and 
 - [[homepage-signing-fix]], באים בטוב: הורדת "וחותמים על המבנה" משלב 02 בדף הבית, ליישור עם `/pergola/`. `scope: edit`
 - [[network-outreach]], באים בטוב: הודעה אישית לרשת, סטטוס וואטסאפ והפניה מלקוחות עבר. 0 ₪, מכר ולא ליד, ובלי ההוקים של הסוכה
 - [[site-v2]], באים בטוב: גרסה 2 של האתר. יסודות קודם (מסר, תפריט, שפה ויזואלית), ואז דף הבית והתפריט, ואז דפי המוצר
+- [[lead-intake]], C&S: טופס הלידים `/check`. גרסה קצרה של `/intake`, תמונת מצב בעמוד אחד ושיחה של 15 דקות, נסתר בהתחלה
 - [[_template-brief]], שלד בריף לכל לקוח: `client`, `channel` ו-`run` ב-frontmatter, השדות הקבועים, ושלוש ההכרעות שמזיזות את התוצר. `/new-campaign` ממלא אותו
