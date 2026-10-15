@@ -130,7 +130,9 @@ file still leaves a trace.
 **Stage 4.** The landing agent cannot see what it builds, and it cannot copy a binary file (how
 images reach `assets/` is still open, `agent-landing`: check at the gate that they are there). The
 CEO can serve the folder with `scripts/serve-landing.ps1` and look at it in the browser pane before
-the user is asked to approve. The user still opens the page himself.
+the user is asked to approve. The user still opens the page himself. In the browser the CEO runs the
+check list in `hebrew-rtl-web` §7 at 375px and `israel-compliance-checklist` §4, and checks that the
+primary CTA and the trust points sit on the first mobile screen (`skills-upgrade`, 2026-10-15).
 
 **Stage 5, the send kit.** One `.html` per run in `output/<client>/kits/`, written by the CEO.
 - A presentation layer over deliverables that already passed the gate. **It introduces no new copy:**

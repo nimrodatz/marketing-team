@@ -18,6 +18,12 @@
       "runtimeExecutable": "pwsh",
       "runtimeArgs": ["-File", "scripts/serve-landing.ps1", "-Root", "review/check-preview", "-Port", "8767"],
       "port": 8767
+    },
+    {
+      "name": "baimbetov-landing",
+      "runtimeExecutable": "pwsh",
+      "runtimeArgs": ["-File", "scripts/serve-landing.ps1", "-Root", "output/baimbetov/landing", "-Port", "8768"],
+      "port": 8768
     }
   ]
 }

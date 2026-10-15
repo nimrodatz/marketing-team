@@ -40,6 +40,22 @@ model: sonnet
 סרוק גם את `output/<client>/creatives/` באותו `<topic>-run<N>` (הנכסים הוויזואליים)
 ואת `landing/reference/` (רפרנסים עיצוביים שהמשתמש העלה; ריק זה מצב תקין).
 
+### שלושה סקילים: קוראים אותם עם `Read` אחרי הטבלה, לפני שורת HTML ראשונה
+
+| סקיל | מה לוקחים ממנו | מעמד |
+|---|---|---|
+| `.claude/skills/hebrew-rtl-web/SKILL.md` | כיוון, גופנים, טיפוגרפיה, מספרים, חיצים, טפסים, אייקון וואטסאפ | **מחייב** |
+| `.claude/skills/israel-compliance-checklist/SKILL.md` | §1 נגישות, §3 יידוע ליד הטופס, §4 בדיקת 30 השניות | **מחייב.** מחרוזת חסרה: `MISSING COPY`, לא כותבים |
+| `.claude/skills/frontend-design/SKILL.md` | שני המעברים: `design-plan.md` לפני הקוד, ורשימת הסימנים הגנריים כבדיקה עצמית אחרי | **השראה, לא סמכות** |
+
+**מי גובר:** `house-standards`, הקופי, ה-`facts` וה-`visual` גוברים על frontend-design. פלטה וגופנים רק מה-`visual`;
+החופש שלך הוא בפריסה, ב-hero, בתנועה ובמבנה. **סעיף "More on writing in design" שם לא חל עליך.**
+
+**מה הבדיקה של 2026-10-15 לימדה** (`output/baimbetov/landing/2026-10-15-pergola-sukkot-run1-skills-test/comparison.md`):
+- **במסך הראשון בנייד:** ה-CTA הראשי **ונקודות האמון**. עיצוב מחדש לא מוריד אותן מתחת לקפל.
+- **לא מדגישים חצי כותרת** (משקל או צבע שונה לחלק ממנה). זה ברשימת הסימנים הגנריים.
+- **אייקון הוואטסאפ** מ-`landing/templates/whatsapp-icon.html`, בכפתור הצף ובכפתור ב-hero.
+
 **הסדר לא שרירותי.** מי שקורא קודם את הזהות הוויזואלית מתחיל לעצב, ורק אחר כך מחפש
 מה לשים בפנים, והדף יוצא תבנית יפה עם קופי דחוס לתוכה.
 
@@ -209,6 +225,7 @@ JS ואנילי קצר ששולח `POST` עם `Content-Type: application/json`. 
 output/<client>/landing/<YYYY-MM-DD>-<topic>-run<N>/
     index.html
     config.json
+    design-plan.md
     assets/<שם התמונה>.png
     functions/api/lead.js
 ```
@@ -270,6 +287,9 @@ output/<client>/landing/<YYYY-MM-DD>-<topic>-run<N>/
 - [ ] `functions/api/lead.js` הועתק מהתבנית **בלי שינוי**, והדף מצביע ל-`/api/lead`? (או: נקודת קצה קיימת מ-`client.md` §5, ואין `functions/`)
 - [ ] **אפס טוקנים בכל התיקייה.** לא בדף, לא בפונקציה, לא ב-`config.json`?
 - [ ] אין מחיר, קייס או מספר שלא כתובים בקובץ ה-`facts`?
+- [ ] עברת על רשימת הבדיקה של `hebrew-rtl-web` §7 ועל `israel-compliance-checklist` §4?
+- [ ] `design-plan.md` נכתב לפני הקוד, ועברת על הסימנים הגנריים של frontend-design אחרי הבנייה?
+- [ ] ה-CTA הראשי ונקודות האמון במסך הראשון ב-375px? אייקון הוואטסאפ מהתבנית?
 
 ---
 

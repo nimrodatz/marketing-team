@@ -5,6 +5,23 @@
 
 ---
 
+## 2026-10-15 | ציות בישראל לדפי נחיתה ואתרים: נגישות, ספאם, פרטיות (מחקר מנוע, לסקיל israel-compliance-checklist) | ערוצים
+**מילות מפתח:** תקנה 35, ת"י 5568, הצהרת נגישות, 19נא, חוק הספאם, 30א, תיקון 13, סעיף 11, אבטחת מידע 2017, consent-2026
+**שאילתות:** "תקנות שוויון זכויות ... תקנה 35 הצהרת נגישות", "חוק התקשורת סעיף 30א דבר פרסומת", "תיקון 13 רישום מאגר חובת יידוע סעיף 11", "ת"י 5568 WCAG 2.0 2.1", "גילוי דעת הסכמה consent-2026 עוגיות", ועוד שאילתות לאימות (נבו, אבטחת מידע). נתיב יעד: `references/israel-compliance/`
+**חיפוש חוזר:** חלקי. נקרא קודם `clients/baimbetov/research/israel-cookie-consent-secondary.md` ורשומת 2026-09-30. gov.il/consent-2026 נכשל שוב (403), נמצא רק דרך משרדי עורכי דין.
+**מקורות:**
+- [ויקיטקסט, תקנות התאמות נגישות לשירות](https://he.wikisource.org/wiki/תקנות_שוויון_זכויות_לאנשים_עם_מוגבלות_(התאמות_נגישות_לשירות)) - איכות: בינונית-גבוהה (העתק לא רשמי של הנוסח המאוחד) - תקנות 35 עד 35ו מילולי
+- [ויקיטקסט, חוק שוויון זכויות לאנשים עם מוגבלות](https://he.wikisource.org/wiki/חוק_שוויון_זכויות_לאנשים_עם_מוגבלות) - איכות: בינונית-גבוהה - 19נא, 50,000 ש"ח ללא נזק
+- [מכון התקנים, ת"י 5568 חלק 1](https://www.sii.org.il/he/lobby/standardization/standard-page?id=6751) - איכות: גבוהה - מהדורת 28.9.2023, גרסת WCAG לא צוינה
+- [ויקיטקסט, חוק התקשורת](https://he.wikisource.org/wiki/חוק_התקשורת_(בזק_ושידורים)) - איכות: בינונית-גבוהה - 30א מילולי (נבו נטען קטוע)
+- [ויקיטקסט, חוק הגנת הפרטיות](https://he.wikisource.org/wiki/חוק_הגנת_הפרטיות) - איכות: בינונית-גבוהה - סעיפים 8א, 11, 17, 17ב1, 23כו
+- [נבו, תקנות אבטחת מידע 2017](https://www.nevo.co.il/law_html/law00/144811.htm) - איכות: גבוהה
+- [שיבולת, גילוי דעת סופי על הסכמה](https://www.shibolet.com/%D7%92%D7%99%D7%9C%D7%95%D7%99-%D7%93%D7%A2%D7%AA-%D7%A1%D7%95%D7%A4%D7%99-%D7%91%D7%A0%D7%95%D7%A9%D7%90-%D7%94%D7%A1%D7%9B%D7%9E%D7%94-%D7%9E%D7%98%D7%A2%D7%9D-%D7%94%D7%A8%D7%A9%D7%95%D7%AA/), [Pearl Cohen](https://www.pearlcohen.com/israeli-privacy-authority-clarifies-consent-under-privacy-law/), [Herzog/Mondaq](https://www.mondaq.com/privacy-protection/1709950/major-amendment-to-privacy-law-in-israel), [Barnea](https://barlaw.co.il/practice_areas/regulation/privacy-law/client_updates/amendment-13-to-the-israeli-privacy-protection-law-is-here-are-you-ready/), [Gornitzky](https://www.gornitzky.com/privacy-protection-in-2025-10-steps-to-navigate-the-implementation-of-obligations/), [protocol.co.il](https://protocol.co.il/spam-law/) - איכות: בינונית עד בינונית-נמוכה (משרדי עורכי דין ומדריך מסחרי, משני)
+- gov.il (consent-2026, notice-obligation, registration, israeli_standard_5598, מדריך תיקון 13), kolzchut (3 דפים), chamber.org.il, loc.gov, נבו של חוק התקשורת (קטוע), PDFים של Knesset, elyon, gornitzky, IDI - **נכשלו (403, 307, או PDF בינארי). לא לנסות שוב ב-WebFetch**
+**מסקנה:** נגישות: ת"י 5568 ברמה AA, פטורים לפי מחזור 100,000 (או 1,000,000 לאתר ותיק), פיצוי עד 50,000 ללא נזק. ספאם: הסכמה מפורשת מראש בכתב, חריג ללקוח בשלושה תנאים, עד 1,000 ש"ח להודעה. פרטיות: סעיף 11 ארבעה פרטים, רישום רק מעל 10,000 למסירה לאחרים. **לא נמצא:** גרסת WCAG רשמית, הכרעה על תיבה מסומנת מראש, עוגיות בגילוי consent-2026, חובת מדיניות פרטיות בחוק.
+**קובץ:** 9 קבצי מקור ב-`references/israel-compliance/`: `accessibility-regs-35-wikisource.md`, `accessibility-law-19na-compensation-wikisource.md`, `accessibility-standard-5568-sii.md`, `spam-law-30a-wikisource.md`, `spam-law-secondary-protocol.md`, `privacy-law-sections-wikisource.md`, `privacy-security-regs-2017-nevo.md`, `privacy-consent-guidance-2026-secondary.md`, `privacy-amendment-13-secondary.md`. **`summary.md` לא נכתב:** הכלי חסם כתיבת קובץ סיכום; הסיכום הוחזר בדיווח.
+---
+
 ## 2026-10-05 | עלות לליד בישראל, וזמן עד סגירה | ערוצים
 **מילות מפתח:** מחיר ליד, עלות לליד, CPL, lead cost, booking rate, close rate
 **שאילתות:** "מחיר ליד שיפוצים נגרות קבלנים עלות לליד", "Thumbtack lead cost for pros how much does a lead cost carpenters", "Angi leads cost per lead for pros 2026 site:angi.com", "pay per closed deal lead generation agency home services percent of revenue contractor tail period attribution agreement"

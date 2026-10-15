@@ -1,0 +1,53 @@
+{
+  "topic": "pergola-sukkot",
+  "run": 1,
+  "date": "2026-10-15",
+  "client": "baimbetov",
+  "note": "skills A/B rebuild of run1, not for upload",
+  "source_copy": "output/baimbetov/marketing/2026-09-28-pergola-sukkot-run1-copy.md",
+  "source_copy_section": "## מחרוזות הדף",
+  "compared_with": "output/baimbetov/landing/2026-09-28-pergola-sukkot-run1/",
+  "skills_used": ["hebrew-rtl-web", "israel-compliance-checklist", "frontend-design"],
+  "design_plan": "design-plan.md",
+  "primary_cta": "whatsapp",
+  "whatsapp_url": "https://wa.me/972506762006?text=%D7%94%D7%99%D7%99!%20%D7%90%D7%A0%D7%99%20%D7%A4%D7%95%D7%A0%D7%94%20%D7%9E%D7%93%D7%A3%20%D7%94%D7%A4%D7%A8%D7%92%D7%95%D7%9C%D7%95%D7%AA%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%95%D7%93",
+  "whatsapp_text_decoded": "היי! אני פונה מדף הפרגולות ואשמח לשמוע עוד",
+  "whatsapp_click_logging": {
+    "endpoint": "/api/whatsapp-click",
+    "existing_on_site": true,
+    "button_values": { "hero_and_cta": "יצירת קשר", "floating_bubble": "בועה צפה" }
+  },
+  "webhook_url": "/api/lead",
+  "webhook_status": "existing_endpoint",
+  "webhook_handler": "C:\\my projects\\baimbetov\\functions\\api\\lead.js (in the client's site repo, not copied)",
+  "webhook_origin_check": "functions/_lib/airtable.js allows baimbetov.me, www.baimbetov.me, localhost, 127.0.0.1 and *.pages.dev. Opening index.html as a local file does not submit.",
+  "form_fields": {
+    "visible": ["name", "phone", "city", "details"],
+    "hidden": { "projectType": "פרגולה", "utm": "from the page querystring, empty if none", "page": "location.pathname" },
+    "honeypot": "company"
+  },
+  "decisions": {
+    "projectType": "Hidden input fixed to פרגולה. No choice shown. form.projectType.legend, form.projectType.options and form.error.projectType are not on the page. CEO decision, 2026-09-28.",
+    "form_title": "Omitted: the form sits inside the h2.cta section, as the copy file allows.",
+    "legal_links": "/privacy/, /terms/, /accessibility/ as absolute paths from the site root. The page lives at baimbetov.me/pergola/.",
+    "utm_format": "Same keys and format as the main site: utm_source, utm_medium, utm_campaign, utm_content, utm_term, gclid, fbclid, joined with ' | '. Also written to sessionStorage key bb_attribution, which the main site reads.",
+    "duplicate_image": "20130604_184553_AG.png not used: same photo as slide1.jpg.",
+    "tailwind": "Not loaded. All styling is inline CSS from visual.md tokens.",
+    "hero_form_button": "hero.link.form is a secondary outline button beside the WhatsApp button, as in the 2026-09-29 decision. Same string, no new copy.",
+    "privacy_notice_position": "form.privacy sits directly above the submit button (israel-compliance-checklist section 3), not under the phone field as the copy file says. The phone field points to it with aria-describedby."
+  },
+  "missing_copy": [
+    "Fuller privacy notice next to submit: voluntary disclosure, who the business is (israel-compliance-checklist section 3). Marked with MISSING COPY comment in index.html."
+  ],
+  "assets": [
+    { "file": "assets/slide1.jpg", "copied": false, "note": "CEO copies", "used_in": "hero", "alt_id": "alt.slide1" },
+    { "file": "assets/20180418_143809_AG.png", "copied": false, "note": "CEO copies", "used_in": "gallery", "alt_id": "alt.20180418_143809" },
+    { "file": "assets/IMG-20220501-WA0017_AG.png", "copied": false, "note": "CEO copies", "used_in": "gallery", "alt_id": "alt.IMG-20220501-WA0017" },
+    { "file": "assets/IMG_20211222_192642_AG.png", "copied": false, "note": "CEO copies", "used_in": "gallery", "alt_id": "alt.IMG_20211222_192642" },
+    { "file": "assets/IMG_20220519_143958_AG.png", "copied": false, "note": "CEO copies", "used_in": "gallery", "alt_id": "alt.IMG_20220519_143958" },
+    { "file": "assets/NimrodLogoFinal.svg", "copied": false, "note": "CEO copies", "used_in": "header, footer", "alt_id": "alt.logo" },
+    { "file": "assets/NimrodLogoFav.png", "copied": false, "note": "CEO copies", "used_in": "favicon" }
+  ],
+  "og_image": "https://baimbetov.me/pergola/assets/slide1.jpg",
+  "target_host": "none (test page, not for upload)"
+}

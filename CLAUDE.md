@@ -165,7 +165,10 @@ The script loads `OPENAI_API_KEY` from `.env`. Never pass, echo or write the key
 
 ```
 .claude/agents/      the teams (section 5)
-.claude/skills/      obsidian-vault-workflow, obsidian-markdown, obsidian-bases, gpt-image-gen, run-pipeline
+.claude/skills/      obsidian-vault-workflow, obsidian-markdown, obsidian-bases, gpt-image-gen, run-pipeline,
+                     hebrew-rtl-web, israel-compliance-checklist (both binding on every page and form),
+                     frontend-design (Anthropic's, unchanged; inspiration that the client's visual file overrides).
+                     Agents read them with Read; each agent file says which and when. [[skills-upgrade]]
 .claude/commands/    /new-client, /new-campaign
 clients/<slug>/      the one client file: client.md, facts, icp, voice, world, visual, playbook,
                      keywords.md, decisions.md, facts-check.json, research/, reference/

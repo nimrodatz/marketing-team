@@ -15,6 +15,7 @@ Code, architecture, design decisions, bugfixes and refactors. One file per topic
 - [[repo-structure]], every top-level folder and config file in the repo, what it is for and what belongs in it
 - [[site-repo-integration]], הגבול בין ריפו האתר למנוע השיווק: ריפו נפרד, וולט משותף, תלות חד סטרית, ומה יש בקוד האתר בפועל
 - [[obsidian-skills-setup]], the three Obsidian skills installed in `.claude/skills/`: what each does, when it loads, who owns it
+- [[skills-upgrade]], שדרוג הצוות בסקילים: hebrew-rtl-web, ציות ישראלי, frontend-design, בדיקת לפני/אחרי וחיווט
 - [[client-discovery]], תהליך אפיון לקוח: טופס דיגיטלי ליבש, מדריך שיחה לאנושי, אסטרטגיה פנימית ואז ללקוח, ותכנית עבודה מקטלוג המשימות
 - [[copy-corrections]], יומן העריכות של נימרוד והנימוקים שלהן: ההפרדה בין תיקון מכני לכיול אנושי, ולמה נימוק שווה יותר מתיקון
 
