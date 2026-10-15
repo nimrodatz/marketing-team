@@ -6,6 +6,16 @@
 
 ---
 
+## 2026-10-15 | מפתחי קורות עץ לפרגולה: אימות כלל האצבע של מערכת התמחור (L0 = גובה x 20/24, מקדמי רציפות 1.25 ו-1.67) | sources
+**מילות מפתח:** span table, C16, C24, GL24h, Eurocode 5, EN 338, continuous beam, two span, uplift, pergola, RHS verandah beam, ת"י 4439, 412, 413, 414
+**שאילתות:** 14 שאילתות WebSearch (טבלאות מפתחים C16/C24, glulam GL24h, ת"י 4439, מקדם רציפות, EN 338, קירוי פוליקרבונט והרמה, עיגון עמודים, פרופילי פלדה ואלומיניום, תכן פרגולה בעברית). WebFetch על 14 דפים וקבצי PDF (BSW, TDUK, Binderholz, NZ Pine, DuraGal, Palram, Codecogs, SII 4439/412/413/414, NHBC, Pryda, זיכרון Cyprus National Annex). קבצי PDF נקראו עם כלי הקריאה של PDF
+**חיפוש חוזר:** לא על מפתחים. על תקנים ישראליים: חלקי (חיפוש 2026-10-06, `wood-structures-standards-2026-10-06.md`), נבדק רק מחיר ותחולה של 4439, 412, 413
+**נבחר / מקורות (רשמי):** TDUK ו-BSW (טבלאות C16/C24 לשדה בודד), Binderholz GLT (GL24h, L/300), NZ Pine glulam (GL8/GL10), DuraGal/OneSteel (פלדה RHS, רציף מול בודד, הרמה), Palram SUNTUF, מכון התקנים (4439: 116.30 ש"ח, "אין תקן זה דן בגגות"; 412: 767; 413: 1,062). משני: Codecogs (נוסחאות), Blueprints (EN 338 C24 בלבד)
+**נכשל / לא נקרא:** ת"י 414 (דף SII החזיר היום עמוד סל של ת"י 5), Pryda Post Anchor (404), Cyprus National Annex EN 1995-1-1 (404), APA S475 (נשמר, לא נקרא), יורוקוד 5 עצמו
+**מסקנה:** ×1.25 לשני שדות הוא תקרה (רק כשהשקיעה קובעת; חוזק קובע: 1.00). ×1.67 גבוה מכל מקור (יחס רציף/בודד במקור יצרן: 1.00 עד 1.33). משנית C16 X=24 גבוה מטבלאות בריטיות (יחס 18.4 עד 22.5). אין טבלה לקורה ראשית מעץ מנוסר. נמצא ש-4439 לא דן בגגות. אלומיניום: לא נמצא. מחקר מקורות, לא אישור הנדסי
+**קובץ:** `pergola-spans/spans-findings.md` (סיכום), `tduk-bsw-c16-c24-span-tables.md`, `binderholz-glulam-glt-span-table.md`, `duragal-verandah-beam-spanning-tables.md`, `nz-pine-glulam-span-tables.md`, `palram-suntuf-installation-guide.md`, `codecogs-two-span-continuous-beam.md`, `sii-standards-4439-412-413.md`, `en338-c24-values-secondary.md`
+---
+
 ## 2026-10-06 | תקנים וחוקים למבני עץ (פרגולות, דקים, גלריות) | sources
 **שאילתות:** ת"י 412, תקן תכן מבני עץ ויורוקוד 5, תקנות הפטור מהיתר ותיקון 101, ת"י 1142 מעקות, ת"י 4439 פרגולה מעץ, ת"י 413 ו-414. WebFetch על דפי SII (412, 413, 414, 1142, 4439), נבו (תקנות הפטור, בטיחות המשתמש), ויקיטקסט, אתר אדריכלות ובניה בישראל
 **חיפוש חוזר:** לא
