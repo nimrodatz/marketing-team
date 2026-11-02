@@ -6,6 +6,68 @@
 
 ---
 
+## 2026-11-01 | רשימת יעדים B2B: יזמים וקבלנים ראשיים ביהודה ושומרון (הרחבה לרשימת 2026-10-26) | business
+**מילות מפתח:** יזם, קבלן, יהודה ושומרון, אריאל, מעלה אדומים, ביתר עילית, מודיעין עילית, קרני שומרון, גבעת זאב, בית אל, עמנואל, קדומים, צמודי קרקע, דירות גן
+**שאילתות:** כ-35 WebSearch (חלקן extended) וכ-45 WebFetch על אתרי חברות, דפי פרויקט וכתבות ממומנות
+**חיפוש חוזר:** לא. הרשימה הקודמת (30 חברות) כיסתה גוש דן, שרון ושפלה בלבד; אף חברה לא חזרה
+**מקורות:** אתרי החברות עצמן; בשלוש חברות רק כתבה או דף שיווק של הפרויקט. איכות: גבוהה לפרטי חברה, נמוכה-בינונית לאנשי קשר (כתבות ממומנות, חלקן מ-2020-2021). חיפוש הרשת מחזיר בעיקר כתבות ואגרגטורים ולא אתרי חברות
+**נכשל / חסום:** gush-etzion.co.il (403), israelhayom (403), tekton.co.il (אישור פג), zfbuilding.co.il (רק כותרת), k-d-m.info (404). **לא לנסות שוב ב-WebFetch**
+**הוראה משובצת:** yakir-amana.co.il (אתר הפרויקט של בנייני בר אמנה וש.א.ג ולול) כלל הוראה לחלץ מידע. לא בוצעה, ושתי החברות הוצאו מהרשימה
+**מסקנה:** 21 חברות (7 A, 10 B, 4 C), כולל בתי אמנה וש.א.ג שנוספו באישור נימרוד מאתריהן בלבד (home.amana.co.il, velvel.co.il). איש קשר בשם ב-10 (אף אחד בתפקיד ביצוע או רכש), טלפון ב-18, מייל ב-8, הכל קווים כלליים. אף שם ירון או אייל לא נמצא. לא נמצא יזם מאומת באפרת, אורנית, שערי תקווה, הר אדר, כוכב יעקב, שילה, גוש עציון.
+**קבצים:** `contractors-b2b-yosh-2026-11-01.md`, `output/baimbetov/strategy/2026-11-01-contractors-b2b-run1-targets-yosh.csv` + `.md`
+---
+
+## 2026-10-29 | אבטחת השם "כותר": סימן מסחר בישראל, אגרה, מחלקות, הפניית דומיין ב-Cloudflare, שם בוואטסאפ ביזנס | מדידה / ערוצים
+**מילות מפתח:** סימן מסחר, אגרה, סוג טובין, Nice class 37, class 42, Trade Marks Ordinance, false representation, Cloudflare Pages custom domain, Bulk Redirects, ISOC-IL, co.il, WhatsApp Business display name
+**שאילתות:** "אגרת הגשת בקשה לרישום סימן מסחר 2026 רשות הפטנטים סוג נוסף", "תקנות סימני המסחר תוספת אגרות בסוג טובין אחד שקלים", "Israel Trade Marks Ordinance 1972 English text section 60...", "Nice classification class 37 ... class 42 ...", "Cloudflare Pages redirect old custom domain to new domain...", "ISOC-IL registration directly under .il ... Hebrew IDN co.il", "WhatsApp Business app change business name display name guidelines", "faq.whatsapp.com WhatsApp Business app business name"
+**חיפוש חוזר:** לא. מחקר השם מ-2026-10-26 לא כיסה אגרה, מחלקות, הוראות הפקודה, Cloudflare ושם בוואטסאפ. לא חזרתי על מה שהוא סגר (דומיינים, שמות משתמש, כללי הפרופיל בגוגל, Search Console)
+**מקורות:**
+- [פקודת סימני המסחר, נוסח חדש, 1972, אנגלית, WIPO Lex](https://www.wipo.int/wipolex/edocs/lexdocs/laws/en/il/il043en.pdf) - איכות: גבוהה (נוסח מתורגם, מעודכן עד 2010-09-01, לא הנוסח המחייב) - נקרא: סעיפים 24, 27, 31, 57, 63
+- [Nice Classification class headings, 10th edition, Irish IPO](https://www.ipoi.gov.ie/en/law-practice/legislation/trade-marks/trade-marks-practice-and-procedures/nice-classification-2016-class-headings.pdf) - איכות: בינונית-גבוהה (רשמי, אבל מהדורה 2016) - נקרא: כותרות 6, 19, 37, 40, 42
+- [Cloudflare, Redirecting *.pages.dev to a custom domain](https://developers.cloudflare.com/pages/how-to/redirect-to-custom-domain/) - איכות: גבוהה - עודכן 2026-04-21, נקרא
+- [Cloudflare, Pages custom domains](https://developers.cloudflare.com/pages/configuration/custom-domains/) - איכות: גבוהה - עודכן 2026-04-21, נקרא: דומיין ראשי חייב להיות zone ב-Cloudflare
+- [Cloudflare, Bulk Redirects](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/) - איכות: גבוהה - עודכן 2026-06-26, נקרא, בלי פרטי מגבלות
+- **נכשל:** gov.il, `service/trademark_registration` ו-`service/approved_trademark_registration`: 403. אגרה רשמית **לא נקראה**. fs.knesset.gov.il PDF: סרוק, לא קריא. WIPO Nice (nclpub): עמוד ריק. IPOS PDF: 404. faq.whatsapp.com: כותרת בלבד. **לא לנסות שוב ב-WebFetch את gov.il**
+- **רק כותרות או סיכום חיפוש, לא נקראו:** ISOC-IL (אין רישום ישיר תחת .il, יש שמות בעברית תחת co.il, ויקיפדיה ו-ICANN), שם עסק בוואטסאפ (מסמכי ספקי API: Gupshup, 360dialog, Landbot, סותרים זה את זה)
+**מסקנה:** תאריך הרישום הוא תאריך הגשת הבקשה (ס' 27), תוקף 10 שנים (ס' 31), התנגדות תוך 3 חודשים מהפרסום (ס' 24), תביעת הפרה רק לסימן רשום או מוכר היטב (ס' 57), הצגת סימן כרשום כשאינו רשום היא עבירה (ס' 63). שירותי בנייה והתקנה בסוג 37, תכנון הנדסי בסוג 42. סכום האגרה פתוח. להפניית דומיין שלם, Cloudflare מתעד את Bulk Redirects (עם שמירת נתיב ושאילתה). לא נמצא מקור שקרא ש-`_redirects` לא תומך בזה, ולכן זו בחירה, לא איסור.
+**קובץ:** `kothar-securing-2026-10-29.md`
+---
+
+## 2026-10-26 | רשימת יעדים B2B: יזמים וקבלנים ראשיים בתל אביב ובמרכז (מגורים, תמ"א 38, פינוי בינוי) | business
+**מילות מפתח:** יזם, קבלן ראשי, תמ"א 38, פינוי בינוי, גוש דן, שרון, שפלה, פרויקטים בביצוע, מנהל פרויקטים, רכש
+**שאילתות:** כ-35 WebSearch (עברית, חלקן מצב extended) וכ-75 WebFetch על אתרי חברות, רשימות דירוג ודפי צוות
+**חיפוש חוזר:** לא (אין התאמה קודמת בלוג)
+**מקורות:** אתרי החברות עצמן (דף בית, פרויקטים, אודות או צוות, צרו קשר). איכות: גבוהה לפרטי חברה, בינונית לגודל (רק GN מציינת מספר עובדים)
+**נכשל / חסום:** duns100, yad2, madlan, bdicode (403), DuckDuckGo ו-Bing, כ-20 דומיינים שלא נטענו (פירוט בקובץ). **לא לנסות שוב ב-WebFetch**
+**מסקנה:** נמצאו ונקראו 30 חברות (12 A, 12 B, 6 C). 10 עם איש קשר בשם בתפקיד ביצוע, הנדסה או רכש, 6 עם הנהלה בלבד, 14 "לא נמצא". טלפון ב-29, מייל ב-20, כולם קווים כלליים חוץ מ-1. סומנו 2 חברות לבדיקת נימרוד (אייל, ירון). הוראה משובצת באתר בסיס הנדסה לא בוצעה.
+**קבצים:** `contractors-b2b-2026-10-26.md`, `output/baimbetov/strategy/2026-10-26-contractors-b2b-run1-targets.csv` + `.md`
+---
+
+## 2026-10-26 | קבוצות פייסבוק ווואטסאפ לגיוס נגרים ומסגרים (מרכז) | sources
+**מילות מפתח:** קבוצת פייסבוק נגרים, מסגרים, פרגולות ודקים, דרושים בבנייה, מרכז, קבוצות וואטסאפ
+**שאילתות:** 9 WebSearch (עברית, חלקן מוגבלות ל-facebook.com ו-chat.whatsapp.com). WebFetch אחד על facebook.com/jobsandfun
+**חיפוש חוזר:** לא (30.9 היה על קבוצות שכונתיות ללקוחות, נושא אחר)
+**מקורות:** תקצירי חיפוש בלבד. איכות: נמוכה
+**נכשל:** WebFetch על jobsandfun החזיר כותרת בלבד. פייסבוק לא מאנדקס קבוצות
+**מסקנה:** **לא נמצאה אף קבוצה אמיתית שאומתה.** רק עמודים כלליים, לא אומתו. וואטסאפ: אפס קישורים. נדרש חיפוש ידני בתוך פייסבוק. **לא לנסות שוב בחיפוש רשת.**
+**קובץ:** `recruitment-groups-2026-10-26.md`
+---
+
+## 2026-10-26 | בדיקת השם "קותר" / KOTHAR לעסק (שימושים, סימני מסחר, דומיינים, רשתות, כללי גוגל, מקור מיתולוגי) | business
+**מילות מפתח:** Kothar, Kothar-wa-Khasis, קותר, כותר, כושר וחסיס, kothar trademark, Google Business Profile name change, Change of Address
+**שאילתות:** 12 WebSearch (מיתוס באנגלית ובעברית, עסקים בשם, דמות הפנטזיה, סימן מסחר, חשבונות רשת, כותר בעברית, מאגר סימנים ישראלי, כללי שינוי שם בגוגל). WebFetch על עזרה של גוגל (3038177, 3039617, 3038311, 3098204), Search Console (9370220), site-move, RDAP של kothar.com ו-kothar.me, kothar.co.il, kotar.cet.ac.il, ויקיפדיה (אנגלית ועברית), TheTorah, del Olmo Lete (PDF)
+**חיפוש חוזר:** לא
+**מקורות:**
+- [GBP Help 3038177](https://support.google.com/business/answer/3038177?hl=en), [3039617](https://support.google.com/business/answer/3039617?hl=en), [3098204](https://support.google.com/places/answer/3098204?hl=en) - איכות: גבוהה - שינוי קטן מול עסק חדש, ביקורות, אימות מחדש, מה אסור בשם. בלי תאריך בדפים
+- [Search Console Change of Address](https://support.google.com/webmasters/answer/9370220?hl=en), [Site move](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes) (עודכן 2026-08-20) - איכות: גבוהה - 301, 180 יום לפחות
+- RDAP Verisign ו-Identity Digital - איכות: גבוהה - kothar.com תפוס מ-1998, kothar.me מ-2026-07-28
+- ויקיפדיה (אנגלית ועברית), TheTorah (2014), del Olmo Lete (Aula Orientalis 2006) - איכות: בינונית עד גבוהה - מיתוס וכתיב
+- kotar.cet.ac.il - איכות: גבוהה - הספרייה המקוונת של ישראל, מבלבלת עם "כותר"
+- **נכשל / לא נבדק:** מאגר סימני המסחר בישראל (ECONNRESET), WIPO (שער אימות), EUIPO, whois של kothar.co.il, אינסטגרם וטיקטוק (נטענים ב-JavaScript), Justia (403), religion.fandom (402), Met Museum (429). **לא לנסות שוב ב-WebFetch**
+**מסקנה:** לא נמצא עסק בנייה בשם Kothar. כן: דמות פנטזיה, Kotar הספרייה, Kothari, סימן אמריקאי בקלאס 7 (לא אומת). הכתיב האקדמי העברי הוא "כושר-וחסיס". לפי גוגל, שינוי שם עם שמות עצם חדשים נחשב עסק חדש. סימן מסחר בישראל: **פתוח**.
+**קובץ:** `kothar-name-check-2026-10-26.md`
+---
+
 ## 2026-10-15 | מצב SEO של האתר, חיפושים מקומיים ודפי עיר, אינדקסים ישראליים, מדיניות ספאם | serp
 **מילות מפתח:** site:baimbetov.me, בניית פרגולות עץ בחדרה, פרגולות עץ נתניה שרון, doorway pages, location pages, דפי זהב, pro.co.il, b144, PageSpeed
 **שאילתות:** "site:baimbetov.me", "בניית פרגולות עץ בחדרה", "פרגולות עץ נתניה שרון בונה פרגולות", "Google doorway pages location pages spam policy city pages service area", "אינדקס עסקים בישראל פרגולות דפי זהב easy מדריך בעלי מקצוע רישום עסק". WebFetch על sitemap.xml החי, דף הבית החי, כתובת לא קיימת, מדיניות הספאם של גוגל. קריאה מקומית של הריפו
@@ -373,7 +435,7 @@
 - [ynet - מבחוץ: פרגולה ארנונה, חניון י.א.ש (דותן)](https://www.ynet.co.il/articles/0,7340,L-3895198,00.html) - איכות: ⭐⭐ - נכס עסקי, ישן, המחוזי ת"א; לא נקרא במלואו. לא נשמר
 - נקראו ונדחו: ynet פינוי-בינוי (אין פרגולות), Bizportal 20040572 (ירושלים, לא פרגולה), ynet בני ברק סוכות (בלי מספרים), Kan Israel 1360 (לא נטען), פסקי דין בנבו (מסך התחברות)
 **נבחר / מסקנה:** לא נמצא מקרה מתועד של קנס/הריסה/ארנונה על פרגולה של בעל נכס פרטי בעקבות אכיפה עירונית, מלבד מקרה תל אביב שכבר בידינו. סכומי קנס נמצאו רק באתרי עורכי דין (לא מקור מקובל).
-**קובץ:** — (לא נכתב קובץ)
+**קובץ:** לא נכתב
 ---
 
 ## 2026-09-29 | מקרים אמיתיים בישראל: פרגולות שקרסו/נפלו/צו הריסה | sources
