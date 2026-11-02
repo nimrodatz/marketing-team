@@ -1,0 +1,37 @@
+{
+  "topic": "kothar-catalog-landing",
+  "run": 1,
+  "date": "2026-11-02",
+  "source_copy": "output/baimbetov/marketing/2026-11-02-kothar-catalog-landing-run1-copy.md",
+  "primary_cta": "whatsapp",
+  "client": "baimbetov",
+  "brand": "כותר",
+  "pages": ["projects/index.html", "privacy/index.html", "accessibility/index.html"],
+  "whatsapp_url": "https://wa.me/972506762006?text=<encodeURIComponent of wa.default, wa.contractors or wa.home, built in assets/site.js; ' (הגעתי מהקטלוג)' appended when utm_source=catalog>",
+  "whatsapp_text_decoded": "שלום, הגעתי מהדף של כותר.",
+  "webhook_url": "/api/lead",
+  "webhook_status": "wired_pending_env",
+  "webhook_handler": "functions/api/lead.js (existing endpoint of the site, copied by the CEO, not edited, not tested)",
+  "robots": "noindex on all three pages until launch",
+  "redirects": "/ -> /projects 302 (_redirects)",
+  "placeholders_pending": [
+    "privacy.owner.legal (MISSING COPY: registered names of the two sole proprietors)",
+    "privacy.updated (CLIENT_INPUT: date)",
+    "a11y.updated (CLIENT_INPUT: date)"
+  ],
+  "assets": [
+    { "file": "assets/work-pergola-arches.jpg", "source": "copied by the CEO" },
+    { "file": "assets/work-pergola-upper.jpg", "source": "copied by the CEO" },
+    { "file": "assets/work-pergola-white.jpg", "source": "copied by the CEO" },
+    { "file": "assets/work-stairs.jpg", "source": "copied by the CEO" },
+    { "file": "assets/roof-aerial.jpg", "source": "copied by the CEO (render)" },
+    { "file": "assets/roof-interior.jpg", "source": "copied by the CEO, not used on the page" },
+    { "file": "assets/roof-side.jpg", "source": "copied by the CEO, not used on the page" },
+    { "file": "assets/logo-header-black.svg", "source": "output/baimbetov/brand/logo-web/" },
+    { "file": "assets/logo-header-phone-black.svg", "source": "output/baimbetov/brand/logo-web/" },
+    { "file": "assets/logo-row-white.svg", "source": "output/baimbetov/brand/logo-web/" },
+    { "file": "assets/site.css", "source": "written by the landing agent" },
+    { "file": "assets/site.js", "source": "written by the landing agent" }
+  ],
+  "target_host": "cloudflare-pages"
+}
