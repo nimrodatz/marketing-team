@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>כותר, קובצי הלוגו</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+  :root { --ink: #1E1E1E; --paper: #FFFFFF; --bg: #F4F2EE; --line: #DDD8CF; --muted: #6B665E; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: Arial, Helvetica, sans-serif; padding: 32px 16px 64px; }
+  main { max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 26px; margin: 0 0 8px; }
+  h2 { font-size: 18px; margin: 36px 0 4px; }
+  p { color: var(--muted); font-size: 14px; margin: 0 0 12px; }
+  .bar { background: var(--paper); border: 1px solid var(--line); padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 14px; }
+  .bar.dark { background: var(--ink); color: #FFF; border-color: var(--ink); margin-top: 10px; }
+  .bar nav { color: var(--muted); }
+  .bar.dark nav { color: #B8B2A8; }
+  .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+  .cell { background: var(--paper); border: 1px solid var(--line); padding: 28px; display: flex; align-items: center; justify-content: center; min-width: 0; }
+  .cell.dark { background: var(--ink); border-color: var(--ink); }
+  .row img { display: block; max-width: 100%; height: auto; }
+  .icons { display: flex; gap: 24px; align-items: flex-end; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<main>
+<h1>כותר, קובצי הלוגו</h1>
+<p>הוראות ההטמעה בקובץ README.md שבתיקייה הזו.</p>
+
+<h2>הלוגו העומד</h2>
+<p>תמונות, הדמיות, חולצות, דפוס גדול</p>
+<div class="row">
+  <div class="cell"><img src="logo-stack-black.svg" alt="כותר, הלוגו העומד" style="width:300px"></div>
+  <div class="cell dark"><img src="logo-stack-white.svg" alt="כותר, הלוגו העומד בלבן" style="width:300px"></div>
+</div>
+
+<h2>הלוגו האופקי</h2>
+<p>אתר, דף נחיתה, חשבונית, הצעת מחיר</p>
+<div class="row">
+  <div class="cell"><img src="logo-row-black.svg" alt="כותר, הלוגו האופקי" style="width:400px"></div>
+  <div class="cell dark"><img src="logo-row-white.svg" alt="כותר, הלוגו האופקי בלבן" style="width:400px"></div>
+  <div class="cell"><img src="logo-row-black.svg" alt="כותר, הלוגו האופקי ברוחב 240 פיקסלים" style="width:240px"></div>
+</div>
+
+<h2>הדר של אתר ודף נחיתה, במחשב</h2>
+<p>המשפט משמאל לשם, בגובה 64 פיקסלים</p>
+<div class="bar"><img src="logo-header-black.svg" alt="כותר. תכנון. הנדסה. ביצוע. עץ ומתכת" style="height:64px;width:auto;max-width:100%"><nav>פרגולות · דקים · מבני עץ · צור קשר</nav></div>
+<div class="bar dark"><img src="logo-header-white.svg" alt="כותר. תכנון. הנדסה. ביצוע. עץ ומתכת" style="height:64px;width:auto;max-width:100%"><nav>פרגולות · דקים · מבני עץ · צור קשר</nav></div>
+
+<h2>הדר בטלפון</h2>
+<p>המשפט מתחת לשם, בגובה 72 פיקסלים</p>
+<div class="bar"><img src="logo-header-phone-black.svg" alt="כותר. תכנון. הנדסה. ביצוע. עץ ומתכת" style="height:72px;width:auto"><nav>תפריט</nav></div>
+<div class="bar dark"><img src="logo-header-phone-white.svg" alt="כותר. תכנון. הנדסה. ביצוע. עץ ומתכת" style="height:72px;width:auto"><nav>תפריט</nav></div>
+
+<h2>מקום קטן מאוד</h2>
+<p>בלי המשפט, כשאין מקום שהוא ייקרא בו</p>
+<div class="row">
+  <div class="cell"><img src="logo-row-small-black.svg" alt="כותר" style="height:64px;width:auto"></div>
+  <div class="cell dark"><img src="logo-row-small-white.svg" alt="כותר" style="height:64px;width:auto"></div>
+</div>
+
+<h2>אייקונים</h2>
+<p>לשונית בדפדפן, טלפון, תמונת פרופיל</p>
+<div class="cell icons">
+  <img src="png/icon-512.png" alt="אייקון 128" width="128" height="128">
+  <img src="png/apple-touch-icon-180.png" alt="אייקון 60" width="60" height="60">
+  <img src="png/favicon-32.png" alt="אייקון 32" width="32" height="32">
+</div>
+</main>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>כותר, דף תצוגה</title>
+<style>
+  :root { --ink: #1E1E1E; --paper: #FFFFFF; --bg: #F4F2EE; --line: #DDD8CF; --muted: #6B665E; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: Arial, Helvetica, sans-serif; padding: 32px 16px 64px; }
+  main { max-width: 1180px; margin: 0 auto; }
+  h1 { font-size: 26px; margin: 0 0 32px; }
+  article { margin-bottom: 44px; }
+  h2 { font-size: 18px; margin: 0 0 4px; }
+  h2 span { display: inline-block; min-width: 1.6em; }
+  p { font-size: 14px; color: var(--muted); margin: 0 0 14px; }
+  .row { display: grid; grid-template-columns: 2fr 2fr 1fr; gap: 12px; }
+  .cell { background: var(--paper); border: 1px solid var(--line); padding: 24px; display: flex; align-items: center; justify-content: center; min-width: 0; }
+  .cell.dark { background: var(--ink); border-color: var(--ink); }
+  .cell img { display: block; width: 100%; max-width: 360px; height: auto; }
+  .cell.small img { width: 140px; max-width: 100%; }
+  @media (max-width: 760px) { .row { grid-template-columns: 1fr; } .cell.small img { width: 220px; } }
+</style>
+</head>
+<body>
+<main>
+<h1>כותר, כל האפשרויות</h1>
+<p>נבחרו: אפשרות 11 לתמונות, הדמיות וחולצות, ואפשרות 14 לאתר, לדף נחיתה ולמסמכים.</p>
+
+<article>
+  <h2><span>17.</span>הדר: המשפט בצד השם, בגובה 64 פיקסלים</h2>
+  <p>הסמל והשם כמו באפשרות 14. המשפט משמאל לשם, בשורה אחת</p>
+  <div class="cell" style="justify-content:space-between;gap:16px;padding:10px 20px">
+    <img src="kothar-final-header-side.svg" alt="אפשרות 17 בהדר" style="height:64px;width:auto;max-width:100%">
+    <span style="font-size:14px;color:#6B665E">פרגולות · דקים · מבני עץ · צור קשר</span>
+  </div>
+  <div class="cell dark" style="justify-content:space-between;gap:16px;padding:10px 20px;margin-top:10px">
+    <img src="kothar-final-header-side-white.svg" alt="אפשרות 17 בהדר, בלבן" style="height:64px;width:auto;max-width:100%">
+    <span style="font-size:14px;color:#B8B2A8">פרגולות · דקים · מבני עץ · צור קשר</span>
+  </div>
+</article>
+
+<article>
+  <h2><span>18.</span>הדר: המשפט מתחת, גוש צר, בגובה 80 פיקסלים</h2>
+  <p>הסמל בגובה האותיות, והמשפט בשורה אחת מתחת לשניהם</p>
+  <div class="cell" style="justify-content:space-between;gap:16px;padding:10px 20px">
+    <img src="kothar-final-header-compact.svg" alt="אפשרות 18 בהדר" style="height:80px;width:auto;max-width:100%">
+    <span style="font-size:14px;color:#6B665E">פרגולות · דקים · מבני עץ · צור קשר</span>
+  </div>
+  <div class="cell dark" style="justify-content:space-between;gap:16px;padding:10px 20px;margin-top:10px">
+    <img src="kothar-final-header-compact-white.svg" alt="אפשרות 18 בהדר, בלבן" style="height:80px;width:auto;max-width:100%">
+    <span style="font-size:14px;color:#B8B2A8">פרגולות · דקים · מבני עץ · צור קשר</span>
+  </div>
+</article>
+
+<article>
+  <h2>אפשרות 14 עצמה בהדר, בגובה 96 פיקסלים</h2>
+  <p>בלי שינוי בלוגו, רק הדר גבוה יותר</p>
+  <div class="cell" style="justify-content:space-between;gap:16px;padding:10px 20px">
+    <img src="kothar-final-row-under.svg" alt="אפשרות 14 בהדר" style="height:96px;width:auto;max-width:100%">
+    <span style="font-size:14px;color:#6B665E">פרגולות · דקים · מבני עץ · צור קשר</span>
+  </div>
+</article>
+
+<article>
+  <h2><span>14.</span>אופקי: המשפט בשורה אחת מתחת לשם ולסמל</h2>
+  <p>תכנון. הנדסה. ביצוע. עץ ומתכת</p>
+  <div class="row">
+    <div class="cell"><img src="kothar-final-row-under.svg" alt="אפשרות 14 בשחור"></div>
+    <div class="cell dark"><img src="kothar-final-row-under-white.svg" alt="אפשרות 14 בלבן"></div>
+    <div class="cell small"><img src="kothar-final-row-under.svg" alt="אפשרות 14 בגודל קטן"></div>
+  </div>
+</article>
+
+<article>
+  <h2><span>15.</span>אופקי: המשפט בשורה אחת מתחת לשם בלבד, ליד הסמל</h2>
+  <p>תכנון. הנדסה. ביצוע. עץ ומתכת</p>
+  <div class="row">
+    <div class="cell"><img src="kothar-final-row-beside.svg" alt="אפשרות 15 בשחור"></div>
+    <div class="cell dark"><img src="kothar-final-row-beside-white.svg" alt="אפשרות 15 בלבן"></div>
+    <div class="cell small"><img src="kothar-final-row-beside.svg" alt="אפשרות 15 בגודל קטן"></div>
+  </div>
+</article>
+
+<article>
+  <h2><span>16.</span>אופקי בלי המשפט, להדר</h2>
+  <p>השם והסמל בלבד</p>
+  <div class="row">
+    <div class="cell"><img src="kothar-final-row-bare.svg" alt="אפשרות 16 בשחור"></div>
+    <div class="cell dark"><img src="kothar-final-row-bare-white.svg" alt="אפשרות 16 בלבן"></div>
+    <div class="cell small"><img src="kothar-final-row-bare.svg" alt="אפשרות 16 בגודל קטן"></div>
+  </div>
+</article>
+
+<article>
+  <h2>בהדר של אתר, בגובה 64 פיקסלים</h2>
+  <p>מימין לשמאל: אפשרויות 14, 15 ו-16</p>
+  <div class="cell" style="justify-content:space-around;gap:16px;flex-wrap:wrap">
+    <img src="kothar-final-row-under.svg" alt="אפשרות 14 בהדר" style="height:64px;width:auto">
+    <img src="kothar-final-row-beside.svg" alt="אפשרות 15 בהדר" style="height:64px;width:auto">
+    <img src="kothar-final-row-bare.svg" alt="אפשרות 16 בהדר" style="height:64px;width:auto">
+  </div>
+</article>
+
+<article>
+  <h2>בראש חשבונית, ברוחב 240 פיקסלים</h2>
+  <p>מימין לשמאל: אפשרויות 14 ו-15</p>
+  <div class="cell" style="justify-content:space-around;gap:16px;flex-wrap:wrap">
+    <img src="kothar-final-row-under.svg" alt="אפשרות 14 בחשבונית" style="width:240px">
+    <img src="kothar-final-row-beside.svg" alt="אפשרות 15 בחשבונית" style="width:240px">
+  </div>
+</article>
+
+<article>
+  <h2><span>12.</span>הסמל מימין לשם ובאותו גובה, המשפט מתחת</h2>
+  <p>בלי כ' ו-ר' האוגריתיות. תכנון. הנדסה. ביצוע / עץ ומתכת</p>
+  <div class="row">
+    <div class="cell"><img src="kothar-final-lockup.svg" alt="אפשרות 12 בשחור"></div>
+    <div class="cell dark"><img src="kothar-final-lockup-white.svg" alt="אפשרות 12 בלבן"></div>
+    <div class="cell small"><img src="kothar-final-lockup.svg" alt="אפשרות 12 בגודל קטן"></div>
+  </div>
+</article>
+
+<article>
+  <h2><span>11.</span>אפשרות 10, ר' מתוקנת והאותיות האוגריתיות לצד המילה</h2>
+  <p>תכנון. הנדסה. ביצוע / עץ ומתכת, ללא עיגול</p>
+  <div class="row">
+    <div class="cell"><img src="kothar-fonttag-flank-v6-fine-kr.svg" alt="אפשרות 11 בשחור"></div>
+    <div class="cell dark"><img src="kothar-fonttag-flank-v6-fine-kr-white.svg" alt="אפשרות 11 בלבן"></div>
+    <div class="cell small"><img src="kothar-fonttag-flank-v6-fine-kr.svg" alt="אפשרות 11 בגודל קטן"></div>
+  </div>
+</article>
+
+<article>
+  <h2><span>10.</span>אפשרות 9, כותר קצת רחב ודק יותר</h2>
+  <p>תכנון. הנדסה. ביצוע / עץ ומתכת, ללא עיגול</p>
+  <div class="row">
+    <div class="cell"><img src="kothar-fonttag-wide-v6-fine-kr.svg" alt="אפשרות 10 בשחור"></div>
+    <div class="cell dark"><img src="kothar-fonttag-wide-v6-fine-kr-white.svg" alt="אפשרות 10 בלבן"></div>
+    <div class="cell small"><img src="kothar-fonttag-wide-v6-fine-kr.svg" alt="אפשרות 10 בגודל קטן"></div>
+  </div>
+</article>
+
+<article>
+  <h2><span>9.</span>אפשרות 2, המשפט מלא ודק</h2>
+  <p>תכנון. הנדסה. ביצוע / עץ ומתכת, ללא עיגול</p>
+  <div class="row">
+    <div class="cell"><img src="kothar-fonttag-solid-thin-v6-fine-kr.svg" alt="אפשרות 9 בשחור"></div>
+    <div class="cell dark"><img src="kothar-fonttag-solid-thin-v6-fine-kr-white.svg" alt="אפשרות 9 בלבן"></div>
+    <div class="cell small"><img src="kothar-fonttag-solid-thin-v6-fine-kr.svg" alt="אפשרות 9 בגודל קטן"></div>
+  </div>
+</article>
+
+<article>
+  <h2><span>1.</span>כותר המקורי, המשפט בפונט החדש</h2>
+  <p>תכנון. הנדסה. ביצוע / עץ ומתכת, ללא עיגול</p>
+  <div class="row">
+    <div class="cell"><img src="kothar-fonttag-keep-v6-fine-kr.svg" alt="אפשרות 1 בשחור"></div>
+    <div class="cell dark"><img src="kothar-fonttag-keep-v6-fine-kr-white.svg" alt="אפשרות 1 בלבן"></div>
+    <div class="cell small"><img src="kothar-fonttag-keep-v6-fine-kr.svg" alt="אפשרות 1 בגודל קטן"></div>
+  </div>
+</article>
+
+<article>
+  <h2><span>2.</span>כותר מלא בסגנון הפונט, המשפט בפונט החדש</h2>
+  <p>תכנון. הנדסה. ביצוע / עץ ומתכת, ללא עיגול</p>
+  <div class="row">
+    <div class="cell"><img src="kothar-fonttag-solid-v6-fine-kr.svg" alt="אפשרות 2 בשחור"></div>
+    <div class="cell dark"><img src="kothar-fonttag-solid-v6-fine-kr-white.svg" alt="אפשרות 2 בלבן"></div>
+    <div class="cell small"><img src="kothar-fonttag-solid-v6-fine-kr.svg" alt="אפשרות 2 בגודל קטן"></div>
+  </div>
+</article>
+
+<article>
+  <h2><span>3.</span>הנוסח החדש בפונט המקורי, שתי שורות</h2>
+  <p>תכנון. הנדסה. ביצוע / עץ ומתכת, ללא עיגול</p>
+  <div class="row">
+    <div class="cell"><img src="kothar-noring-metal-v6-fine-kr.svg" alt="אפשרות 3 בשחור"></div>
+    <div class="cell dark"><img src="kothar-noring-metal-v6-fine-kr-white.svg" alt="אפשרות 3 בלבן"></div>
+    <div class="cell small"><img src="kothar-noring-metal-v6-fine-kr.svg" alt="אפשרות 3 בגודל קטן"></div>
+  </div>
+</article>
+
+<article>
+  <h2><span>4.</span>הנוסח הקודם בפונט המקורי, שתי שורות</h2>
+  <p>תכנון, הנדסה וביצוע / בעץ ובברזל, ללא עיגול</p>
+  <div class="row">
+    <div class="cell"><img src="kothar-noring-two-lines-v6-fine-kr.svg" alt="אפשרות 4 בשחור"></div>
+    <div class="cell dark"><img src="kothar-noring-two-lines-v6-fine-kr-white.svg" alt="אפשרות 4 בלבן"></div>
+    <div class="cell small"><img src="kothar-noring-two-lines-v6-fine-kr.svg" alt="אפשרות 4 בגודל קטן"></div>
+  </div>
+</article>
+
+<article>
+  <h2><span>5.</span>שורה אחת מוגדלת</h2>
+  <p>תכנון, הנדסה וביצוע בעץ ובברזל, ללא עיגול</p>
+  <div class="row">
+    <div class="cell"><img src="kothar-noring-line-large-v6-fine-kr.svg" alt="אפשרות 5 בשחור"></div>
+    <div class="cell dark"><img src="kothar-noring-line-large-v6-fine-kr-white.svg" alt="אפשרות 5 בלבן"></div>
+    <div class="cell small"><img src="kothar-noring-line-large-v6-fine-kr.svg" alt="אפשרות 5 בגודל קטן"></div>
+  </div>
+</article>
+
+<article>
+  <h2><span>6.</span>שורה אחת בגודל הקודם</h2>
+  <p>תכנון, הנדסה וביצוע בעץ ובברזל, ללא עיגול</p>
+  <div class="row">
+    <div class="cell"><img src="kothar-noring-line-v6-fine-kr.svg" alt="אפשרות 6 בשחור"></div>
+    <div class="cell dark"><img src="kothar-noring-line-v6-fine-kr-white.svg" alt="אפשרות 6 בלבן"></div>
+    <div class="cell small"><img src="kothar-noring-line-v6-fine-kr.svg" alt="אפשרות 6 בגודל קטן"></div>
+  </div>
+</article>
+
+<article>
+  <h2><span>7.</span>המשפט בקשת</h2>
+  <p>תכנון, הנדסה וביצוע בעץ ובברזל, ללא עיגול</p>
+  <div class="row">
+    <div class="cell"><img src="kothar-noring-arc-v6-fine-kr.svg" alt="אפשרות 7 בשחור"></div>
+    <div class="cell dark"><img src="kothar-noring-arc-v6-fine-kr-white.svg" alt="אפשרות 7 בלבן"></div>
+    <div class="cell small"><img src="kothar-noring-arc-v6-fine-kr.svg" alt="אפשרות 7 בגודל קטן"></div>
+  </div>
+</article>
+
+<article>
+  <h2><span>8.</span>הלוגו הנוכחי, עם העיגול</h2>
+  <p>תכנון, הנדסה וביצוע בעץ ובברזל</p>
+  <div class="row">
+    <div class="cell"><img src="kothar-seal-v6-fine-kr.svg" alt="אפשרות 8 בשחור"></div>
+    <div class="cell dark"><img src="kothar-seal-v6-fine-kr-white.svg" alt="אפשרות 8 בלבן"></div>
+    <div class="cell small"><img src="kothar-seal-v6-fine-kr.svg" alt="אפשרות 8 בגודל קטן"></div>
+  </div>
+</article>
+</main>
+</body>
+</html>

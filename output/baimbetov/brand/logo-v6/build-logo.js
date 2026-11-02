@@ -2,6 +2,7 @@
 // Usage: node build-logo.js <v5.svg> <outDir>
 const fs = require('fs');
 const path = require('path');
+const { buildGlyph, SPACE_ADVANCE } = require('../font-v1/build-font.js');
 const [src, outDir] = process.argv.slice(2);
 fs.mkdirSync(outDir, { recursive: true });
 const v5 = fs.readFileSync(src, 'utf8');
@@ -23,6 +24,12 @@ const GLYPH = {};
   for (const ch of v5Visual) if (ch !== ' ') { const g = v5Glyphs[gi++]; GLYPH[ch] = { d: g.d, half: g.half }; g.ch = ch; }
 }
 GLYPH[','] = { half: GLYPH['·'].half, d: 'M118.00 124.00 L213.00 124.00 L213.00 16.00 L168.00 -120.00 L118.00 -120.00 L150.00 16.00 L118.00 16.00 Z' };
+
+GLYPH['.'] = { half: GLYPH['·'].half, d: 'M118.00 124.00 L213.00 124.00 L213.00 16.00 L118.00 16.00 Z' };
+// מ is not in v5 either. Built on v5's ת: same roof, leg with its foot and right stem, plus a base that stops
+// short of the leg. A short leg over a long base read as פ.
+GLYPH['מ'] = { half: GLYPH['ת'].half, d: GLYPH['ת'].d
+  .replace('C543.75 259.58 536.00 16.00 536.00 16.00C536.00 16.00 594.00 16.00 594.00 16.00', 'C541.00 270.00 536.00 68.00 536.00 68.00 L275.00 68.00 L275.00 16.00 L594.00 16.00') };
 
 // Measure v5's arc: radius, tracking between letters and the extra width of a word space.
 const RING_R = v5Glyphs.reduce((a, g) => a + Math.hypot(g.x - 500, g.y - 500), 0) / v5Glyphs.length;
@@ -181,6 +188,229 @@ function seal(color, weight = 'seal', letters = false) {
     + `<g fill="${color}">${color === INK ? ringInner : ringInner}</g>\n</svg>\n`;
 }
 
+// Trial without the two rings (Nimrod, 2026-11-02), fine weight with כ and ר. 'arc' keeps the sentence
+// on its arc, 'line' sets it straight, as wide as the arc's span. 'line-large' is that line 1.4x larger,
+// wider than the symbol; 'two-lines' breaks it in two, the long line as wide as the arc's span, so the
+// letters grow without widening the logo. Tight canvas, 60px of air on each side.
+function sealNoRing(color, mode) {
+  const span = RING.maxX - RING.minX, mid = (RING.minX + RING.maxX) / 2;
+  const widthAt1 = t => lineText(t, 0, 0, G_SCALE, color).width;     // width at v5's scale
+  const lines = { 'two-lines': ['תכנון, הנדסה וביצוע', 'בעץ ובברזל'], 'metal': ['תכנון. הנדסה. ביצוע', 'עץ ומתכת'] }[mode] || [RING_TEXT];
+  const s = G_SCALE * span / widthAt1(lines[0]) * (mode === 'line-large' ? 1.4 : 1);
+  const textHalf = widthAt1(lines[0]) * s / G_SCALE / 2;
+  const air = 60, half = Math.max(500 - RING.minX, RING.maxX - 500, mode === 'arc' ? 0 : textHalf) + air;
+  const x0 = 500 - half, y0 = 150 - air;                             // 150: top of the holam
+  const first = 704 + (lines.length > 1 ? 62 : 44) + 584 * s, leading = 1180 * s; // symbol's foot, air, the line's cap height
+  const last = first + (lines.length - 1) * leading;
+  const bottom = mode === 'arc' ? 916 : last + 171 * s;              // room for ן and ץ
+  const text = mode === 'arc' ? `<g fill="${color}">${ringInner}</g>\n`
+    : lines.map((t, i) => lineText(t, mid - widthAt1(t) * s / G_SCALE / 2, first + i * leading, s, color).svg).join('');
+  return head(Math.ceil(half * 2), Math.ceil(bottom + air - y0), 'כותר')
+    + `<g transform="translate(${(-x0).toFixed(2)} ${-y0})">\n`
+    + wordmark(500, 170, 1, color).svg
+    + symbol(500 - KR.cx * 6, 356, 6, color, 'v5', true)
+    + text + '</g>\n</svg>\n';
+}
+
+// Text set in the trial font (../font-v1), from its outlines. filled drops the hollow.
+const FONT_CACHE = {};
+function fontLine(text, cx, baseline, em, color, filled = false, stroke = undefined, fx = undefined, drawings = {}) {
+  const k = em / 1000, seq = [...text].reverse();
+  const glyphOf = ch => (FONT_CACHE[`${ch}|${stroke}|${fx}|${!!drawings[ch]}`] ||= buildGlyph(ch, stroke, fx, drawings[ch]));
+  const width = seq.reduce((a, ch) => a + (ch === ' ' ? SPACE_ADVANCE : glyphOf(ch).advance) * k, 0);
+  let x = cx - width / 2, out = '';
+  const slots = {};
+  for (const ch of seq) {
+    if (ch === ' ') { x += SPACE_ADVANCE * k; continue; }
+    const g = glyphOf(ch), loops = filled ? g.solid : g.contours;
+    const d = loops.map(l => 'M' + l.map(p => p.join(' ')).join('L') + 'Z').join('');
+    out += `<path transform="translate(${x.toFixed(2)} ${baseline.toFixed(2)}) scale(${k.toFixed(4)} -${k.toFixed(4)})" d="${d}"/>\n`;
+    slots[ch] = { x, w: g.advance * k };
+    x += g.advance * k;
+  }
+  return { svg: `<g fill="${color}">\n${out}</g>\n`, width, slots };
+}
+
+// No rings, the dictated sentence in the hollow trial font on two lines. 'keep' leaves the drawn wordmark
+// as it is; 'solid' sets כותר in the same font, filled, with the niqqud the logo always carries.
+// thinTag sets the sentence filled, with a thinner stroke than the font's 100.
+const TAG_EM = 118;
+// flank moves the Ugaritic כ and ר beside the word, 25% smaller, and gives the word's ר a longer roof
+// and a shorter leg, so it does not read as ך. The canvas then tightens to the widest row.
+const FLANK_SCALE = 4.5, FLANK_GAP = 34;
+const R_DRAWING = [[[-15, 640], [270, 640, 80], [270, 40]]];
+
+// כותר filled in the font's style, with niqqud and, with flank, the Ugaritic letters beside it.
+// em 230 is the size the niqqud and the flank were set at; other sizes scale from it.
+function solidWord(cx, base, em, color, stroke, fx, flank, fixR = flank) {
+  const f = em / 230, k = em / 1000;
+  const line = fontLine('כותר', cx, base, em, color, true, stroke, fx, fixR ? { ר: R_DRAWING } : {});
+  const dot = (x, y, r) => `<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="${r}" fill="${color}"/>\n`;
+  const { כ: kaf, ו: vav, ת: tav } = line.slots;
+  let svg = line.svg
+    + dot(kaf.x + kaf.w * 0.42, base - 380 * k, 8 * f)               // dagesh
+    + dot(vav.x + vav.w * 0.5 - 6 * f, base - 760 * k - 20 * f, 8 * f) // holam
+    + `<rect x="${(tav.x + tav.w * 0.22).toFixed(2)}" y="${base + 12 * f}" width="${(tav.w * 0.56).toFixed(2)}" height="${9 * f}" fill="${color}"/>\n`; // patach
+  const left = line.width / 2 + (flank ? FLANK_GAP * f + CUNEI.k.tailTo * FLANK_SCALE * f : 0);
+  const right = line.width / 2 + (flank ? FLANK_GAP * f + CUNEI.r.tailTo * FLANK_SCALE * f : 0);
+  if (flank) {
+    const mid = base - 380 * k, tail = WEIGHTS.v5.tail, place = (l, x) =>
+      `<g transform="translate(${x.toFixed(2)} ${mid.toFixed(2)}) scale(${FLANK_SCALE * f})" fill="${color}">${cuneiform(l, 0, 0, color, tail)}</g>\n`;
+    svg += place('k', cx - left) + place('r', cx + line.width / 2 + FLANK_GAP * f);
+  }
+  return { svg, left, right };
+}
+
+// Final logo's settings (option 11, Nimrod, 2026-11-02).
+const FINAL = { wordStroke: 84, wordFx: 0.95, tagStroke: 50, lines: ['תכנון. הנדסה. ביצוע', 'עץ ומתכת'] };
+
+// Name and symbol on one row, the symbol at the start (right) and as tall as the letters, the sentence under
+// both and as wide as the row (Nimrod, 2026-11-02). No Ugaritic letters.
+function lockup(color) {
+  const pad = 12, em = 230, gap = 40, base = pad + 215, capTop = base - 0.76 * em;
+  const symSc = 0.76 * em / 54;                                      // the symbol spans y 4..58
+  const wordW = solidWord(0, 0, em, color, FINAL.wordStroke, FINAL.wordFx, false, true).left * 2;
+  const rowW = wordW + gap + 28.5 * symSc;
+  const widthAt = e => fontLine(FINAL.lines[0], 0, 0, e, color, true, FINAL.tagStroke).width;
+  const tagEm = 100 * rowW / widthAt(100), cx = pad + rowW / 2;
+  const b1 = base + 21 + 34 + 0.76 * tagEm, b2 = b1 + 1.12 * tagEm;
+  return head(Math.ceil(rowW + 2 * pad), Math.ceil(b2 + 0.29 * tagEm + pad), 'כותר')
+    + solidWord(pad + wordW / 2, base, em, color, FINAL.wordStroke, FINAL.wordFx, false, true).svg
+    + symbol((pad + wordW + gap + 12 * symSc).toFixed(2), (capTop - 4 * symSc).toFixed(2), symSc.toFixed(4), color, 'seal')
+    + fontLine(FINAL.lines[0], cx, b1, tagEm, color, true, FINAL.tagStroke).svg
+    + fontLine(FINAL.lines[1], cx, b2, tagEm, color, true, FINAL.tagStroke).svg
+    + '</svg>\n';
+}
+
+// Horizontal row (Nimrod, 2026-11-02): no Ugaritic letters, the symbol at option 11's size to the right of the
+// name. 'under' sets the sentence on one line below both, 'beside' below the name only, next to the symbol's
+// foot, and 'bare' leaves it out. The smaller the sentence, the heavier its stroke, so it holds.
+function horizontalRow(color, mode) {
+  const pad = 16, em = 230, gap = 40, symSc = 6, symH = 54 * symSc;
+  const oneLine = 'תכנון. הנדסה. ביצוע. עץ ומתכת';
+  const wordW = solidWord(0, 0, em, color, FINAL.wordStroke, FINAL.wordFx, false, true).left * 2;
+  const rowW = wordW + gap + 28.5 * symSc, mid = pad + symH / 2;
+  const stroke = mode === 'beside' ? 72 : 60;
+  const widthAt = e => fontLine(oneLine, 0, 0, e, color, true, stroke).width;
+  const lineW = mode === 'beside' ? wordW : rowW, tagEm = 100 * lineW / widthAt(100);
+  let base = mid + 0.38 * em, tag = '', bottom = pad + symH;
+  if (mode === 'beside') {
+    const air = 22, block = 215 + 21 + air + (0.76 + 0.29) * tagEm;
+    base = mid - block / 2 + 215;
+    const b = base + 21 + air + 0.76 * tagEm;
+    tag = fontLine(oneLine, pad + wordW / 2, b, tagEm, color, true, stroke).svg;
+    bottom = Math.max(bottom, b + 0.29 * tagEm);
+  } else if (mode === 'under') {
+    const b = pad + symH + 30 + 0.76 * tagEm;
+    tag = fontLine(oneLine, pad + rowW / 2, b, tagEm, color, true, stroke).svg;
+    bottom = b + 0.29 * tagEm;
+  }
+  return head(Math.ceil(rowW + 2 * pad), Math.ceil(bottom + pad), 'כותר')
+    + solidWord(pad + wordW / 2, base, em, color, FINAL.wordStroke, FINAL.wordFx, false, true).svg
+    + symbol((pad + wordW + gap + 12 * symSc).toFixed(2), pad - 4 * symSc, symSc, color, 'v5')
+    + tag + '</svg>\n';
+}
+
+// Site header with the sentence (Nimrod, 2026-11-02). 'side' keeps option 14's symbol and sets the sentence on one
+// line to the left of the name, a long row whose letters stay readable at header height. 'compact' keeps the
+// sentence below, with the symbol as tall as the letters, so the block is narrow.
+const ONE_LINE = 'תכנון. הנדסה. ביצוע. עץ ומתכת';
+function headerSentence(color, mode) {
+  const pad = 12, em = 230, gap = 40, stroke = 72;
+  const wordW = solidWord(0, 0, em, color, FINAL.wordStroke, FINAL.wordFx, false, true).left * 2;
+  const word = (cx, base) => solidWord(cx, base, em, color, FINAL.wordStroke, FINAL.wordFx, false, true).svg;
+  const line = (cx, b, e) => fontLine(ONE_LINE, cx, b, e, color, true, stroke);
+  if (mode === 'side') {
+    const symSc = 6, symH = 54 * symSc, tagEm = 110, mid = pad + symH / 2, sep = 56;
+    const lineW = line(0, 0, tagEm).width;
+    const wordX = pad + lineW + sep;
+    return head(Math.ceil(wordX + wordW + gap + 28.5 * symSc + pad), Math.ceil(symH + 2 * pad), 'כותר')
+      + line(pad + lineW / 2, mid + 0.38 * tagEm, tagEm).svg
+      + word(wordX + wordW / 2, mid + 0.38 * em)
+      + symbol((wordX + wordW + gap + 12 * symSc).toFixed(2), pad - 4 * symSc, symSc, color, 'v5')
+      + '</svg>\n';
+  }
+  const base = pad + 215, symSc = 0.76 * em / 54, rowW = wordW + gap + 28.5 * symSc;
+  const tagEm = 100 * rowW / line(0, 0, 100).width, b = base + 21 + 26 + 0.76 * tagEm;
+  return head(Math.ceil(rowW + 2 * pad), Math.ceil(b + 0.29 * tagEm + pad), 'כותר')
+    + word(pad + wordW / 2, base)
+    + symbol((pad + wordW + gap + 12 * symSc).toFixed(2), (base - 0.76 * em - 4 * symSc).toFixed(2), symSc.toFixed(4), color, 'seal')
+    + line(pad + rowW / 2, b, tagEm).svg
+    + '</svg>\n';
+}
+
+// Site header: the word and the Ugaritic letters only. No symbol and no sentence, so it holds at 40-60px high.
+function wordHeader(color) {
+  const pad = 12, w = solidWord(0, 0, 230, color, FINAL.wordStroke, FINAL.wordFx, true);
+  const top = 215, bottom = 21;                                      // holam above the baseline, patach below it
+  const W = Math.ceil(w.left + w.right + 2 * pad), H = Math.ceil(top + bottom + 2 * pad);
+  return head(W, H, 'כותר') + `<g transform="translate(${(w.left + pad).toFixed(2)} ${top + pad})">\n${w.svg}</g>\n</svg>\n`;
+}
+
+// One long row, centred on y = 0 and starting at x = 0: the sentence on two lines at the left, the word at the right.
+function strip(color, em, tagEm, gap) {
+  const lineOf = (t, cx, b) => fontLine(t, cx, b, tagEm, color, true, FINAL.tagStroke);
+  const tagW = lineOf(FINAL.lines[0], 0, 0).width;
+  const block = (0.76 + 1.12) * tagEm, b1 = -block / 2 + 0.76 * tagEm, b2 = b1 + 1.12 * tagEm;
+  const base = 0.38 * em;
+  const probe = solidWord(0, base, em, color, FINAL.wordStroke, FINAL.wordFx, true);
+  const cx = tagW + gap + probe.left;
+  const word = solidWord(cx, base, em, color, FINAL.wordStroke, FINAL.wordFx, true);
+  const f = em / 230;
+  return {
+    svg: lineOf(FINAL.lines[0], tagW / 2, b1).svg + lineOf(FINAL.lines[1], tagW / 2, b2).svg + word.svg,
+    length: cx + word.right,
+    half: Math.max(block / 2 + 0.29 * tagEm, 0.38 * em + 28 * f),
+  };
+}
+
+// Invoice and quote header: the symbol at the start (right), then the word, then the sentence.
+function invoiceRow(color) {
+  const pad = 20, gap = 50, s = strip(color, 150, 78, gap), symSc = 3;
+  const half = Math.max(s.half, 81 + 4);                             // the symbol is 162 high
+  const H = Math.ceil(2 * (half + pad)), mid = H / 2;
+  const symTx = pad + s.length + gap + 12 * symSc;
+  const W = Math.ceil(symTx + 16.5 * symSc + pad);
+  return head(W, H, 'כותר')
+    + `<g transform="translate(${pad} ${mid})">\n${s.svg}</g>\n`
+    + symbol(symTx.toFixed(2), (mid - 31 * symSc).toFixed(2), symSc, color, 'v5')
+    + '</svg>\n';
+}
+
+// Vertical strip: the symbol upright on top, and the row turned 90 degrees, reading from the top down.
+function verticalStrip(color) {
+  const pad = 20, gap = 50, s = strip(color, 150, 78, gap), symSc = 3;
+  const halfW = Math.max(s.half, 2.25 * symSc + 16.5 * symSc);
+  const W = Math.ceil(2 * (halfW + pad)), cx = W / 2;
+  const top = pad + 162 + gap, H = Math.ceil(top + s.length + pad);
+  return head(W, H, 'כותר')
+    + symbol((cx - 2.25 * symSc).toFixed(2), pad - 4 * symSc, symSc, color, 'v5')
+    + `<g transform="translate(${cx} ${(top + s.length).toFixed(2)}) rotate(-90)">\n${s.svg}</g>\n`
+    + '</svg>\n';
+}
+function sealFontTag(color, word, thinTag = 0, wordStroke = undefined, wordFx = undefined, flank = false) {
+  const air = 60;
+  let half = Math.max(500 - RING.minX, RING.maxX - 500) + air;
+  if (flank) {
+    const wordW = fontLine('כותר', 500, 0, 230, color, true, wordStroke, wordFx, { ר: R_DRAWING }).width;
+    const row = wordW / 2 + FLANK_GAP + CUNEI.r.tailTo * FLANK_SCALE;
+    const tag = fontLine('תכנון. הנדסה. ביצוע', 500, 0, TAG_EM, color, !!thinTag, thinTag || undefined).width / 2;
+    half = Math.max(row, tag) + air;
+  }
+  const x0 = 500 - half, y0 = (word === 'keep' ? 150 : 118) - air;
+  const b1 = 704 + 54 + 0.76 * TAG_EM, b2 = b1 + 1.12 * TAG_EM;
+  let wm;
+  if (word === 'keep') wm = wordmark(500, 170, 1, color).svg;
+  else wm = solidWord(500, 322, 230, color, wordStroke, wordFx, flank).svg;
+  return head(Math.ceil(half * 2), Math.ceil(b2 + 0.29 * TAG_EM + air - y0), 'כותר')
+    + `<g transform="translate(${(-x0).toFixed(2)} ${-y0})">\n`
+    + wm
+    + symbol(500 - KR.cx * 6, 356, 6, color, 'v5', !flank)
+    + fontLine('תכנון. הנדסה. ביצוע', 500, b1, TAG_EM, color, !!thinTag, thinTag || undefined).svg
+    + fontLine('עץ ומתכת', 500, b2, TAG_EM, color, !!thinTag, thinTag || undefined).svg
+    + '</g>\n</svg>\n';
+}
+
 function icon(color, letters = false, weight = 'icon') {
   // Square 512, symbol centered optically (bbox centre x 2.25, y 31). With letters the group is wider.
   const sc = letters ? 6 : 8;             // with letters the group spans ~73 units
@@ -248,6 +478,42 @@ files['kothar-symbol-v6-fine-kr.svg'] = icon(INK, true, 'v5');
 files['kothar-symbol-v6-fine-kr-white.svg'] = icon('#FFFFFF', true, 'v5');
 files['kothar-horizontal-v6-fine-kr.svg'] = horizontalKR(INK);
 files['kothar-horizontal-v6-fine-kr-white.svg'] = horizontalKR('#FFFFFF');
+files['kothar-noring-arc-v6-fine-kr.svg'] = sealNoRing(INK, 'arc');
+files['kothar-noring-arc-v6-fine-kr-white.svg'] = sealNoRing('#FFFFFF', 'arc');
+files['kothar-noring-line-v6-fine-kr.svg'] = sealNoRing(INK, 'line');
+files['kothar-noring-line-v6-fine-kr-white.svg'] = sealNoRing('#FFFFFF', 'line');
+files['kothar-noring-line-large-v6-fine-kr.svg'] = sealNoRing(INK, 'line-large');
+files['kothar-noring-line-large-v6-fine-kr-white.svg'] = sealNoRing('#FFFFFF', 'line-large');
+files['kothar-noring-two-lines-v6-fine-kr.svg'] = sealNoRing(INK, 'two-lines');
+files['kothar-noring-two-lines-v6-fine-kr-white.svg'] = sealNoRing('#FFFFFF', 'two-lines');
+files['kothar-noring-metal-v6-fine-kr.svg'] = sealNoRing(INK, 'metal');
+files['kothar-noring-metal-v6-fine-kr-white.svg'] = sealNoRing('#FFFFFF', 'metal');
+files['kothar-fonttag-keep-v6-fine-kr.svg'] = sealFontTag(INK, 'keep');
+files['kothar-fonttag-keep-v6-fine-kr-white.svg'] = sealFontTag('#FFFFFF', 'keep');
+files['kothar-fonttag-solid-v6-fine-kr.svg'] = sealFontTag(INK, 'solid');
+files['kothar-fonttag-solid-v6-fine-kr-white.svg'] = sealFontTag('#FFFFFF', 'solid');
+files['kothar-fonttag-solid-thin-v6-fine-kr.svg'] = sealFontTag(INK, 'solid', 50);
+files['kothar-fonttag-solid-thin-v6-fine-kr-white.svg'] = sealFontTag('#FFFFFF', 'solid', 50);
+files['kothar-fonttag-wide-v6-fine-kr.svg'] = sealFontTag(INK, 'solid', 50, 84, 0.95);
+files['kothar-fonttag-wide-v6-fine-kr-white.svg'] = sealFontTag('#FFFFFF', 'solid', 50, 84, 0.95);
+files['kothar-fonttag-flank-v6-fine-kr.svg'] = sealFontTag(INK, 'solid', 50, 84, 0.95, true);
+files['kothar-fonttag-flank-v6-fine-kr-white.svg'] = sealFontTag('#FFFFFF', 'solid', 50, 84, 0.95, true);
+files['kothar-final-header.svg'] = wordHeader(INK);
+files['kothar-final-header-white.svg'] = wordHeader('#FFFFFF');
+files['kothar-final-invoice.svg'] = invoiceRow(INK);
+files['kothar-final-invoice-white.svg'] = invoiceRow('#FFFFFF');
+files['kothar-final-vertical.svg'] = verticalStrip(INK);
+files['kothar-final-vertical-white.svg'] = verticalStrip('#FFFFFF');
+files['kothar-final-lockup.svg'] = lockup(INK);
+files['kothar-final-lockup-white.svg'] = lockup('#FFFFFF');
+for (const mode of ['side', 'compact']) {
+  files[`kothar-final-header-${mode}.svg`] = headerSentence(INK, mode);
+  files[`kothar-final-header-${mode}-white.svg`] = headerSentence('#FFFFFF', mode);
+}
+for (const mode of ['under', 'beside', 'bare']) {
+  files[`kothar-final-row-${mode}.svg`] = horizontalRow(INK, mode);
+  files[`kothar-final-row-${mode}-white.svg`] = horizontalRow('#FFFFFF', mode);
+}
 for (const [name, body] of Object.entries(files)) fs.writeFileSync(path.join(outDir, name), body);
 
 // Before/after strip for the symbol weight at the sizes the brief tests.
